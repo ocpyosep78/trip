@@ -1,0 +1,5 @@
+Multi Language
+- 1 field pada table di database digunakan bersama, misalkan ada table artikle dengan field id, title, content, post_date
+  pada field title ini akan digunakan untuk menyimpan judul artikel dari semua bahasa yang tersedia
+  misalkan ada bahasa Indonesia dan Inggris, maka pada field title ini menyimpan 2 title bahasa tersebut menjadi 1 dalam field ini
+  jika kita punya 10 bahasa, maka pada field ini juga terdapat 10 title yang disimpan dalam 1 field

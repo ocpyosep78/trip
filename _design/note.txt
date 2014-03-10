@@ -1,0 +1,201 @@
+Multi Language
+
+----------------------------------------------------------------------------------------------------------------
+MY NOTE
+----------------------------------------------------------------------------------------------------------------
+- Form nya pakai Multi Tab (http://localhost/kedai/trunk/_design/admin-full-notebook/components.html)
+- User ada 4 jenis (Admin, Editor, Member, Traveler)
+- Jika user yang akses server lebih dari 1000 tampilkan halaman overlod / seperti kaskus over posting
+
+----------------------------------------------------------------------------------------------------------------
+PANEL
+----------------------------------------------------------------------------------------------------------------
+Modul Language
+- Common Master
+
+Modul Category
+- Common Master & No Multi Language
+
+Modul Sub Category
+- Common Master & No Multi Language
+
+Modul Post
+- Multi Language
+- Post untuk setiap category berbeda (tidak selalu sama) jadi tablenya juga sendiri seperti post_hotel, post_restaurant, dkk untuk menyimpan data detailnya
+
+Modul Post - Booking
+- link : http://shoperindo.com/trip/4.%20booking%20proses.png
+- khusus untuk category hotel saja
+- isikan nama dan link
+- maks 6 link
+
+Modul Fasilitas
+- Multi Language
+- Masing2 category memiliki fasilitas sendiri2
+- Fitur Searchable diset di category_facility
+
+Modul Room Amenities
+- Multi Language
+- khusus untuk hotel
+
+Modul Promosi
+- Multi Language
+- Confirm Payment
+
+Modul Image by Traveler
+- List gambar yang dikirim oleh traveler yang akan di approve oleh admin
+
+Module Review by Traveler
+- List review yang dikirim oleh traveler yang akan di approve oleh admin
+- Admin bisa edit seperti yang ada di kedaipedia untuk ganti category pada advert
+
+Master Region
+- CRUD Region
+
+Master City
+- CRUD City
+
+Master Country
+- CRUD Country
+
+----------------------------------------------------------------------------------------------------------------
+PANEL EDITOR
+----------------------------------------------------------------------------------------------------------------
+Modul Post
+- Multi Language
+- Bisa edit user
+
+Modul Fasilitas
+- Multi Language
+
+Modul Promosi
+- Multi Language
+
+----------------------------------------------------------------------------------------------------------------
+PANEL MEMBER
+----------------------------------------------------------------------------------------------------------------
+Note
+- Member merupakan user yang memiliki tempat wisata
+- link http://shoperindo.com/trip/5.%20Menu%20admin.png
+
+Link Member
+- link : trip.com/alias
+
+Dashboard
+- Dashboard biasa
+
+Post
+- Agar user bisa membuat post tentang tempat wisata yang dia miliki
+
+Profile
+- Edit Info
+- Edit Account
+- Edit Profile
+- Get Verified
+- Request Membership
+
+Setting
+- Setting
+
+Promo (L)
+- link : http://shoperindo.com/trip/add%20promo.png
+- Promo memiliki durasi (1 bulan / 2 bulan / dkk)
+- 1 member hanya memiliki 1 promosi yang aktif untuk 1 post
+- input :
+  - form 1 : title, content, tag
+  - form 2 : durasi, term of user (checkbox)
+  - sent invoice via email
+
+----------------------------------------------------------------------------------------------------------------
+PANEL TRAVELER
+----------------------------------------------------------------------------------------------------------------
+Note
+- Traveler merupakan user yang mengunjungi tempat wisata
+- link http://shoperindo.com/trip/5.%20Menu%20admin.png
+
+Link Traveler
+- link : trip.com/traveler/alias
+
+Dashboard
+- Dashboard biasa
+
+My Review
+- Review tempat wisata yang sudah dikunjungi
+- Review akan membutuhkan validasi dari admin
+
+Profile
+- Edit Info
+- Edit Profile
+
+Setting
+- Setting
+
+----------------------------------------------------------------------------------------------------------------
+WEBSITE
+----------------------------------------------------------------------------------------------------------------
+Common
+- breadcrumb yang lengkap
+  - Hotel / Jawa Timur / Malang Kab / Nama Tempat
+- link yang sesuai
+  - trip.com/hotel/jawa-timur/malang/nama-tempat
+
+Index
+- link hasil : http://shoperindo.com/trip/v3/indexx.html
+- Auto complete berdasarkan category yang diload dari table sendiri (table khusus auto complete tersendiri)
+
+Listing Category
+- Ada filter by Fasilitas
+- link sample : http://shoperindo.com/trip/fasilitas.png
+- link hasil : ke http://shoperindo.com/trip/v3/list2.html
+- sample page : list.html atau list2.html
+
+Listing Search
+- desain nya berbeda dengan Listing Category
+- sample page : list-search.html
+
+Page Single
+- Jika user berada pada bahasa perancis dan content tidak tersedia, tampilkan "this contnent is not available in your language"
+- Entry-an yang tidak diisi jangan ditampilkan
+
+Page Single - Tempat Wisata
+- sample : http://shoperindo.com/trip/v3/details-wisata.html
+- category tempat wisata
+- ada fitur upload gambar by Traveler
+
+Page Single - Hotel
+- Ada fasilitas booking
+- link sample : http://shoperindo.com/trip/4.%20booking%20proses.png
+- link template : http://shoperindo.com/trip/v3/details-hotel.html
+- ketika user melakukan booking, maka akan buka window baru sesuai link yang dia booking
+- jika dipanel untuk input "How to book" diisi maka keluar ditab sendiri
+
+Page Single - List Review
+- link design : http://shoperindo.com/trip/v3/details-wisata-review.html
+- link hasil : review/coban-rondo
+- review ini masuk approval dulu
+- ada fungsi filter bahasa
+- ini untuk category non hotel tapi nanti bisa disable / enable
+
+Upload Traveler
+- link : http://shoperindo.com/trip/v3/details-wisata-review-galeri.html
+- entry-an nya : user, title (limit 50 char) dan desc, tanggal upload
+- isinya hasil upload dari Traveler yang sudah di approve
+- nanti yang ditampilkan ada limit nya, misal per bulan atau bagaimana yang enak
+
+Login Facebook
+- Support Login with FB
+
+----------------------------------------------------------------------------------------------------------------
+SYSTEM CRON
+----------------------------------------------------------------------------------------------------------------
+Promosi
+- Kirim notifikasi untuk promosi yang akan habis masa nya (1 minggu sebelumnya)
+
+----------------------------------------------------------------------------------------------------------------
+MASTER DATA
+----------------------------------------------------------------------------------------------------------------
+Category (CategorySub)
+- Hotel (Hotel Berbintang, Hotel Murah, Villa, Guest House)
+- Tempat Wisata (Wisata Candi, Wisata Pantai, Wisata Alam, Kuliner)
+
+----------------------------------------------------------------------------------------------------------------
