@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.4
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Mar 10, 2014 at 06:57 PM
--- Server version: 5.1.41
--- PHP Version: 5.3.1
+-- Host: 127.0.0.1
+-- Generation Time: Mar 11, 2014 at 10:06 AM
+-- Server version: 5.5.32
+-- PHP Version: 5.4.19
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -18,6 +19,22 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Database: `trip_db`
 --
+CREATE DATABASE IF NOT EXISTS `trip_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `trip_db`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auto_complete`
+--
+
+CREATE TABLE IF NOT EXISTS `auto_complete` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `link` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -35,10 +52,19 @@ CREATE TABLE IF NOT EXISTS `category` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `category`
+-- Table structure for table `category_facility`
 --
 
+CREATE TABLE IF NOT EXISTS `category_facility` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `facility_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `searchable` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -57,11 +83,6 @@ CREATE TABLE IF NOT EXISTS `category_sub` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `category_sub`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -71,8 +92,8 @@ CREATE TABLE IF NOT EXISTS `category_sub` (
 CREATE TABLE IF NOT EXISTS `city` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `region_id` int(11) NOT NULL,
-  `name` varchar(75) NOT NULL,
   `alias` varchar(50) NOT NULL,
+  `title` varchar(75) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=60 ;
 
@@ -80,62 +101,260 @@ CREATE TABLE IF NOT EXISTS `city` (
 -- Dumping data for table `city`
 --
 
-INSERT INTO `city` (`id`, `region_id`, `name`, `alias`) VALUES
-(4, 4, 'Bekok', 'bekok'),
-(5, 4, 'Batu Pahat', 'batu-pahat'),
-(6, 5, 'Serawak 1', 'serawak-1'),
-(8, 4, 'Ayer Baloi', 'ayer-baloi'),
-(9, 4, 'Ayer Hitam', 'ayer-hitam'),
-(10, 4, 'Bakri', 'bakri'),
-(11, 4, 'Batu Anam', 'batu-anam'),
-(12, 4, 'Batu Pahat', 'batu-pahat'),
-(13, 4, 'Bekok-salah', 'bekok-salah'),
-(14, 4, 'Benut', 'benut'),
-(15, 4, 'Bukit Gambir', 'bukit-gambir'),
-(16, 4, 'Bukit Pasir', 'bukit-pasir'),
-(17, 4, 'Chaah', 'chaah'),
-(18, 4, 'Endau', 'endau'),
-(19, 4, 'Gelang Patah', 'gelang-patah'),
-(20, 4, 'Gerisek', 'gerisek'),
-(21, 4, 'Gugusan Taib Andak', 'gugusan-taib-andak'),
-(22, 4, 'Jementah', 'jementah'),
-(23, 4, 'Johor Bahru', 'johor-bahru'),
-(24, 4, 'Kahang', 'kahang'),
-(25, 4, 'Kampung Kenangan Tun Dr Ismail', 'kampung-kenangan-tun-dr-ismail'),
-(26, 4, 'Kluang', 'kluang'),
-(27, 4, 'Kota Tinggi', 'kota-tinggi'),
-(28, 4, 'Kukup', 'kukup'),
-(29, 4, 'Kulai', 'kulai'),
-(30, 4, 'Labis', 'labis'),
-(31, 4, 'Layang Layang', 'layang-layang'),
-(32, 4, 'Masai', 'masai'),
-(33, 4, 'Mersing', 'mersing'),
-(34, 4, 'Muar', 'muar'),
-(35, 4, 'Pagoh', 'pagoh'),
-(36, 4, 'Paloh', 'paloh'),
-(37, 4, 'Panchor', 'panchor'),
-(38, 4, 'Parit Jawa', 'parit-jawa'),
-(39, 4, 'Parit Raja', 'parit-raja'),
-(40, 4, 'Parit Sulong', 'parit-sulong'),
-(41, 4, 'Pasir Gudang', 'pasir-gudang'),
-(42, 4, 'Pekan Nanas', 'pekan-nanas'),
-(43, 4, 'Pengerang', 'pengerang'),
-(44, 4, 'Plentong', 'plentong'),
-(45, 4, 'Pontian', 'pontian'),
-(46, 4, 'Rengam', 'rengam'),
-(47, 4, 'Rengit', 'rengit'),
-(48, 4, 'Segamat', 'segamat'),
-(49, 4, 'Semerah', 'semerah'),
-(50, 4, 'Senai', 'senai'),
-(51, 4, 'Senggarang', 'senggarang'),
-(52, 4, 'Seri Gadang', 'seri-gadang'),
-(53, 4, 'Simpang Rengam', 'simpang-rengam'),
-(54, 4, 'Skudai', 'skudai'),
-(55, 4, 'Sungai Mati', 'sungai-mati'),
-(56, 4, 'Tampoi', 'tampoi'),
-(57, 4, 'Tangkak', 'tangkak'),
-(58, 4, 'Ulu Tiram', 'ulu-tiram'),
-(59, 4, 'Yong Peng', 'yong-peng');
+INSERT INTO `city` (`id`, `region_id`, `alias`, `title`) VALUES
+(4, 4, 'bekok', 'Bekok'),
+(5, 4, 'batu-pahat', 'Batu Pahat'),
+(6, 5, 'serawak-1', 'Serawak 1'),
+(8, 4, 'ayer-baloi', 'Ayer Baloi'),
+(9, 4, 'ayer-hitam', 'Ayer Hitam'),
+(10, 4, 'bakri', 'Bakri'),
+(11, 4, 'batu-anam', 'Batu Anam'),
+(12, 4, 'batu-pahat', 'Batu Pahat'),
+(13, 4, 'bekok-salah', 'Bekok-salah'),
+(14, 4, 'benut', 'Benut'),
+(15, 4, 'bukit-gambir', 'Bukit Gambir'),
+(16, 4, 'bukit-pasir', 'Bukit Pasir'),
+(17, 4, 'chaah', 'Chaah'),
+(18, 4, 'endau', 'Endau'),
+(19, 4, 'gelang-patah', 'Gelang Patah'),
+(20, 4, 'gerisek', 'Gerisek'),
+(21, 4, 'gugusan-taib-andak', 'Gugusan Taib Andak'),
+(22, 4, 'jementah', 'Jementah'),
+(23, 4, 'johor-bahru', 'Johor Bahru'),
+(24, 4, 'kahang', 'Kahang'),
+(25, 4, 'kampung-kenangan-tun-dr-ismail', 'Kampung Kenangan Tun Dr Ismail'),
+(26, 4, 'kluang', 'Kluang'),
+(27, 4, 'kota-tinggi', 'Kota Tinggi'),
+(28, 4, 'kukup', 'Kukup'),
+(29, 4, 'kulai', 'Kulai'),
+(30, 4, 'labis', 'Labis'),
+(31, 4, 'layang-layang', 'Layang Layang'),
+(32, 4, 'masai', 'Masai'),
+(33, 4, 'mersing', 'Mersing'),
+(34, 4, 'muar', 'Muar'),
+(35, 4, 'pagoh', 'Pagoh'),
+(36, 4, 'paloh', 'Paloh'),
+(37, 4, 'panchor', 'Panchor'),
+(38, 4, 'parit-jawa', 'Parit Jawa'),
+(39, 4, 'parit-raja', 'Parit Raja'),
+(40, 4, 'parit-sulong', 'Parit Sulong'),
+(41, 4, 'pasir-gudang', 'Pasir Gudang'),
+(42, 4, 'pekan-nanas', 'Pekan Nanas'),
+(43, 4, 'pengerang', 'Pengerang'),
+(44, 4, 'plentong', 'Plentong'),
+(45, 4, 'pontian', 'Pontian'),
+(46, 4, 'rengam', 'Rengam'),
+(47, 4, 'rengit', 'Rengit'),
+(48, 4, 'segamat', 'Segamat'),
+(49, 4, 'semerah', 'Semerah'),
+(50, 4, 'senai', 'Senai'),
+(51, 4, 'senggarang', 'Senggarang'),
+(52, 4, 'seri-gadang', 'Seri Gadang'),
+(53, 4, 'simpang-rengam', 'Simpang Rengam'),
+(54, 4, 'skudai', 'Skudai'),
+(55, 4, 'sungai-mati', 'Sungai Mati'),
+(56, 4, 'tampoi', 'Tampoi'),
+(57, 4, 'tangkak', 'Tangkak'),
+(58, 4, 'ulu-tiram', 'Ulu Tiram'),
+(59, 4, 'yong-peng', 'Yong Peng');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `country`
+--
+
+CREATE TABLE IF NOT EXISTS `country` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `alias` varchar(50) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `facility`
+--
+
+CREATE TABLE IF NOT EXISTS `facility` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` longtext NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hotel_booking`
+--
+
+CREATE TABLE IF NOT EXISTS `hotel_booking` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `link` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hotel_detail`
+--
+
+CREATE TABLE IF NOT EXISTS `hotel_detail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) NOT NULL,
+  `booking` longtext NOT NULL,
+  `rate_per_night` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hotel_room_amenity`
+--
+
+CREATE TABLE IF NOT EXISTS `hotel_room_amenity` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) NOT NULL,
+  `room_amenity_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `language`
+--
+
+CREATE TABLE IF NOT EXISTS `language` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `alias` varchar(50) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `code` varchar(3) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post`
+--
+
+CREATE TABLE IF NOT EXISTS `post` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `city_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `alias` varchar(50) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `address` longtext NOT NULL,
+  `desc_01` longtext NOT NULL,
+  `desc_02` longtext NOT NULL,
+  `desc_03` longtext NOT NULL,
+  `field_01` longtext NOT NULL,
+  `map` float NOT NULL,
+  `star` int(11) NOT NULL,
+  `post_status` varchar(50) NOT NULL COMMENT 'pending / approve / reject',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post_facility`
+--
+
+CREATE TABLE IF NOT EXISTS `post_facility` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) NOT NULL,
+  `facility_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post_gallery`
+--
+
+CREATE TABLE IF NOT EXISTS `post_gallery` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` longtext NOT NULL,
+  `post_date` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post_traveler_photo`
+--
+
+CREATE TABLE IF NOT EXISTS `post_traveler_photo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` longtext NOT NULL,
+  `post_time` date NOT NULL,
+  `post_status` varchar(50) NOT NULL COMMENT 'pending / approve / reject',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post_traveler_review`
+--
+
+CREATE TABLE IF NOT EXISTS `post_traveler_review` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `alias` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` longtext NOT NULL,
+  `post_date` date NOT NULL,
+  `post_status` varchar(50) NOT NULL COMMENT 'pending / approve / reject',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `promo`
+--
+
+CREATE TABLE IF NOT EXISTS `promo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `post_id` int(11) NOT NULL,
+  `promo_duration_id` int(11) NOT NULL,
+  `title` longtext NOT NULL,
+  `content` longtext NOT NULL,
+  `keyword` longtext NOT NULL,
+  `publish_date` date NOT NULL,
+  `close_date` date NOT NULL,
+  `promo_status` varchar(50) NOT NULL COMMENT 'pending / approve / reject',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `promo_duration`
+--
+
+CREATE TABLE IF NOT EXISTS `promo_duration` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(150) NOT NULL,
+  `cost` int(11) NOT NULL,
+  `duration` varchar(150) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -145,8 +364,9 @@ INSERT INTO `city` (`id`, `region_id`, `name`, `alias`) VALUES
 
 CREATE TABLE IF NOT EXISTS `region` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `country_id` int(11) NOT NULL,
   `alias` varchar(75) NOT NULL,
-  `name` varchar(75) NOT NULL,
+  `title` varchar(75) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
@@ -154,21 +374,33 @@ CREATE TABLE IF NOT EXISTS `region` (
 -- Dumping data for table `region`
 --
 
-INSERT INTO `region` (`id`, `alias`, `name`) VALUES
-(4, 'johor', 'Johor'),
-(5, 'serawak', 'Serawak'),
-(6, 'sabah', 'Sabah'),
-(8, 'kedah', 'Kedah'),
-(9, 'kelantan', 'Kelantan'),
-(10, 'kuala-lumpur', 'Kuala Lumpur'),
-(11, 'melaka', 'Melaka'),
-(12, 'n-sembilan', 'N. Sembilan'),
-(13, 'pahang', 'Pahang'),
-(14, 'penang', 'Penang'),
-(15, 'perak', 'Perak'),
-(16, 'perlis', 'Perlis'),
-(17, 'selangor', 'Selangor'),
-(18, 'terengganu', 'Terengganu');
+INSERT INTO `region` (`id`, `country_id`, `alias`, `title`) VALUES
+(4, 0, 'johor', 'Johor'),
+(5, 0, 'serawak', 'Serawak'),
+(6, 0, 'sabah', 'Sabah'),
+(8, 0, 'kedah', 'Kedah'),
+(9, 0, 'kelantan', 'Kelantan'),
+(10, 0, 'kuala-lumpur', 'Kuala Lumpur'),
+(11, 0, 'melaka', 'Melaka'),
+(12, 0, 'n-sembilan', 'N. Sembilan'),
+(13, 0, 'pahang', 'Pahang'),
+(14, 0, 'penang', 'Penang'),
+(15, 0, 'perak', 'Perak'),
+(16, 0, 'perlis', 'Perlis'),
+(17, 0, 'selangor', 'Selangor'),
+(18, 0, 'terengganu', 'Terengganu');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room_amenity`
+--
+
+CREATE TABLE IF NOT EXISTS `room_amenity` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -228,7 +460,7 @@ CREATE TABLE IF NOT EXISTS `user_log` (
   `location` varchar(255) NOT NULL,
   `ip_remote` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `user_log`
@@ -236,7 +468,8 @@ CREATE TABLE IF NOT EXISTS `user_log` (
 
 INSERT INTO `user_log` (`id`, `user_id`, `log_time`, `location`, `ip_remote`) VALUES
 (1, 2, '2014-03-10 18:49:22', 'localhost', '::1'),
-(2, 2, '2014-03-10 18:49:27', 'localhost', '::1');
+(2, 2, '2014-03-10 18:49:27', 'localhost', '::1'),
+(3, 2, '2014-03-11 08:20:42', 'localhost', '::1');
 
 -- --------------------------------------------------------
 
@@ -248,7 +481,7 @@ CREATE TABLE IF NOT EXISTS `user_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `user_type`
@@ -256,8 +489,7 @@ CREATE TABLE IF NOT EXISTS `user_type` (
 
 INSERT INTO `user_type` (`id`, `name`) VALUES
 (1, 'Administrator'),
-(2, 'Editor'),
-(3, 'Member');
+(2, 'Editor');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
