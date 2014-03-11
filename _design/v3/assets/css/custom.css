@@ -55,9 +55,9 @@ ul.droplist li:hover.inactive{background:#fff; }
 .mtslide{position:relative; top:50px;}
 .mtslide2{position:relative; top:0px;}
 @media (min-width: 992px) {
-.navbar-wrapper2{min-height:110px; background:white; border-bottom:0px solid #cccccc; box-shadow: 0 0 5px rgba(0, 0, 0, 0.13); padding-bottom:0px;}
+.navbar-wrapper2{min-height:2px; background-color:#f8f8f8; border-bottom:0px solid #cccccc; box-shadow: 0 0 5px rgba(0, 0, 0, 0.13); padding-bottom:0px;}
 .mtnav{position:relative; top:30px;}
-.mtslide{position:relative; top:90px;}
+.mtslide{position:relative; top:53px;}
 }
 
 
@@ -1602,8 +1602,13 @@ background:url('../../images/slider/couple.png') no-repeat;
 .pagecontainer2{ background:#fff; border:1px solid #cccccc;  box-shadow: 0 0 5px rgba(0, 0, 0, 0.13); position:relative;}
 
 /*CSS FOR LIST PAGE*/
-.thebg{background:url('../../images/palmleafs.png') #f2f2f2 no-repeat top center;}
-.pagecontainer{ background:#fff; margin-top:32px; border:1px solid #cccccc;  box-shadow: 0 0 5px rgba(0, 0, 0, 0.13);}
+.thebg{background-color:#fff;}
+.pagecontainer {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #CCCCCC;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.13);
+  margin-top: 32px;
+}
 .offset-0{padding-left:0px; padding-right:0px!important;}
 .offset-1{padding-left:5px; padding-right:5px;}
 .offset-2{padding-left:15px; padding-right:15px;}
@@ -1626,6 +1631,7 @@ background:url('../../images/slider/couple.png') no-repeat;
 .hpadding20{padding: 0px 20px 0px 20px;}
 .cpadding0{padding: 50px 50px 30px 50px;}
 .cpadding1{padding: 0px 30px 10px 50px;}
+.cpadding11{padding: 0px 30px 10px 25px;}
 .cari{padding: 0px 30px 15px 0px;}
 
 
@@ -1694,7 +1700,7 @@ background:url('../../images/back-icon.png') #222 no-repeat  scroll -16px -31px;
 }
 
 .itemlabel3{background:#f2f2f2; width:100%; height:210px;  font-family:"Open Sans"; font-size:13px; line-height:15px; overflow:hidden;}
-.itemlabel2{background:#f2f2f2; width:100%; height:210px;  font-family:"Open Sans"; font-size:13px; line-height:15px; overflow:hidden;}
+.itemlabel2{background-color:#f2f2f2; width:100%; height:210px;  font-family:"Open Sans"; font-size:13px; line-height:15px; overflow:hidden;}
 .labelright{float:right; height:100%; padding:10px; border-left:1px solid #e8e8e8;}
 .labelleft{padding:10px 0 15px 15px;}
 .labelleft2{padding:10px 0 15px 15px;font-family:"Open Sans"; font-size:13px; line-height:18px;}
@@ -2252,7 +2258,7 @@ margin-top:10px;
 }
 
 ul.jslidetext2{
-width:100px;
+ 
 list-style:none;
 padding-left:0px;
 text-align:right;
