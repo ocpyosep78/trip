@@ -1,24 +1,24 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class city_model extends CI_Model {
+class user_log_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'region_id', 'name', 'alias' );
+        $this->field = array( 'id', 'user_id', 'log_time', 'location', 'ip_remote' );
     }
 
     function update($param) {
         $result = array();
        
         if (empty($param['id'])) {
-            $insert_query  = GenerateInsertQuery($this->field, $param, CITY);
+            $insert_query  = GenerateInsertQuery($this->field, $param, USER_LOG);
             $insert_result = mysql_query($insert_query) or die(mysql_error());
            
             $result['id'] = mysql_insert_id();
             $result['status'] = '1';
             $result['message'] = 'Data successfully saved.';
         } else {
-            $update_query  = GenerateUpdateQuery($this->field, $param, CITY);
+            $update_query  = GenerateUpdateQuery($this->field, $param, USER_LOG);
             $update_result = mysql_query($update_query) or die(mysql_error());
            
             $result['id'] = $param['id'];
@@ -33,18 +33,7 @@ class city_model extends CI_Model {
         $array = array();
        
         if (isset($param['id'])) {
-            $select_query  = "SELECT * FROM ".CITY." WHERE id = '".$param['id']."' LIMIT 1";
-		} else if (isset($param['alias']) && isset($param['region_id'])) {
-            $select_query  = "
-				SELECT City.*,
-					Region.title region_name, Region.alias region_alias
-				FROM ".CITY." City
-				LEFT JOIN ".REGION." Region ON Region.id = City.region_id
-				WHERE
-					City.alias = '".$param['alias']."'
-					AND City.region_id = '".$param['region_id']."'
-				LIMIT 1
-			";
+            $select_query  = "SELECT * FROM ".USER_LOG." WHERE id = '".$param['id']."' LIMIT 1";
         } 
        
         $select_result = mysql_query($select_query) or die(mysql_error());
@@ -57,22 +46,17 @@ class city_model extends CI_Model {
 	
     function get_array($param = array()) {
         $array = array();
-		$param['limit'] = (isset($param['limit'])) ? $param['limit'] : 100;
 		
-		$param['field_replace']['name'] = 'City.title';
-		$param['field_replace']['region_name'] = 'Region.title';
-		
-		$string_namelike = (!empty($param['namelike'])) ? "AND City.title LIKE '%".$param['namelike']."%'" : '';
-		$string_region = (isset($param['region_id'])) ? "AND City.region_id = '".$param['region_id']."'" : '';
+		$string_namelike = (!empty($param['namelike'])) ? "AND UserLog.location LIKE '%".$param['namelike']."%'" : '';
+		$string_user = (isset($param['user_id'])) ? "AND UserLog.user_id = '".$param['user_id']."'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
-		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
+		$string_sorting = GetStringSorting($param, @$param['column'], 'log_time DESC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS City.*, Region.title region_name, Region.alias region_alias
-			FROM ".CITY." City
-			LEFT JOIN ".REGION." Region ON Region.id = City.region_id
-			WHERE 1 $string_namelike $string_region $string_filter
+			SELECT SQL_CALC_FOUND_ROWS UserLog.*
+			FROM ".USER_LOG." UserLog
+			WHERE 1 $string_namelike $string_user $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
@@ -94,7 +78,7 @@ class city_model extends CI_Model {
     }
 	
     function delete($param) {
-		$delete_query  = "DELETE FROM ".CITY." WHERE id = '".$param['id']."' LIMIT 1";
+		$delete_query  = "DELETE FROM ".USER_LOG." WHERE id = '".$param['id']."' LIMIT 1";
 		$delete_result = mysql_query($delete_query) or die(mysql_error());
 		
 		$result['status'] = '1';
@@ -105,10 +89,7 @@ class city_model extends CI_Model {
 	
 	function sync($row, $param = array()) {
 		$row = StripArray($row);
-		
-		if (isset($row['region_alias']) && isset($row['alias'])) {
-			$row['city_link'] = base_url($row['region_alias'].'/'.$row['alias']);
-		}
+		$row['log_time_text'] = show_time_diff($row['log_time']);
 		
 		if (count(@$param['column']) > 0) {
 			$row = dt_view_set($row, $param);
