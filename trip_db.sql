@@ -3,18 +3,12 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2014 at 10:06 AM
+-- Generation Time: Mar 12, 2014 at 03:15 PM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `trip_db`
@@ -34,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `auto_complete` (
   `title` varchar(255) NOT NULL,
   `link` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -50,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   `link` varchar(255) NOT NULL,
   `thumbnail` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -64,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `category_facility` (
   `category_id` int(11) NOT NULL,
   `searchable` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -81,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `category_sub` (
   `link` varchar(255) NOT NULL,
   `thumbnail` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -161,6 +155,20 @@ INSERT INTO `city` (`id`, `region_id`, `alias`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `city_ip`
+--
+
+CREATE TABLE IF NOT EXISTS `city_ip` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ip` varchar(50) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `content` longtext NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `country`
 --
 
@@ -169,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `country` (
   `alias` varchar(50) NOT NULL,
   `title` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -181,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `facility` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -195,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `hotel_booking` (
   `title` varchar(50) NOT NULL,
   `link` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -209,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `hotel_detail` (
   `booking` longtext NOT NULL,
   `rate_per_night` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -222,7 +230,44 @@ CREATE TABLE IF NOT EXISTS `hotel_room_amenity` (
   `post_id` int(11) NOT NULL,
   `room_amenity_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ip_banned`
+--
+
+CREATE TABLE IF NOT EXISTS `ip_banned` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ip_address` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ip_log`
+--
+
+CREATE TABLE IF NOT EXISTS `ip_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ip_address` varchar(50) NOT NULL,
+  `request_time` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ip_pass`
+--
+
+CREATE TABLE IF NOT EXISTS `ip_pass` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ip_address` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -236,7 +281,54 @@ CREATE TABLE IF NOT EXISTS `language` (
   `title` varchar(50) NOT NULL,
   `code` varchar(3) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mass_email`
+--
+
+CREATE TABLE IF NOT EXISTS `mass_email` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `content` longtext NOT NULL,
+  `sent_offset` int(11) NOT NULL,
+  `sent_limit` int(11) NOT NULL,
+  `update_time` datetime NOT NULL,
+  `status` varchar(50) NOT NULL COMMENT 'draft / done',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `member`
+--
+
+CREATE TABLE IF NOT EXISTS `member` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `city_id` int(11) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `alias` varchar(50) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `passwd` varchar(100) NOT NULL,
+  `passwd_reset_key` varchar(100) NOT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `phone` varchar(50) NOT NULL,
+  `postal_code` varchar(10) NOT NULL,
+  `user_about` varchar(255) NOT NULL,
+  `user_info` varchar(255) NOT NULL,
+  `register_date` datetime NOT NULL,
+  `membership_date` date NOT NULL,
+  `verify_email` int(11) NOT NULL,
+  `verify_email_key` varchar(75) NOT NULL,
+  `verify_address` int(11) NOT NULL,
+  `thumbnail_profile` varchar(75) NOT NULL,
+  `is_active` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -249,7 +341,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   `city_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   `alias` varchar(50) NOT NULL,
-  `title` varchar(50) NOT NULL,
+  `title` longtext NOT NULL,
   `address` longtext NOT NULL,
   `desc_01` longtext NOT NULL,
   `desc_02` longtext NOT NULL,
@@ -259,7 +351,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   `star` int(11) NOT NULL,
   `post_status` varchar(50) NOT NULL COMMENT 'pending / approve / reject',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -272,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `post_facility` (
   `post_id` int(11) NOT NULL,
   `facility_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -287,7 +379,7 @@ CREATE TABLE IF NOT EXISTS `post_gallery` (
   `content` longtext NOT NULL,
   `post_date` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -303,7 +395,7 @@ CREATE TABLE IF NOT EXISTS `post_traveler_photo` (
   `post_time` date NOT NULL,
   `post_status` varchar(50) NOT NULL COMMENT 'pending / approve / reject',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -321,7 +413,7 @@ CREATE TABLE IF NOT EXISTS `post_traveler_review` (
   `post_date` date NOT NULL,
   `post_status` varchar(50) NOT NULL COMMENT 'pending / approve / reject',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -340,7 +432,7 @@ CREATE TABLE IF NOT EXISTS `promo` (
   `close_date` date NOT NULL,
   `promo_status` varchar(50) NOT NULL COMMENT 'pending / approve / reject',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -354,7 +446,7 @@ CREATE TABLE IF NOT EXISTS `promo_duration` (
   `cost` int(11) NOT NULL,
   `duration` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -400,7 +492,36 @@ CREATE TABLE IF NOT EXISTS `room_amenity` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `traveler`
+--
+
+CREATE TABLE IF NOT EXISTS `traveler` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `city_id` int(11) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `alias` varchar(50) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `passwd` varchar(100) NOT NULL,
+  `passwd_reset_key` varchar(100) NOT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `phone` varchar(50) NOT NULL,
+  `postal_code` varchar(10) NOT NULL,
+  `user_about` varchar(255) NOT NULL,
+  `user_info` varchar(255) NOT NULL,
+  `register_date` datetime NOT NULL,
+  `membership_date` date NOT NULL,
+  `verify_email` int(11) NOT NULL,
+  `verify_email_key` varchar(75) NOT NULL,
+  `thumbnail_profile` varchar(75) NOT NULL,
+  `is_active` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -412,7 +533,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `city_id` int(11) NOT NULL,
   `user_type_id` int(11) NOT NULL,
-  `email` varchar(50) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `alias` varchar(50) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
@@ -460,7 +581,7 @@ CREATE TABLE IF NOT EXISTS `user_log` (
   `location` varchar(255) NOT NULL,
   `ip_remote` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `user_log`
@@ -469,7 +590,8 @@ CREATE TABLE IF NOT EXISTS `user_log` (
 INSERT INTO `user_log` (`id`, `user_id`, `log_time`, `location`, `ip_remote`) VALUES
 (1, 2, '2014-03-10 18:49:22', 'localhost', '::1'),
 (2, 2, '2014-03-10 18:49:27', 'localhost', '::1'),
-(3, 2, '2014-03-11 08:20:42', 'localhost', '::1');
+(3, 2, '2014-03-11 08:20:42', 'localhost', '::1'),
+(4, 2, '2014-03-11 10:27:35', 'localhost', '::1');
 
 -- --------------------------------------------------------
 
@@ -490,7 +612,3 @@ CREATE TABLE IF NOT EXISTS `user_type` (
 INSERT INTO `user_type` (`id`, `name`) VALUES
 (1, 'Administrator'),
 (2, 'Editor');
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -143,11 +143,16 @@ Index
 - link hasil : http://shoperindo.com/trip/v3/indexx.html
 - Auto complete berdasarkan category yang diload dari table sendiri (table khusus auto complete tersendiri)
 
-Listing Category
+Listing Category : Destination dan Restaurant
 - Ada filter by Fasilitas
 - link sample : http://shoperindo.com/trip/fasilitas.png
-- link hasil : ke http://shoperindo.com/trip/v3/list2.html
-- sample page : list.html atau list2.html
+- link hasil : list-wisata-eatplace-public.html
+
+Listing Category : Hotel
+- link hasil : list-hotel.html
+
+Listing Category : Public
+- link hasil : list-wisata-public.html
 
 Listing Search
 - desain nya berbeda dengan Listing Category
@@ -197,5 +202,11 @@ MASTER DATA
 Category (CategorySub)
 - Hotel (Hotel Berbintang, Hotel Murah, Villa, Guest House)
 - Tempat Wisata (Wisata Candi, Wisata Pantai, Wisata Alam, Kuliner)
+
+----------------------------------------------------------------------------------------------------------------
+ADDITIONAL
+----------------------------------------------------------------------------------------------------------------
+
+
 
 ----------------------------------------------------------------------------------------------------------------
