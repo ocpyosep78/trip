@@ -22,10 +22,10 @@ define('SENT_MAIL',								$value);
 define('LOGIN_ACTIVE_TIME',						(60 * 60 * 1));
 
 define('SHA_SECRET',							'OraNgerti');
-define('USER_TYPE_ADMINISTRATOR',				1);
-define('USER_TYPE_EDITOR',						2);
-define('USER_TYPE_MEMBER',						3);
-define('USER_TYPE_TRAVELER',					4);
+define('USER_TYPE_ADMINISTRATOR',				99);
+define('USER_TYPE_EDITOR',						88);
+define('USER_TYPE_MEMBER',						77);
+define('USER_TYPE_TRAVELER',					66);
 
 define('CITY',									'city');
 define('CITY_IP',								'city_ip');
