@@ -1,24 +1,24 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Vehicle_Type_model extends CI_Model {
+class promo_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'vehicle_brand_id', 'name', 'alias' );
+        $this->field = array( 'id', 'post_id', 'promo_duration_id', 'title', 'content', 'keyword', 'publish_date', 'close_date', 'promo_status' );
     }
 
     function update($param) {
         $result = array();
        
         if (empty($param['id'])) {
-            $insert_query  = GenerateInsertQuery($this->field, $param, VEHICLE_TYPE);
+            $insert_query  = GenerateInsertQuery($this->field, $param, PROMO);
             $insert_result = mysql_query($insert_query) or die(mysql_error());
            
             $result['id'] = mysql_insert_id();
             $result['status'] = '1';
             $result['message'] = 'Data successfully saved.';
         } else {
-            $update_query  = GenerateUpdateQuery($this->field, $param, VEHICLE_TYPE);
+            $update_query  = GenerateUpdateQuery($this->field, $param, PROMO);
             $update_result = mysql_query($update_query) or die(mysql_error());
            
             $result['id'] = $param['id'];
@@ -33,13 +33,7 @@ class Vehicle_Type_model extends CI_Model {
         $array = array();
        
         if (isset($param['id'])) {
-            $select_query  = "
-				SELECT VehicleType.*, VehicleBrand.name vehicle_brand_name
-				FROM ".VEHICLE_TYPE." VehicleType
-				LEFT JOIN ".VEHICLE_BRAND." VehicleBrand ON VehicleBrand.id = VehicleType.vehicle_brand_id
-				WHERE VehicleType.id = '".$param['id']."'
-				LIMIT 1
-			";
+            $select_query  = "SELECT * FROM ".PROMO." WHERE id = '".$param['id']."' LIMIT 1";
         } 
        
         $select_result = mysql_query($select_query) or die(mysql_error());
@@ -52,22 +46,17 @@ class Vehicle_Type_model extends CI_Model {
 	
     function get_array($param = array()) {
         $array = array();
+		$param['limit'] = (isset($param['limit'])) ? $param['limit'] : 100;
 		
-		$param['field_replace']['name'] = 'VehicleType.name';
-		$param['field_replace']['alias'] = 'VehicleType.alias';
-		$param['field_replace']['vehicle_brand_name'] = 'VehicleBrand.name';
-		
-		$string_namelike = (!empty($param['namelike'])) ? "AND VehicleType.name LIKE '%".$param['namelike']."%'" : '';
-		$string_brand = (isset($param['vehicle_brand_id'])) ? "AND VehicleType.vehicle_brand_id = '".$param['vehicle_brand_id']."'" : '';
+		$string_namelike = (!empty($param['namelike'])) ? "AND Promo.name LIKE '%".$param['namelike']."%'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS VehicleType.*, VehicleBrand.name vehicle_brand_name
-			FROM ".VEHICLE_TYPE." VehicleType
-			LEFT JOIN ".VEHICLE_BRAND." VehicleBrand ON VehicleBrand.id = VehicleType.vehicle_brand_id
-			WHERE 1 $string_namelike $string_brand $string_filter
+			SELECT SQL_CALC_FOUND_ROWS Promo.*
+			FROM ".PROMO." Promo
+			WHERE 1 $string_namelike $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
@@ -89,7 +78,7 @@ class Vehicle_Type_model extends CI_Model {
     }
 	
     function delete($param) {
-		$delete_query  = "DELETE FROM ".VEHICLE_TYPE." WHERE id = '".$param['id']."' LIMIT 1";
+		$delete_query  = "DELETE FROM ".PROMO." WHERE id = '".$param['id']."' LIMIT 1";
 		$delete_result = mysql_query($delete_query) or die(mysql_error());
 		
 		$result['status'] = '1';

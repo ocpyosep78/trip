@@ -1,24 +1,24 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Advert_Status_model extends CI_Model {
+class category_facility_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'name' );
+        $this->field = array( 'id', 'facility_id', 'category_id', 'searchable' );
     }
 
     function update($param) {
         $result = array();
        
         if (empty($param['id'])) {
-            $insert_query  = GenerateInsertQuery($this->field, $param, ADVERT_STATUS);
+            $insert_query  = GenerateInsertQuery($this->field, $param, CATEGORY_FACILITY);
             $insert_result = mysql_query($insert_query) or die(mysql_error());
            
             $result['id'] = mysql_insert_id();
             $result['status'] = '1';
             $result['message'] = 'Data successfully saved.';
         } else {
-            $update_query  = GenerateUpdateQuery($this->field, $param, ADVERT_STATUS);
+            $update_query  = GenerateUpdateQuery($this->field, $param, CATEGORY_FACILITY);
             $update_result = mysql_query($update_query) or die(mysql_error());
            
             $result['id'] = $param['id'];
@@ -33,7 +33,7 @@ class Advert_Status_model extends CI_Model {
         $array = array();
        
         if (isset($param['id'])) {
-            $select_query  = "SELECT * FROM ".ADVERT_STATUS." WHERE id = '".$param['id']."' LIMIT 1";
+            $select_query  = "SELECT * FROM ".CATEGORY_FACILITY." WHERE id = '".$param['id']."' LIMIT 1";
         } 
        
         $select_result = mysql_query($select_query) or die(mysql_error());
@@ -46,15 +46,16 @@ class Advert_Status_model extends CI_Model {
 	
     function get_array($param = array()) {
         $array = array();
+		$param['limit'] = (isset($param['limit'])) ? $param['limit'] : 100;
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND AdvertStatus.name LIKE '%".$param['namelike']."%'" : '';
+		$string_namelike = (!empty($param['namelike'])) ? "AND CategoryFacility.name LIKE '%".$param['namelike']."%'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS AdvertStatus.*
-			FROM ".ADVERT_STATUS." AdvertStatus
+			SELECT SQL_CALC_FOUND_ROWS CategoryFacility.*
+			FROM ".CATEGORY_FACILITY." CategoryFacility
 			WHERE 1 $string_namelike $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
@@ -77,7 +78,7 @@ class Advert_Status_model extends CI_Model {
     }
 	
     function delete($param) {
-		$delete_query  = "DELETE FROM ".ADVERT_STATUS." WHERE id = '".$param['id']."' LIMIT 1";
+		$delete_query  = "DELETE FROM ".CATEGORY_FACILITY." WHERE id = '".$param['id']."' LIMIT 1";
 		$delete_result = mysql_query($delete_query) or die(mysql_error());
 		
 		$result['status'] = '1';

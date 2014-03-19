@@ -1,10 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Category_Sub_model extends CI_Model {
+class category_sub_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'category_id', 'alias', 'name', 'link_override' );
+        $this->field = array( 'id', 'category_id', 'alias', 'title', 'content', 'link', 'thumbnail' );
     }
 
     function update($param) {
@@ -33,23 +33,7 @@ class Category_Sub_model extends CI_Model {
         $array = array();
        
         if (isset($param['id'])) {
-            $select_query  = "
-				SELECT CategorySub.*, Category.alias category_alias
-				FROM ".CATEGORY_SUB." CategorySub
-				LEFT JOIN ".CATEGORY." Category ON Category.id = CategorySub.category_id
-				WHERE CategorySub.id = '".$param['id']."'
-				LIMIT 1
-			";
-        } else if (isset($param['category_id']) && isset($param['alias'])) {
-            $select_query  = "
-				SELECT CategorySub.*, Category.alias category_alias
-				FROM ".CATEGORY_SUB." CategorySub
-				LEFT JOIN ".CATEGORY." Category ON Category.id = CategorySub.category_id
-				WHERE
-					CategorySub.category_id = '".$param['category_id']."'
-					AND CategorySub.alias = '".$param['alias']."'
-				LIMIT 1
-			";
+            $select_query  = "SELECT * FROM ".CATEGORY_SUB." WHERE id = '".$param['id']."' LIMIT 1";
         } 
        
         $select_result = mysql_query($select_query) or die(mysql_error());
@@ -62,22 +46,17 @@ class Category_Sub_model extends CI_Model {
 	
     function get_array($param = array()) {
         $array = array();
-		
-		$param['field_replace']['name'] = 'CategorySub.name';
-		$param['field_replace']['alias'] = 'CategorySub.alias';
-		$param['field_replace']['category_name'] = 'Category.name';
+		$param['limit'] = (isset($param['limit'])) ? $param['limit'] : 100;
 		
 		$string_namelike = (!empty($param['namelike'])) ? "AND CategorySub.name LIKE '%".$param['namelike']."%'" : '';
-		$string_category = (!empty($param['category_id'])) ? "AND CategorySub.category_id = '".$param['category_id']."'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS CategorySub.*, Category.name category_name, Category.alias category_alias
+			SELECT SQL_CALC_FOUND_ROWS CategorySub.*
 			FROM ".CATEGORY_SUB." CategorySub
-			LEFT JOIN ".CATEGORY." Category ON Category.id = CategorySub.category_id
-			WHERE 1 $string_namelike $string_category $string_filter
+			WHERE 1 $string_namelike $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
@@ -110,11 +89,6 @@ class Category_Sub_model extends CI_Model {
 	
 	function sync($row, $param = array()) {
 		$row = StripArray($row);
-		$row['category_sub_link'] = base_url($row['category_alias'].'/'.$row['alias']);
-		
-		if (!empty($row['link_override'])) {
-			$row['category_sub_link'] = $row['link_override'];
-		}
 		
 		if (count(@$param['column']) > 0) {
 			$row = dt_view_set($row, $param);

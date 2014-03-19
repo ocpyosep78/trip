@@ -1,24 +1,24 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Vehicle_Brand_model extends CI_Model {
+class ip_banned_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'name', 'alias' );
+        $this->field = array( 'id', 'ip_address' );
     }
 
     function update($param) {
         $result = array();
        
         if (empty($param['id'])) {
-            $insert_query  = GenerateInsertQuery($this->field, $param, VEHICLE_BRAND);
+            $insert_query  = GenerateInsertQuery($this->field, $param, IP_BANNED);
             $insert_result = mysql_query($insert_query) or die(mysql_error());
            
             $result['id'] = mysql_insert_id();
             $result['status'] = '1';
             $result['message'] = 'Data successfully saved.';
         } else {
-            $update_query  = GenerateUpdateQuery($this->field, $param, VEHICLE_BRAND);
+            $update_query  = GenerateUpdateQuery($this->field, $param, IP_BANNED);
             $update_result = mysql_query($update_query) or die(mysql_error());
            
             $result['id'] = $param['id'];
@@ -33,7 +33,7 @@ class Vehicle_Brand_model extends CI_Model {
         $array = array();
        
         if (isset($param['id'])) {
-            $select_query  = "SELECT * FROM ".VEHICLE_BRAND." WHERE id = '".$param['id']."' LIMIT 1";
+            $select_query  = "SELECT * FROM ".IP_BANNED." WHERE id = '".$param['id']."' LIMIT 1";
         } 
        
         $select_result = mysql_query($select_query) or die(mysql_error());
@@ -46,15 +46,16 @@ class Vehicle_Brand_model extends CI_Model {
 	
     function get_array($param = array()) {
         $array = array();
+		$param['limit'] = (isset($param['limit'])) ? $param['limit'] : 100;
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND VehicleBrand.name LIKE '%".$param['namelike']."%'" : '';
+		$string_namelike = (!empty($param['namelike'])) ? "AND IpBanned.name LIKE '%".$param['namelike']."%'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS VehicleBrand.*
-			FROM ".VEHICLE_BRAND." VehicleBrand
+			SELECT SQL_CALC_FOUND_ROWS IpBanned.*
+			FROM ".IP_BANNED." IpBanned
 			WHERE 1 $string_namelike $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
@@ -77,7 +78,7 @@ class Vehicle_Brand_model extends CI_Model {
     }
 	
     function delete($param) {
-		$delete_query  = "DELETE FROM ".VEHICLE_BRAND." WHERE id = '".$param['id']."' LIMIT 1";
+		$delete_query  = "DELETE FROM ".IP_BANNED." WHERE id = '".$param['id']."' LIMIT 1";
 		$delete_result = mysql_query($delete_query) or die(mysql_error());
 		
 		$result['status'] = '1';

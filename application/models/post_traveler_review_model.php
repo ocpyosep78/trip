@@ -1,24 +1,24 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Category_Price_model extends CI_Model {
+class post_traveler_review_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'category_sub_id', 'price_type', 'price' );
+        $this->field = array( 'id', 'post_id', 'language_id', 'alias', 'title', 'content', 'post_date', 'post_status' );
     }
 
     function update($param) {
         $result = array();
        
         if (empty($param['id'])) {
-            $insert_query  = GenerateInsertQuery($this->field, $param, CATEGORY_PRICE);
+            $insert_query  = GenerateInsertQuery($this->field, $param, POST_TRAVELER_REVIEW);
             $insert_result = mysql_query($insert_query) or die(mysql_error());
            
             $result['id'] = mysql_insert_id();
             $result['status'] = '1';
             $result['message'] = 'Data successfully saved.';
         } else {
-            $update_query  = GenerateUpdateQuery($this->field, $param, CATEGORY_PRICE);
+            $update_query  = GenerateUpdateQuery($this->field, $param, POST_TRAVELER_REVIEW);
             $update_result = mysql_query($update_query) or die(mysql_error());
            
             $result['id'] = $param['id'];
@@ -33,7 +33,7 @@ class Category_Price_model extends CI_Model {
         $array = array();
        
         if (isset($param['id'])) {
-            $select_query  = "SELECT * FROM ".CATEGORY_PRICE." WHERE id = '".$param['id']."' LIMIT 1";
+            $select_query  = "SELECT * FROM ".POST_TRAVELER_REVIEW." WHERE id = '".$param['id']."' LIMIT 1";
         } 
        
         $select_result = mysql_query($select_query) or die(mysql_error());
@@ -46,37 +46,23 @@ class Category_Price_model extends CI_Model {
 	
     function get_array($param = array()) {
         $array = array();
+		$param['limit'] = (isset($param['limit'])) ? $param['limit'] : 100;
 		
-		$param['field_replace']['price_text'] = 'CategoryPrice.price';
-		$param['with_default'] = (isset($param['with_default'])) ? $param['with_default'] : true;
-		
-		$string_price_type = (!empty($param['price_type'])) ? "AND CategoryPrice.price_type = '".$param['price_type']."'" : '';
-		$string_category_sub = (isset($param['category_sub_id'])) ? "AND CategoryPrice.category_sub_id = '".$param['category_sub_id']."'" : '';
+		$string_namelike = (!empty($param['namelike'])) ? "AND PostTravelerReview.name LIKE '%".$param['namelike']."%'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
-		$string_sorting = GetStringSorting($param, @$param['column'], 'price ASC');
+		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS CategoryPrice.*
-			FROM ".CATEGORY_PRICE." CategoryPrice
-			WHERE 1 $string_price_type $string_category_sub $string_filter
+			SELECT SQL_CALC_FOUND_ROWS PostTravelerReview.*
+			FROM ".POST_TRAVELER_REVIEW." PostTravelerReview
+			WHERE 1 $string_namelike $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
         $select_result = mysql_query($select_query) or die(mysql_error());
 		while ( $row = mysql_fetch_assoc( $select_result ) ) {
 			$array[] = $this->sync($row, $param);
-		}
-		
-		
-		if ($param['with_default'] && count($array) == 0 && $param['price_type'] == 1) {
-			foreach (array(100000, 500000, 1000000, 5000000, 10000000, 50000000) as $key => $value) {
-				$array[] = array( 'id' => $key + 1, 'category_sub_id' => 0, 'price_type' => 1, 'price' => $value, 'price_text' => MoneyFormat($value) );
-			}
-		} else if ($param['with_default'] && count($array) == 0 && $param['price_type'] == 2) {
-			foreach (array(500000, 1000000, 5000000, 10000000, 50000000, 100000000) as $key => $value) {
-				$array[] = array( 'id' => $key + 1, 'category_sub_id' => 0, 'price_type' => 1, 'price' => $value, 'price_text' => MoneyFormat($value) );
-			}
 		}
 		
         return $array;
@@ -92,7 +78,7 @@ class Category_Price_model extends CI_Model {
     }
 	
     function delete($param) {
-		$delete_query  = "DELETE FROM ".CATEGORY_PRICE." WHERE id = '".$param['id']."' LIMIT 1";
+		$delete_query  = "DELETE FROM ".POST_TRAVELER_REVIEW." WHERE id = '".$param['id']."' LIMIT 1";
 		$delete_result = mysql_query($delete_query) or die(mysql_error());
 		
 		$result['status'] = '1';
@@ -103,7 +89,6 @@ class Category_Price_model extends CI_Model {
 	
 	function sync($row, $param = array()) {
 		$row = StripArray($row);
-		$row['price_text'] = MoneyFormat($row['price']);
 		
 		if (count(@$param['column']) > 0) {
 			$row = dt_view_set($row, $param);

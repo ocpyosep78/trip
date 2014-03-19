@@ -1,24 +1,24 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Mass_Email_model extends CI_Model {
+class post_facility_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'name', 'content', 'sent_offset', 'sent_limit', 'update_time', 'status' );
+        $this->field = array( 'id', 'post_id', 'facility_id' );
     }
 
     function update($param) {
         $result = array();
        
         if (empty($param['id'])) {
-            $insert_query  = GenerateInsertQuery($this->field, $param, MASS_EMAIL);
+            $insert_query  = GenerateInsertQuery($this->field, $param, POST_FACILITY);
             $insert_result = mysql_query($insert_query) or die(mysql_error());
            
             $result['id'] = mysql_insert_id();
             $result['status'] = '1';
             $result['message'] = 'Data successfully saved.';
         } else {
-            $update_query  = GenerateUpdateQuery($this->field, $param, MASS_EMAIL);
+            $update_query  = GenerateUpdateQuery($this->field, $param, POST_FACILITY);
             $update_result = mysql_query($update_query) or die(mysql_error());
            
             $result['id'] = $param['id'];
@@ -33,9 +33,9 @@ class Mass_Email_model extends CI_Model {
         $array = array();
        
         if (isset($param['id'])) {
-            $select_query  = "SELECT * FROM ".MASS_EMAIL." WHERE id = '".$param['id']."' LIMIT 1";
+            $select_query  = "SELECT * FROM ".POST_FACILITY." WHERE id = '".$param['id']."' LIMIT 1";
         } 
-		
+       
         $select_result = mysql_query($select_query) or die(mysql_error());
         if (false !== $row = mysql_fetch_assoc($select_result)) {
             $array = $this->sync($row);
@@ -46,15 +46,17 @@ class Mass_Email_model extends CI_Model {
 	
     function get_array($param = array()) {
         $array = array();
+		$param['limit'] = (isset($param['limit'])) ? $param['limit'] : 100;
 		
+		$string_namelike = (!empty($param['namelike'])) ? "AND PostFacility.name LIKE '%".$param['namelike']."%'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
-		$string_sorting = GetStringSorting($param, @$param['column'], 'update_time DESC');
+		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS MassEmail.*
-			FROM ".MASS_EMAIL." MassEmail
-			WHERE 1 $string_filter
+			SELECT SQL_CALC_FOUND_ROWS PostFacility.*
+			FROM ".POST_FACILITY." PostFacility
+			WHERE 1 $string_namelike $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
@@ -76,7 +78,7 @@ class Mass_Email_model extends CI_Model {
     }
 	
     function delete($param) {
-		$delete_query  = "DELETE FROM ".MASS_EMAIL." WHERE id = '".$param['id']."' LIMIT 1";
+		$delete_query  = "DELETE FROM ".POST_FACILITY." WHERE id = '".$param['id']."' LIMIT 1";
 		$delete_result = mysql_query($delete_query) or die(mysql_error());
 		
 		$result['status'] = '1';
@@ -89,17 +91,6 @@ class Mass_Email_model extends CI_Model {
 		$row = StripArray($row);
 		
 		if (count(@$param['column']) > 0) {
-			if (isset($param['grid_type']) && $param['grid_type'] == 'sent_mass_mail') {
-				$param['is_custom']  = '<i class="cursor-button tool-tip fa fa-pencil btn-edit" title="Edit"></i> ';
-				
-				// only add this button when record is draft
-				if ($row['status'] == 'draft') {
-					$param['is_custom'] .= '<i class="cursor-button tool-tip fa fa-envelope btn-sent" title="Sent"></i> ';
-				}
-				
-				$param['is_custom'] .= '<i class="cursor-button tool-tip fa fa-power-off btn-delete" title="Delete"></i> ';
-			}
-			
 			$row = dt_view_set($row, $param);
 		}
 		

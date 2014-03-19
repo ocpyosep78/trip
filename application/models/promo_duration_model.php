@@ -1,24 +1,24 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Membership_model extends CI_Model {
+class promo_duration_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'title', 'advert_count', 'advert_time' );
+        $this->field = array( 'id', 'title', 'cost', 'duration' );
     }
 
     function update($param) {
         $result = array();
        
         if (empty($param['id'])) {
-            $insert_query  = GenerateInsertQuery($this->field, $param, MEMBERSHIP);
+            $insert_query  = GenerateInsertQuery($this->field, $param, PROMO_DURATION);
             $insert_result = mysql_query($insert_query) or die(mysql_error());
            
             $result['id'] = mysql_insert_id();
             $result['status'] = '1';
             $result['message'] = 'Data successfully saved.';
         } else {
-            $update_query  = GenerateUpdateQuery($this->field, $param, MEMBERSHIP);
+            $update_query  = GenerateUpdateQuery($this->field, $param, PROMO_DURATION);
             $update_result = mysql_query($update_query) or die(mysql_error());
            
             $result['id'] = $param['id'];
@@ -33,7 +33,7 @@ class Membership_model extends CI_Model {
         $array = array();
        
         if (isset($param['id'])) {
-            $select_query  = "SELECT * FROM ".MEMBERSHIP." WHERE id = '".$param['id']."' LIMIT 1";
+            $select_query  = "SELECT * FROM ".PROMO_DURATION." WHERE id = '".$param['id']."' LIMIT 1";
         } 
        
         $select_result = mysql_query($select_query) or die(mysql_error());
@@ -46,15 +46,16 @@ class Membership_model extends CI_Model {
 	
     function get_array($param = array()) {
         $array = array();
+		$param['limit'] = (isset($param['limit'])) ? $param['limit'] : 100;
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND Membership.name LIKE '%".$param['namelike']."%'" : '';
+		$string_namelike = (!empty($param['namelike'])) ? "AND PromoDuration.name LIKE '%".$param['namelike']."%'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS Membership.*
-			FROM ".MEMBERSHIP." Membership
+			SELECT SQL_CALC_FOUND_ROWS PromoDuration.*
+			FROM ".PROMO_DURATION." PromoDuration
 			WHERE 1 $string_namelike $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
@@ -77,7 +78,7 @@ class Membership_model extends CI_Model {
     }
 	
     function delete($param) {
-		$delete_query  = "DELETE FROM ".MEMBERSHIP." WHERE id = '".$param['id']."' LIMIT 1";
+		$delete_query  = "DELETE FROM ".PROMO_DURATION." WHERE id = '".$param['id']."' LIMIT 1";
 		$delete_result = mysql_query($delete_query) or die(mysql_error());
 		
 		$result['status'] = '1';
