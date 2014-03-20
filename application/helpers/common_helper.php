@@ -919,30 +919,6 @@
 		}
 	}
 	
-	if (! function_exists('get_popular')) {
-		function get_popular() {
-			preg_match('/(latest|popular)/i', $_SERVER['REQUEST_URI'], $match);
-			$keyword = (isset($match[1])) ? $match[1] : '';
-			
-			if ($keyword == 'popular') {
-				$is_popular = 1;
-			} else {
-				$is_popular = 0;
-			}
-			
-			return $is_popular;
-		}
-	}
-	
-	if (! function_exists('fix_link')) {
-		function fix_link($value) {
-			$value = urldecode(trim($value));
-			$value = str_replace('www.', '', $value);
-			
-			return $value;
-		}
-	}
-	
 	if (! function_exists('object_to_array')) {
 		function object_to_array($data) {
 			if (is_array($data) || is_object($data)) {
@@ -954,6 +930,14 @@
 			}
 			
 			return $data;
+		}
+	}
+	
+	if (! function_exists('json_to_array')) {
+		function json_to_array($data) {
+			$result = object_to_array(json_decode($data));
+			
+			return $result;
 		}
 	}
 	

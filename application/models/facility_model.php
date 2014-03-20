@@ -46,16 +46,17 @@ class facility_model extends CI_Model {
 	
     function get_array($param = array()) {
         $array = array();
-		$param['limit'] = (isset($param['limit'])) ? $param['limit'] : 100;
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND Facility.name LIKE '%".$param['namelike']."%'" : '';
+		$param['field_replace']['title_text'] = 'facility.title';
+		
+		$string_namelike = (!empty($param['namelike'])) ? "AND facility.name LIKE '%".$param['namelike']."%'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS Facility.*
-			FROM ".FACILITY." Facility
+			SELECT SQL_CALC_FOUND_ROWS facility.*
+			FROM ".FACILITY." facility
 			WHERE 1 $string_namelike $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
@@ -89,6 +90,11 @@ class facility_model extends CI_Model {
 	
 	function sync($row, $param = array()) {
 		$row = StripArray($row);
+		
+		if (isset($row['title'])) {
+			$temp = json_to_array($row['title']);
+			$row['title_text'] = $temp[LANGUAGE_DEFAULT];
+		}
 		
 		if (count(@$param['column']) > 0) {
 			$row = dt_view_set($row, $param);

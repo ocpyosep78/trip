@@ -243,14 +243,14 @@ var Site = {
             
             return ArrayError;
         },
-        GetValue: function(Container) {
-			var PrefixCheck = Container.substr(0, 1);
+        GetValue: function(container) {
+			var PrefixCheck = container.substr(0, 1);
 			if (! Func.InArray(PrefixCheck, ['.', '#'])) {
-				Container = '#' + Container;
+				container = '#' + container;
 			}
 			
-            var Data = Object();
-			var set_value = function(obj, name, value) {
+            var data = Object();
+			var set_value = function(obj, name, value, code) {
 				if (typeof(name) == 'undefined') {
 					return obj;
 				} else if (name.length < 3) {
@@ -265,6 +265,12 @@ var Site = {
 						obj[name_valid] = [];
 					}
 					obj[name_valid].push(value);
+				} else if (typeof(code) != 'undefined') {
+					if (obj[name] == null) {
+						obj[name] = {};
+					}
+					
+					obj[name][code] = value;
 				} else {
 					obj[name] = value;
 				}
@@ -272,26 +278,36 @@ var Site = {
 				return obj;
 			}
             
-            var Input = jQuery(Container + ' input, ' + Container + ' select, ' + Container + ' textarea');
+            var Input = jQuery(container + ' input, ' + container + ' select, ' + container + ' textarea');
             for (var i = 0; i < Input.length; i++) {
 				var name = Input.eq(i).attr('name');
+				var code = Input.eq(i).attr('data-code');
 				var value = Input.eq(i).val();
 				
 				if (Input.eq(i).attr('type') == 'checkbox') {
 					if (Input.eq(i).is(':checked')) {
-						Data = set_value(Data, name, value);
+						data = set_value(data, name, value, code);
 					} else {
-						Data = set_value(Data, name, 0);
+						data = set_value(data, name, 0, code);
 					}
 				} else if (Input.eq(i).attr('type') == 'radio') {
-					value = $(Container + ' [name="' + name + '"]:checked').val();
-					Data = set_value(Data, name, value);
+					value = $(container + ' [name="' + name + '"]:checked').val();
+					data = set_value(data, name, value, code);
 				} else {
-					Data = set_value(Data, name, value);
+					data = set_value(data, name, value, code);
 				}
             }
 			
-            return Data;
+			// retrieve language value
+			for (var p in data) {
+				if (data.hasOwnProperty(p)) {
+					if (Func.InArray(typeof(data[p]), [ 'object' ])) {
+						data[p] = Func.ObjectToJson(data[p]);
+					}
+				}
+			}
+			
+            return data;
         }
     }
 }
@@ -589,7 +605,24 @@ var Func = {
 			if (p.record.hasOwnProperty(form_name)) {
 				var input = $(p.cnt + ' [name="' + form_name + '"]');
 				var value = p.record[form_name];
-				if (input.attr('type') == 'checkbox') {
+				
+				try {
+					var json = JSON.parse(value);
+				} catch(e) {
+					var json = null;
+				}
+				
+				if (typeof(json) == 'object') {
+					for (var code in json) {
+						if (json.hasOwnProperty(code)) {
+							for (var i = 0; i < input.length; i++) {
+								if (input.eq(i).attr('data-code') == code) {
+									input.eq(i).val(json[code]);
+								}
+							}
+						}
+					}
+				} else if (input.attr('type') == 'checkbox') {
 					input.prop('checked', false);
 					if (value == 1) {
 						input.prop('checked', true);

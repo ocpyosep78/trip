@@ -48,9 +48,9 @@ class language_model extends CI_Model {
         $array = array();
 		$param['limit'] = (isset($param['limit'])) ? $param['limit'] : 100;
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND Language.name LIKE '%".$param['namelike']."%'" : '';
+		$string_namelike = (!empty($param['namelike'])) ? "AND Language.title LIKE '%".$param['namelike']."%'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
-		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
+		$string_sorting = GetStringSorting($param, @$param['column'], 'title ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "

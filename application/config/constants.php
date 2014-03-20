@@ -14,12 +14,15 @@ define('FOPEN_READ_WRITE_CREATE',				'a+b');
 define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
-/*	SENT MAIL */
+/*   SENT MAIL   */
 $value = ($_SERVER['SERVER_NAME'] == 'localhost') ? false : true;
 define('SENT_MAIL',								$value);
 
-/*	LOGIN ACTIVE TIME */
+/*   LOGIN ACTIVE TIME   */
 define('LOGIN_ACTIVE_TIME',						(60 * 60 * 1));
+
+/*   LANGUAGE DEFAULT   */
+define('LANGUAGE_DEFAULT',						'en');
 
 define('SHA_SECRET',							'OraNgerti');
 define('USER_TYPE_ADMINISTRATOR',				99);
@@ -30,6 +33,7 @@ define('USER_TYPE_TRAVELER',					66);
 define('CITY',									'city');
 define('CITY_IP',								'city_ip');
 define('COUNTRY',								'country');
+define('FACILITY',								'facility');
 define('LANGUAGE',								'language');
 define('REGION',								'region');
 define('USER',									'user');
