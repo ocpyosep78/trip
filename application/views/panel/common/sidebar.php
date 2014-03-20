@@ -137,7 +137,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url('panel/profile/verify_address'); ?>" data-menu-child="language">
+									<a href="<?php echo base_url('panel/setup/language'); ?>" data-menu-child="language">
 										<i class="fa fa-angle-right"></i>
 										<span>Language</span>
 									</a>
@@ -180,25 +180,25 @@
 							
 							<ul class="nav lt">
 								<li>
-									<a href="<?php echo base_url('panel/profile/membership'); ?>" data-menu-child="facility">
+									<a href="<?php echo base_url('panel/master/facility'); ?>" data-menu-child="facility">
 										<i class="fa fa-angle-right"></i>
 										<span>Facility</span>
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url('panel/profile/verify_address'); ?>" data-menu-child="city">
+									<a href="<?php echo base_url('panel/master/city'); ?>" data-menu-child="city">
 										<i class="fa fa-angle-right"></i>
 										<span>City</span>
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url('panel/profile/membership'); ?>" data-menu-child="country">
+									<a href="<?php echo base_url('panel/master/country'); ?>" data-menu-child="country">
 										<i class="fa fa-angle-right"></i>
 										<span>Country</span>
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url('panel/profile/membership'); ?>" data-menu-child="region">
+									<a href="<?php echo base_url('panel/master/region'); ?>" data-menu-child="region">
 										<i class="fa fa-angle-right"></i>
 										<span>Region</span>
 									</a>

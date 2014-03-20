@@ -4,7 +4,7 @@ class city_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'region_id', 'name', 'alias' );
+        $this->field = array( 'id', 'region_id', 'alias', 'title' );
     }
 
     function update($param) {
@@ -33,16 +33,27 @@ class city_model extends CI_Model {
         $array = array();
        
         if (isset($param['id'])) {
-            $select_query  = "SELECT * FROM ".CITY." WHERE id = '".$param['id']."' LIMIT 1";
+            $select_query  = "
+				SELECT city.*,
+					region.title region_title, region.alias region_alias,
+					country.id country_id, country.title country_title, country.alias country_alias
+				FROM ".CITY." city
+				LEFT JOIN ".REGION." region ON region.id = city.region_id
+				LEFT JOIN ".COUNTRY." country ON country.id = region.country_id
+				WHERE city.id = '".$param['id']."'
+				LIMIT 1
+			";
 		} else if (isset($param['alias']) && isset($param['region_id'])) {
             $select_query  = "
-				SELECT City.*,
-					Region.title region_name, Region.alias region_alias
-				FROM ".CITY." City
-				LEFT JOIN ".REGION." Region ON Region.id = City.region_id
+				SELECT city.*,
+					region.title region_title, region.alias region_alias,
+					country.id country_id, country.title country_title, country.alias country_alias
+				FROM ".CITY." city
+				LEFT JOIN ".REGION." region ON region.id = city.region_id
+				LEFT JOIN ".COUNTRY." country ON country.id = region.country_id
 				WHERE
-					City.alias = '".$param['alias']."'
-					AND City.region_id = '".$param['region_id']."'
+					city.alias = '".$param['alias']."'
+					AND city.region_id = '".$param['region_id']."'
 				LIMIT 1
 			";
         } 
@@ -59,19 +70,24 @@ class city_model extends CI_Model {
         $array = array();
 		$param['limit'] = (isset($param['limit'])) ? $param['limit'] : 100;
 		
-		$param['field_replace']['name'] = 'City.title';
-		$param['field_replace']['region_name'] = 'Region.title';
+		$param['field_replace']['alias'] = 'city.alias';
+		$param['field_replace']['title'] = 'city.title';
+		$param['field_replace']['region_title'] = 'region.title';
+		$param['field_replace']['country_title'] = 'country.title';
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND City.title LIKE '%".$param['namelike']."%'" : '';
-		$string_region = (isset($param['region_id'])) ? "AND City.region_id = '".$param['region_id']."'" : '';
+		$string_namelike = (!empty($param['namelike'])) ? "AND city.title LIKE '%".$param['namelike']."%'" : '';
+		$string_region = (isset($param['region_id'])) ? "AND city.region_id = '".$param['region_id']."'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS City.*, Region.title region_name, Region.alias region_alias
-			FROM ".CITY." City
-			LEFT JOIN ".REGION." Region ON Region.id = City.region_id
+			SELECT SQL_CALC_FOUND_ROWS city.*,
+				region.title region_title, region.alias region_alias,
+				country.title country_title, country.alias country_alias
+			FROM ".CITY." city
+			LEFT JOIN ".REGION." region ON region.id = city.region_id
+			LEFT JOIN ".COUNTRY." country ON country.id = region.country_id
 			WHERE 1 $string_namelike $string_region $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit

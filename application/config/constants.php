@@ -29,6 +29,8 @@ define('USER_TYPE_TRAVELER',					66);
 
 define('CITY',									'city');
 define('CITY_IP',								'city_ip');
+define('COUNTRY',								'country');
+define('LANGUAGE',								'language');
 define('REGION',								'region');
 define('USER',									'user');
 define('USER_LOG',								'user_log');

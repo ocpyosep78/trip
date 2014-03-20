@@ -4,7 +4,7 @@ class country_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'alias', 'title' );
+        $this->field = array( 'id', 'alias', 'title', 'code' );
     }
 
     function update($param) {
@@ -46,11 +46,11 @@ class country_model extends CI_Model {
 	
     function get_array($param = array()) {
         $array = array();
-		$param['limit'] = (isset($param['limit'])) ? $param['limit'] : 100;
+		$param['limit'] = (isset($param['limit'])) ? $param['limit'] : 300;
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND Country.name LIKE '%".$param['namelike']."%'" : '';
+		$string_namelike = (!empty($param['namelike'])) ? "AND Country.title LIKE '%".$param['namelike']."%'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
-		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
+		$string_sorting = GetStringSorting($param, @$param['column'], 'title ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
