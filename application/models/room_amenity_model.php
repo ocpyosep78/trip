@@ -46,7 +46,6 @@ class room_amenity_model extends CI_Model {
 	
     function get_array($param = array()) {
         $array = array();
-		$param['limit'] = (isset($param['limit'])) ? $param['limit'] : 100;
 		
 		$string_namelike = (!empty($param['namelike'])) ? "AND RoomAmenity.name LIKE '%".$param['namelike']."%'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
