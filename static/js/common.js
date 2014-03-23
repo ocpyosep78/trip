@@ -612,7 +612,7 @@ var Func = {
 					var json = null;
 				}
 				
-				if (typeof(json) == 'object') {
+				if (typeof(json) == 'object' && json != null) {
 					for (var code in json) {
 						if (json.hasOwnProperty(code)) {
 							for (var i = 0; i < input.length; i++) {
@@ -647,6 +647,18 @@ var Func = {
 				$.notify(result.message, "error");
 			}
 		} });
+	},
+	language: function() {
+		// ini fungsi untuk multi language
+		$("[id^=language-]").html($('.form-language').html());
+		
+		// input tab
+		for(var i = 0; i < $("[id^=language-]").length; i++) {
+			var code = $("[id^=language-]").eq(i).data('code');
+			
+			// input
+			$("[id^=language-]").eq(i).find('input').attr('data-code', code);
+		}
 	},
 	
 	combo: function(p) {

@@ -47,14 +47,20 @@ class category_facility_model extends CI_Model {
     function get_array($param = array()) {
         $array = array();
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND CategoryFacility.name LIKE '%".$param['namelike']."%'" : '';
+		$param['field_replace']['category_title'] = 'category.title';
+		$param['field_replace']['facility_title'] = 'facility.title';
+		
+		$string_namelike = (!empty($param['namelike'])) ? "AND category.title LIKE '%".$param['namelike']."%'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
-		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
+		$string_sorting = GetStringSorting($param, @$param['column'], 'category.title ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS CategoryFacility.*
-			FROM ".CATEGORY_FACILITY." CategoryFacility
+			SELECT SQL_CALC_FOUND_ROWS category_facility.*,
+				category.title category_title, facility.title facility_title
+			FROM ".CATEGORY_FACILITY." category_facility
+			LEFT JOIN ".CATEGORY." category ON category.id = category_facility.category_id
+			LEFT JOIN ".FACILITY." facility ON facility.id = category_facility.facility_id
 			WHERE 1 $string_namelike $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit

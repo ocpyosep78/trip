@@ -22,15 +22,6 @@
 	<script src="<?php echo base_url('static/js/datatables/jquery.dataTables.min.js'); ?>"></script>
 	<script src="<?php echo base_url('static/js/wysiwyg/jquery.hotkeys.js'); ?>"></script>
 	<script src="<?php echo base_url('static/js/wysiwyg/bootstrap-wysiwyg.js'); ?>"></script>
-	<script src="<?php echo base_url('static/js/wysiwyg/demo.js'); ?>"></script>
-	
-	<!-- note -->
-	<script src="<?php echo base_url('static/js/libs/underscore-min.js'); ?>"></script>
-	<script src="<?php echo base_url('static/js/libs/backbone-min.js'); ?>"></script>
-	<script src="<?php echo base_url('static/js/libs/backbone.localStorage-min.js'); ?>"></script>  
-	<script src="<?php echo base_url('static/js/libs/moment.min.js'); ?>"></script>
-	
-	<!-- end note -->
 	
 	<script src="<?php echo base_url('static/js/common.js'); ?>"></script>
 </body>

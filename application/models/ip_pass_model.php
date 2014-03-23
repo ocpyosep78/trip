@@ -34,6 +34,8 @@ class ip_pass_model extends CI_Model {
        
         if (isset($param['id'])) {
             $select_query  = "SELECT * FROM ".IP_PASS." WHERE id = '".$param['id']."' LIMIT 1";
+        } else if (isset($param['ip_address'])) {
+            $select_query  = "SELECT * FROM ".IP_PASS." WHERE ip_address = '".$param['ip_address']."' LIMIT 1";
         } 
        
         $select_result = mysql_query($select_query) or die(mysql_error());
@@ -94,5 +96,12 @@ class ip_pass_model extends CI_Model {
 		}
 		
 		return $row;
+	}
+	
+	function is_pass($param = array()) {
+		$record = $this->get_by_id($param);
+		
+		$result = (count($record) > 0) ? true : false;
+		return $result;
 	}
 }

@@ -4,7 +4,7 @@ class ip_log_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'ip_address' );
+        $this->field = array( 'id', 'ip_address', 'request_time' );
     }
 
     function update($param) {
@@ -68,7 +68,12 @@ class ip_log_model extends CI_Model {
     }
 
     function get_count($param = array()) {
-		$select_query = "SELECT FOUND_ROWS() TotalRecord";
+		if (isset($param['ip_address']) && isset($param['request_time'])) {
+			$select_query = "SELECT COUNT(*) TotalRecord FROM ".IP_LOG." WHERE ip_address = '".$param['ip_address']."' AND request_time >= '".$param['request_time']."'";
+		} else {
+			$select_query = "SELECT FOUND_ROWS() TotalRecord";
+		}
+		
 		$select_result = mysql_query($select_query) or die(mysql_error());
 		$row = mysql_fetch_assoc($select_result);
 		$TotalRecord = $row['TotalRecord'];
@@ -94,5 +99,41 @@ class ip_log_model extends CI_Model {
 		}
 		
 		return $row;
+	}
+	
+	function check_request() {
+		// check ip
+		$is_pass = $this->ip_pass_model->is_pass(array( 'ip_address' => $_SERVER['REMOTE_ADDR'] ));
+		if (! $is_pass) {
+			$is_banned = $this->ip_banned_model->is_banned(array( 'ip_address' => $_SERVER['REMOTE_ADDR'] ));
+			
+			if ($is_banned) {
+				echo 'Sorry, your request has been disabled.';
+				exit;
+			}
+		}
+		
+		// log ip
+		$param['ip_address'] = $_SERVER['REMOTE_ADDR'];
+		$param['request_time'] = $this->config->item('current_datetime');
+		$this->update($param);
+		
+		// get count
+		$param_count['ip_address'] = $_SERVER['REMOTE_ADDR'];
+		$param_count['request_time'] = date("Y-m-d H:i:s", strtotime("-1 Hours"));
+		$count = $this->get_count($param_count);
+		if ($count > MAXIMUM_IP_ACCESS_PER_HOUR) {
+			$this->ip_banned_model->update(array( 'ip_address' => $_SERVER['REMOTE_ADDR'] ));
+		}
+	}
+	
+	function clear_table() {
+		$clear_query   = "TRUNCATE TABLE ".IP_LOG."";
+		$update_result = mysql_query($clear_query) or die(mysql_error());
+		
+		$result['status'] = '1';
+		$result['message'] = 'Table successfully cleared.';
+		
+		return $result;
 	}
 }

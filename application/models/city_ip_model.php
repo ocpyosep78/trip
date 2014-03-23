@@ -4,7 +4,7 @@ class city_ip_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'ip', 'name', 'content' );
+        $this->field = array( 'id', 'ip', 'title', 'content' );
     }
 
     function update($param) {

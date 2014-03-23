@@ -10,8 +10,8 @@
 	<div class="hide">
 		<div class="form-language">
 			<div class="form-group">
-				<label>Title</label>
-				<input type="text" name="title" placeholder="Title" class="form-control" />
+				<label class="col-lg-2 control-label">Title</label>
+				<div class="col-lg-10"><input type="text" name="title" class="form-control" placeholder="Title" /></div>
 			</div>
 		</div>
 	</div>
@@ -78,8 +78,12 @@
 									</div></div>
 									
 									<hr />
-									<button class="btn btn-sm btn-primary" type="button">Cancel</button>
-									<button class="btn btn-sm btn-info" type="submit">Submit</button>
+									<div class="form-group">
+										<div class="col-lg-offset-2 col-lg-10">
+											<button class="btn btn-sm btn-primary" type="button">Cancel</button>
+											<button class="btn btn-sm btn-info" type="submit">Submit</button>
+										</div>
+									</div>
 								</form>
 							</div>
 						</section>
@@ -96,16 +100,7 @@
 $(document).ready(function() {
 	var page = {
 		init: function() {
-			// ini fungsi untuk multi language
-			$("[id^=language-]").html($('.form-language').html());
-			
-			// input tab
-			for(var i = 0; i < $("[id^=language-]").length; i++) {
-				var code = $("[id^=language-]").eq(i).data('code');
-				
-				// input
-				$("[id^=language-]").eq(i).find('input').attr('data-code', code);
-			}
+			Func.language();
 		},
 		show_grid: function() {
 			$('.panel-form').hide();

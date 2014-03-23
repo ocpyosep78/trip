@@ -47,14 +47,16 @@ class room_amenity_model extends CI_Model {
     function get_array($param = array()) {
         $array = array();
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND RoomAmenity.name LIKE '%".$param['namelike']."%'" : '';
+		$param['field_replace']['title_text'] = 'room_amenity.title';
+		
+		$string_namelike = (!empty($param['namelike'])) ? "AND room_amenity.name LIKE '%".$param['namelike']."%'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS RoomAmenity.*
-			FROM ".ROOM_AMENITY." RoomAmenity
+			SELECT SQL_CALC_FOUND_ROWS room_amenity.*
+			FROM ".ROOM_AMENITY." room_amenity
 			WHERE 1 $string_namelike $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
@@ -88,6 +90,11 @@ class room_amenity_model extends CI_Model {
 	
 	function sync($row, $param = array()) {
 		$row = StripArray($row);
+		
+		if (isset($row['title'])) {
+			$temp = json_to_array($row['title']);
+			$row['title_text'] = $temp[LANGUAGE_DEFAULT];
+		}
 		
 		if (count(@$param['column']) > 0) {
 			$row = dt_view_set($row, $param);

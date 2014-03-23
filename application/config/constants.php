@@ -24,18 +24,44 @@ define('LOGIN_ACTIVE_TIME',						(60 * 60 * 1));
 /*   LANGUAGE DEFAULT   */
 define('LANGUAGE_DEFAULT',						'en');
 
+/*	MAXIMUM IP ACCESS PER HOUR */
+define('MAXIMUM_IP_ACCESS_PER_HOUR',			1000);
+
 define('SHA_SECRET',							'OraNgerti');
 define('USER_TYPE_ADMINISTRATOR',				99);
 define('USER_TYPE_EDITOR',						88);
 define('USER_TYPE_MEMBER',						77);
 define('USER_TYPE_TRAVELER',					66);
 
+define('AUTO_COMPLETE',							'auto_complete');
+define('CATEGORY',								'category');
+define('CATEGORY_FACILITY',						'category_facility');
+define('CATEGORY_SUB',							'category_sub');
 define('CITY',									'city');
 define('CITY_IP',								'city_ip');
 define('COUNTRY',								'country');
 define('FACILITY',								'facility');
+define('HOTEL_BOOKING',							'hotel_booking');
+define('HOTEL_DETAIL',							'hotel_detail');
+define('HOTEL_ROOM_AMENITY',					'hotel_room_amenity');
+define('IP_BANNED',								'ip_banned');
+define('IP_LOG',								'ip_log');
+define('IP_PASS',								'ip_pass');
 define('LANGUAGE',								'language');
+define('MASS_EMAIL',							'mass_email');
+define('MEMBER',								'member');
+define('PAGE_STATIC',							'page_static');
+define('POST',									'post');
+define('POST_FACILITY',							'post_facility');
+define('POST_GALLERY',							'post_gallery');
+define('POST_TRAVELER_PHOTO',					'post_traveler_photo');
+define('POST_TRAVELER_REVIEW',					'post_traveler_review');
+define('PROMO',									'promo');
+define('PROMO_DURATION',						'promo_duration');
 define('REGION',								'region');
+define('ROOM_AMENITY',							'room_amenity');
+define('TRAVELER',								'traveler');
 define('USER',									'user');
 define('USER_LOG',								'user_log');
 define('USER_TYPE',								'user_type');
+define('WIDGET',								'widget');

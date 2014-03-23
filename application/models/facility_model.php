@@ -49,9 +49,9 @@ class facility_model extends CI_Model {
 		
 		$param['field_replace']['title_text'] = 'facility.title';
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND facility.name LIKE '%".$param['namelike']."%'" : '';
+		$string_namelike = (!empty($param['namelike'])) ? "AND facility.title LIKE '%".$param['namelike']."%'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
-		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
+		$string_sorting = GetStringSorting($param, @$param['column'], 'title ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "

@@ -47,14 +47,15 @@ class auto_complete_model extends CI_Model {
     function get_array($param = array()) {
         $array = array();
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND AutoComplete.name LIKE '%".$param['namelike']."%'" : '';
+		$string_namelike = (!empty($param['namelike'])) ? "AND auto_complete.name LIKE '%".$param['namelike']."%'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS AutoComplete.*
-			FROM ".AUTO_COMPLETE." AutoComplete
+			SELECT SQL_CALC_FOUND_ROWS auto_complete.*, category.title category_title
+			FROM ".AUTO_COMPLETE." auto_complete
+			LEFT JOIN ".CATEGORY." category ON category.id = auto_complete.category_id
 			WHERE 1 $string_namelike $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit

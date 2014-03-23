@@ -47,14 +47,20 @@ class category_sub_model extends CI_Model {
     function get_array($param = array()) {
         $array = array();
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND CategorySub.name LIKE '%".$param['namelike']."%'" : '';
+		$param['field_replace']['title'] = 'category_sub.title';
+		$param['field_replace']['alias'] = 'category_sub.alias';
+		$param['field_replace']['category_title'] = 'category.title';
+		
+		$string_namelike = (!empty($param['namelike'])) ? "AND category_sub.title LIKE '%".$param['namelike']."%'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
-		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
+		$string_sorting = GetStringSorting($param, @$param['column'], 'title ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS CategorySub.*
-			FROM ".CATEGORY_SUB." CategorySub
+			SELECT SQL_CALC_FOUND_ROWS category_sub.*,
+				category.title category_title
+			FROM ".CATEGORY_SUB." category_sub
+			LEFT JOIN ".CATEGORY." category ON category.id = category_sub.category_id
 			WHERE 1 $string_namelike $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit

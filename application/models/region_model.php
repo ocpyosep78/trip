@@ -4,7 +4,7 @@ class region_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'countri_id', 'alias', 'title' );
+        $this->field = array( 'id', 'country_id', 'alias', 'title' );
     }
 
     function update($param) {
@@ -50,15 +50,21 @@ class region_model extends CI_Model {
         $array = array();
 		$param['limit'] = (isset($param['limit'])) ? $param['limit'] : 300;
 		
-		$string_country = (isset($param['country_id'])) ? "AND Region.country_id = '".$param['country_id']."'" : '';
-		$string_namelike = (!empty($param['namelike'])) ? "AND Region.title LIKE '%".$param['namelike']."%'" : '';
+		$param['field_replace']['title'] = 'region.title';
+		$param['field_replace']['alias'] = 'region.alias';
+		$param['field_replace']['country_title'] = 'country.title';
+		
+		$string_country = (isset($param['country_id'])) ? "AND region.country_id = '".$param['country_id']."'" : '';
+		$string_namelike = (!empty($param['namelike'])) ? "AND region.title LIKE '%".$param['namelike']."%'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'title ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS Region.*
-			FROM ".REGION." Region
+			SELECT SQL_CALC_FOUND_ROWS region.*,
+				country.title country_title, country.alias country_alias
+			FROM ".REGION." region
+			LEFT JOIN ".COUNTRY." country ON country.id = region.country_id
 			WHERE 1 $string_namelike $string_country $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit

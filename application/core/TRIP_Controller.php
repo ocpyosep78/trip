@@ -4,6 +4,7 @@ class TRIP_Controller extends CI_Controller {
     function __construct() {
         parent::__construct();
 		$this->user_model->sign_active();
+		$this->ip_log_model->check_request();
     }
 }
 

@@ -113,25 +113,25 @@
 							
 							<ul class="nav lt">
 								<li>
-									<a href="<?php echo base_url('panel/profile/info'); ?>" data-menu-child="auto_complete">
+									<a href="<?php echo base_url('panel/setup/auto_complete'); ?>" data-menu-child="auto_complete">
 										<i class="fa fa-angle-right"></i>
 										<span>Auto Complete</span>
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url('panel/profile/account'); ?>" data-menu-child="category">
+									<a href="<?php echo base_url('panel/setup/category'); ?>" data-menu-child="category">
 										<i class="fa fa-angle-right"></i>
 										<span>Category</span>
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url('panel/profile/user'); ?>" data-menu-child="category_sub">
+									<a href="<?php echo base_url('panel/setup/category_sub'); ?>" data-menu-child="category_sub">
 										<i class="fa fa-angle-right"></i>
 										<span>Category Sub</span>
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url('panel/profile/user'); ?>" data-menu-child="category_facility">
+									<a href="<?php echo base_url('panel/setup/category_facility'); ?>" data-menu-child="category_facility">
 										<i class="fa fa-angle-right"></i>
 										<span>Category Facility</span>
 									</a>
@@ -143,25 +143,25 @@
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url('panel/profile/membership'); ?>" data-menu-child="promo_duration">
+									<a href="<?php echo base_url('panel/setup/promo_duration'); ?>" data-menu-child="promo_duration">
 										<i class="fa fa-angle-right"></i>
 										<span>Promo Duration</span>
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url('panel/profile/membership'); ?>" data-menu-child="room_amenity">
+									<a href="<?php echo base_url('panel/setup/room_amenity'); ?>" data-menu-child="room_amenity">
 										<i class="fa fa-angle-right"></i>
 										<span>Room Amenity</span>
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url('panel/profile/membership'); ?>" data-menu-child="page_static">
+									<a href="<?php echo base_url('panel/setup/page_static'); ?>" data-menu-child="page_static">
 										<i class="fa fa-angle-right"></i>
 										<span>Page Static</span>
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url('panel/profile/membership'); ?>" data-menu-child="widget">
+									<a href="<?php echo base_url('panel/setup/widget'); ?>" data-menu-child="widget">
 										<i class="fa fa-angle-right"></i>
 										<span>Widget</span>
 									</a>
@@ -217,25 +217,25 @@
 							
 							<ul class="nav lt">
 								<li>
-									<a href="<?php echo base_url('panel/profile/membership'); ?>" data-menu-child="city_ip">
+									<a href="<?php echo base_url('panel/log/city_ip'); ?>" data-menu-child="city_ip">
 										<i class="fa fa-angle-right"></i>
 										<span>City IP</span>
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url('panel/profile/verify_address'); ?>" data-menu-child="ip_banned">
+									<a href="<?php echo base_url('panel/log/ip_banned'); ?>" data-menu-child="ip_banned">
 										<i class="fa fa-angle-right"></i>
 										<span>IP Banned</span>
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url('panel/profile/membership'); ?>" data-menu-child="ip_pass">
+									<a href="<?php echo base_url('panel/log/ip_pass'); ?>" data-menu-child="ip_pass">
 										<i class="fa fa-angle-right"></i>
 										<span>IP Pass</span>
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url('panel/profile/membership'); ?>" data-menu-child="ip_log">
+									<a href="<?php echo base_url('panel/log/ip_log'); ?>" data-menu-child="ip_log">
 										<i class="fa fa-angle-right"></i>
 										<span>IP Log</span>
 									</a>
