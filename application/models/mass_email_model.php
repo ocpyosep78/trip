@@ -75,6 +75,45 @@ class mass_email_model extends CI_Model {
 		return $TotalRecord;
     }
 	
+	function get_email_array($param = array()) {
+        $result = array();
+		
+		$select_query = "
+			SELECT *
+			FROM (
+				(SELECT email, 'Traveler' email_type FROM traveler)
+				UNION (SELECT email, 'Member' email_type FROM member)
+			) mytable
+			WHERE (email_type = '".$param['to']."' OR 'All' = '".$param['to']."')
+			LIMIT ".$param['offset'].", ".$param['limit']."
+		";
+        $select_result = mysql_query($select_query) or die(mysql_error());
+		while ( $row = mysql_fetch_assoc( $select_result ) ) {
+			$result[] = $row;
+		}
+		
+        return $result;
+	}
+	
+	function get_email_count($param = array()) {
+        $result = array();
+		
+		$select_query = "
+			SELECT COUNT(*) total
+			FROM (
+				(SELECT email, 'Traveler' email_type FROM traveler)
+				UNION (SELECT email, 'Member' email_type FROM member)
+			) mytable
+			WHERE (email_type = '".$param['to']."' OR 'All' = '".$param['to']."')
+		";
+        $select_result = mysql_query($select_query) or die(mysql_error());
+		while ( $row = mysql_fetch_assoc( $select_result ) ) {
+			$result = $row['total'];
+		}
+		
+        return $result;
+	}
+	
     function delete($param) {
 		$delete_query  = "DELETE FROM ".MASS_EMAIL." WHERE id = '".$param['id']."' LIMIT 1";
 		$delete_result = mysql_query($delete_query) or die(mysql_error());

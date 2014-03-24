@@ -36,12 +36,11 @@ class mass_email extends PANEL_Controller {
 			$result = $this->mass_email_model->get_by_id(array( 'id' => $_POST['id'] ));
 		}
 		else if ($action == 'sent_mail') {
-			/*
 			$mass_email = $this->mass_email_model->get_by_id(array( 'id' => $_POST['id'] ));
 			
 			// callculate all user
 			if (empty($mass_email['sent_limit'])) {
-				$user_count = $this->user_model->get_count(array( 'total_user_mass_email' => true ));
+				$user_count = $this->mass_email_model->get_email_count($mass_email);
 				$mass_email['sent_limit'] = $user_count;
 				
 				// update mass email
@@ -51,7 +50,7 @@ class mass_email extends PANEL_Controller {
 			}
 			
 			// get array user
-			$array_user = $this->user_model->get_count_mass_email(array( 'offset' => $mass_email['sent_offset'], 'limit' => $mass_email['sent_limit'] ));
+			$array_user = $this->mass_email_model->get_email_array(array( 'to' => $mass_email['to'], 'offset' => $mass_email['sent_offset'], 'limit' => $mass_email['sent_limit'] ));
 			
 			// sent mail
 			$counter = 0;
@@ -77,11 +76,7 @@ class mass_email extends PANEL_Controller {
 			}
 			
             $result['status'] = '1';
-            $result['message'] = "$counter mail successfule deliver.";
-			/*	*/
-			
-			$result['status'] = '0';
-            $result['message'] = "continue here";
+            $result['message'] = "$counter mail successfully deliver.";
 		}
 		else if ($action == 'delete') {
 			$result = $this->mass_email_model->delete($_POST);
