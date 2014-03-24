@@ -11,7 +11,7 @@
 				<section class="vbox">
 					<section class="scrollable padder">
 						<div class="m-b-md">
-							<h3 class="m-b-none">Page Static</h3>
+							<h3 class="m-b-none">Widget</h3>
 						</div>
 						
 						<section class="panel panel-default panel-table">
@@ -46,7 +46,7 @@
 						</section>
 						
 						<section class="panel panel-default panel-form hide">
-							<header class="panel-heading font-bold">Form Page Static</header>
+							<header class="panel-heading font-bold">Form Widget</header>
 							<div class="panel-body">
 								<form class="bs-example form-horizontal">
 									<input type="hidden" name="action" value="update" />

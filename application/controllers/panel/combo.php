@@ -9,6 +9,9 @@ class combo extends CI_Controller {
 		$action = (!empty($_POST['action'])) ? $_POST['action'] : '';
 		unset($_POST['action']);
 		
+		// set limit
+		$_POST['limit'] = 300;
+		
 		// default id & name
 		$id = 'id';
 		$title = 'title';

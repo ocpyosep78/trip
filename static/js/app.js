@@ -38,6 +38,63 @@ Modernizr.addTest('ios',function(){return!!navigator.userAgent.match(/iPhone|iPa
 */
 (function(a,b){"use strict";var c="undefined"!=typeof Element&&"ALLOW_KEYBOARD_INPUT"in Element,d=function(){for(var a,c,d=[["requestFullscreen","exitFullscreen","fullscreenElement","fullscreenEnabled","fullscreenchange","fullscreenerror"],["webkitRequestFullscreen","webkitExitFullscreen","webkitFullscreenElement","webkitFullscreenEnabled","webkitfullscreenchange","webkitfullscreenerror"],["webkitRequestFullScreen","webkitCancelFullScreen","webkitCurrentFullScreenElement","webkitCancelFullScreen","webkitfullscreenchange","webkitfullscreenerror"],["mozRequestFullScreen","mozCancelFullScreen","mozFullScreenElement","mozFullScreenEnabled","mozfullscreenchange","mozfullscreenerror"]],e=0,f=d.length,g={};f>e;e++)if(a=d[e],a&&a[1]in b){for(e=0,c=a.length;c>e;e++)g[d[0][e]]=a[e];return g}return!1}(),e={request:function(a){var e=d.requestFullscreen;a=a||b.documentElement,/5\.1[\.\d]* Safari/.test(navigator.userAgent)?a[e]():a[e](c&&Element.ALLOW_KEYBOARD_INPUT)},exit:function(){b[d.exitFullscreen]()},toggle:function(a){this.isFullscreen?this.exit():this.request(a)},onchange:function(){},onerror:function(){},raw:d};return d?(Object.defineProperties(e,{isFullscreen:{get:function(){return!!b[d.fullscreenElement]}},element:{enumerable:!0,get:function(){return b[d.fullscreenElement]}},enabled:{enumerable:!0,get:function(){return!!b[d.fullscreenEnabled]}}}),b.addEventListener(d.fullscreenchange,function(a){e.onchange.call(e,a)}),b.addEventListener(d.fullscreenerror,function(a){e.onerror.call(e,a)}),a.screenfull=e,void 0):a.screenfull=!1})(window,document);
 
+// wysiwyg
+var wys_template = '';
+wys_template += '<div class="btn-toolbar m-b-sm btn-editor" data-role="editor-toolbar" data-target="#XXXXX">';
+wys_template += '<div class="btn-group">';
+wys_template += '<a class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" title="Font"><i class="fa fa-font"></i><b class="caret"></b></a>';
+wys_template += '<ul class="dropdown-menu">';
+wys_template += '</ul>';
+wys_template += '</div>';
+wys_template += '<div class="btn-group">';
+wys_template += '<a class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>';
+wys_template += '<ul class="dropdown-menu">';
+wys_template += '<li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>';
+wys_template += '<li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>';
+wys_template += '<li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>';
+wys_template += '</ul>';
+wys_template += '</div>';
+wys_template += '<div class="btn-group">';
+wys_template += '<a class="btn btn-default btn-sm" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>';
+wys_template += '<a class="btn btn-default btn-sm" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>';
+wys_template += '<a class="btn btn-default btn-sm" data-edit="strikethrough" title="Strikethrough"><i class="fa fa-strikethrough"></i></a>';
+wys_template += '<a class="btn btn-default btn-sm" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>';
+wys_template += '</div>';
+wys_template += '<div class="btn-group">';
+wys_template += '<a class="btn btn-default btn-sm" data-edit="insertunorderedlist" title="Bullet list"><i class="fa fa-list-ul"></i></a>';
+wys_template += '<a class="btn btn-default btn-sm" data-edit="insertorderedlist" title="Number list"><i class="fa fa-list-ol"></i></a>';
+wys_template += '<a class="btn btn-default btn-sm" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="fa fa-dedent"></i></a>';
+wys_template += '<a class="btn btn-default btn-sm" data-edit="indent" title="Indent (Tab)"><i class="fa fa-indent"></i></a>';
+wys_template += '</div>';
+wys_template += '<div class="btn-group">';
+wys_template += '<a class="btn btn-default btn-sm" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></a>';
+wys_template += '<a class="btn btn-default btn-sm" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></a>';
+wys_template += '<a class="btn btn-default btn-sm" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a>';
+wys_template += '<a class="btn btn-default btn-sm" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a>';
+wys_template += '</div>';
+wys_template += '<div class="btn-group">';
+wys_template += '<a class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="fa fa-link"></i></a>';
+wys_template += '<div class="dropdown-menu">';
+wys_template += '<div class="input-group m-l-xs m-r-xs">';
+wys_template += '<input class="form-control input-sm" placeholder="URL" type="text" data-edit="createLink"/>';
+wys_template += '<div class="input-group-btn">';
+wys_template += '<button class="btn btn-default btn-sm" type="button">Add</button>';
+wys_template += '</div>';
+wys_template += '</div>';
+wys_template += '</div>';
+wys_template += '<a class="btn btn-default btn-sm" data-edit="unlink" title="Remove Hyperlink"><i class="fa fa-cut"></i></a>';
+wys_template += '</div>';
+wys_template += '<div class="btn-group">';
+wys_template += '<a class="btn btn-default btn-sm" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>';
+wys_template += '<a class="btn btn-default btn-sm" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>';
+wys_template += '</div>';
+wys_template += '</div>';
+
+function set_wysiwyg(p) {
+	$('#' + p.id).parent('div').prepend(wys_template);
+	$('[data-target="#XXXXX"]').attr('data-target', '#' + p.id);
+	$('#' + p.id).wysiwyg({ });
+}
 
 // data-shift api 
 +function ($) { "use strict";

@@ -5,8 +5,8 @@ class traveler_model extends CI_Model {
         parent::__construct();
 		
         $this->field = array(
-			'id', 'city_id', 'email', 'alias', 'first_name', 'last_name', 'passwd', 'passwd_reset_key', 'address', 'phone', 'postal_code',
-			'user_about', 'user_info', 'register_date', 'membership_date', 'verify_email', 'verify_email_key', 'thumbnail_profile', 'is_active'
+			'id', 'city_id', 'email', 'alias', 'first_name', 'last_name', 'passwd', 'passwd_reset_key', 'address', 'phone', 'postal_code', 'user_about',
+			'user_info', 'register_date', 'verify_email', 'verify_email_key', 'thumbnail', 'provider', 'is_active'
 		);
     }
 
@@ -36,7 +36,16 @@ class traveler_model extends CI_Model {
         $array = array();
        
         if (isset($param['id'])) {
-            $select_query  = "SELECT * FROM ".TRAVELER." WHERE id = '".$param['id']."' LIMIT 1";
+            $select_query  = "
+				SELECT traveler.*,
+					region.id region_id, region.country_id
+				FROM ".TRAVELER." traveler
+				LEFT JOIN ".CITY." city on city.id = traveler.city_id
+				LEFT JOIN ".REGION." region on region.id = city.region_id
+				LEFT JOIN ".COUNTRY." country on country.id = region.country_id
+				WHERE traveler.id = '".$param['id']."'
+				LIMIT 1
+			";
         } 
        
         $select_result = mysql_query($select_query) or die(mysql_error());
@@ -90,7 +99,7 @@ class traveler_model extends CI_Model {
     }
 	
 	function sync($row, $param = array()) {
-		$row = StripArray($row);
+		$row = StripArray($row, array( 'register_date' ));
 		
 		if (count(@$param['column']) > 0) {
 			$row = dt_view_set($row, $param);

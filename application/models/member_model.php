@@ -6,8 +6,8 @@ class member_model extends CI_Model {
 		
         $this->field = array(
 			'id', 'city_id', 'email', 'alias', 'first_name', 'last_name', 'passwd', 'passwd_reset_key', 'address', 'phone', 'postal_code',
-			'user_about', 'user_info', 'register_date', 'membership_date', 'verify_email', 'verify_email_key', 'verify_address',
-			'thumbnail_profile', 'is_active'
+			'user_about', 'user_info', 'register_date', 'membership_date', 'verify_email', 'verify_email_key', 'verify_address', 'thumbnail',
+			'provider', 'is_active'
 		);
     }
 
@@ -37,7 +37,16 @@ class member_model extends CI_Model {
         $array = array();
        
         if (isset($param['id'])) {
-            $select_query  = "SELECT * FROM ".MEMBER." WHERE id = '".$param['id']."' LIMIT 1";
+            $select_query  = "
+				SELECT member.*,
+					region.id region_id, region.country_id
+				FROM ".MEMBER." member
+				LEFT JOIN ".CITY." city on city.id = member.city_id
+				LEFT JOIN ".REGION." region on region.id = city.region_id
+				LEFT JOIN ".COUNTRY." country on country.id = region.country_id
+				WHERE member.id = '".$param['id']."'
+				LIMIT 1
+			";
         } 
        
         $select_result = mysql_query($select_query) or die(mysql_error());

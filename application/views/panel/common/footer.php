@@ -15,6 +15,7 @@
 	<script src="<?php echo base_url('static/js/charts/flot/demo.js'); ?>"></script>
 	<script src="<?php echo base_url('static/js/calendar/bootstrap_calendar.js'); ?>"></script>
 	<script src="<?php echo base_url('static/js/calendar/demo.js'); ?>"></script>
+	<script src="<?php echo base_url('static/js/datepicker/bootstrap-datepicker.js'); ?>"></script>
 	<script src="<?php echo base_url('static/js/sortable/jquery.sortable.js'); ?>"></script>
 	<script src="<?php echo base_url('static/js/notify.min.js'); ?>"></script>
 	<script src="<?php echo base_url('static/js/parsley/parsley.min.js'); ?>"></script>

@@ -16,6 +16,7 @@
 	<link rel="stylesheet" href="<?php echo base_url('static/css/font.css'); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo base_url('static/js/calendar/bootstrap_calendar.css'); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo base_url('static/js/datatables/datatables.css'); ?>" type="text/css" />
+	<link rel="stylesheet" href="<?php echo base_url('static/js/datepicker/datepicker.css'); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo base_url('static/css/tree.css'); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo base_url('static/css/app.css'); ?>" type="text/css" />
 	

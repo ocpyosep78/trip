@@ -293,6 +293,8 @@ var Site = {
 				} else if (Input.eq(i).attr('type') == 'radio') {
 					value = $(container + ' [name="' + name + '"]:checked').val();
 					data = set_value(data, name, value, code);
+				} else if (Input.eq(i).hasClass('datepicker-input')) {
+					data = set_value(data, name, Func.SwapDate(value), code);
 				} else {
 					data = set_value(data, name, value, code);
 				}
@@ -627,7 +629,7 @@ var Func = {
 					if (value == 1) {
 						input.prop('checked', true);
 					}
-				} else if (input.hasClass('datepicker')) {
+				} else if (input.hasClass('datepicker-input')) {
 					input.val(Func.SwapDate(value));
 				} else {
 					input.val(value);

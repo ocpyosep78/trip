@@ -5,19 +5,12 @@ class User_model extends CI_Model {
         parent::__construct();
 		
         $this->field = array(
-			'id', 'user_type_id', 'email', 'alias', 'first_name', 'last_name', 'passwd', 'address', 'phone', 'bb_pin', 'register_date', 'membership_date', 'reset_key',
-			'verify_profile', 'verify_email', 'verify_address', 'thumbnail_profile', 'thumbnail_banner', 'ic_number', 'is_ic_number', 'is_active', 'is_delete',
-			'advert_count', 'city_id', 'user_about', 'user_info', 'postal_code', 'passwd_reset_key'
+			'id', 'user_type_id', 'email', 'first_name', 'last_name', 'passwd', 'passwd_reset_key', 'address', 'phone', 'register_date', 'thumbnail', 'is_active'
 		);
     }
 	
     function update($param) {
         $result = array();
-		
-		// encript email
-		if (isset($param['email'])) {
-			$param['email'] = mcrypt_encode($param['email']);
-		}
 		
         if (empty($param['id'])) {
 			// default value
@@ -43,25 +36,17 @@ class User_model extends CI_Model {
 
     function get_by_id($param) {
         $array = array();
-		$param['auto_insert'] = (isset($param['auto_insert'])) ? $param['auto_insert'] : false;
        
         if (isset($param['id'])) {
             $select_query  = "
-				SELECT User.*, UserType.name user_type_name,
-					City.title city_title, City.region_id, Region.title region_title
-				FROM ".USER." User
-				LEFT JOIN ".USER_TYPE." UserType ON UserType.id = User.user_type_id
-				LEFT JOIN ".CITY." City ON City.id = User.city_id
-				LEFT JOIN ".REGION." Region ON Region.id = City.region_id
-				WHERE User.id = '".$param['id']."'
+				SELECT user.*, user_type.title user_type_title
+				FROM ".USER." user
+				LEFT JOIN ".USER_TYPE." user_type ON user_type.id = user.user_type_id
+				WHERE user.id = '".$param['id']."'
 				LIMIT 1
 			";
-        } else if (isset($param['alias'])) {
-			$select_query  = "SELECT * FROM ".USER." WHERE alias = '".$param['alias']."' LIMIT 1";
         } else if (isset($param['email'])) {
             $select_query  = "SELECT * FROM ".USER." WHERE email = '".$param['email']."' LIMIT 1";
-        } else if (isset($param['email_key'])) {
-			$select_query  = "SELECT * FROM ".USER." WHERE email = '".$param['email_key']."' LIMIT 1";
         } else if (isset($param['passwd_reset_key'])) {
 			$select_query  = "SELECT * FROM ".USER." WHERE passwd_reset_key = '".$param['passwd_reset_key']."' LIMIT 1";
         }
@@ -71,31 +56,23 @@ class User_model extends CI_Model {
             $array = $this->sync($row, $param);
         }
 		
-		if (count($array) == 0 && $param['auto_insert']) {
-			$result = $this->update($param);
-			$array = $this->get_by_id($result);
-		}
-		
         return $array;
     }
 	
     function get_array($param = array()) {
         $array = array();
-		$param['is_delete'] = (isset($param['is_delete'])) ? $param['is_delete'] : '0';
 		
-		$param['field_replace']['user_type_name'] = 'UserType.name';
+		$param['field_replace']['user_type_name'] = 'UserType.title';
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND User.email LIKE '%".$param['namelike']."%'" : '';
-		$string_delete = "AND (User.is_delete = '".$param['is_delete']."' OR 'x' = '".$param['is_delete']."')";
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS User.*, UserType.name user_type_name
+			SELECT SQL_CALC_FOUND_ROWS User.*, UserType.title user_type_title
 			FROM ".USER." User
 			LEFT JOIN ".USER_TYPE." UserType ON UserType.id = User.user_type_id
-			WHERE 1 $string_namelike $string_delete $string_filter
+			WHERE 1 $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
@@ -110,16 +87,6 @@ class User_model extends CI_Model {
     function get_count($param = array()) {
 		if (isset($param['total_user'])) {
 			$select_query = "SELECT COUNT(*) TotalRecord FROM ".USER;
-		} else if (isset($param['total_user_mass_email'])) {
-			$select_query = "
-				SELECT COUNT(*) TotalRecord
-				FROM ".USER." User
-				LEFT JOIN ".USER_SETTING." UserSetting ON UserSetting.user_id = User.id
-				WHERE
-					(UserSetting.email_notify = 1 OR UserSetting.email_notify IS NULL)
-					AND User.is_delete = 0
-					AND User.is_active = 1
-			";
 		} else {
 			$select_query = "SELECT FOUND_ROWS() TotalRecord";
 		}
@@ -129,31 +96,6 @@ class User_model extends CI_Model {
 		$TotalRecord = $row['TotalRecord'];
 		
 		return $TotalRecord;
-    }
-	
-    function get_count_mass_email($param = array()) {
-		$array = array();
-		$param['offset'] = (isset($param['offset'])) ? $param['offset'] : 0;
-		$param['limit'] = (isset($param['limit'])) ? $param['limit'] : MAXIMUM_SENDING_MAIL;
-		$param['limit'] = ($param['limit'] > MAXIMUM_SENDING_MAIL) ? MAXIMUM_SENDING_MAIL : $param['limit'];
-		
-		$select_query = "
-			SELECT email, first_name, last_name
-			FROM ".USER." User
-			LEFT JOIN ".USER_SETTING." UserSetting ON UserSetting.user_id = User.id
-			WHERE
-				(UserSetting.email_notify = 1 OR UserSetting.email_notify IS NULL)
-				AND User.is_delete = 0
-				AND User.is_active = 1
-			LIMIT ".$param['offset'].", ".$param['limit']."
-		";
-		
-        $select_result = mysql_query($select_query) or die(mysql_error());
-		while ( $row = mysql_fetch_assoc( $select_result ) ) {
-			$array[] = $this->sync($row, $param);
-		}
-		
-        return $array;
     }
 	
     function delete($param) {
@@ -179,23 +121,13 @@ class User_model extends CI_Model {
 			unset($row['passwd']);
 		}
 		
-		// decript email
-		if (isset($row['email'])) {
-			$row['email'] = mcrypt_decode($row['email']);
-		}
-		
 		// thumbnail
-		$row['thumbnail_profile_link'] = base_url('static/img/avatar.jpg');
-		if (isset($row['thumbnail_profile'])) {
-			$file_path = $this->config->item('base_path').'/static/upload/'.$row['thumbnail_profile'];
-			if (file_exists($file_path) && isset($row['thumbnail_profile']) && !empty($row['thumbnail_profile'])) {
-				$row['thumbnail_profile_link'] = base_url('static/upload/'.$row['thumbnail_profile']);
+		$row['thumbnail_link'] = base_url('static/img/avatar.jpg');
+		if (isset($row['thumbnail'])) {
+			$file_path = $this->config->item('base_path').'/static/upload/'.$row['thumbnail'];
+			if (file_exists($file_path) && isset($row['thumbnail']) && !empty($row['thumbnail'])) {
+				$row['thumbnail_link'] = base_url('static/upload/'.$row['thumbnail']);
 			}
-		}
-		
-		// link
-		if (isset($row['alias'])) {
-			$row['user_link'] = base_url($row['alias']);
 		}
 		
 		if (count(@$param['column']) > 0) {

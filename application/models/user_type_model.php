@@ -4,7 +4,7 @@ class User_Type_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'name' );
+        $this->field = array( 'id', 'title' );
     }
 
     function update($param) {
@@ -48,7 +48,7 @@ class User_Type_model extends CI_Model {
         $array = array();
 		
 		$string_filter = GetStringFilter($param, @$param['column']);
-		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
+		$string_sorting = GetStringSorting($param, @$param['column'], 'title ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "

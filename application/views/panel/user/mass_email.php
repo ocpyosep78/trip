@@ -11,7 +11,7 @@
 				<section class="vbox">
 					<section class="scrollable padder">
 						<div class="m-b-md">
-							<h3 class="m-b-none">Page Static</h3>
+							<h3 class="m-b-none">Mass Email</h3>
 						</div>
 						
 						<section class="panel panel-default panel-table">
@@ -35,8 +35,10 @@
 								<table class="table table-striped m-b-none" data-ride="datatable" id="datatable">
 								<thead>
 									<tr>
-										<th width="40%">Title</th>
-										<th width="40%">Update Time</th>
+										<th width="20%">To</th>
+										<th width="20%">Title</th>
+										<th width="20%">Update Time</th>
+										<th width="20%">Status</th>
 										<th width="20%">&nbsp;</th>
 									</tr>
 								</thead>
@@ -45,25 +47,34 @@
 							</div>
 						</section>
 						
-						<section class="panel panel-default panel-form hide">
-							<header class="panel-heading font-bold">Form Page Static</header>
+						<section class="panel panel-default panel-form hide" id="form-mass-email">
+							<header class="panel-heading font-bold">Mass Email Form</header>
 							<div class="panel-body">
-								<form class="bs-example form-horizontal">
+								<form class="form-horizontal" data-validate="parsley">
 									<input type="hidden" name="action" value="update" />
 									<input type="hidden" name="id" value="0" />
 									
 									<div class="form-group">
-										<label class="col-lg-2 control-label">Title</label>
-										<div class="col-lg-10"><input type="text" name="title" class="form-control" placeholder="Title" data-required="true" /></div>
+										<label class="col-lg-2 control-label">To</label>
+										<div class="col-lg-10">
+											<select name="to" class="form-control" data-required="true">
+												<option value="">-</option>
+												<option value="All">All</option>
+												<option value="Member">Member</option>
+												<option value="Traveler">Traveler</option>
+											</select>
+										</div>
 									</div>
 									<div class="form-group">
-										<label class="col-lg-2 control-label">Alias</label>
-										<div class="col-lg-10"><input type="text" name="alias" class="form-control" placeholder="Alias" readonly="readonly" /></div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-2 control-label">Wysiwyg</label>
+										<label class="col-sm-2 control-label">Title</label>
 										<div class="col-sm-10">
-											<div id="form-content" class="form-control" style="overflow: scroll; height: 150px; max-height: 150px;"></div>
+											<input type="text" name="name" class="form-control" data-required="true" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Content</label>
+										<div class="col-sm-10">
+											<div id="editor-content" class="form-control editor-wysiwyg" style="overflow:scroll;height:150px;max-height:150px"></div>
 										</div>
 									</div>
 									
@@ -90,33 +101,42 @@
 $(document).ready(function() {
 	var page = {
 		init: function() {
-			set_wysiwyg({ id: 'form-content' });
+			set_wysiwyg({ id: 'editor-content' });
 		},
-		show_grid: function() {
-			$('.panel-form').hide();
+		show_table: function() {
 			$('.panel-table').show();
+			$('.panel-form').hide();
 		},
 		show_form: function() {
-			$('.panel-form').show();
 			$('.panel-table').hide();
-		},
+			$('.panel-form').show();
+		}
 	}
 	page.init();
 	
 	// grid
 	var param = {
-		id: 'datatable',
-		source: web.base + 'panel/setup/page_static/grid',
-		column: [ { }, { }, { bSortable: false, sClass: 'center', sWidth: '10%' } ],
+		id: 'datatable', aaSorting: [[1, 'desc']],
+		source: web.base + 'panel/user/mass_email/grid',
+		column: [ { }, { }, { }, { }, { bSortable: false, sClass: 'center', sWidth: '15%' } ],
 		callback: function() {
 			$('#datatable .btn-edit').click(function() {
 				var raw_record = $(this).siblings('.hide').text();
 				eval('var record = ' + raw_record);
 				
-				Func.ajax({ url: web.base + 'panel/setup/page_static/action', param: { action: 'get_by_id', id: record.id }, callback: function(result) {
-					Func.populate({ cnt: '.panel-form', record: result });
-					$('#form-content').html(result.content);
+				Func.ajax({ url: web.base + 'panel/user/mass_email/action', param: { action: 'get_by_id', id: record.id }, callback: function(result) {
+					Func.populate({ cnt: '#form-mass-email', record: result });
+					$('#editor-content').html(result.content);
 					page.show_form();
+				} });
+			});
+			
+			$('#datatable .btn-sent').click(function() {
+				var raw_record = $(this).siblings('.hide').text();
+				eval('var record = ' + raw_record);
+				
+				Func.update({ param: { action: 'sent_mail', id: record.id }, link: web.base + 'panel/user/mass_email/action', callback: function() {
+					dt.reload();
 				} });
 			});
 			
@@ -126,7 +146,7 @@ $(document).ready(function() {
 				
 				Func.confirm_delete({
 					data: { action: 'delete', id: record.id },
-					url: web.base + 'panel/setup/page_static/action', callback: function() { dt.reload(); }
+					url: web.base + 'panel/user/mass_email/action', callback: function() { dt.reload(); }
 				});
 			});
 		}
@@ -134,39 +154,37 @@ $(document).ready(function() {
 	var dt = Func.init_datatable(param);
 	
 	// form
-	var form = $('.panel-form form').parsley();
-	$('.panel-form .btn-primary').click(function() {
-		page.show_grid();
+	var form = $('#form-mass-email form').parsley();
+	$('#form-mass-email .btn-primary').click(function() {
+		page.show_table();
 	});
-	$('.panel-form [name="title"]').keyup(function() {
-		var value = Func.GetName($(this).val());
-		$('.panel-form [name="alias"]').val(value);
-	});
-	$('.panel-form form').submit(function(e) {
+	$('#form-mass-email form').submit(function(e) {
 		e.preventDefault();
 		if (! form.isValid()) {
 			return false;
 		}
 		
-		var param = Site.Form.GetValue('.panel-form form');
-		param.content = $('#form-content').html();
+		var param = Site.Form.GetValue('form-mass-email form');
+		param.content = $('#editor-content').html();
 		Func.update({
-			link: web.base + 'panel/setup/page_static/action',
 			param: param,
+			link: web.base + 'panel/user/mass_email/action',
 			callback: function() {
 				dt.reload();
-				page.show_grid();
-				$('.panel-form form')[0].reset();
+				page.show_table();
 			}
 		});
 	});
 	
-	// helper
+	// display
 	$('.show-dialog').click(function() {
 		page.show_form();
-		$('.panel-form form')[0].reset();
-		$('.panel-form form').parsley().reset();
-		$('.panel-form [name="id"]').val(0);
+		$('#form-mass-email form')[0].reset();
+		$('#form-mass-email [name="id"]').val(0);
+		$('#editor-content').html('');
+	});
+	$('.show-table').click(function() {
+		page.show_table();
 	});
 });
 </script>

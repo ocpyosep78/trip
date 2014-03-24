@@ -76,25 +76,25 @@
 							
 							<ul class="nav lt">
 								<li>
-									<a href="<?php echo base_url('panel/profile/info'); ?>" data-menu-child="editor">
+									<a href="<?php echo base_url('panel/user/editor'); ?>" data-menu-child="editor">
 										<i class="fa fa-angle-right"></i>
 										<span>Editor</span>
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url('panel/profile/account'); ?>" data-menu-child="member">
+									<a href="<?php echo base_url('panel/user/member'); ?>" data-menu-child="member">
 										<i class="fa fa-angle-right"></i>
 										<span>Member</span>
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url('panel/profile/account'); ?>" data-menu-child="traveler">
+									<a href="<?php echo base_url('panel/user/traveler'); ?>" data-menu-child="traveler">
 										<i class="fa fa-angle-right"></i>
 										<span>Traveler</span>
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url('panel/profile/account'); ?>" data-menu-child="mass_email">
+									<a href="<?php echo base_url('panel/user/mass_email'); ?>" data-menu-child="mass_email">
 										<i class="fa fa-angle-right"></i>
 										<span>Mass Email</span>
 									</a>

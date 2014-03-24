@@ -210,3 +210,6 @@ ADDITIONAL
 
 
 ----------------------------------------------------------------------------------------------------------------
+
+
+<input type="text" name="register_date" class="form-control datepicker-input" placeholder="Register Date" data-date-format="dd-mm-yyyy" readonly="readonly" />

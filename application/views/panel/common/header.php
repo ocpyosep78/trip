@@ -24,12 +24,12 @@
 			<section class="dropdown-menu aside-xxl on animated fadeInLeft no-borders lt">
 				<div class="wrapper lter m-t-n-xs">
 					<a href="#" class="thumb pull-left m-r">
-						<img src="<?php echo $user['thumbnail_profile_link']; ?>" class="img-circle">
+						<img src="<?php echo $user['thumbnail_link']; ?>" class="img-circle">
 					</a>
 					<div class="clear">
-						<a href="#"><span class="text-white font-bold"><?php echo $user['alias']; ?></span></a>
+						<a href="#"><span class="text-white font-bold"><?php echo $user['fullname']; ?></span></a>
 						<small class="block"><?php echo $user['fullname']; ?></small>
-						<a href="#" class="btn btn-xs btn-success m-t-xs"><?php echo $user['user_type_name']; ?></a>
+						<a href="#" class="btn btn-xs btn-success m-t-xs"><?php echo $user['user_type_title']; ?></a>
 					</div>
 				</div>
 				<div class="row m-l-none m-r-none m-b-n-xs">
@@ -90,7 +90,7 @@
 		<li class="dropdown">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 				<span class="thumb-sm avatar pull-left">
-					<img src="<?php echo $user['thumbnail_profile_link']; ?>">
+					<img src="<?php echo $user['thumbnail_link']; ?>">
 				</span>
 				<?php echo $user['fullname']; ?> <b class="caret"></b>
 			</a>

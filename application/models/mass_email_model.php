@@ -4,7 +4,7 @@ class mass_email_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'name', 'content', 'sent_offset', 'sent_limit', 'update_time', 'status' );
+        $this->field = array( 'id', 'to', 'name', 'content', 'sent_offset', 'sent_limit', 'update_time', 'status' );
     }
 
     function update($param) {
@@ -35,7 +35,7 @@ class mass_email_model extends CI_Model {
         if (isset($param['id'])) {
             $select_query  = "SELECT * FROM ".MASS_EMAIL." WHERE id = '".$param['id']."' LIMIT 1";
         } 
-       
+		
         $select_result = mysql_query($select_query) or die(mysql_error());
         if (false !== $row = mysql_fetch_assoc($select_result)) {
             $array = $this->sync($row);
@@ -47,15 +47,14 @@ class mass_email_model extends CI_Model {
     function get_array($param = array()) {
         $array = array();
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND MassEmail.name LIKE '%".$param['namelike']."%'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
-		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
+		$string_sorting = GetStringSorting($param, @$param['column'], 'update_time DESC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
 			SELECT SQL_CALC_FOUND_ROWS MassEmail.*
 			FROM ".MASS_EMAIL." MassEmail
-			WHERE 1 $string_namelike $string_filter
+			WHERE 1 $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
@@ -90,6 +89,17 @@ class mass_email_model extends CI_Model {
 		$row = StripArray($row);
 		
 		if (count(@$param['column']) > 0) {
+			if (isset($param['grid_type']) && $param['grid_type'] == 'sent_mass_mail') {
+				$param['is_custom']  = '<i class="cursor-button tool-tip fa fa-pencil btn-edit" title="Edit"></i> ';
+				
+				// only add this button when record is draft
+				if ($row['status'] == 'draft') {
+					$param['is_custom'] .= '<i class="cursor-button tool-tip fa fa-envelope btn-sent" title="Sent"></i> ';
+				}
+				
+				$param['is_custom'] .= '<i class="cursor-button tool-tip fa fa-power-off btn-delete" title="Delete"></i> ';
+			}
+			
 			$row = dt_view_set($row, $param);
 		}
 		

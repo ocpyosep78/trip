@@ -1,19 +1,19 @@
 <?php
-class page_static extends PANEL_Controller {
+class widget extends PANEL_Controller {
     function __construct() {
         parent::__construct();
     }
     
     function index() {
-		$this->load->view( 'panel/setup/page_static' );
+		$this->load->view( 'panel/setup/widget' );
     }
 	
 	function grid() {
 		$_POST['is_edit'] = 1;
 		$_POST['column'] = array( 'title', 'post_time' );
 		
-		$array = $this->page_static_model->get_array($_POST);
-		$count = $this->page_static_model->get_count();
+		$array = $this->widget_model->get_array($_POST);
+		$count = $this->widget_model->get_count();
 		$grid = array( 'sEcho' => $_POST['sEcho'], 'aaData' => $array, 'iTotalRecords' => $count, 'iTotalDisplayRecords' => $count );
 		
 		echo json_encode($grid);
@@ -26,11 +26,11 @@ class page_static extends PANEL_Controller {
 		$result = array();
 		if ($action == 'update') {
 			$_POST['post_time'] = $this->config->item('current_datetime');
-			$result = $this->page_static_model->update($_POST);
+			$result = $this->widget_model->update($_POST);
 		} else if ($action == 'get_by_id') {
-			$result = $this->page_static_model->get_by_id(array( 'id' => $_POST['id'] ));
+			$result = $this->widget_model->get_by_id(array( 'id' => $_POST['id'] ));
 		} else if ($action == 'delete') {
-			$result = $this->page_static_model->delete($_POST);
+			$result = $this->widget_model->delete($_POST);
 		}
 		
 		echo json_encode($result);
