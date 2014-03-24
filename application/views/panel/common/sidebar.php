@@ -39,25 +39,25 @@
 							
 							<ul class="nav lt">
 								<li>
-									<a href="<?php echo base_url('panel/post/hotel'); ?>" data-menu-child="info">
+									<a href="<?php echo base_url('panel/post/hotel'); ?>" data-menu-child="hotel">
 										<i class="fa fa-angle-right"></i>
 										<span>Hotel</span>
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url('panel/post/hotel'); ?>" data-menu-child="destination">
+									<a href="<?php echo base_url('panel/post/destination'); ?>" data-menu-child="destination">
 										<i class="fa fa-angle-right"></i>
 										<span>Destination</span>
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url('panel/post/hotel'); ?>" data-menu-child="restaurant">
+									<a href="<?php echo base_url('panel/post/restaurant'); ?>" data-menu-child="restaurant">
 										<i class="fa fa-angle-right"></i>
 										<span>Restaurant</span>
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo base_url('panel/post/hotel'); ?>" data-menu-child="other">
+									<a href="<?php echo base_url('panel/post/other'); ?>" data-menu-child="other">
 										<i class="fa fa-angle-right"></i>
 										<span>Other</span>
 									</a>

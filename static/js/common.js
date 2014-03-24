@@ -659,7 +659,7 @@ var Func = {
 			var code = $("[id^=language-]").eq(i).data('code');
 			
 			// input
-			$("[id^=language-]").eq(i).find('input').attr('data-code', code);
+			$("[id^=language-]").eq(i).find('input,select,textarea').attr('data-code', code);
 		}
 	},
 	

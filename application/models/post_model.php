@@ -5,7 +5,7 @@ class post_model extends CI_Model {
         parent::__construct();
 		
         $this->field = array(
-			'id', 'city_id', 'category_id', 'alias', 'title', 'address', 'desc_01', 'desc_02', 'desc_03', 'field_01', 'map', 'star', 'post_status'
+			'id', 'city_id', 'member_id', 'category_sub_id', 'alias', 'title', 'address', 'desc_01', 'desc_02', 'desc_03', 'field_01', 'map', 'star', 'post_status'
 		);
     }
 
@@ -35,7 +35,19 @@ class post_model extends CI_Model {
         $array = array();
        
         if (isset($param['id'])) {
-            $select_query  = "SELECT * FROM ".POST." WHERE id = '".$param['id']."' LIMIT 1";
+            $select_query  = "
+				SELECT post.*,
+					category_sub.title category_sub_title, category.id category_id, category.title category_title,
+					city.region_id, region.country_id
+				FROM ".POST." post
+				LEFT JOIN ".CATEGORY_SUB." category_sub ON category_sub.id = post.category_sub_id
+				LEFT JOIN ".CATEGORY." category ON category.id = category_sub.category_id
+				LEFT JOIN ".CITY." city ON city.id = post.city_id
+				LEFT JOIN ".REGION." region ON region.id = city.region_id
+				LEFT JOIN ".COUNTRY." country ON country.id = region.country_id
+				WHERE post.id = '".$param['id']."'
+				LIMIT 1
+			";
         } 
        
         $select_result = mysql_query($select_query) or die(mysql_error());
@@ -49,14 +61,26 @@ class post_model extends CI_Model {
     function get_array($param = array()) {
         $array = array();
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND Post.name LIKE '%".$param['namelike']."%'" : '';
+		$param['field_replace']['alias'] = 'post.alias';
+		$param['field_replace']['title_text'] = 'post.title';
+		$param['field_replace']['category_title'] = 'category.title';
+		$param['field_replace']['category_sub_title'] = 'category_sub.title';
+		
+		$string_namelike = (!empty($param['namelike'])) ? "AND post.name LIKE '%".$param['namelike']."%'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS Post.*
-			FROM ".POST." Post
+			SELECT SQL_CALC_FOUND_ROWS post.*,
+				category_sub.title category_sub_title, category.id category_id, category.title category_title,
+				city.region_id, region.country_id
+			FROM ".POST." post
+			LEFT JOIN ".CATEGORY_SUB." category_sub ON category_sub.id = post.category_sub_id
+			LEFT JOIN ".CATEGORY." category ON category.id = category_sub.category_id
+			LEFT JOIN ".CITY." city ON city.id = post.city_id
+			LEFT JOIN ".REGION." region ON region.id = city.region_id
+			LEFT JOIN ".COUNTRY." country ON country.id = region.country_id
 			WHERE 1 $string_namelike $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
@@ -90,6 +114,11 @@ class post_model extends CI_Model {
 	
 	function sync($row, $param = array()) {
 		$row = StripArray($row);
+		
+		if (isset($row['title'])) {
+			$temp = json_to_array($row['title']);
+			$row['title_text'] = $temp[LANGUAGE_DEFAULT];
+		}
 		
 		if (count(@$param['column']) > 0) {
 			$row = dt_view_set($row, $param);

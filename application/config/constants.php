@@ -27,6 +27,10 @@ define('LANGUAGE_DEFAULT',						'en');
 /*	MAXIMUM IP ACCESS PER HOUR */
 define('MAXIMUM_IP_ACCESS_PER_HOUR',			1000);
 
+define('CATEGORY_HOTEL',						1);
+define('CATEGORY_DESTINATION',					2);
+define('CATEGORY_RESTAURANT',					3);
+
 define('SHA_SECRET',							'OraNgerti');
 define('USER_TYPE_ADMINISTRATOR',				99);
 define('USER_TYPE_EDITOR',						88);

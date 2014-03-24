@@ -60,7 +60,7 @@
 						<section class="panel panel-default panel-form hide">
 							<header class="panel-heading font-bold">Form Facility</header>
 							<div class="panel-body">
-								<form>
+								<form class="bs-example form-horizontal">
 									<input type="hidden" name="action" value="update" />
 									<input type="hidden" name="id" value="0" />
 									

@@ -47,15 +47,15 @@ class category_model extends CI_Model {
     function get_array($param = array()) {
         $array = array();
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND Category.name LIKE '%".$param['namelike']."%'" : '';
+		$string_not_in = (isset($param['not_in'])) ? "AND category.id NOT IN (".$param['not_in'].")" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'title ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS Category.*
-			FROM ".CATEGORY." Category
-			WHERE 1 $string_namelike $string_filter
+			SELECT SQL_CALC_FOUND_ROWS category.*
+			FROM ".CATEGORY." category
+			WHERE 1 $string_not_in $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
