@@ -23,6 +23,11 @@ if (count($array_arg) >= 1) {
 if ($is_website) {
 	$route['hotel'] = "website/hotel";
 	$route['hotel/(:any)'] = "website/hotel";
+	$route['destination'] = "website/destination";
+	$route['destination/(:any)'] = "website/destination";
+	$route['search'] = "website/search";
+	$route['search/(:any)'] = "website/search";
+	$route['(:any)'] = "website/selector";
 } else if ($is_panel) {
 	$route['panel'] = "panel/home";
 } else if ($is_service) {

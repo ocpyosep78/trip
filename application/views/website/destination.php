@@ -1,7 +1,6 @@
 <?php $this->load->view( 'website/common/meta' ); ?>
-<body id="top" class="thebg">
+<body id="top" class="thebg" >
 	<?php $this->load->view( 'website/common/header_menu' ); ?>
-
 	
 	<div class="container breadcrub">
 	    <div>
@@ -297,199 +296,77 @@
 				
 
 				<div class="itemscontainer offset-1">
-
-				
-					<div class="col-md-4">
-						<div class="listitem">
-							<img src="http://www.baligetaway.co.id/images/uploads/BALI_GETAWAY-KUTA_CENTRAL_PARK_HOTEL_01.jpg" alt=""/>
-						 
-						</div>
-						<div class="itemlabel2">
-							<div class="labelright">
-								<img src="static/theme/forest/images/filter-rating-5.png" width="60" alt=""/><br/><br/><br/>
-							<br/>
-								<span class="size11 grey"> PROMO</span><br/><br/>
-							 
-								<button class="bookbtn mt1">View</button>		
-							</div>
-							<div class="labelleft">			
-								<b>Hotel Tugu </b><br/><br/><br/>
-								<p class="grey"><b>Desc hotel Tugu di potong </b>Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/><br/>
-								Vestibulum vel risus at lectus rhoncus mattis. Sed id enim eu or</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-											<div class="listitem">
-							<img src="http://www.baligetaway.co.id/images/uploads/BALI_GETAWAY-KUTA_CENTRAL_PARK_HOTEL_01.jpg" alt=""/>
-						 
-						</div>
-						<div class="itemlabel2">
-							<div class="labelright">
-								<!-- Kosong --><br/><br/><br/>
-								<img src="static/theme/forest/images/user-rating-5.png" width="60" alt=""/><br/>
-								<span class="size11 grey">18 Reviews</span><br/><br/>
+			
+	
+					<div class="offset-2">
+						<div class="col-md-4 offset-0">
+							<div class="listitem2">
+								<a href="static/theme/forest/images/items/item7.jpg">
+								<img src="static/theme/forest/images/items/item7.jpg" alt=""/></a>
 								 
-								<button class="bookbtn mt1">View</button>		
-							</div>
-							<div class="labelleft">			
-								<b>Mabely Grand Hotel</b><br/><br/><br/>
-								<p class="grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/><br/>
-								Vestibulum vel risus at lectus rhoncus mattis. Sed id enim eu orci rhoncus malesuada.</p>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-4">
-											<div class="listitem">
-							<img src="http://www.baligetaway.co.id/images/uploads/BALI_GETAWAY-KUTA_CENTRAL_PARK_HOTEL_01.jpg" alt=""/>
-						 
+						<div class="col-md-8 offset-0">
+							<div class="itemlabel3">
+								<div class="labelright">
+								<!--	<img src="static/theme/forest/images/filter-rating-5.png" width="60" alt=""/>--><br/><br/><br/>
+									<img src="static/theme/forest/images/user-rating-5.png" width="60" alt=""/><br/>
+									<span class="size11 grey">18 Reviews</span><br/><br/>
+								<!--	<span class="green size18"><b>$36.00</b></span>--><br/>
+										<!--<span class="size11 grey">avg/night</span>--><br/><br/><br/>
+									<form action="details.html">
+									 <button class="bookbtn mt1" type="submit">Book</button>	
+									</form>			
+								</div>
+								<div class="labelleft2">			
+									<b>Air Terjun Coban Rais</b><br/><br/><br/>
+									<p class="grey">
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et.
+									Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.</p><br/>
+									
+								</div>
+							</div>
 						</div>
-						<div class="itemlabel2">
-							<div class="labelright">
-								<!-- Kosong --><br/><br/><br/>
-								<img src="static/theme/forest/images/user-rating-5.png" width="60" alt=""/><br/>
-								<span class="size11 grey">18 Reviews</span><br/><br/>
-							 
-								<button class="bookbtn mt1">View</button>		
-							</div>
-							<div class="labelleft">			
-								<b>Mabely Grand Hotel</b><br/><br/><br/>
-								<p class="grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/><br/>
-								Vestibulum vel risus at lectus rhoncus mattis. Sed id enim eu orci rhoncus malesuada.</p>
-							</div>
-						</div>				
 					</div>
 
 					<div class="clearfix"></div>
 					<div class="offset-2"><hr class="featurette-divider3"></div>
 					
-					<div class="col-md-4">
-												<div class="listitem">
-							<img src="http://www.baligetaway.co.id/images/uploads/BALI_GETAWAY-KUTA_CENTRAL_PARK_HOTEL_01.jpg" alt=""/>
-						 
-						</div>
-						<div class="itemlabel2">
-							<div class="labelright">
-								<!-- Kosong --><br/><br/><br/>
-								<img src="static/theme/forest/images/user-rating-5.png" width="60" alt=""/><br/>
+					<div class="offset-2">
+						<div class="col-md-4 offset-0">
+							<div class="listitem2">
+								<a href="static/theme/forest/images/items/item7.jpg">
+								<img src="static/theme/forest/images/items/item7.jpg" alt=""/></a>
 								 
-								<span class="size11 grey">avg/night</span><br/><br/><br/>
-								<button class="bookbtn mt1">View</button>		
 							</div>
-							<div class="labelleft">			
-								<b>Mabely Grand Hotel</b><br/><br/><br/>
-								<p class="grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/><br/>
-								Vestibulum vel risus at lectus rhoncus mattis. Sed id enim eu orci rhoncus malesuada.</p>
+						</div>
+						<div class="col-md-8 offset-0">
+							<div class="itemlabel3">
+								<div class="labelright">
+								<!--	<img src="static/theme/forest/images/filter-rating-5.png" width="60" alt=""/>--><br/><br/><br/>
+									<img src="static/theme/forest/images/user-rating-5.png" width="60" alt=""/><br/>
+									<span class="size11 grey">18 Reviews</span><br/><br/>
+								<!--	<span class="green size18"><b>$36.00</b></span>--><br/>
+										<!--<span class="size11 grey">avg/night</span>--><br/><br/><br/>
+									<form action="details.html">
+									 <button class="bookbtn mt1" type="submit">Book</button>	
+									</form>			
+								</div>
+								<div class="labelleft2">			
+									<b>Mabely Grand Hotel</b><br/><br/><br/>
+									<p class="grey">
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et.
+									Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.</p><br/>
+									
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4">
-												<div class="listitem">
-							<img src="http://www.baligetaway.co.id/images/uploads/BALI_GETAWAY-KUTA_CENTRAL_PARK_HOTEL_01.jpg" alt=""/>
-						 
-						</div>
-						<div class="itemlabel2">
-							<div class="labelright">
-								<!-- Kosong --><br/><br/><br/>
-								<img src="static/theme/forest/images/user-rating-5.png" width="60" alt=""/><br/>
-								<span class="size11 grey">18 Reviews</span><br/><br/>
-								 
-								<button class="bookbtn mt1">View</button>		
-							</div>
-							<div class="labelleft">			
-								<b>Mabely Grand Hotel</b><br/><br/><br/>
-								<p class="grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/><br/>
-								Vestibulum vel risus at lectus rhoncus mattis. Sed id enim eu orci rhoncus malesuada.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-											<div class="listitem">
-							<img src="http://www.baligetaway.co.id/images/uploads/BALI_GETAWAY-KUTA_CENTRAL_PARK_HOTEL_01.jpg" alt=""/>
-						 
-						</div>
-						<div class="itemlabel2">
-							<div class="labelright">
-								<!-- Kosong --><br/><br/><br/>
-								<img src="static/theme/forest/images/user-rating-5.png" width="60" alt=""/><br/>
-								<span class="size11 grey">18 Reviews</span><br/><br/>
-								 
-								<button class="bookbtn mt1">View</button>		
-							</div>
-							<div class="labelleft">			
-								<b>Mabely Grand Hotel</b><br/><br/><br/>
-								<p class="grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/><br/>
-								Vestibulum vel risus at lectus rhoncus mattis. Sed id enim eu orci rhoncus malesuada.</p>
-							</div>
-						</div>				
-					</div>
-					
+
 					<div class="clearfix"></div>
 					<div class="offset-2"><hr class="featurette-divider3"></div>
 					
-					<div class="col-md-4">
-												<div class="listitem">
-							<img src="http://www.baligetaway.co.id/images/uploads/BALI_GETAWAY-KUTA_CENTRAL_PARK_HOTEL_01.jpg" alt=""/>
-						 
-						</div>
-						<div class="itemlabel2">
-							<div class="labelright">
-								<!-- Kosong --><br/><br/><br/>
-								<img src="static/theme/forest/images/user-rating-5.png" width="60" alt=""/><br/>
-								<span class="size11 grey">18 Reviews</span><br/><br/>
-								 
-								<button class="bookbtn mt1">View</button>		
-							</div>
-							<div class="labelleft">			
-								<b>Mabely Grand Hotel</b><br/><br/><br/>
-								<p class="grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/><br/>
-								Vestibulum vel risus at lectus rhoncus mattis. Sed id enim eu orci rhoncus malesuada.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-												<div class="listitem">
-							<img src="http://www.baligetaway.co.id/images/uploads/BALI_GETAWAY-KUTA_CENTRAL_PARK_HOTEL_01.jpg" alt=""/>
-						 
-						</div>
-						<div class="itemlabel2">
-							<div class="labelright">
-								<!-- Kosong --><br/><br/><br/>
-								<img src="static/theme/forest/images/user-rating-5.png" width="60" alt=""/><br/>
-								<span class="size11 grey">18 Reviews</span><br/><br/>
-								 
-								<button class="bookbtn mt1">View</button>		
-							</div>
-							<div class="labelleft">			
-								<b>Mabely Grand Hotel</b><br/><br/><br/>
-								<p class="grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/><br/>
-								Vestibulum vel risus at lectus rhoncus mattis. Sed id enim eu orci rhoncus malesuada.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-												<div class="listitem">
-							<img src="http://www.baligetaway.co.id/images/uploads/BALI_GETAWAY-KUTA_CENTRAL_PARK_HOTEL_01.jpg" alt=""/>
-						 
-						</div>
-						<div class="itemlabel2">
-							<div class="labelright">
-								<!-- Kosong --><br/><br/><br/>
-								<img src="static/theme/forest/images/user-rating-5.png" width="60" alt=""/><br/>
-								<span class="size11 grey">18 Reviews</span><br/><br/>
-								 
-								<button class="bookbtn mt1">View</button>		
-							</div>
-							<div class="labelleft">			
-								<b>Mabely Grand Hotel</b><br/><br/><br/>
-								<p class="grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br/><br/>
-								Vestibulum vel risus at lectus rhoncus mattis. Sed id enim eu orci rhoncus malesuada.</p>
-							</div>
-						</div>				
-					</div>
-					
-					<div class="clearfix"></div>
-					<div class="offset-2"><hr class="featurette-divider3"></div>
+					 
 
 				</div>	
 				<!-- End of offset1-->		

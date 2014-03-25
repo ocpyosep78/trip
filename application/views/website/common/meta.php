@@ -1,3 +1,7 @@
+<?php
+	$web['base'] = base_url();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,10 +34,14 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('static/theme/forest/css/fullscreen.css'); ?>" media="screen" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('static/theme/forest/lib/rs-plugin/css/settings.css'); ?>" media="screen" />
 	
+	<!-- Animo css-->
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url('static/theme/forest/lib/animo/animate+animo.css'); ?>" media="screen" />
+	
     <!-- Picker UI-->	
 	<link rel="stylesheet" href="<?php echo base_url('static/theme/forest/css/jquery-ui.css'); ?>" />
 	
     <!-- jQuery -->	
+    <script>var web = <?php echo json_encode($web); ?></script>
     <script src="<?php echo base_url('static/theme/forest/js/jquery.v2.0.3.js'); ?>"></script>
 	
 	<!-- bin/jquery.slider.min.css -->

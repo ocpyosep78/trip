@@ -30,6 +30,9 @@
 <script src="<?php echo base_url('static/theme/forest/js/helper-plugins/jquery.ba-throttle-debounce.min.js'); ?>"></script>
 <?php } ?>
 
+<!-- Load Animo -->
+<script src="<?php echo base_url('static/theme/forest/lib/animo/animo.js'); ?>"></script>
+
 <!-- Custom Select -->
 <script src="<?php echo base_url('static/theme/forest/js/jquery.customSelect.js'); ?>"></script>
 
@@ -40,3 +43,6 @@
 <?php foreach ($js_add as $item) { ?>
 <script src="<?php echo base_url('static/theme/forest/js/'.$item); ?>"></script>	
 <?php } ?>
+
+<script src="<?php echo base_url('static/js/common.js'); ?>"></script>
+<script src="<?php echo base_url('static/theme/forest/js/public.js'); ?>"></script>
