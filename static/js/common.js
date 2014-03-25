@@ -278,11 +278,16 @@ var Site = {
 				return obj;
 			}
             
-            var Input = jQuery(container + ' input, ' + container + ' select, ' + container + ' textarea');
+            var Input = jQuery(container + ' input, ' + container + ' select, ' + container + ' textarea, ' + container + ' .input-tinymce');
             for (var i = 0; i < Input.length; i++) {
 				var name = Input.eq(i).attr('name');
 				var code = Input.eq(i).attr('data-code');
+				
+				// get value
 				var value = Input.eq(i).val();
+				if (Input.eq(i).hasClass('input-tinymce')) {
+					value = Input.eq(i).html();
+				}
 				
 				if (Input.eq(i).attr('type') == 'checkbox') {
 					if (Input.eq(i).is(':checked')) {
@@ -618,8 +623,15 @@ var Func = {
 					for (var code in json) {
 						if (json.hasOwnProperty(code)) {
 							for (var i = 0; i < input.length; i++) {
+								// input, select, textarea
 								if (input.eq(i).attr('data-code') == code) {
 									input.eq(i).val(json[code]);
+								}
+								
+								// wysiwyg
+								var selector = '#' + form_name + '-' + code;
+								if ($(selector).length == 1) {
+									$(selector).html(json[code]);
 								}
 							}
 						}
@@ -655,11 +667,26 @@ var Func = {
 		$("[id^=language-]").html($('.form-language').html());
 		
 		// input tab
-		for(var i = 0; i < $("[id^=language-]").length; i++) {
+		for (var i = 0; i < $("[id^=language-]").length; i++) {
 			var code = $("[id^=language-]").eq(i).data('code');
 			
 			// input
 			$("[id^=language-]").eq(i).find('input,select,textarea').attr('data-code', code);
+			
+			// wysiwyg
+			$("[id^=language-]").eq(i).find('.input-tinymce').each(function() {
+				$(this).attr('data-code', code);
+				
+				// id
+				var id = $(this).attr('name') + '-' + code;
+				$(this).attr('id', id);
+				
+				// generate editor
+				set_wysiwyg({ id: id });
+				
+				// design
+				$(this).addClass('form-control');
+			});
 		}
 	},
 	

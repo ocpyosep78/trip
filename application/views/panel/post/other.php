@@ -29,7 +29,7 @@
 			</div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">Map</label>
-				<div class="col-lg-10"><textarea name="map" class="form-control" placeholder="Map"></textarea></div>
+				<div class="col-lg-10"><div name="map" class="input-tinymce"></div></div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">Field 1</label>
@@ -72,8 +72,9 @@
 									<tr>
 										<th width="20%">Category</th>
 										<th width="20%">Sub Category</th>
-										<th width="40%">Title</th>
-										<th width="20%">&nbsp;</th>
+										<th width="30%">Title</th>
+										<th width="15%">Status</th>
+										<th width="15%">&nbsp;</th>
 									</tr>
 								</thead>
 								<tbody></tbody>
@@ -200,7 +201,7 @@ $(document).ready(function() {
 	var param = {
 		id: 'datatable',
 		source: web.base + 'panel/post/other/grid',
-		column: [ { }, { }, { }, { bSortable: false, sClass: 'center', sWidth: '10%' } ],
+		column: [ { }, { }, { }, { }, { bSortable: false, sClass: 'center', sWidth: '10%' } ],
 		callback: function() {
 			$('#datatable .btn-edit').click(function() {
 				var raw_record = $(this).siblings('.hide').text();

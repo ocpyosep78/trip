@@ -47,6 +47,7 @@ class category_model extends CI_Model {
     function get_array($param = array()) {
         $array = array();
 		
+		$string_in = (isset($param['in'])) ? "AND category.id IN (".$param['in'].")" : '';
 		$string_not_in = (isset($param['not_in'])) ? "AND category.id NOT IN (".$param['not_in'].")" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'title ASC');
@@ -55,7 +56,7 @@ class category_model extends CI_Model {
 		$select_query = "
 			SELECT SQL_CALC_FOUND_ROWS category.*
 			FROM ".CATEGORY." category
-			WHERE 1 $string_not_in $string_filter
+			WHERE 1 $string_in $string_not_in $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";

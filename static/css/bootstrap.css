@@ -7096,3 +7096,9 @@ td.visible-print {
     display: none !important;
   }
 }
+
+.input-tinymce {
+	overflow: scroll;
+	height: 150px;
+	max-height: 150px;
+}

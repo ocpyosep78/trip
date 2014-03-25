@@ -10,7 +10,8 @@ class other extends PANEL_Controller {
 	
 	function grid() {
 		$_POST['is_edit'] = 1;
-		$_POST['column'] = array( 'category_title', 'category_sub_title', 'title_text' );
+		$_POST['category_not_in'] = CATEGORY_HOTEL.', '.CATEGORY_DESTINATION.', '.CATEGORY_RESTAURANT;
+		$_POST['column'] = array( 'category_title', 'category_sub_title', 'title_text', 'post_status' );
 		
 		$array = $this->post_model->get_array($_POST);
 		$count = $this->post_model->get_count();

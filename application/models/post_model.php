@@ -66,7 +66,8 @@ class post_model extends CI_Model {
 		$param['field_replace']['category_title'] = 'category.title';
 		$param['field_replace']['category_sub_title'] = 'category_sub.title';
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND post.name LIKE '%".$param['namelike']."%'" : '';
+		$string_category = (isset($param['category_id'])) ? "AND category_sub.category_id = '".$param['category_id']."'" : '';
+		$string_category_not_in = (isset($param['category_not_in'])) ? "AND category_sub.category_id NOT IN (".$param['category_not_in'].")" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
 		$string_limit = GetStringLimit($param);
@@ -81,7 +82,7 @@ class post_model extends CI_Model {
 			LEFT JOIN ".CITY." city ON city.id = post.city_id
 			LEFT JOIN ".REGION." region ON region.id = city.region_id
 			LEFT JOIN ".COUNTRY." country ON country.id = region.country_id
-			WHERE 1 $string_namelike $string_filter
+			WHERE 1 $string_category $string_category_not_in $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
