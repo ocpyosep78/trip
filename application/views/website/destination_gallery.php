@@ -28,7 +28,7 @@
 				<div id="inner">
 					<div id="caroufredsel_wrapper2">
 						<div id="carousel">
-							<img src="http://kkcdn-static.kaskus.co.id/images/2013/03/09/79315_20130309110339.jpg" style="width: 100%; height: 80%;" alt=""/>
+							<img src="<?php echo base_url('static/theme/forest/images/user-avatar.jpg'); ?>" style="width: 100%; height: 80%;" alt=""/>
 						</div>
 					</div>
 					<div id="pager-wrapper">

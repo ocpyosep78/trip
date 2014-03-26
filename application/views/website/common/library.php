@@ -1,5 +1,4 @@
 <?php
-	$carouFredSel = (isset($carouFredSel)) ? $carouFredSel : false;
 	$js_add = (isset($js_add)) ? $js_add : array();
 ?>
 
@@ -21,14 +20,12 @@
 <!-- Nicescroll  -->
 <script src="<?php echo base_url('static/theme/forest/js/jquery.nicescroll.min.js'); ?>"></script>
 
-<?php if ($carouFredSel || true) { ?>
 <!-- CarouFredSel -->
 <script src="<?php echo base_url('static/theme/forest/js/jquery.carouFredSel-6.2.1-packed.js'); ?>"></script>
 <script src="<?php echo base_url('static/theme/forest/js/helper-plugins/jquery.touchSwipe.min.js'); ?>"></script>
 <script src="<?php echo base_url('static/theme/forest/js/helper-plugins/jquery.mousewheel.min.js'); ?>"></script>
 <script src="<?php echo base_url('static/theme/forest/js/helper-plugins/jquery.transit.min.js'); ?>"></script>
 <script src="<?php echo base_url('static/theme/forest/js/helper-plugins/jquery.ba-throttle-debounce.min.js'); ?>"></script>
-<?php } ?>
 
 <!-- Load Animo -->
 <script src="<?php echo base_url('static/theme/forest/lib/animo/animo.js'); ?>"></script>

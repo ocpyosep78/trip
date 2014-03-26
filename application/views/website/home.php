@@ -6,7 +6,6 @@
 		<div style="float:none;padding:20px;"></div>
 	</div>
 	
-	<!-- WRAP -->
 	<div class="wrap cstyle03">
 		<div class="container mt-130 z-index100">		
 			<div class="row">
@@ -44,8 +43,8 @@
 							</div>
 						</div>
 						<div class="searchbg2">
-							<div class="left ca01"><a href="#">Advanced +</a></div>
-							<form action="list4.html">
+							<!-- <div class="left ca01"><a href="#">Advanced +</a></div> -->
+							<form action="<?php echo base_url('search'); ?>">
 								<button type="submit" class="btn-search right mr30">Search</button>
 							</form>
 						</div>
@@ -55,8 +54,8 @@
 		</div>
 		<div class="lastminute2 lcfix">
 			<div class="container lmc">	
-				<img src="static/theme/forest/images/rating-4.png" alt=""/><br/>
-				LAST MINUTE: <b>Barcelona</b> - 2 nights - Flight+4* Hotel, Dep 27h Aug from $209/person<br/>
+				<img src="<?php echo base_url('static/theme/forest/images/rating-4.png'); ?>" alt=""/><br />
+				LAST MINUTE: <b>Barcelona</b> - 2 nights - Flight+4* Hotel, Dep 27h Aug from $209/person<br />
 				<form action="list4.html">
 					<button class="btn iosbtn" type="submit">Read more</button>
 				</form>
@@ -71,16 +70,18 @@
 						<a href="#" class="social2"><img src="static/theme/forest/images/icon-twitter.png" alt=""/></a>
 						<a href="#" class="social3"><img src="static/theme/forest/images/icon-gplus.png" alt=""/></a>
 						<a href="#" class="social4"><img src="static/theme/forest/images/icon-youtube.png" alt=""/></a>
-						<br/><br/>
-						Copyright &copy; 2013 <a href="#">Travel Agency</a> All rights reserved. <a href="http://titanicthemes.com">TitanicThemes.com</a>
-						<br/><br/>
-						<a href="#top" id="gotop2" class="gotop"><img src="static/theme/forest/images/spacer.png" alt=""/></a>
+						<br /><br />
+						
+						Copyright &copy; <?php echo date("Y"); ?> <a href="<?php echo base_url(); ?>">Travel Agency</a> All rights reserved.
+						<br /><br />
+						
+						<a href="#top" id="gotop2" class="gotop"><img src="<?php echo base_url('static/theme/forest/images/spacer.png'); ?>" alt=""/></a>
 					</div>
 				</footer>
 			</div>	
 		</div>
 	</div>
 	
-	<?php $this->load->view( 'website/common/library', array( 'carouFredSel' => true ) ); ?>
+	<?php $this->load->view( 'website/common/library' ); ?>
 </body>
 </html>

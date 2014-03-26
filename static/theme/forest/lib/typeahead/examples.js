@@ -3,17 +3,17 @@ $(document).ready(function() {
 	var bestPictures = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
-		prefetch: 'post_1960.json',
-		remote: 'queries.php?%QUERY.json'
+		prefetch: web.base + 'static/theme/forest/lib/typeahead/post_1960.json',
+		remote: web.base + 'queries.php?%QUERY.json'
 	});
 	bestPictures.initialize();
-
+	
 	$('#remote .typeahead').typeahead(null, {
 		name: 'best-pictures',
 		displayKey: 'value',
 		source: bestPictures.ttAdapter()
 	});
-
+	
 	// custom templates
 	var custom = $('.custom-templates-typeahead').typeahead(null, {
 		name: 'best-pictures',

@@ -50,8 +50,8 @@
 					</div>
 				</div>
 				<div class="clearfix"></div>
-				<button id="prev_btn2" class="prev2"><img src="images/spacer.png" alt=""/></button>
-				<button id="next_btn2" class="next2"><img src="images/spacer.png" alt=""/></button>
+				<button id="prev_btn2" class="prev2"><img src="<?php echo base_url('static/theme/forest/images/spacer.png'); ?>" alt=""/></button>
+				<button id="next_btn2" class="next2"><img src="<?php echo base_url('static/theme/forest/images/spacer.png'); ?>" alt=""/></button>
 			</div></div></div>
 			
 			<!-- RIGHT INFO -->
@@ -79,7 +79,7 @@
 				</div> -->
 				
 				<div class="col-md-6 bordertype3">
-					<img src="images/user-rating-4.png" alt=""/><br/>
+					<img src="<?php echo base_url('static/theme/forest/images/user-rating-4.png'); ?>" alt=""/><br/>
 					18 reviews
 				</div>
 				<div class="col-md-6 bordertype3">
@@ -153,12 +153,12 @@
 								<div class="padding20">
 									<div class="bordertype5">
 										<div class="circlewrap">
-											<img src="images/user-avatar.jpg" class="circleimg" alt=""/>
+											<img src="<?php echo base_url('static/theme/forest/images/user-avatar.jpg'); ?>" class="circleimg" alt=""/>
 											
 										</div>
 										<span class="dark">by Sena</span><br/>
 										from London, UK<br/>
-										<img src="images/check.png" alt=""/><br/>
+										<img src="<?php echo base_url('static/theme/forest/images/check.png'); ?>" alt=""/><br/>
 										<span class="orange">Wonderful!</span>
 									</div>
 									
@@ -182,12 +182,12 @@
 								<div class="padding20">
 									<div class="bordertype5">
 										<div class="circlewrap">
-											<img src="images/user-avatar.jpg" class="circleimg" alt=""/>
+											<img src="<?php echo base_url('static/theme/forest/images/user-avatar.jpg'); ?>" class="circleimg" alt=""/>
 											
 										</div>
 										<span class="dark">by Sena</span><br/>
 										from London, UK<br/>
-										<img src="images/check.png" alt=""/><br/>
+										<img src="<?php echo base_url('static/theme/forest/images/check.png'); ?>" alt=""/><br/>
 										<span class="orange">Recommended<br/>for Everyone</span>
 									</div>
 									
@@ -211,12 +211,12 @@
 								<div class="padding20">
 									<div class="bordertype5">
 										<div class="circlewrap">
-											<img src="images/user-avatar.jpg" class="circleimg" alt=""/>
+											<img src="<?php echo base_url('static/theme/forest/images/user-avatar.jpg'); ?>" class="circleimg" alt=""/>
 											
 										</div>
 										<span class="dark">by Sena</span><br/>
 										from London, UK<br/>
-										<img src="images/check.png" alt=""/><br/>
+										<img src="<?php echo base_url('static/theme/forest/images/check.png'); ?>" alt=""/><br/>
 										<span class="orange">Recommended<br/>for Everyone</span>
 									</div>
 									
@@ -281,24 +281,24 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="cpadding1 ">
-						<a href="#"><img src="images/smallthumb-1.jpg" class="left mr20" alt=""/></a>
+						<a href="#"><img src="<?php echo base_url('static/theme/forest/images/smallthumb-1.jpg'); ?>" class="left mr20" alt=""/></a>
 						<a href="#" class="dark"><b>Pemandian dudo</b></a><br/>
 					 <br/>
-						<img src="images/filter-rating-5.png" alt=""/>
+						<img src="<?php echo base_url('static/theme/forest/images/filter-rating-5.png'); ?>" alt=""/>
 					</div>
 					<div class="line5"></div>
 					<div class="cpadding1 ">
-						<a href="#"><img src="images/smallthumb-2.jpg" class="left mr20" alt=""/></a>
+						<a href="#"><img src="<?php echo base_url('static/theme/forest/images/smallthumb-2.jpg'); ?>" class="left mr20" alt=""/></a>
 						<a href="#" class="dark"><b>Hotel Amaragua</b></a><br/>
 						 <br/>
-						<img src="images/filter-rating-5.png" alt=""/>
+						<img src="<?php echo base_url('static/theme/forest/images/filter-rating-5.png'); ?>" alt=""/>
 					</div>
 					<div class="line5"></div>			
 					<div class="cpadding1 ">
-						<a href="#"><img src="images/smallthumb-3.jpg" class="left mr20" alt=""/></a>
+						<a href="#"><img src="<?php echo base_url('static/theme/forest/images/smallthumb-3.jpg'); ?>" class="left mr20" alt=""/></a>
 						<a href="#" class="dark"><b>Hotel Amaragua</b></a><br/>
 					 <br/>
-						<img src="images/filter-rating-5.png" alt=""/>
+						<img src="<?php echo base_url('static/theme/forest/images/filter-rating-5.png'); ?>" alt=""/>
 					</div>
 					<br/>
 				

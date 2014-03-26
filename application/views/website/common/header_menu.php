@@ -1,3 +1,6 @@
+<?php
+	$array_language = $this->language_model->get_array();
+?>
 <div class="navbar-wrapper2 navbar-fixed-top">
 	<div class="container">
 		<div class="navbar">
@@ -8,7 +11,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a href="index.html" class="navbar-brand"><img src="static/theme/forest/images/logo.png" alt="Travel Agency Logo" class="logo"/></a>
+					<a href="<?php echo base_url(); ?>" class="navbar-brand"><img src="<?php echo base_url('static/theme/forest/images/logo.png'); ?>" alt="Travel Agency Logo" class="logo"/></a>
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
@@ -19,12 +22,18 @@
 						<li class="dropdown">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">Language<b class="lightcaret mt-2"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">English</a></li>
-								<li><a href="#">Indonesia</a></li>
-								<li><a href="#">Malaysia</a></li>
+								<?php foreach ($array_language as $row) { ?>
+								<li><a href="#"><?php echo $row['title']; ?></a></li>
+								<?php } ?>
 							</ul>
 						</li>
-						<li><a href="#">Login</a></li>
+						<li class="dropdown">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="<?php echo base_url('login/member'); ?>">Login<b class="lightcaret mt-2"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="<?php echo base_url('login/member'); ?>">Member</a></li>
+								<li><a href="<?php echo base_url('login/traveler'); ?>">Traveler</a></li>
+							</ul>
+						</li>
 						<li>
 							<div style="float:none;margin-top:7px;width:95%">
 								<form id="form-header">

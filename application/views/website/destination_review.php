@@ -37,7 +37,7 @@
 		
 			 			
 				 
-				 	<br/>	<br/><h2 class="opensans slim green2">
+				 	<br />	<br /><h2 class="opensans slim green2">
 					<div style="margin-left:20px;">Review | Air Terjun Coban Rondo</div></h2><br>
 						<p class="hpadding20">
 							
@@ -50,7 +50,7 @@
 						<div class="hpadding20">
 						
 							 
-									<br/><br/>
+									<br /><br />
 							<span class="opensans dark size16 bold">Reviews</span>
 						 
 						  <div style="width:40%;float:right;margin-top:-15px;">
@@ -72,12 +72,12 @@
 								<div class="padding20">
 									<div class="bordertype5">
 										<div class="circlewrap">
-											<img src="images/user-avatar.jpg" class="circleimg" alt=""/>
+											<img src="<?php echo base_url('static/theme/forest/images/user-avatar.jpg'); ?>" class="circleimg" alt=""/>
 											
 										</div>
-										<span class="dark">by Ridwan Amir</span><br/>
-										from London, UK<br/>
-										<img src="images/check.png" alt=""/><br/>
+										<span class="dark">by Ridwan Amir</span><br />
+										from London, UK<br />
+										<img src="<?php echo base_url('static/theme/forest/images/check.png'); ?>" alt=""/><br />
 										<span class="orange">Wonderful!</span>
 									</div>
 									
@@ -85,8 +85,8 @@
 							</div>
 							<div class="col-md-8 offset-0">
 								<div class="padding20">
-									<span class="opensans size16 dark">Rondo!!.. pokoke muantap bro..</span><br/>
-									<span class="opensans size13 lgrey">Posted Jun 02, 2013</span><br/>
+									<span class="opensans size16 dark">Rondo!!.. pokoke muantap bro..</span><br />
+									<span class="opensans size13 lgrey">Posted Jun 02, 2013</span><br />
 									<p>Excellent hotel, friendly staff would def go there again</p>	
 									 
 								</div>
@@ -101,21 +101,21 @@
 								<div class="padding20">
 									<div class="bordertype5">
 										<div class="circlewrap">
-											<img src="images/user-avatar.jpg" class="circleimg" alt=""/>
+											<img src="<?php echo base_url('static/theme/forest/images/user-avatar.jpg'); ?>" class="circleimg" alt=""/>
 											
 										</div>
-										<span class="dark">by Sena</span><br/>
-										from London, UK<br/>
-										<img src="images/check.png" alt=""/><br/>
-										<span class="orange">Recommended<br/>for Everyone</span>
+										<span class="dark">by Sena</span><br />
+										from London, UK<br />
+										<img src="<?php echo base_url('static/theme/forest/images/check.png'); ?>" alt=""/><br />
+										<span class="orange">Recommended<br />for Everyone</span>
 									</div>
 									
 								</div>
 							</div>
 							<div class="col-md-8 offset-0">
 								<div class="padding20">
-									<span class="opensans size16 dark">Great experience</span><br/>
-									<span class="opensans size13 lgrey">Posted Jun 02, 2013</span><br/>
+									<span class="opensans size16 dark">Great experience</span><br />
+									<span class="opensans size13 lgrey">Posted Jun 02, 2013</span><br />
 									<p>The view from our balcony in room # 409, was terrific. It was centrally located to everything on and around the port area. Wonderful service and everything was very clean. The breakfast was below average, although not bad. If back in Zante Town we would stay there again.</p>	
 									 
 								</div>
@@ -130,21 +130,21 @@
 								<div class="padding20">
 									<div class="bordertype5">
 										<div class="circlewrap">
-											<img src="images/user-avatar.jpg" class="circleimg" alt=""/>
+											<img src="<?php echo base_url('static/theme/forest/images/user-avatar.jpg'); ?>" class="circleimg" alt=""/>
 											
 										</div>
-										<span class="dark">by Sena</span><br/>
-										from London, UK<br/>
-										<img src="images/check.png" alt=""/><br/>
-										<span class="orange">Recommended<br/>for Everyone</span>
+										<span class="dark">by Sena</span><br />
+										from London, UK<br />
+										<img src="<?php echo base_url('static/theme/forest/images/check.png'); ?>" alt=""/><br />
+										<span class="orange">Recommended<br />for Everyone</span>
 									</div>
 									
 								</div>
 							</div>
 							<div class="col-md-8 offset-0">
 								<div class="padding20">
-									<span class="opensans size16 dark">Great experience</span><br/>
-									<span class="opensans size13 lgrey">Posted Jun 02, 2013</span><br/>
+									<span class="opensans size16 dark">Great experience</span><br />
+									<span class="opensans size13 lgrey">Posted Jun 02, 2013</span><br />
 									<p>It is close to everything but if you go in the lower season the pool won't be ready even though the temperature was quiet high already.</p>	
 									 
 								</div>
@@ -153,8 +153,8 @@
 						</div>	
 						
 						<div class="line2"></div>
-						<br/>
-						<br/>
+						<br />
+						<br />
 						<div class="hpadding20">
 							<span class="opensans dark size16 bold">Reviews</span>
 						</div>
@@ -212,10 +212,10 @@
 								
 								<button type="submit" class="btn-search4 margtop20">Submit</button>	
 
-								<br/>
-								<br/>
-								<br/>
-								<br/>
+								<br />
+								<br />
+								<br />
+								<br />
 								
 							</div>							
 						</div>
@@ -261,26 +261,26 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="cpadding1 ">
-						<a href="#"><img src="images/smallthumb-1.jpg" class="left mr20" alt=""/></a>
-						<a href="#" class="dark"><b>Pemandian dudo</b></a><br/>
-					 <br/>
-						<img src="images/filter-rating-5.png" alt=""/>
+						<a href="#"><img src="<?php echo base_url('static/theme/forest/images/smallthumb-1.jpg'); ?>" class="left mr20" alt=""/></a>
+						<a href="#" class="dark"><b>Pemandian dudo</b></a><br />
+					 <br />
+						<img src="<?php echo base_url('static/theme/forest/images/filter-rating-5.png'); ?>" alt=""/>
 					</div>
 					<div class="line5"></div>
 					<div class="cpadding1 ">
-						<a href="#"><img src="images/smallthumb-2.jpg" class="left mr20" alt=""/></a>
-						<a href="#" class="dark"><b>Hotel Amaragua</b></a><br/>
-						 <br/>
-						<img src="images/filter-rating-5.png" alt=""/>
+						<a href="#"><img src="<?php echo base_url('static/theme/forest/images/smallthumb-2.jpg'); ?>" class="left mr20" alt=""/></a>
+						<a href="#" class="dark"><b>Hotel Amaragua</b></a><br />
+						 <br />
+						<img src="<?php echo base_url('static/theme/forest/images/filter-rating-5.png'); ?>" alt=""/>
 					</div>
 					<div class="line5"></div>			
 					<div class="cpadding1 ">
-						<a href="#"><img src="images/smallthumb-3.jpg" class="left mr20" alt=""/></a>
-						<a href="#" class="dark"><b>Hotel Amaragua</b></a><br/>
-					 <br/>
-						<img src="images/filter-rating-5.png" alt=""/>
+						<a href="#"><img src="<?php echo base_url('static/theme/forest/images/smallthumb-3.jpg'); ?>" class="left mr20" alt=""/></a>
+						<a href="#" class="dark"><b>Hotel Amaragua</b></a><br />
+					 <br />
+						<img src="<?php echo base_url('static/theme/forest/images/filter-rating-5.png'); ?>" alt=""/>
 					</div>
-					<br/>
+					<br />
 				
 					
 				</div>				
@@ -296,6 +296,6 @@
 	<!-- END OF CONTENT -->
 	
 	<?php $this->load->view( 'website/common/footer' ); ?>
-	<?php $this->load->view( 'website/common/library', array( 'js_add' => array( 'js-details.js', 'counter.js', 'initialize-carousel-detailspage.js' ) ) ); ?>
+	<?php $this->load->view( 'website/common/library', array( 'js_add' => array( 'js-details.js', 'counter.js' ) ) ); ?>
 </body>
 </html>
