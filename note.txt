@@ -1,3 +1,17 @@
+----------------------------------------------------------------------------------------------------------------
+LINK TEMPORARY
+----------------------------------------------------------------------------------------------------------------
+- http://localhost/trip/trunk/
+- http://localhost/trip/trunk/hotel
+- http://localhost/trip/trunk/hotel/detail
+- http://localhost/trip/trunk/destination
+- http://localhost/trip/trunk/destination/detail
+- http://localhost/trip/trunk/destination/review
+- http://localhost/trip/trunk/destination/gallery
+- http://localhost/trip/trunk/search
+- http://localhost/trip/trunk/about-us
+
+----------------------------------------------------------------------------------------------------------------
 Multi Language
 
 ----------------------------------------------------------------------------------------------------------------

@@ -33,6 +33,11 @@
 <!-- Load Animo -->
 <script src="<?php echo base_url('static/theme/forest/lib/animo/animo.js'); ?>"></script>
 
+<!-- typeahead -->
+<script src="<?php echo base_url('static/theme/forest/lib/typeahead/handlebars.js'); ?>"></script>
+<script src="<?php echo base_url('static/theme/forest/lib/typeahead/typeahead.bundle.js'); ?>"></script>
+<script src="<?php echo base_url('static/theme/forest/lib/typeahead/examples.js'); ?>"></script>
+
 <!-- Custom Select -->
 <script src="<?php echo base_url('static/theme/forest/js/jquery.customSelect.js'); ?>"></script>
 

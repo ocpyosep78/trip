@@ -6,6 +6,10 @@ class hotel extends TRIP_Controller {
     }
     
     function index() {
-		$this->load->view( 'website/hotel' );
+		if (!empty($this->uri->segments[2])) {
+			$this->load->view( 'website/hotel_detail' );
+		} else {
+			$this->load->view( 'website/hotel' );
+		}
     }
 }

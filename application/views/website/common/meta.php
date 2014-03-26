@@ -1,7 +1,6 @@
 <?php
 	$web['base'] = base_url();
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,6 +46,9 @@
 	<!-- bin/jquery.slider.min.css -->
 	<link rel="stylesheet" href="<?php echo base_url('static/theme/forest/lib/jslider/css/jslider.css'); ?>" type="text/css">
 	<link rel="stylesheet" href="<?php echo base_url('static/theme/forest/lib/jslider/css/jslider.round.css'); ?>" type="text/css">
+	
+	<!-- typeahead -->
+	<link rel="stylesheet" href="<?php echo base_url('static/theme/forest/lib/typeahead/examples.css'); ?>">
 	
 	<script type="text/javascript" src="<?php echo base_url('static/theme/forest/lib/jslider/js/jshashtable-2.1_src.js'); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('static/theme/forest/lib/jslider/js/jquery.numberformatter-1.2.3.js'); ?>"></script>
