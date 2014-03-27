@@ -4,7 +4,7 @@ class hotel_detail_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'post_id', 'title', 'link' );
+        $this->field = array( 'id', 'post_id', 'booking', 'rate_per_night' );
     }
 
     function update($param) {
@@ -47,14 +47,14 @@ class hotel_detail_model extends CI_Model {
     function get_array($param = array()) {
         $array = array();
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND HotelDetail.name LIKE '%".$param['namelike']."%'" : '';
+		$string_namelike = (!empty($param['namelike'])) ? "AND hotel_detail.name LIKE '%".$param['namelike']."%'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS HotelDetail.*
-			FROM ".HOTEL_DETAIL." HotelDetail
+			SELECT SQL_CALC_FOUND_ROWS hotel_detail.*
+			FROM ".HOTEL_DETAIL." hotel_detail
 			WHERE 1 $string_namelike $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
@@ -75,6 +75,28 @@ class hotel_detail_model extends CI_Model {
 		
 		return $TotalRecord;
     }
+	
+	function get_rate_min() {
+        $array = array();
+		
+		$select_query = "
+			SELECT SQL_CALC_FOUND_ROWS hotel_detail.*
+			FROM ".HOTEL_DETAIL." hotel_detail
+			LEFT JOIN ".POST." post ON post.id = hotel_detail.post_id
+			ORDER BY hotel_detail.rate_per_night ASC
+			LIMIT 1
+		";
+        $select_result = mysql_query($select_query) or die(mysql_error());
+		while ( $row = mysql_fetch_assoc( $select_result ) ) {
+			$array[] = $this->sync($row, $param);
+		}
+		
+		if (count($array) == 0) {
+			$array['rate_per_night'] = 0;
+		}
+		
+        return $array;
+	}
 	
     function delete($param) {
 		$delete_query  = "DELETE FROM ".HOTEL_DETAIL." WHERE id = '".$param['id']."' LIMIT 1";

@@ -95,12 +95,26 @@ class post_model extends CI_Model {
     }
 
     function get_count($param = array()) {
-		$select_query = "SELECT FOUND_ROWS() TotalRecord";
-		$select_result = mysql_query($select_query) or die(mysql_error());
-		$row = mysql_fetch_assoc($select_result);
-		$TotalRecord = $row['TotalRecord'];
+		$param['query'] = (isset($param['query'])) ? $param['query'] : false;
+		if ($param['query']) {
+			$string_category = (isset($param['category_id'])) ? "AND category_sub.category_id = '".$param['category_id']."'" : '';
+			
+			$select_query = "
+				SELECT COUNT(*) total
+				FROM ".POST." post
+				LEFT JOIN ".CATEGORY_SUB." category_sub ON category_sub.id = post.category_sub_id
+				WHERE 1 $string_category
+			";
+		} else {
+			$select_query = "SELECT FOUND_ROWS() total";
+		}
 		
-		return $TotalRecord;
+		$select_result = mysql_query($select_query) or die(mysql_error());
+		
+		$row = mysql_fetch_assoc($select_result);
+		$total = $row['total'];
+		
+		return $total;
     }
 	
     function delete($param) {

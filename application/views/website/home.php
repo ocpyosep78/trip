@@ -104,7 +104,7 @@
 	// hotel
 	var hotel_store = new Bloodhound({
 		limit: 10,
-		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
 		queryTokenizer: Bloodhound.tokenizers.whitespace,
 		prefetch: web.base + 'panel/typeahead/?action=auto_complete&category_id=' + config.CATEGORY_HOTEL,
 		remote: web.base + 'panel/typeahead/?action=auto_complete&category_id=' + config.CATEGORY_HOTEL + '&namelike=%QUERY'
@@ -166,6 +166,14 @@
 	restaurant_ahead.on('typeahead:selected',function(evt, data) {
 		console.log(data);
 	});
+	
+	/*
+	// for debug
+	setInterval(function() {
+		console.log($('#hotel2 .tt-dropdown-menu').html())
+		console.log(10)
+	}, 2000);
+	/*	*/
 </script>
 </body>
 </html>

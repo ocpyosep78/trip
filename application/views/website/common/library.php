@@ -2,9 +2,6 @@
 	$js_add = (isset($js_add)) ? $js_add : array();
 ?>
 
-<!-- This page JS -->
-<script src="<?php echo base_url('static/theme/forest/js/js-index3.js'); ?>"></script>
-
 <!-- Custom functions -->
 <script src="<?php echo base_url('static/theme/forest/js/functions.js'); ?>"></script>
 
@@ -13,6 +10,9 @@
 
 <!-- Easing -->
 <script src="<?php echo base_url('static/theme/forest/js/jquery.easing.js'); ?>"></script>
+
+<!-- Counter -->
+<script src="<?php echo base_url('static/theme/forest/js/counter.js'); ?>"></script>
 
 <!-- jQuery KenBurn Slider  -->
 <script type="text/javascript" src="<?php echo base_url('static/theme/forest/lib/rs-plugin/js/jquery.themepunch.revolution.min.js'); ?>"></script>
