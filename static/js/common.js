@@ -778,6 +778,12 @@ var Func = {
 			return { date: Func.SwapDate(array_value[0]), time: array_value[1] };
 			
 		}
+	},
+	get_config: function() {
+		var raw = $('.cnt-page').html();
+		eval('var config = ' + raw);
+		
+		return config;
 	}
 }
 

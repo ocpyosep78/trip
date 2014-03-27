@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	/*
 	// remote
 	var bestPictures = new Bloodhound({
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
@@ -31,4 +32,5 @@ $(document).ready(function() {
 	custom.on('typeahead:selected',function(evt, data) {
 		console.log(data);
 	});
+	/*	*/
 });

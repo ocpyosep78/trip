@@ -66,6 +66,10 @@
 										<label class="col-lg-2 control-label">Title</label>
 										<div class="col-lg-10"><input type="text" name="title" class="form-control" placeholder="Title" /></div>
 									</div>
+									<div class="form-group">
+										<label class="col-lg-2 control-label">Link</label>
+										<div class="col-lg-10"><input type="text" name="link" class="form-control" placeholder="Link" /></div>
+									</div>
 									
 									<hr />
 									<div class="form-group">

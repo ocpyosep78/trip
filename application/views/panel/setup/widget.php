@@ -106,14 +106,14 @@ $(document).ready(function() {
 	// grid
 	var param = {
 		id: 'datatable',
-		source: web.base + 'panel/setup/page_static/grid',
+		source: web.base + 'panel/setup/widget/grid',
 		column: [ { }, { }, { bSortable: false, sClass: 'center', sWidth: '10%' } ],
 		callback: function() {
 			$('#datatable .btn-edit').click(function() {
 				var raw_record = $(this).siblings('.hide').text();
 				eval('var record = ' + raw_record);
 				
-				Func.ajax({ url: web.base + 'panel/setup/page_static/action', param: { action: 'get_by_id', id: record.id }, callback: function(result) {
+				Func.ajax({ url: web.base + 'panel/setup/widget/action', param: { action: 'get_by_id', id: record.id }, callback: function(result) {
 					Func.populate({ cnt: '.panel-form', record: result });
 					$('#form-content').html(result.content);
 					page.show_form();
@@ -126,7 +126,7 @@ $(document).ready(function() {
 				
 				Func.confirm_delete({
 					data: { action: 'delete', id: record.id },
-					url: web.base + 'panel/setup/page_static/action', callback: function() { dt.reload(); }
+					url: web.base + 'panel/setup/widget/action', callback: function() { dt.reload(); }
 				});
 			});
 		}
@@ -151,7 +151,7 @@ $(document).ready(function() {
 		var param = Site.Form.GetValue('.panel-form form');
 		param.content = $('#form-content').html();
 		Func.update({
-			link: web.base + 'panel/setup/page_static/action',
+			link: web.base + 'panel/setup/widget/action',
 			param: param,
 			callback: function() {
 				dt.reload();
