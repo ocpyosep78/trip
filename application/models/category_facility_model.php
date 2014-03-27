@@ -51,6 +51,8 @@ class category_facility_model extends CI_Model {
 		$param['field_replace']['facility_title'] = 'facility.title';
 		
 		$string_namelike = (!empty($param['namelike'])) ? "AND category.title LIKE '%".$param['namelike']."%'" : '';
+		$string_category = (isset($param['category_id'])) ? "AND category_facility.category_id = '".$param['category_id']."'" : '';
+		$string_searchable = (isset($param['searchable'])) ? "AND category_facility.searchable = '".$param['searchable']."'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'category.title ASC');
 		$string_limit = GetStringLimit($param);
@@ -61,7 +63,7 @@ class category_facility_model extends CI_Model {
 			FROM ".CATEGORY_FACILITY." category_facility
 			LEFT JOIN ".CATEGORY." category ON category.id = category_facility.category_id
 			LEFT JOIN ".FACILITY." facility ON facility.id = category_facility.facility_id
-			WHERE 1 $string_namelike $string_filter
+			WHERE 1 $string_namelike $string_category $string_searchable $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
@@ -94,6 +96,11 @@ class category_facility_model extends CI_Model {
 	
 	function sync($row, $param = array()) {
 		$row = StripArray($row);
+		
+		if (isset($row['facility_title'])) {
+			$temp = json_to_array($row['facility_title']);
+			$row['facility_text'] = $temp[LANGUAGE_DEFAULT];
+		}
 		
 		if (count(@$param['column']) > 0) {
 			$row = dt_view_set($row, $param);

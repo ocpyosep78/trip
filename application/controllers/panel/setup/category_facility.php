@@ -10,7 +10,7 @@ class category_facility extends PANEL_Controller {
 	
 	function grid() {
 		$_POST['is_edit'] = 1;
-		$_POST['column'] = array( 'category_title', 'category_title' );
+		$_POST['column'] = array( 'category_title', 'facility_text' );
 		
 		$array = $this->category_facility_model->get_array($_POST);
 		$count = $this->category_facility_model->get_count();

@@ -43,7 +43,7 @@
 								<thead>
 									<tr>
 										<th width="40%">Category</th>
-										<th width="40%">Title</th>
+										<th width="40%">Facility</th>
 										<th width="20%">&nbsp;</th>
 									</tr>
 								</thead>
