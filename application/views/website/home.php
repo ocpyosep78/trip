@@ -96,7 +96,7 @@
 		</div>
 	</div>
 	
-	<?php $this->load->view( 'website/common/library' ); ?>
+	<?php $this->load->view( 'website/common/library', array( 'js_add' => array( 'js-index3.js' ) ) ); ?>
 	
 <script>
 	var config = Func.get_config();
