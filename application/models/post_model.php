@@ -5,7 +5,8 @@ class post_model extends CI_Model {
         parent::__construct();
 		
         $this->field = array(
-			'id', 'city_id', 'member_id', 'category_sub_id', 'alias', 'title', 'address', 'desc_01', 'desc_02', 'desc_03', 'field_01', 'map', 'star', 'post_status'
+			'id', 'city_id', 'member_id', 'category_sub_id', 'alias', 'title', 'address', 'desc_01', 'desc_02', 'desc_03', 'field_01', 'map', 'star', 'post_status',
+			'thumbnail'
 		);
     }
 
@@ -28,11 +29,38 @@ class post_model extends CI_Model {
             $result['message'] = 'Data successfully updated.';
         }
        
+		// update post detail
+		$param['id'] = $result['id'];
+		$this->update_tag($param);
+		$this->resize_image($param);
+	   
         return $result;
     }
+	
+	function update_tag($param = array()) {
+		if (isset($param['tag_content'])) {
+			$this->post_tag_model->delete(array( 'post_id' => $param['id'] ));
+			$array_tag = explode(',', $param['tag_content']);
+			foreach ($array_tag as $tag_queue) {
+				$tag_name = trim($tag_queue);
+				if (empty($tag_name)) {
+					continue;
+				}
+				
+				$tag_alias = $this->tag_model->get_name($tag_name);
+				$tag = $this->tag_model->get_by_id(array( 'alias' => $tag_alias, 'title' => $tag_name, 'force_insert' => true ));
+				
+				// insert
+				$param_tag['post_id'] = $param['id'];
+				$param_tag['tag_id'] = $tag['id'];
+				$this->post_tag_model->update($param_tag);
+			}
+		}
+	}
 
     function get_by_id($param) {
         $array = array();
+		$param['tag_include'] = (isset($param['tag_include'])) ? $param['tag_include'] : false;
        
         if (isset($param['id'])) {
             $select_query  = "
@@ -54,7 +82,12 @@ class post_model extends CI_Model {
         if (false !== $row = mysql_fetch_assoc($select_result)) {
             $array = $this->sync($row);
         }
-       
+		
+		if ($param['tag_include']) {
+			$array['array_tag'] = $this->post_tag_model->get_array(array( 'post_id' => $array['id'] ));
+			$array['tag_content'] = $this->tag_model->get_string($array['array_tag']);
+		}
+		
         return $array;
     }
 	
@@ -140,5 +173,19 @@ class post_model extends CI_Model {
 		}
 		
 		return $row;
+	}
+	
+	function resize_image($param) {
+		return true;
+		
+		if (!empty($param['thumbnail'])) {
+			$image_path = $this->config->item('base_path') . '/static/upload/';
+			$image_source = $image_path . $param['thumbnail'];
+			$image_result = $image_source;
+			$image_small = preg_replace('/\.(jpg|jpeg|png|gif)/i', '_s.$1', $image_result);
+			
+			ImageResize($image_source, $image_small, 194, 123, 1);
+			ImageResize($image_source, $image_result, 600, 374, 1);
+		}
 	}
 }

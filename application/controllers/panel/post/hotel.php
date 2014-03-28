@@ -28,7 +28,7 @@ class hotel extends PANEL_Controller {
 		if ($action == 'update') {
 			$result = $this->post_model->update($_POST);
 		} else if ($action == 'get_by_id') {
-			$result = $this->post_model->get_by_id(array( 'id' => $_POST['id'] ));
+			$result = $this->post_model->get_by_id(array( 'id' => $_POST['id'], 'tag_include' => @$_POST['tag_include'] ));
 		} else if ($action == 'delete') {
 			$result = $this->post_model->delete($_POST);
 		}

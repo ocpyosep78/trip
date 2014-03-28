@@ -73,6 +73,10 @@
 										<div class="col-lg-10"><input type="text" name="link" class="form-control" placeholder="Link" /></div>
 									</div>
 									<div class="form-group">
+										<label class="col-lg-2 control-label">Tag</label>
+										<div class="col-lg-10"><input type="text" name="tag_content" class="form-control" placeholder="Tag" /></div>
+									</div>
+									<div class="form-group">
 										<label class="col-lg-2 control-label">Thumbnail</label>
 										<div class="col-lg-7">
 											<input type="text" name="thumbnail" class="form-control" placeholder="Thumbnail" />
@@ -133,7 +137,7 @@ $(document).ready(function() {
 				var raw_record = $(this).siblings('.hide').text();
 				eval('var record = ' + raw_record);
 				
-				Func.ajax({ url: web.base + 'panel/setup/category/action', param: { action: 'get_by_id', id: record.id }, callback: function(result) {
+				Func.ajax({ url: web.base + 'panel/setup/category/action', param: { action: 'get_by_id', tag_include: true, id: record.id }, callback: function(result) {
 					Func.populate({ cnt: '.panel-form', record: result });
 					page.show_form();
 				} });

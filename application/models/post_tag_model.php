@@ -1,24 +1,24 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class category_model extends CI_Model {
+class post_tag_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'alias', 'title', 'content', 'link', 'thumbnail' );
+        $this->field = array( 'id', 'tag_id', 'post_id' );
     }
 
     function update($param) {
         $result = array();
        
         if (empty($param['id'])) {
-            $insert_query  = GenerateInsertQuery($this->field, $param, CATEGORY);
+            $insert_query  = GenerateInsertQuery($this->field, $param, POST_TAG);
             $insert_result = mysql_query($insert_query) or die(mysql_error());
            
             $result['id'] = mysql_insert_id();
             $result['status'] = '1';
             $result['message'] = 'Data successfully saved.';
         } else {
-            $update_query  = GenerateUpdateQuery($this->field, $param, CATEGORY);
+            $update_query  = GenerateUpdateQuery($this->field, $param, POST_TAG);
             $update_result = mysql_query($update_query) or die(mysql_error());
            
             $result['id'] = $param['id'];
@@ -26,40 +26,14 @@ class category_model extends CI_Model {
             $result['message'] = 'Data successfully updated.';
         }
        
-		// update category detail
-		$param['id'] = $result['id'];
-		$this->update_tag($param);
-		
         return $result;
     }
-	
-	function update_tag($param = array()) {
-		if (isset($param['tag_content'])) {
-			$this->category_tag_model->delete(array( 'category_id' => $param['id'] ));
-			$array_tag = explode(',', $param['tag_content']);
-			foreach ($array_tag as $tag_queue) {
-				$tag_name = trim($tag_queue);
-				if (empty($tag_name)) {
-					continue;
-				}
-				
-				$tag_alias = $this->tag_model->get_name($tag_name);
-				$tag = $this->tag_model->get_by_id(array( 'alias' => $tag_alias, 'title' => $tag_name, 'force_insert' => true ));
-				
-				// insert
-				$param_tag['tag_id'] = $tag['id'];
-				$param_tag['category_id'] = $param['id'];
-				$this->category_tag_model->update($param_tag);
-			}
-		}
-	}
 
     function get_by_id($param) {
         $array = array();
-		$param['tag_include'] = (isset($param['tag_include'])) ? $param['tag_include'] : false;
        
         if (isset($param['id'])) {
-            $select_query  = "SELECT * FROM ".CATEGORY." WHERE id = '".$param['id']."' LIMIT 1";
+            $select_query  = "SELECT * FROM ".POST_TAG." WHERE id = '".$param['id']."' LIMIT 1";
         } 
        
         $select_result = mysql_query($select_query) or die(mysql_error());
@@ -67,27 +41,23 @@ class category_model extends CI_Model {
             $array = $this->sync($row);
         }
        
-		if ($param['tag_include']) {
-			$array['array_tag'] = $this->category_tag_model->get_array(array( 'post_id' => $array['id'] ));
-			$array['tag_content'] = $this->tag_model->get_string($array['array_tag']);
-		}
-		
         return $array;
     }
 	
     function get_array($param = array()) {
         $array = array();
 		
-		$string_in = (isset($param['in'])) ? "AND category.id IN (".$param['in'].")" : '';
-		$string_not_in = (isset($param['not_in'])) ? "AND category.id NOT IN (".$param['not_in'].")" : '';
+		$string_post = (isset($param['post_id'])) ? "AND post_tag.post_id = '".$param['post_id']."'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'title ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS category.*
-			FROM ".CATEGORY." category
-			WHERE 1 $string_in $string_not_in $string_filter
+			SELECT SQL_CALC_FOUND_ROWS post_tag.*,
+				tag.alias tag_alias, tag.title tag_title
+			FROM ".POST_TAG." post_tag
+			LEFT JOIN ".TAG." tag ON tag.id = post_tag.tag_id
+			WHERE 1 $string_post $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
@@ -109,8 +79,13 @@ class category_model extends CI_Model {
     }
 	
     function delete($param) {
-		$delete_query  = "DELETE FROM ".CATEGORY." WHERE id = '".$param['id']."' LIMIT 1";
-		$delete_result = mysql_query($delete_query) or die(mysql_error());
+		if (isset($param['post_id'])) {
+			$delete_query  = "DELETE FROM ".POST_TAG." WHERE post_id = '".$param['post_id']."'";
+			$delete_result = mysql_query($delete_query) or die(mysql_error());
+		} else {
+			$delete_query  = "DELETE FROM ".POST_TAG." WHERE id = '".$param['id']."' LIMIT 1";
+			$delete_result = mysql_query($delete_query) or die(mysql_error());
+		}
 		
 		$result['status'] = '1';
 		$result['message'] = 'Data successfully deleted.';

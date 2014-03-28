@@ -270,7 +270,7 @@ var Site = {
 						obj[name] = {};
 					}
 					
-					obj[name][code] = value;
+					obj[name][code] = Func.stringify(value);
 				} else {
 					obj[name] = value;
 				}
@@ -625,13 +625,15 @@ var Func = {
 							for (var i = 0; i < input.length; i++) {
 								// input, select, textarea
 								if (input.eq(i).attr('data-code') == code) {
-									input.eq(i).val(json[code]);
+									var value = Func.escape(json[code]);
+									input.eq(i).val(value);
 								}
 								
 								// wysiwyg
 								var selector = '#' + form_name + '-' + code;
 								if ($(selector).length == 1) {
-									$(selector).html(json[code]);
+									var value = Func.escape(json[code]);
+									$(selector).html(value);
 								}
 							}
 						}
@@ -784,8 +786,43 @@ var Func = {
 		eval('var config = ' + raw);
 		
 		return config;
+	},
+	stringify: function(value) {
+		return result;
+		
+		var result = value
+			.replace(/\n/g, "\\n")
+			/*
+			.replace(/\'/g, "\\'")
+            .replace(/\"/g, '\\"')
+            .replace(/\&/g, "\\&")
+            .replace(/\r/g, "\\r")
+            .replace(/\t/g, "\\t")
+            .replace(/\b/g, "\\b")
+            .replace(/\f/g, "\\f");
+			/*	*/
+		return result;
+	},
+	escape: function(value) {
+		return value;
+		
+		temp.push(value);
+		var result = value
+			.replace("\n", "1235")
+			/*
+			.replace(/\\'/g, "\\'")
+			.replace(/\\"/g, '\\"')
+			.replace(/\\&/g, "\\&")
+			.replace(/\\r/g, "\\r")
+			.replace(/\\t/g, "\\t")
+			.replace(/\\b/g, "\\b")
+			.replace(/\\f/g, "\\f");
+			/*	*/
+		return result;
 	}
 }
+
+temp = [];
 
 var combo = {
 	category_sub: function(p) {

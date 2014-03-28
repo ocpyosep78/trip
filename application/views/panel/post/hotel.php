@@ -7,6 +7,9 @@
 <?php $this->load->view( 'panel/common/meta' ); ?>
 <body>
 <section class="vbox">
+	<div class="hide">
+		<iframe name="iframe_thumbnail" src="<?php echo base_url('panel/upload?callback_name=set_thumbnail'); ?>"></iframe>
+	</div>
 	<?php $this->load->view( 'panel/common/header' ); ?>
 	
 	<div class="hide">
@@ -131,6 +134,19 @@
 											</select>
 										</div>
 									</div>
+									<div class="form-group">
+										<label class="col-lg-2 control-label">Tag</label>
+										<div class="col-lg-10"><input type="text" name="tag_content" class="form-control" placeholder="Tag" /></div>
+									</div>
+									<div class="form-group">
+										<label class="col-lg-2 control-label">Thumbnail</label>
+										<div class="col-lg-7">
+											<input type="text" name="thumbnail" class="form-control" placeholder="Thumbnail" />
+										</div>
+										<div class="col-lg-3">
+											<button type="button" class="btn btn-default browse-thumbnail">Select Picture</button>
+										</div>
+									</div>
 									
 									<header class="panel-heading bg-light"><ul class="nav nav-tabs nav-justified">
 										<?php foreach ($array_language as $key => $row) { ?>
@@ -181,6 +197,12 @@ $(document).ready(function() {
 	}
 	page.init();
 	
+	// upload
+	$('.browse-thumbnail').click(function() { window.iframe_thumbnail.browse() });
+	set_thumbnail = function(p) {
+		$('.panel-form form [name="thumbnail"]').val(p.file_name);
+	}
+	
 	// grid
 	var param = {
 		id: 'datatable',
@@ -191,7 +213,7 @@ $(document).ready(function() {
 				var raw_record = $(this).siblings('.hide').text();
 				eval('var record = ' + raw_record);
 				
-				Func.ajax({ url: web.base + 'panel/post/hotel/action', param: { action: 'get_by_id', id: record.id }, callback: function(result) {
+				Func.ajax({ url: web.base + 'panel/post/hotel/action', param: { action: 'get_by_id', tag_include: true, id: record.id }, callback: function(result) {
 					Func.populate({ cnt: '.panel-form', record: result });
 					combo.region({ country_id: result.country_id, target: $('.panel-form [name="region_id"]'), value: result.region_id });
 					combo.city({ region_id: result.region_id, target: $('.panel-form [name="city_id"]'), value: result.city_id });

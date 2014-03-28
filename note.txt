@@ -12,10 +12,24 @@ LINK TEMPORARY
 - http://localhost/trip/trunk/about-us
 
 To do :
-3. every post having tag, how to insert it (create gui on admin)
-4. every category having tag too
 5. create modul promo for post
 6. create modul facility for post
+
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+post merbabu :
+
+{"en":"Merbabu Guest House is located at the heart of Malang, at Merbabu Street behind Ijen Boulevard, the most prestigious and historical residential in Malang.
+
+It is walking distance to Ijen Cathedral and Ijen Boulevard, some wonderful western or eastern restaurants, and even to a traditional Indonesians market.","ind":"Merbabu Guest House is located at the heart of Malang, at Merbabu Street behind Ijen Boulevard, the most prestigious and historical residential in Malang.
+
+It is walking distance to Ijen Cathedral and Ijen Boulevard, some wonderful western or eastern restaurants, and even to a traditional Indonesians market.","mys":"Merbabu Guest House is located at the heart of Malang, at Merbabu Street behind Ijen Boulevard, the most prestigious and historical residential in Malang.
+
+It is walking distance to Ijen Cathedral and Ijen Boulevard, some wonderful western or eastern restaurants, and even to a traditional Indonesians market."}
+
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+
 
 ----------------------------------------------------------------------------------------------------------------
 Multi Language
