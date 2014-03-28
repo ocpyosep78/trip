@@ -201,7 +201,7 @@ a:hover.green2{color:#339933; font-weight:normal; text-decoration:none;}
 /*bg*/
 .sliderbg{
 position:fixed; 
-background:url("http://c1.tacdn.com/img2/home/featurepromos/homepage_bora_bora.jpg") repeat scroll 0 0 transparent;
+background:url("../images/homepage_bora_bora.jpg") repeat scroll 0 0 transparent;
 }
 .sliderbg2{
 position:fixed; 

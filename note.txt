@@ -12,7 +12,6 @@ LINK TEMPORARY
 - http://localhost/trip/trunk/about-us
 
 To do :
-2. insert post for hotel (10 - 15 record)
 3. every post having tag, how to insert it (create gui on admin)
 4. every category having tag too
 5. create modul promo for post
