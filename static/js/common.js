@@ -788,36 +788,18 @@ var Func = {
 		return config;
 	},
 	stringify: function(value) {
-		return result;
-		
 		var result = value
-			.replace(/\n/g, "\\n")
-			/*
-			.replace(/\'/g, "\\'")
-            .replace(/\"/g, '\\"')
-            .replace(/\&/g, "\\&")
-            .replace(/\r/g, "\\r")
-            .replace(/\t/g, "\\t")
-            .replace(/\b/g, "\\b")
-            .replace(/\f/g, "\\f");
-			/*	*/
+			.replace(/\n/g, "##001##")
+			.replace(/\"/g, "##002##")
+			.replace(/\'/g, "##003##")
 		return result;
 	},
 	escape: function(value) {
-		return value;
-		
 		temp.push(value);
 		var result = value
-			.replace("\n", "1235")
-			/*
-			.replace(/\\'/g, "\\'")
-			.replace(/\\"/g, '\\"')
-			.replace(/\\&/g, "\\&")
-			.replace(/\\r/g, "\\r")
-			.replace(/\\t/g, "\\t")
-			.replace(/\\b/g, "\\b")
-			.replace(/\\f/g, "\\f");
-			/*	*/
+			.replace(/(##001##)/g, "\n")
+			.replace(/(##002##)/g, "\"")
+			.replace(/(##003##)/g, "\'")
 		return result;
 	}
 }

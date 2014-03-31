@@ -165,7 +165,7 @@ class post_model extends CI_Model {
 		
 		if (isset($row['title'])) {
 			$temp = json_to_array($row['title']);
-			$row['title_text'] = $temp[LANGUAGE_DEFAULT];
+			$row['title_text'] = (isset($temp[LANGUAGE_DEFAULT])) ? $temp[LANGUAGE_DEFAULT] : '';
 		}
 		
 		if (count(@$param['column']) > 0) {
