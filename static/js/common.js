@@ -613,10 +613,14 @@ var Func = {
 				var input = $(p.cnt + ' [name="' + form_name + '"]');
 				var value = p.record[form_name];
 				
-				try {
-					var json = JSON.parse(value);
-				} catch(e) {
-					var json = null;
+				var json = null;
+				if (value.substr(0, 2) == '{"') {
+					try {
+						var json = JSON.parse(value);
+					} catch(e) {
+						console.log(value);
+						var json = null;
+					}
 				}
 				
 				if (typeof(json) == 'object' && json != null) {

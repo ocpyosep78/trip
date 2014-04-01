@@ -5,8 +5,53 @@
 ?>
 
 <?php $this->load->view( 'panel/common/meta' ); ?>
+
 <body>
 <section class="vbox">
+	<div class="modal fade" id="modal-facility">
+		<div class="modal-dialog">
+			<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Facility Form</h4>
+					</div>
+					<div class="modal-body">
+						<section style="margin: 0 0 25px 0;">
+							<form class="form-inline">
+								<input type="hidden" name="action" value="facility_update" />
+								<input type="hidden" name="post_id" value="0" />
+								<input type="hidden" name="facility_id" value="0" />
+								
+								<div class="form-group cnt-typeahead" style="width: 80%;">
+									<input type="text" name="facility_search" class="form-control facility-typeahead" placeholder="Enter Facility Name" />
+								</div>
+								<button class="btn btn-info" style="float: right; width: 15%;" type="submit">Add</button>
+							</form>
+						</section>
+						
+						<section class="panel panel-default panel-table">
+							<div class="table-responsive">
+								<table class="table table-striped m-b-none" data-ride="datatable" id="table-facility">
+								<thead>
+									<tr>
+										<th width="75%">Facility</th>
+										<th width="25%">&nbsp;</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+								</table>
+							</div>
+						</section>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-info">Save changes</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
 	<div class="hide">
 		<iframe name="iframe_thumbnail" src="<?php echo base_url('panel/upload?callback_name=set_thumbnail'); ?>"></iframe>
 	</div>
@@ -203,11 +248,14 @@ $(document).ready(function() {
 		$('.panel-form form [name="thumbnail"]').val(p.file_name);
 	}
 	
-	// grid
+	// grid post
 	var param = {
 		id: 'datatable',
 		source: web.base + 'panel/post/hotel/grid',
 		column: [ { }, { }, { }, { }, { bSortable: false, sClass: 'center', sWidth: '10%' } ],
+		fnServerParams : function (aoData) {
+			aoData.push( { name: "action", "value": 'post' } )
+		},
 		callback: function() {
 			$('#datatable .btn-edit').click(function() {
 				var raw_record = $(this).siblings('.hide').text();
@@ -222,6 +270,18 @@ $(document).ready(function() {
 				} });
 			});
 			
+			$('#datatable .btn-facility').click(function() {
+				var raw_record = $(this).siblings('.hide').text();
+				eval('var record = ' + raw_record);
+				
+				// prepare form & grid
+				$('#modal-facility [name="post_id"]').val(record.id);
+				facility_dt.reload();
+				
+				// show modal
+				$('#modal-facility').modal();
+			});
+			
 			$('#datatable .btn-delete').click(function() {
 				var raw_record = $(this).siblings('.hide').text();
 				eval('var record = ' + raw_record);
@@ -234,6 +294,34 @@ $(document).ready(function() {
 		}
 	}
 	var dt = Func.init_datatable(param);
+	
+	// grid facility
+	var facility_param = {
+		id: 'table-facility',
+		source: web.base + 'panel/post/hotel/grid',
+		column: [ { }, { bSortable: false, sClass: 'center', sWidth: '10%' } ],
+		fnServerParams : function (aoData) {
+			aoData.push(
+				{ name: "action", "value": 'post_facility' },
+				{ name: "post_id", "value": $('#modal-facility [name="post_id"]').val() }
+			)
+		},
+		callback: function() {
+			$('#table-facility .btn-delete').click(function() {
+				var raw_record = $(this).siblings('.hide').text();
+				eval('var record = ' + raw_record);
+				
+				Func.ajax({
+					url: web.base + 'panel/post/hotel/action',
+					param: { action: 'facility_delete', id: record.id },
+					callback: function(result) {
+						facility_dt.reload();
+					}
+				});
+			});
+		}
+	}
+	var facility_dt = Func.init_datatable(facility_param);
 	
 	// form
 	var form = $('.panel-form form').parsley();
@@ -259,6 +347,39 @@ $(document).ready(function() {
 				dt.reload();
 				page.show_grid();
 				$('.panel-form form')[0].reset();
+			}
+		});
+	});
+	
+	// form facility
+	var facility_store = new Bloodhound({
+		limit: 15,
+		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title_text'),
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		prefetch: web.base + 'panel/typeahead/?action=facility',
+		remote: web.base + 'panel/typeahead/?action=facility&namelike=%QUERY'
+	});
+	facility_store.initialize();
+	var facility_ahead = $('.facility-typeahead').typeahead(null, {
+		name: 'facility-selector',
+		displayKey: 'title_text',
+		source: facility_store.ttAdapter(),
+		templates: {
+			empty: [ '<div class="empty-message">', 'no result', '</div>' ].join('\n'),
+			suggestion: Handlebars.compile('<p><strong>{{title_text}}</strong></p>')
+		}
+	});
+	facility_ahead.on('typeahead:selected',function(evt, data) {
+		$('#modal-facility [name="facility_id"]').val(data.id);
+	});
+	$('#modal-facility form').submit(function(e) {
+		e.preventDefault();
+		Func.update({
+			link: web.base + 'panel/post/hotel/action',
+			param: Site.Form.GetValue('#modal-facility form'),
+			callback: function() {
+				facility_dt.reload();
+				$('#modal-facility [name="facility_search"]').val('');
 			}
 		});
 	});

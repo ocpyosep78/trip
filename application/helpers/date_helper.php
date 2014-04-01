@@ -123,7 +123,7 @@ if (! function_exists('GetFormatDate')) {
 			return '';
         }
 		
-		$Param['FormatDate'] = (isset($Param['FormatDate'])) ? $Param['FormatDate'] : "F d, Y";
+		$Param['FormatDate'] = (isset($Param['FormatDate'])) ? $Param['FormatDate'] : "d F Y";
 		
 		return date($Param['FormatDate'], strtotime($String));
 	}

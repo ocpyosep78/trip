@@ -62,6 +62,12 @@
 										<span>Other</span>
 									</a>
 								</li>
+								<li>
+									<a href="<?php echo base_url('panel/post/promo'); ?>" data-menu-child="promo">
+										<i class="fa fa-angle-right"></i>
+										<span>Promo</span>
+									</a>
+								</li>
 							</ul>
 						</li>
 						<li data-menu-parent="user">
