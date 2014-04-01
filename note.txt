@@ -12,7 +12,6 @@ LINK TEMPORARY
 - http://localhost/trip/trunk/about-us
 
 To do :
-5. create modul promo for post
 6. create modul facility for post
 
 ----------------------------------------------------------------------------------------------------------------

@@ -24,6 +24,12 @@
 	<script src="<?php echo base_url('static/js/wysiwyg/jquery.hotkeys.js'); ?>"></script>
 	<script src="<?php echo base_url('static/js/wysiwyg/bootstrap-wysiwyg.js'); ?>"></script>
 	
+	<!-- typeahead -->
+	<link rel="stylesheet" href="<?php echo base_url('static/theme/forest/lib/typeahead/examples.css'); ?>">
+	<script src="<?php echo base_url('static/theme/forest/lib/typeahead/handlebars.js'); ?>"></script>
+	<script src="<?php echo base_url('static/theme/forest/lib/typeahead/typeahead.bundle.js'); ?>"></script>
+	<script src="<?php echo base_url('static/theme/forest/lib/typeahead/examples.js'); ?>"></script>
+	
 	<script src="<?php echo base_url('static/js/common.js'); ?>"></script>
 </body>
 </html>

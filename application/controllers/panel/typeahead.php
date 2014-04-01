@@ -16,6 +16,8 @@ class typeahead extends CI_Controller {
 		$array = array();
 		if ($action == 'auto_complete') {
 			$array = $this->auto_complete_model->get_array($_GET);
+		} else if ($action == 'facility') {
+			$array = $this->facility_model->get_array($_GET);
 		}
 		
 		echo json_encode($array);

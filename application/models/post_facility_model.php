@@ -47,15 +47,19 @@ class post_facility_model extends CI_Model {
     function get_array($param = array()) {
         $array = array();
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND PostFacility.name LIKE '%".$param['namelike']."%'" : '';
+		$param['field_replace']['facility_title_text'] = 'facility.title';
+		
+		$string_post = (isset($param['post_id'])) ? "AND post_facility.post_id = '".$param['post_id']."'" : '';
+		$string_namelike = (!empty($param['namelike'])) ? "AND post_facility.name LIKE '%".$param['namelike']."%'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
-		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
+		$string_sorting = GetStringSorting($param, @$param['column'], 'facility.title ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS PostFacility.*
-			FROM ".POST_FACILITY." PostFacility
-			WHERE 1 $string_namelike $string_filter
+			SELECT SQL_CALC_FOUND_ROWS post_facility.*, facility.title facility_title
+			FROM ".POST_FACILITY." post_facility
+			LEFT JOIN ".FACILITY." facility ON facility.id = post_facility.facility_id
+			WHERE 1 $string_post $string_namelike $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
@@ -88,6 +92,11 @@ class post_facility_model extends CI_Model {
 	
 	function sync($row, $param = array()) {
 		$row = StripArray($row);
+		
+		if (isset($row['facility_title'])) {
+			$temp = json_to_array($row['facility_title']);
+			$row['facility_title_text'] = $temp[LANGUAGE_DEFAULT];
+		}
 		
 		if (count(@$param['column']) > 0) {
 			$row = dt_view_set($row, $param);

@@ -2,7 +2,11 @@
 .right { text-align: right; }
 .center { text-align: center; }
 
-/*	datatable */
+/*   typeahead   */
+.cnt-typeahead span { width: 100%; }
+.tt-suggestion { padding: 3px 20px; font-size: 12px !important; line-height: 16px !important; }
+
+/*   datatable   */
 .cursor-button { cursor: pointer; font-size: 15px; margin: 0 5px; }
 .cursor-button:hover { color: #FB6B5B; }
 .dataTables_processing, .dataTables_length, .dataTables_filter { display: none !important; }

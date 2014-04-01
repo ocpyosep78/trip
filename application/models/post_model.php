@@ -169,6 +169,12 @@ class post_model extends CI_Model {
 		}
 		
 		if (count(@$param['column']) > 0) {
+			if (isset($param['grid_type']) && $param['grid_type'] == 'member') {
+                $param['is_custom']  = '<i class="cursor-button tool-tip fa fa-pencil btn-edit" title="Edit"></i> ';
+                $param['is_custom'] .= '<i class="cursor-button tool-tip fa fa-cutlery btn-facility" title="Facility"></i> ';
+                $param['is_custom'] .= '<i class="cursor-button tool-tip fa fa-power-off btn-delete" title="Delete"></i> ';
+			}
+			
 			$row = dt_view_set($row, $param);
 		}
 		
