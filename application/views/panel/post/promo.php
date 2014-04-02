@@ -79,7 +79,7 @@
 									
 									<div class="form-group">
 										<label class="col-lg-2 control-label">Post</label>
-										<div class="col-lg-10 cnt-typeahead"><input type="text" name="post_title" class="form-control post-typeahead" placeholder="Post" data-required="true" /></div>
+										<div class="col-lg-10 cnt-typeahead"><input type="text" name="post_title_text" class="form-control post-typeahead" placeholder="Post" data-required="true" /></div>
 									</div>
 									<div class="form-group">
 										<label class="col-lg-2 control-label">Promo Duration</label>
@@ -189,7 +189,7 @@ $(document).ready(function() {
 	var param = {
 		id: 'datatable',
 		source: web.base + 'panel/post/promo/grid',
-		column: [ { }, { }, { }, { }, { bSortable: false, sClass: 'center', sWidth: '10%' } ],
+		column: [ { }, { }, { }, { }, { bSortable: false, sClass: 'center', sWidth: '15%' } ],
 		callback: function() {
 			$('#datatable .btn-edit').click(function() {
 				var raw_record = $(this).siblings('.hide').text();
@@ -197,12 +197,36 @@ $(document).ready(function() {
 				
 				Func.ajax({ url: web.base + 'panel/post/promo/action', param: { action: 'get_by_id', id: record.id }, callback: function(result) {
 					Func.populate({ cnt: '.panel-form', record: result });
-					$('.panel-form [name="post_title"]').val(result.post_title_text);
-					
 					page.show_form();
 				} });
 			});
 			
+			$('#datatable .btn-approve').click(function() {
+				var raw_record = $(this).siblings('.hide').text();
+				eval('var record = ' + raw_record);
+				
+				Func.update({
+					link: web.base + 'panel/post/promo/action',
+					param: { id: record.id, action: 'update_status', promo_status: 'approve' },
+					callback: function() {
+						dt.reload();
+					}
+				});
+			});
+			
+			$('#datatable .btn-reject').click(function() {
+				var raw_record = $(this).siblings('.hide').text();
+				eval('var record = ' + raw_record);
+				
+				Func.update({
+					link: web.base + 'panel/post/promo/action',
+					param: { id: record.id, action: 'update_status', promo_status: 'reject' },
+					callback: function() {
+						dt.reload();
+					}
+				});
+			});
+		
 			$('#datatable .btn-delete').click(function() {
 				var raw_record = $(this).siblings('.hide').text();
 				eval('var record = ' + raw_record);

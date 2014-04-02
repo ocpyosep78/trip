@@ -614,7 +614,7 @@ var Func = {
 				var value = p.record[form_name];
 				
 				var json = null;
-				if (value.substr(0, 2) == '{"') {
+				if (value != null && typeof(value) == 'string' && value.substr(0, 2) == '{"') {
 					try {
 						var json = JSON.parse(value);
 					} catch(e) {

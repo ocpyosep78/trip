@@ -35,7 +35,7 @@ class promo_model extends CI_Model {
         if (isset($param['id'])) {
             $select_query  = "
 				SELECT promo.*,
-					post.title post_title, promo_duration.title promo_duration_title
+					post.title post_title, promo_duration.title promo_duration_title, promo_duration.duration promo_duration
 				FROM ".PROMO." promo
 				LEFT JOIN ".POST." post on post.id = promo.post_id
 				LEFT JOIN ".PROMO_DURATION." promo_duration on promo_duration.id = promo.promo_duration_id
@@ -113,6 +113,17 @@ class promo_model extends CI_Model {
 		}
 		
 		if (count(@$param['column']) > 0) {
+			if (isset($param['grid_type']) && $param['grid_type'] == 'editor') {
+                $param['is_custom']  = '<i class="cursor-button tool-tip fa fa-pencil btn-edit" title="Edit"></i> ';
+				
+				if ($row['promo_status'] == 'request approve') {
+					$param['is_custom'] .= '<i class="cursor-button tool-tip fa fa-check btn-approve" title="Approve"></i> ';
+					$param['is_custom'] .= '<i class="cursor-button tool-tip fa fa-times btn-reject" title="Reject"></i> ';
+				}
+				
+                $param['is_custom'] .= '<i class="cursor-button tool-tip fa fa-power-off btn-delete" title="Delete"></i> ';
+			}
+			
 			$row = dt_view_set($row, $param);
 		}
 		

@@ -66,13 +66,14 @@ class post_model extends CI_Model {
             $select_query  = "
 				SELECT post.*,
 					category_sub.title category_sub_title, category.id category_id, category.title category_title,
-					city.region_id, region.country_id
+					city.region_id, region.country_id, member.first_name, member.last_name
 				FROM ".POST." post
 				LEFT JOIN ".CATEGORY_SUB." category_sub ON category_sub.id = post.category_sub_id
 				LEFT JOIN ".CATEGORY." category ON category.id = category_sub.category_id
 				LEFT JOIN ".CITY." city ON city.id = post.city_id
 				LEFT JOIN ".REGION." region ON region.id = city.region_id
 				LEFT JOIN ".COUNTRY." country ON country.id = region.country_id
+				LEFT JOIN ".MEMBER." member ON member.id = post.member_id
 				WHERE post.id = '".$param['id']."'
 				LIMIT 1
 			";
@@ -99,6 +100,7 @@ class post_model extends CI_Model {
 		$param['field_replace']['category_title'] = 'category.title';
 		$param['field_replace']['category_sub_title'] = 'category_sub.title';
 		
+		$string_namelike = (!empty($param['namelike'])) ? "AND post.title LIKE '%".$param['namelike']."%'" : '';
 		$string_category = (isset($param['category_id'])) ? "AND category_sub.category_id = '".$param['category_id']."'" : '';
 		$string_category_not_in = (isset($param['category_not_in'])) ? "AND category_sub.category_id NOT IN (".$param['category_not_in'].")" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
@@ -115,7 +117,7 @@ class post_model extends CI_Model {
 			LEFT JOIN ".CITY." city ON city.id = post.city_id
 			LEFT JOIN ".REGION." region ON region.id = city.region_id
 			LEFT JOIN ".COUNTRY." country ON country.id = region.country_id
-			WHERE 1 $string_category $string_category_not_in $string_filter
+			WHERE 1 $string_namelike $string_category $string_category_not_in $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
@@ -166,6 +168,11 @@ class post_model extends CI_Model {
 		if (isset($row['title'])) {
 			$temp = json_to_array($row['title']);
 			$row['title_text'] = (isset($temp[LANGUAGE_DEFAULT])) ? $temp[LANGUAGE_DEFAULT] : '';
+		}
+		
+		// member fullname
+		if (isset($row['first_name']) && isset($row['last_name'])) {
+			$row['full_name'] = $row['first_name'].' '.$row['last_name'];
 		}
 		
 		if (count(@$param['column']) > 0) {

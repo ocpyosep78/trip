@@ -60,14 +60,14 @@ class member_model extends CI_Model {
     function get_array($param = array()) {
         $array = array();
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND Member.name LIKE '%".$param['namelike']."%'" : '';
+		$string_namelike = (!empty($param['namelike'])) ? "AND (member.first_name LIKE '%".$param['namelike']."%' OR member.last_name LIKE '%".$param['namelike']."%')" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
-		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
+		$string_sorting = GetStringSorting($param, @$param['column'], 'member.first_name ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS Member.*
-			FROM ".MEMBER." Member
+			SELECT SQL_CALC_FOUND_ROWS member.*
+			FROM ".MEMBER." member
 			WHERE 1 $string_namelike $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
@@ -101,6 +101,10 @@ class member_model extends CI_Model {
 	
 	function sync($row, $param = array()) {
 		$row = StripArray($row);
+		
+		if (isset($row['first_name']) && isset($row['last_name'])) {
+			$row['full_name'] = $row['first_name'].' '.$row['last_name'];
+		}
 		
 		if (count(@$param['column']) > 0) {
 			$row = dt_view_set($row, $param);

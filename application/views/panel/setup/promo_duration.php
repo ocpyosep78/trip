@@ -54,7 +54,7 @@
 									<input type="hidden" name="id" value="0" />
 									
 									<div class="form-group">
-										<label class="col-lg-2 control-label">Category</label>
+										<label class="col-lg-2 control-label">Title</label>
 										<div class="col-lg-10"><input type="text" name="title" class="form-control" placeholder="Title" data-required="true" /></div>
 									</div>
 									<div class="form-group">

@@ -10,43 +10,42 @@
 	<div class="modal fade" id="modal-facility">
 		<div class="modal-dialog">
 			<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title">Facility Form</h4>
-					</div>
-					<div class="modal-body">
-						<section style="margin: 0 0 25px 0;">
-							<form class="form-inline">
-								<input type="hidden" name="action" value="facility_update" />
-								<input type="hidden" name="post_id" value="0" />
-								<input type="hidden" name="facility_id" value="0" />
-								
-								<div class="form-group cnt-typeahead" style="width: 80%;">
-									<input type="text" name="facility_search" class="form-control facility-typeahead" placeholder="Enter Facility Name" />
-								</div>
-								<button class="btn btn-info" style="float: right; width: 15%;" type="submit">Add</button>
-							</form>
-						</section>
-						
-						<section class="panel panel-default panel-table">
-							<div class="table-responsive">
-								<table class="table table-striped m-b-none" data-ride="datatable" id="table-facility">
-								<thead>
-									<tr>
-										<th width="75%">Facility</th>
-										<th width="25%">&nbsp;</th>
-									</tr>
-								</thead>
-								<tbody></tbody>
-								</table>
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Facility Form</h4>
+				</div>
+				<div class="modal-body">
+					<section style="margin: 0 0 25px 0;">
+						<form class="form-inline">
+							<input type="hidden" name="action" value="facility_update" />
+							<input type="hidden" name="post_id" value="0" />
+							<input type="hidden" name="facility_id" value="0" />
+							
+							<div class="form-group cnt-typeahead" style="width: 80%;">
+								<input type="text" name="facility_search" class="form-control facility-typeahead" placeholder="Enter Facility Name" />
 							</div>
-						</section>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-info">Save changes</button>
-					</div>
-				</form>
+							<button class="btn btn-info" style="float: right; width: 15%;" type="submit">Add</button>
+						</form>
+					</section>
+					
+					<section class="panel panel-default panel-table">
+						<div class="table-responsive">
+							<table class="table table-striped m-b-none" data-ride="datatable" id="table-facility">
+							<thead>
+								<tr>
+									<th width="75%">Facility</th>
+									<th width="25%">&nbsp;</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+							</table>
+						</div>
+					</section>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-info">Save changes</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -135,7 +134,12 @@
 								<form class="bs-example form-horizontal">
 									<input type="hidden" name="action" value="update" />
 									<input type="hidden" name="id" value="0" />
+									<input type="hidden" name="member_id" value="0" />
 									
+									<div class="form-group">
+										<label class="col-lg-2 control-label">Member</label>
+										<div class="col-lg-10 cnt-typeahead"><input type="text" name="full_name" class="form-control member-typeahead" placeholder="Member" data-required="true" /></div>
+									</div>
 									<div class="form-group">
 										<label class="col-lg-2 control-label">Category</label>
 										<div class="col-lg-10">
@@ -338,6 +342,28 @@ $(document).ready(function() {
 		}
 	}
 	var facility_dt = Func.init_datatable(facility_param);
+	
+	// typeahead
+	var member_store = new Bloodhound({
+		limit: 15,
+		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('full_name'),
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		prefetch: web.base + 'panel/typeahead/?action=member',
+		remote: web.base + 'panel/typeahead/?action=member&namelike=%QUERY'
+	});
+	member_store.initialize();
+	var member_ahead = $('.member-typeahead').typeahead(null, {
+		name: 'member-selector',
+		displayKey: 'full_name',
+		source: member_store.ttAdapter(),
+		templates: {
+			empty: [ '<div class="empty-message">', 'no result', '</div>' ].join('\n'),
+			suggestion: Handlebars.compile('<p><strong>{{full_name}}</strong></p>')
+		}
+	});
+	member_ahead.on('typeahead:selected',function(evt, data) {
+		$('.panel-form [name="member_id"]').val(data.id);
+	});
 	
 	// form
 	var form = $('.panel-form form').parsley();
