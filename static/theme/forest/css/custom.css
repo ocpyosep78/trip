@@ -1267,6 +1267,8 @@ overflow:hidden;
 	float: none;
 	clear: both;
 }
+/*
+// conflict with boostrap datepicker
 .prev {
 	width:34px;
 	height:55px;
@@ -1300,6 +1302,7 @@ a:hover.prev   img {width:14px;height:18px; display:block; background:url('../im
 }
 a.next    img {width:14px;height:18px; display:block; background:url('../images/sprite.png')  0px -36px; margin:18px 0 0 12px;}
 a:hover.next   img {width:14px;height:18px; display:block; background:url('../images/sprite.png')  0px -54px;}
+/*	*/
 
 
 .pager {

@@ -799,7 +799,6 @@ var Func = {
 		return result;
 	},
 	escape: function(value) {
-		temp.push(value);
 		var result = value
 			.replace(/(##001##)/g, "\n")
 			.replace(/(##002##)/g, "\"")
@@ -807,8 +806,6 @@ var Func = {
 		return result;
 	}
 }
-
-temp = [];
 
 var combo = {
 	category_sub: function(p) {

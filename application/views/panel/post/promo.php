@@ -110,7 +110,7 @@
 									<div class="form-group hide">
 										<label class="col-lg-2 control-label">Promo Duration</label>
 										<div class="col-lg-10">
-											<select name="promo_duration_id" class="form-control" data-required="true">
+											<select name="promo_duration_id" class="form-control">
 												<?php echo ShowOption(array( 'Array' => $array_promo_duration, 'ArrayTitle' => 'title_text' )); ?>
 											</select>
 										</div>
@@ -134,8 +134,10 @@
 												<option value="">-</option>
 												<option value="draft">draft</option>
 												<option value="request approve">request approve</option>
+												<!--
 												<option value="approve">approve</option>
 												<option value="reject">reject</option>
+												-->
 											</select>
 										</div>
 									</div>
@@ -226,6 +228,11 @@ $(document).ready(function() {
 				eval('var record = ' + raw_record);
 				
 				Func.ajax({ url: web.base + 'panel/post/promo/action', param: { action: 'get_by_id', id: record.id }, callback: function(result) {
+					// set it draft
+					if (Func.InArray(result.promo_status, ['approve', 'reject'])) {
+						result.promo_status = 'draft';
+					}
+					
 					Func.populate({ cnt: '.panel-form', record: result });
 					page.show_form();
 				} });
@@ -325,6 +332,7 @@ $(document).ready(function() {
 		page.show_form();
 		$('.panel-form form')[0].reset();
 		$('.panel-form form').parsley().reset();
+		$('.panel-form form .input-tinymce').html('');
 		$('.panel-form [name="id"]').val(0);
 	});
 });

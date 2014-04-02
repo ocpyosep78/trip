@@ -29,6 +29,9 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('static/theme/forest/css/font-awesome.css'); ?>" media="screen" />
     <!--[if lt IE 7]><link rel="stylesheet" type="text/css" href="<?php echo base_url('static/theme/forest/css/font-awesome-ie7.css'); ?>" media="screen" /><![endif]-->
 	
+	<!--  datepicker  -->
+	<link rel="stylesheet" href="<?php echo base_url('static/theme/forest/lib/datepicker/datepicker3.css'); ?>" type="text/css">
+	
     <!-- REVOLUTION BANNER CSS SETTINGS -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('static/theme/forest/css/fullscreen.css'); ?>" media="screen" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('static/theme/forest/lib/rs-plugin/css/settings.css'); ?>" media="screen" />

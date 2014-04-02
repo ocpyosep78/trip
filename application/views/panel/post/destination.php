@@ -262,7 +262,7 @@ $(document).ready(function() {
 	var param = {
 		id: 'datatable',
 		source: web.base + 'panel/post/destination/grid',
-		column: [ { }, { }, { }, { }, { bSortable: false, sClass: 'center', sWidth: '10%' } ],
+		column: [ { }, { }, { }, { }, { bSortable: false, sClass: 'center', sWidth: '13%' } ],
 		fnServerParams : function (aoData) {
 			aoData.push( { name: "action", "value": 'post' } )
 		},

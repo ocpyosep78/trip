@@ -8,6 +8,9 @@
 <!-- Picker UI-->
 <script src="<?php echo base_url('static/theme/forest/js/jquery-ui.js'); ?>"></script>
 
+<!--  datepicker  -->
+<script src="<?php echo base_url('static/theme/forest/lib/datepicker/bootstrap-datepicker.js'); ?>"></script>
+
 <!--   jQuery Validation   -->
 <script src="<?php echo base_url('static/js/jquery.validate.js'); ?>"></script>
 

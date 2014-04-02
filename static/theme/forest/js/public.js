@@ -5,6 +5,12 @@ $('#form-header').submit(function(e){
 });
 
 // datepicker
-if ($('.datepicker').length > 0) {
-	$('.datepicker').datepicker({ dateFormat: 'dd-mm-yy' });
-}
+$(document).ready(function () {
+	if ($('.datepicker').length > 0) {
+		// jquery ui
+		// $('.datepicker').datepicker({ dateFormat: 'dd-mm-yy' });
+		
+		// bootsrap
+		$('.datepicker').datepicker({ format: 'dd-mm-yyyy' });
+	}
+});
