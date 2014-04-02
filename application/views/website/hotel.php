@@ -15,6 +15,9 @@
 	$param_facility['category_id'] = CATEGORY_HOTEL;
 	$array_facility = $this->category_facility_model->get_array($param_facility);
 	
+	// category tag
+	$array_tag = $this->category_tag_model->get_array(array( 'category_id' => CATEGORY_HOTEL ));
+	
 	// breadcrub
 	$array_breadcrub = array(
 		array( 'link' => '#', 'title' => 'Hotel' ),
@@ -90,10 +93,10 @@
 			<div id="collapse2" class="collapse in">
 				<div class="padding20">
 					<div class="layout-slider wh100percent">
-						<span class="cstyle09"><input id="bar-slider" type="slider" name="price" value="400;700" /></span>
+						<span class="cstyle09"><input id="bar-slider" type="slider" name="price" value="5;2000" /></span>
 					</div>
-					<script type="text/javascript" >
-					  jQuery("#bar-slider").slider({ from: 5, to: 2000, step: 5, smooth: true, round: 0, dimension: "&nbsp;$", skin: "round" });
+					<script type="text/javascript">
+						$("#bar-slider").slider({ from: 5, to: 2000, step: 5, smooth: true, round: 0, dimension: "&nbsp;$", skin: "round" });
 					</script>
 				</div>
 			</div>
@@ -119,9 +122,12 @@
 			<div class="padding20title"><h3 class="opensans dark">Tags</h3></div>
 			<div class="line2"></div><br />
 			<div class="hpadding20"> 
-				<label><a href="<?php echo base_url('tag/batu-night-spectaculer'); ?>">Batu Night Spektaculer (12)</a></label>
+				<?php foreach ($array_tag as $key => $row) { ?>
+				<?php if (!empty($key)) { ?>
 				<div class="clearfix"></div>
-				<label><a href="<?php echo base_url('tag/batu-night-spectaculer'); ?>"> Batu Mosque (10)</a></label>
+				<?php } ?>
+				<label><a href="<?php echo $row['tag_link']; ?>"><?php echo $row['tag_title']; ?></a></label>
+				<?php } ?>
 			</div>
 			<div class="clearfix"></div><br /><br /><br />
 		</div>

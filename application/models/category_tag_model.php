@@ -96,6 +96,11 @@ class category_tag_model extends CI_Model {
 	function sync($row, $param = array()) {
 		$row = StripArray($row);
 		
+		// link
+		if (isset($row['tag_alias'])) {
+			$row['tag_link'] = base_url('tag/'.$row['tag_alias']);
+		}
+		
 		if (count(@$param['column']) > 0) {
 			$row = dt_view_set($row, $param);
 		}

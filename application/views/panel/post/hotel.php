@@ -1,6 +1,7 @@
 <?php
 	$array_country = $this->country_model->get_array();
 	$array_language = $this->language_model->get_array();
+	$array_hotel_star = $this->hotel_star_model->get_array();
 	$array_category_sub = $this->category_sub_model->get_array(array( 'category_id' => CATEGORY_HOTEL ));
 ?>
 
@@ -179,6 +180,14 @@
 										<div class="col-lg-10">
 											<select name="city_id" class="form-control" data-required="true">
 												<option value="">-</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-lg-2 control-label">Star</label>
+										<div class="col-lg-10">
+											<select name="star" class="form-control">
+												<?php echo ShowOption(array( 'Array' => $array_hotel_star )); ?>
 											</select>
 										</div>
 									</div>
