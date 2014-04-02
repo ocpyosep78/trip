@@ -29,6 +29,7 @@ if ($is_website) {
 	$route['search/([a-z0-9\-]+)'] = "website/search";
 	$route['login'] = "website/login";
 	$route['login/([a-z0-9\-]+)'] = "website/login";
+	$route['payment(/([a-z0-9\-]+))*'] = "website/payment";
 	$route['([a-z0-9\-]+)'] = "website/selector";
 } else if ($is_panel) {
 	$route['panel'] = "panel/home";

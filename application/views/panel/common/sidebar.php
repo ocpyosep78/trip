@@ -68,6 +68,12 @@
 										<span>Promo</span>
 									</a>
 								</li>
+								<li>
+									<a href="<?php echo base_url('panel/post/payment'); ?>" data-menu-child="payment">
+										<i class="fa fa-angle-right"></i>
+										<span>Payment</span>
+									</a>
+								</li>
 							</ul>
 						</li>
 						<li data-menu-parent="user">

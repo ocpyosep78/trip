@@ -89,6 +89,14 @@ class promo_duration_model extends CI_Model {
 	function sync($row, $param = array()) {
 		$row = StripArray($row);
 		
+		// label
+		if (isset($row['cost'])) {
+			$row['cost_text'] = MoneyFormat($row['cost']);
+		}
+		if (isset($row['title']) && isset($row['duration']) && isset($row['cost'])) {
+			$row['title_text'] = $row['title'].' - '.$row['duration'].' - '.MoneyFormat($row['cost']);
+		}
+		
 		if (count(@$param['column']) > 0) {
 			$row = dt_view_set($row, $param);
 		}

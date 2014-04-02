@@ -298,7 +298,7 @@ var Site = {
 				} else if (Input.eq(i).attr('type') == 'radio') {
 					value = $(container + ' [name="' + name + '"]:checked').val();
 					data = set_value(data, name, value, code);
-				} else if (Input.eq(i).hasClass('datepicker-input')) {
+				} else if (Input.eq(i).hasClass('datepicker-input') || Input.eq(i).hasClass('datepicker')) {
 					data = set_value(data, name, Func.SwapDate(value), code);
 				} else {
 					data = set_value(data, name, value, code);

@@ -6,6 +6,36 @@
 <?php $this->load->view( 'panel/common/meta' ); ?>
 <body>
 <section class="vbox">
+	<div class="modal fade" id="modal-confirm">
+		<div class="modal-dialog">
+			<div class="modal-content"><form>
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Promo Duration</h4>
+				</div>
+				<div class="modal-body">
+					<section>
+						<div class="form-group">
+							<label>Promo Duration</label>
+							<select name="promo_duration_id" class="form-control" data-required="true">
+								<?php echo ShowOption(array( 'Array' => $array_promo_duration, 'ArrayTitle' => 'title_text' )); ?>
+							</select>
+						</div>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="check" data-required="true"> I agree to the <a href="<?php echo base_url('term-of-use'); ?>" target="_blank" class="text-info">Terms of Use</a>
+							</label>
+						</div>
+					</section>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-info">Save changes</button>
+				</div>
+			</form></div>
+		</div>
+	</div>
+	
 	<?php $this->load->view( 'panel/common/header' ); ?>
 	
 	<div class="hide">
@@ -17,10 +47,6 @@
 			<div class="form-group">
 				<label class="col-lg-2 control-label">Content</label>
 				<div class="col-lg-10"><div name="content" class="input-tinymce"></div></div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-2 control-label">Keyword</label>
-				<div class="col-lg-10"><input type="text" name="keyword" class="form-control" placeholder="Keyword" /></div>
 			</div>
 		</div>
 	</div>
@@ -81,11 +107,11 @@
 										<label class="col-lg-2 control-label">Post</label>
 										<div class="col-lg-10 cnt-typeahead"><input type="text" name="post_title_text" class="form-control post-typeahead" placeholder="Post" data-required="true" /></div>
 									</div>
-									<div class="form-group">
+									<div class="form-group hide">
 										<label class="col-lg-2 control-label">Promo Duration</label>
 										<div class="col-lg-10">
 											<select name="promo_duration_id" class="form-control" data-required="true">
-												<?php echo ShowOption(array( 'Array' => $array_promo_duration )); ?>
+												<?php echo ShowOption(array( 'Array' => $array_promo_duration, 'ArrayTitle' => 'title_text' )); ?>
 											</select>
 										</div>
 									</div>
@@ -112,6 +138,10 @@
 												<option value="reject">reject</option>
 											</select>
 										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-lg-2 control-label">Keyword Tag</label>
+										<div class="col-lg-10"><input type="text" name="keyword" class="form-control" placeholder="Keyword Tag" /></div>
 									</div>
 									
 									<header class="panel-heading bg-light"><ul class="nav nav-tabs nav-justified">
@@ -251,13 +281,41 @@ $(document).ready(function() {
 			return false;
 		}
 		
+		var param = Site.Form.GetValue('.panel-form form');
+		if (param.promo_status == 'request approve') {
+			$('#modal-confirm').modal();
+			$('#modal-confirm [name="check"]').prop('checked', false);
+		} else {
+			Func.update({
+				link: web.base + 'panel/post/promo/action',
+				param: Site.Form.GetValue('.panel-form form'),
+				callback: function() {
+					dt.reload();
+					page.show_grid();
+					$('.panel-form form')[0].reset();
+				}
+			});
+		}
+	});
+	
+	// modal confirm
+	var form_confirm = $('#modal-confirm form').parsley();
+	$('#modal-confirm [name="promo_duration_id"]').change(function() {
+		$('.panel-form [name="promo_duration_id"]').val($(this).val());
+	});
+	$('#modal-confirm form').submit(function(e) {
+		e.preventDefault();
+		if (! form_confirm.isValid()) {
+			return false;
+		}
+		
 		Func.update({
 			link: web.base + 'panel/post/promo/action',
 			param: Site.Form.GetValue('.panel-form form'),
 			callback: function() {
 				dt.reload();
 				page.show_grid();
-				$('.panel-form form')[0].reset();
+				$('#modal-confirm').modal('hide');
 			}
 		});
 	});

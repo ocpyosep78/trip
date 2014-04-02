@@ -10,7 +10,7 @@ class promo extends PANEL_Controller {
 	
 	function grid() {
 		$_POST['grid_type'] = 'editor';
-		$_POST['column'] = array( 'post_title_text', 'promo_duration_title', 'publish_date_swap', 'promo_status' );
+		$_POST['column'] = array( 'post_title_text', 'promo_duration_title_text', 'publish_date_swap', 'promo_status' );
 		
 		$array = $this->promo_model->get_array($_POST);
 		$count = $this->promo_model->get_count();
@@ -25,6 +25,26 @@ class promo extends PANEL_Controller {
 		
 		$result = array();
 		if ($action == 'update') {
+			if ($_POST['promo_status'] == 'request approve') {
+				$post = $this->post_model->get_by_id(array( 'id' => $_POST['post_id'] ));
+				$member = $this->member_model->get_by_id(array( 'id' => $post['member_id'] ));
+				$promo_duration = $this->promo_duration_model->get_by_id(array( 'id' => $_POST['promo_duration_id'] ));
+				
+				// get message
+				$widget = $this->widget_model->get_by_id(array( 'alias' => 'promo-request-approve' ));
+				$message = str_replace('[#full_name#]', $member['full_name'], $widget['content']);
+				$message = str_replace('[#post_title#]', $post['title_text'], $message);
+				$message = str_replace('[#promo_duration_title#]', $promo_duration['title'], $message);
+				$message = str_replace('[#promo_duration#]', $promo_duration['duration'], $message);
+				$message = str_replace('[#promo_cost#]', $promo_duration['cost_text'], $message);
+				
+				// sent mail
+				$param_mail['to'] = $member['email'];
+				$param_mail['subject'] = 'Promo - '.$post['title_text'];
+				$param_mail['message'] = $message;
+				sent_mail($param_mail);
+			}
+			
 			$result = $this->promo_model->update($_POST);
 		} else if ($action == 'update_status') {
 			// param update
@@ -35,6 +55,7 @@ class promo extends PANEL_Controller {
 			if ($_POST['promo_status'] == 'approve') {
 				$promo = $this->promo_model->get_by_id(array( 'id' => $_POST['id'] ));
 				
+				// set param
 				$param_update['publish_date'] = $promo['publish_date'];
 				$param_update['close_date'] = AddDate($promo['publish_date'], $promo['promo_duration']);
 			}

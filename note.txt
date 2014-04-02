@@ -12,7 +12,7 @@ LINK TEMPORARY
 - http://localhost/trip/trunk/about-us
 
 To do :
-6. create modul promo
+1. Search Hotel
 
 ----------------------------------------------------------------------------------------------------------------
 Multi Language
@@ -27,37 +27,15 @@ MY NOTE
 ----------------------------------------------------------------------------------------------------------------
 PANEL
 ----------------------------------------------------------------------------------------------------------------
-Modul Language
-- Common Master
-
-Modul Category
-- Common Master & No Multi Language
-
-Modul Sub Category
-- Common Master & No Multi Language
-
-Modul Post
-- Multi Language
-- Post untuk setiap category berbeda (tidak selalu sama) jadi tablenya juga sendiri seperti post_hotel, post_restaurant, dkk untuk menyimpan data detailnya
-
 Modul Post - Booking
 - link : http://shoperindo.com/trip/4.%20booking%20proses.png
 - khusus untuk category hotel saja
 - isikan nama dan link
 - maks 6 link
 
-Modul Fasilitas
-- Multi Language
-- Masing2 category memiliki fasilitas sendiri2
-- Fitur Searchable diset di category_facility
-
 Modul Room Amenities
 - Multi Language
 - khusus untuk hotel
-
-Modul Promosi
-- Multi Language
-- Confirm Payment
 
 Modul Image by Traveler
 - List gambar yang dikirim oleh traveler yang akan di approve oleh admin
@@ -65,28 +43,6 @@ Modul Image by Traveler
 Module Review by Traveler
 - List review yang dikirim oleh traveler yang akan di approve oleh admin
 - Admin bisa edit seperti yang ada di kedaipedia untuk ganti category pada advert
-
-Master Region
-- CRUD Region
-
-Master City
-- CRUD City
-
-Master Country
-- CRUD Country
-
-----------------------------------------------------------------------------------------------------------------
-PANEL EDITOR
-----------------------------------------------------------------------------------------------------------------
-Modul Post
-- Multi Language
-- Bisa edit user
-
-Modul Fasilitas
-- Multi Language
-
-Modul Promosi
-- Multi Language
 
 ----------------------------------------------------------------------------------------------------------------
 PANEL MEMBER

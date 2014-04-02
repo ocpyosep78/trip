@@ -111,7 +111,7 @@
     }
 	
     if (! function_exists('MoneyFormat')) {
-        function MoneyFormat($Value, $with_currency = false) {
+        function MoneyFormat($Value, $with_currency = true) {
 			$result = number_format($Value, 0, ',', '.');
 			
 			if ($with_currency) {

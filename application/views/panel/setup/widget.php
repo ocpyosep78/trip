@@ -61,7 +61,7 @@
 										<div class="col-lg-10"><input type="text" name="alias" class="form-control" placeholder="Alias" readonly="readonly" /></div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-2 control-label">Wysiwyg</label>
+										<label class="col-sm-2 control-label">Content</label>
 										<div class="col-sm-10">
 											<div id="form-content" class="form-control" style="overflow: scroll; height: 150px; max-height: 150px;"></div>
 										</div>

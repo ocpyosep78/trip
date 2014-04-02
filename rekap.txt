@@ -3,3 +3,51 @@ Multi Language
   pada field title ini akan digunakan untuk menyimpan judul artikel dari semua bahasa yang tersedia
   misalkan ada bahasa Indonesia dan Inggris, maka pada field title ini menyimpan 2 title bahasa tersebut menjadi 1 dalam field ini
   jika kita punya 10 bahasa, maka pada field ini juga terdapat 10 title yang disimpan dalam 1 field
+
+----------------------------------------------------------------------------------------------------------------
+PANEL
+----------------------------------------------------------------------------------------------------------------
+Modul Language
+- Common Master
+
+Modul Category
+- Common Master & No Multi Language
+
+Modul Sub Category
+- Common Master & No Multi Language
+
+Modul Post
+- Multi Language
+- Post untuk setiap category berbeda (tidak selalu sama) jadi tablenya juga sendiri seperti post_hotel, post_restaurant, dkk untuk menyimpan data detailnya
+
+Modul Fasilitas
+- Multi Language
+- Masing2 category memiliki fasilitas sendiri2
+- Fitur Searchable diset di category_facility
+
+Master Region
+- CRUD Region
+
+Master City
+- CRUD City
+
+Master Country
+- CRUD Country
+
+Modul Promosi
+- Multi Language
+- Confirm Payment
+
+----------------------------------------------------------------------------------------------------------------
+PANEL EDITOR
+----------------------------------------------------------------------------------------------------------------
+Modul Post
+- Multi Language
+- Bisa edit user
+
+Modul Fasilitas
+- Multi Language
+
+Modul Promosi
+- Multi Language
+
