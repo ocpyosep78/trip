@@ -25,10 +25,24 @@ class post_facility_model extends CI_Model {
             $result['status'] = '1';
             $result['message'] = 'Data successfully updated.';
         }
-       
+		
+		// update post detail
+		$this->update_facility($param);
+		
         return $result;
     }
 
+	function update_facility($param = array()) {
+		$string_facility = '';
+		$array_facility = $this->get_array(array( 'post_id' => $param['post_id'] ));
+		foreach ($array_facility as $row) {
+			$string_facility .= (empty($string_facility)) ? ';'.$row['facility_id'].';' : $row['facility_id'].';';
+		}
+		
+		$param_update = array( 'id' => $param['post_id'], 'facility' => $string_facility );
+		$this->post_model->update($param_update);
+	}
+	
     function get_by_id($param) {
         $array = array();
        
@@ -81,8 +95,15 @@ class post_facility_model extends CI_Model {
     }
 	
     function delete($param) {
+		// record
+		$record = $this->get_by_id($param);
+		
+		// delete it
 		$delete_query  = "DELETE FROM ".POST_FACILITY." WHERE id = '".$param['id']."' LIMIT 1";
 		$delete_result = mysql_query($delete_query) or die(mysql_error());
+		
+		// update post detail
+		$this->update_facility(array( 'post_id' => $record['post_id'] ));
 		
 		$result['status'] = '1';
 		$result['message'] = 'Data successfully deleted.';

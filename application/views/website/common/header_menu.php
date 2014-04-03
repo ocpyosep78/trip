@@ -1,5 +1,6 @@
 <?php
 	$array_language = $this->language_model->get_array();
+	$language = $this->language_model->get_session();
 ?>
 <div class="navbar-wrapper2 navbar-fixed-top">
 	<div class="container">
@@ -23,7 +24,8 @@
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">Language<b class="lightcaret mt-2"></b></a>
 							<ul class="dropdown-menu">
 								<?php foreach ($array_language as $row) { ?>
-								<li><a href="#"><?php echo $row['title']; ?></a></li>
+								<?php $class = ($language == $row['code']) ? 'active' : ''; ?>
+								<li class="<?php echo $class; ?>"><a class="cursor change-language" data-code="<?php echo $row['code']; ?>"><?php echo $row['title']; ?></a></li>
 								<?php } ?>
 							</ul>
 						</li>

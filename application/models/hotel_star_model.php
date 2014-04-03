@@ -11,7 +11,7 @@ class hotel_star_model extends CI_Model {
 			array( 'id' => 2, 'title' => '2 Star' ),
 			array( 'id' => 3, 'title' => '3 Star' ),
 			array( 'id' => 4, 'title' => '4 Star' ),
-			array( 'id' => 4, 'title' => '5 Star' )
+			array( 'id' => 5, 'title' => '5 Star' )
 		);
 		
         return $array;

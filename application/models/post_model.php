@@ -6,7 +6,7 @@ class post_model extends CI_Model {
 		
         $this->field = array(
 			'id', 'city_id', 'member_id', 'category_sub_id', 'alias', 'title', 'address', 'desc_01', 'desc_02', 'desc_03', 'field_01', 'map', 'star', 'post_status',
-			'thumbnail'
+			'thumbnail', 'having_promo', 'review_count', 'rate_per_night', 'facility'
 		);
     }
 
@@ -65,8 +65,11 @@ class post_model extends CI_Model {
         if (isset($param['id'])) {
             $select_query  = "
 				SELECT post.*,
-					category_sub.title category_sub_title, category.id category_id, category.title category_title,
-					city.region_id, region.country_id, member.first_name, member.last_name
+					category.id category_id, category.title category_title, category.alias category_alias,
+					category_sub.title category_sub_title, category_sub.alias category_sub_alias,
+					city.title city_title, city.alias city_alias,
+					region.id region_id, region.title region_title, region.alias region_alias,
+					country.id country_id
 				FROM ".POST." post
 				LEFT JOIN ".CATEGORY_SUB." category_sub ON category_sub.id = post.category_sub_id
 				LEFT JOIN ".CATEGORY." category ON category.id = category_sub.category_id
@@ -101,26 +104,42 @@ class post_model extends CI_Model {
 		$param['field_replace']['category_sub_title'] = 'category_sub.title';
 		
 		$string_namelike = (!empty($param['namelike'])) ? "AND post.title LIKE '%".$param['namelike']."%'" : '';
+		$string_star = (isset($param['star'])) ? "AND post.star = '".$param['star']."'" : '';
 		$string_category = (isset($param['category_id'])) ? "AND category_sub.category_id = '".$param['category_id']."'" : '';
+		$string_category_sub = (isset($param['category_sub_id'])) ? "AND post.category_sub_id = '".$param['category_sub_id']."'" : '';
 		$string_category_not_in = (isset($param['category_not_in'])) ? "AND category_sub.category_id NOT IN (".$param['category_not_in'].")" : '';
+		$string_city = (isset($param['city_id'])) ? "AND city.id = '".$param['city_id']."'" : '';
+		$string_region = (isset($param['region_id'])) ? "AND region.id = '".$param['region_id']."'" : '';
+		$string_country = (isset($param['country_id'])) ? "AND country.id = '".$param['country_id']."'" : '';
+		$string_facility = (isset($param['array_facility'])) ? get_query_post_facility($param['array_facility']) : '';
+		$string_price_min = (isset($param['price_min'])) ? "AND post.rate_per_night >= '".$param['price_min']."'" : '';
+		$string_price_max = (isset($param['price_max'])) ? "AND post.rate_per_night <= '".$param['price_max']."'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'post.title ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
 			SELECT SQL_CALC_FOUND_ROWS post.*,
-				category_sub.title category_sub_title, category.id category_id, category.title category_title,
-				city.region_id, region.country_id
+				category.id category_id, category.title category_title, category.alias category_alias,
+				category_sub.title category_sub_title, category_sub.alias category_sub_alias,
+				city.title city_title, city.alias city_alias,
+				region.id region_id, region.title region_title, region.alias region_alias,
+				country.id country_id
 			FROM ".POST." post
 			LEFT JOIN ".CATEGORY_SUB." category_sub ON category_sub.id = post.category_sub_id
 			LEFT JOIN ".CATEGORY." category ON category.id = category_sub.category_id
 			LEFT JOIN ".CITY." city ON city.id = post.city_id
 			LEFT JOIN ".REGION." region ON region.id = city.region_id
 			LEFT JOIN ".COUNTRY." country ON country.id = region.country_id
-			WHERE 1 $string_namelike $string_category $string_category_not_in $string_filter
+			WHERE 1
+				$string_namelike $string_star $string_filter
+				$string_category $string_category_sub $string_category_not_in
+				$string_city $string_region $string_country
+				$string_facility $string_price_min $string_price_max
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
+//		echo "<pre>$select_query</pre>"; exit;
         $select_result = mysql_query($select_query) or die(mysql_error());
 		while ( $row = mysql_fetch_assoc( $select_result ) ) {
 			$array[] = $this->sync($row, $param);
@@ -165,9 +184,19 @@ class post_model extends CI_Model {
 	function sync($row, $param = array()) {
 		$row = StripArray($row);
 		
-		if (isset($row['title'])) {
-			$temp = json_to_array($row['title']);
-			$row['title_text'] = (isset($temp[LANGUAGE_DEFAULT])) ? $temp[LANGUAGE_DEFAULT] : '';
+		// language
+		$row = get_row_language($row, array( 'title', 'desc_01', 'desc_02', 'desc_03', 'field_01', 'map' ));
+		
+		// link
+		$row['link_thumbnail'] = base_url('static/theme/forest/images/post-default.jpg');
+		if (! empty($row['thumbnail'])) {
+			$row['link_thumbnail'] = base_url('static/upload/'.$row['thumbnail']);
+		}
+		if (!empty($row['star'])) {
+			$row['link_star'] = base_url('static/theme/forest/images/filter-rating-'.$row['star'].'.png');
+		}
+		if (!empty($row['category_alias']) && !empty($row['region_alias']) && !empty($row['city_alias']) && !empty($row['alias'])) {
+			$row['link_post'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['alias']);
 		}
 		
 		// member fullname
@@ -200,5 +229,27 @@ class post_model extends CI_Model {
 			ImageResize($image_source, $image_small, 194, 123, 1);
 			ImageResize($image_source, $image_result, 600, 374, 1);
 		}
+	}
+	
+	function get_rate_min() {
+        $array = array();
+		
+		$select_query = "
+			SELECT post.rate_per_night
+			FROM post
+			WHERE post.rate_per_night > 0
+			ORDER BY post.rate_per_night ASC
+			LIMIT 1
+		";
+        $select_result = mysql_query($select_query) or die(mysql_error());
+		while ( $row = mysql_fetch_assoc( $select_result ) ) {
+			$array = $row;
+		}
+		
+		if (count($array) == 0) {
+			$array['rate_per_night'] = 0;
+		}
+		
+        return $array;
 	}
 }

@@ -721,7 +721,7 @@
             
             if ( isset( $Param['iDisplayStart'] ) && $Param['iDisplayLength'] != '-1' ) {
                 $StringLimit = mysql_real_escape_string( $Param['iDisplayStart'] ).", ". mysql_real_escape_string( $Param['iDisplayLength'] );
-                } else if (isset($Param['start']) || isset($Param['limit'])) {
+			} else if (isset($Param['start']) || isset($Param['limit'])) {
                 $PageOffset = (isset($Param['start']) && !empty($Param['start'])) ? $Param['start'] : 0;
                 $PageLimit = (isset($Param['limit']) && !empty($Param['limit'])) ? $Param['limit'] : 25;
                 $StringLimit = "$PageOffset, $PageLimit";
@@ -1039,5 +1039,54 @@
 			$temp = preg_replace('/-/i', ' ', $temp);
 			
 			return $temp;
+		}
+	}
+	
+	if (! function_exists('get_language')) {
+		function get_language() {
+			$ci = get_instance();
+			$result = $ci->language_model->get_session();
+			return $result;
+		}
+	}
+	
+	if (! function_exists('get_row_language')) {
+		function get_row_language($row, $param = array()) {
+			$language_select = get_language();
+			
+			foreach ($param as $key => $value) {
+				$value_text = $value.'_text';
+				$value_select = $value.'_select';
+				$value_default = $value.'_default';
+				
+				if (isset($row[$value])) {
+					$temp = json_to_array($row[$value]);
+					$row[$value_text] = (isset($temp[LANGUAGE_DEFAULT])) ? $temp[LANGUAGE_DEFAULT] : '';
+					$row[$value_select] = (isset($temp[$language_select])) ? $temp[$language_select] : '';
+					$row[$value_default] = (isset($temp[LANGUAGE_DEFAULT])) ? $temp[LANGUAGE_DEFAULT] : '';
+				}
+			}
+			
+			return $row;
+		}
+	}
+	
+	if (! function_exists('get_query_post_facility')) {
+		function get_query_post_facility($param = array()) {
+			$result = '';
+			
+			foreach ($param as $key => $value) {
+				if (empty($value)) {
+					continue;
+				}
+				
+				$result .= (empty($result)) ? "post.facility LIKE '%;".$value.";%'" : "AND post.facility LIKE '%;".$value.";%'";
+			}
+			
+			if (!empty($result)) {
+				$result = "AND (".$result.")";
+			}
+			
+			return $result;
 		}
 	}

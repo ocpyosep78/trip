@@ -95,4 +95,54 @@ class language_model extends CI_Model {
 		
 		return $row;
 	}
+	
+	/*	Region Session */
+	
+	function set_session($param) {
+		// add to cookie
+		$this->set_cookie($param);
+		
+		// set session
+		$_SESSION['language_selected'] = $param;
+	}
+	
+	function get_session() {
+		$result = (isset($_SESSION['language_selected'])) ? $_SESSION['language_selected'] : LANGUAGE_DEFAULT;
+		if (empty($result)) {
+			$result = LANGUAGE_DEFAULT;
+		}
+		
+		// get from cookie
+		$result_cookie = $this->get_cookie();
+		if (!empty($result_cookie)) {
+			$result = $result_cookie;
+		}
+		
+		return $result;
+	}
+	
+	/*	End Region Session */
+	
+	/*	Region Cookie */
+	
+	function set_cookie($param) {
+		$cookie_value = mcrypt_encode($param);
+		setcookie("language_selected", $cookie_value, time() + (60 * 60 * 5), '/', '.kedaipedia.com');
+	}
+	
+	function get_cookie() {
+		$result = '';
+		if (isset($_COOKIE["language_selected"]) && !empty($_COOKIE["language_selected"])) {
+			$result = mcrypt_decode($_COOKIE["language_selected"]);
+		}
+		
+		return $result;
+	}
+	
+	function del_cookie() {
+		// delete cookie
+		setcookie("language_selected", '', time() + 0, '/', '.kedaipedia.com');
+	}
+	
+	/*	End Region Cookie */
 }
