@@ -57,7 +57,7 @@ class category_tag_model extends CI_Model {
 				tag.alias tag_alias, tag.title tag_title
 			FROM ".CATEGORY_TAG." category_tag
 			LEFT JOIN ".TAG." tag ON tag.id = category_tag.tag_id
-			WHERE 1 $string_filter
+			WHERE 1 $string_category $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";

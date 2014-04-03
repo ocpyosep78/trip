@@ -1,403 +1,242 @@
+<?php
+	// master
+	$array_country = $this->country_model->get_array();
+	$array_category_sub = $this->category_sub_model->get_array(array( 'category_id' => CATEGORY_DESTINATION ));
+	
+	// post count
+	$destination_count = $this->post_model->get_count(array( 'query' => true, 'category_id' => CATEGORY_DESTINATION ));
+	
+	// post facility
+	$param_facility['searchable'] = 1;
+	$param_facility['category_id'] = CATEGORY_DESTINATION;
+	$array_facility = $this->category_facility_model->get_array($param_facility);
+	
+	// category tag
+	$array_tag = $this->category_tag_model->get_array(array( 'category_id' => CATEGORY_DESTINATION ));
+	
+	// breadcrub
+	$array_breadcrub = array(
+		array( 'link' => '#', 'title' => 'Destination' )
+	);
+?>
 <?php $this->load->view( 'website/common/meta' ); ?>
 <body id="top" class="thebg" >
 	<?php $this->load->view( 'website/common/header_menu' ); ?>
+	<?php $this->load->view( 'website/common/breadcrub', array( 'array' => $array_breadcrub ) ); ?>
 	
-	<div class="container breadcrub">
-	    <div>
-			<a class="homebtn left" href="#"></a>
-			<div class="left">
-				<ul class="bcrumbs">
-					<li>/</li>
-					<li><a href="#">Hotel</a></li>
-					<li>/</li>
-					<li><a href="#">Jawa Timur</a></li>
-					<li>/</li>	
-                 					
-					<li><a href="#" class="active">Malang Kab</a></li>					
-				</ul>				
+	<div class="container"><div class="container pagecontainer offset-0" id="post-list">
+		<div class="col-md-3 filters offset-0">
+			<input type="hidden" name="action" value="get_post_view" />
+			<input type="hidden" name="category_id" value="<?php echo CATEGORY_DESTINATION; ?>" />
+			<input type="hidden" name="page_active" value="1" />
+			<input type="hidden" name="reload" value="0" />
+			
+			<div class="filtertip">
+				<div class="padding20">
+					<p class="size13"><span class="size18 bold destination-count"><?php echo $destination_count; ?></span> Destinations</p>
+					<p class="size13">Narrow results or <a href="#">view all</a></p>
+				</div>
+				<div class="tip-arrow"></div>
 			</div>
-			<a class="backbtn right" href="#"></a>
-		</div>
-		<div class="clearfix"></div>
-		<div class="brlines"></div>
-	</div>	
-
-	<!-- CONTENT -->
-	<div class="container">
-		<div class="container pagecontainer offset-0">	
-
-			<!-- FILTERS -->
-			<div class="col-md-3 filters offset-0">
 			
-				
-				<!-- TOP TIP -->
-				<div class="filtertip">
-					<div class="padding20">
-						<p class="size13"><span class="size18 bold counthotel">53</span> Hotels starting at</p>
-						<p class="size30 bold">$<span class="countprice"></span></p>
-						<p class="size13">Narrow results or <a href="#">view all</a></p>
-					</div>
-					<div class="tip-arrow"></div>
+			<div class="padding20title"><h3 class="opensans dark">Type</h3></div>
+			<div class="line2"></div>
+			<div class="hpadding20">
+				<div class="radio">
+					<label><input type="radio" name="category_sub_id" value="0" checked /> All</label>
 				</div>
-				
-				 	
-				<div class="padding20title"><h3 class="opensans dark">Type</h3></div>
-				<div class="line2"></div>
-				
+				<?php foreach($array_category_sub as $row) { ?>
+				<div class="radio">
+					<label><input type="radio" name="category_sub_id" value="<?php echo $row['id']; ?>" /> <?php echo $row['title']; ?></label>
+				</div>
+				<?php } ?>
+			</div>
+			
+			<div class="padding20title"><h3 class="opensans dark">Area</h3></div>
+			<div class="line2"></div><br />
+			<div class="hpadding20">
+				<select name="country_id" class="form-control mySelectBoxClass">
+					<?php echo ShowOption(array( 'Array' => $array_country, 'LabelEmptySelect' => 'All Country' )); ?>
+				</select>
+			</div>
+			<div class="clearfix"></div><br />
+			<div class="hpadding20">
+				<select name="region_id" class="form-control mySelectBoxClass">
+					<option value="" selected>All Region</option>
+				</select>
+			</div>
+			<div class="clearfix"></div><br />
+			<div class="hpadding20">
+				<select name="city_id" class="form-control mySelectBoxClass">
+					<option value="" selected>All City</option>
+				</select>
+			</div><br /><br />
+			<div class="line2"></div>
+			
+			<button type="button" class="collapsebtn" data-toggle="collapse" data-target="#collapse2">
+				Price range
+				<span class="collapsearrow"></span>
+			</button>
+			<div id="collapse2" class="collapse in">
+				<div class="padding20">
+					<div class="layout-slider wh100percent">
+						<span class="cstyle09"><input id="bar-slider" type="slider" name="price" value="0;2000" /></span>
+					</div>
+					<script type="text/javascript">
+						$("#bar-slider").slider({
+							from: 0, to: 2000, step: 5, smooth: true, round: 0, dimension: "&nbsp;$", skin: "round",
+							callback: function(value) {
+								$('#post-list [name="reload"]').val(1);
+							}
+						});
+					</script>
+				</div>
+			</div>
+			<div class="line2"></div>
+			
+			<button type="button" class="collapsebtn last" data-toggle="collapse" data-target="#collapse4">
+				Fasilities
+				<span class="collapsearrow"></span>
+			</button>	
+			<div id="collapse4" class="collapse in">
 				<div class="hpadding20">
-						<div class="radio">
-						  <label>
-							<input type="radio" name="optionsRadios2" id="Acomodation1" value="option1" checked>
-							All
-						  </label>
-						</div>
-						<div class="radio">
-						  <label>
-							<input type="radio" name="optionsRadios2" id="Acomodation2" value="option2">
-							Hotel Berbintang
-						  </label>
-						</div>
-						<div class="radio">
-						  <label>
-							<input type="radio" name="optionsRadios2" id="Acomodation3" value="option3">
-							Hotel Murah
-						  </label>
-						</div>
-						<div class="radio">
-						  <label>
-							<input type="radio" name="optionsRadios2" id="Acomodation4" value="option4">
-							Guest House
-						  </label>
-						</div>
-						<div class="radio">
-						  <label>
-							<input type="radio" name="optionsRadios2" id="Acomodation5" value="option5">
-							Villa
-						  </label>
-						</div>
- 
+					<?php foreach ($array_facility as $row) { ?>
+					<div class="checkbox">
+						<label><input type="checkbox" name="facility_id[]" value="<?php echo $row['facility_id']; ?>" /> <?php echo $row['facility_text']; ?></label>
 					</div>
-
-					<div class="padding20title"><h3 class="opensans dark">Area</h3></div>
-				<div class="line2"></div>
-<br>
-					<div class="hpadding20"> 
-						 	<select class="form-control mySelectBoxClass ">
-									  <option selected>All Region</option>
-									  <option>5 stars</option>
-									  <option>4 stars</option>
-									  <option>3 stars</option>
-									  <option>2 stars</option>
-									  <option>1 stars</option>
-									</select>
-					</div>
-					<div class="clearfix"></div>
-				  
-				 
-				 <br>
-				 					<div class="hpadding20"> 
-						 	<select class="form-control mySelectBoxClass ">
-									  <option selected>All City</option>
-									  <option>5 stars</option>
-									  <option>4 stars</option>
-									  <option>3 stars</option>
-									  <option>2 stars</option>
-									  <option>1 stars</option>
-									</select>
-					</div>
-			
-				 
-				 
-				 		<div class="padding20title"><h3 class="opensans dark">Star</h3></div>
-				<div class="line2"></div>
-<br>
-					<div class="hpadding20"> 
-						 	<select class="form-control mySelectBoxClass ">
-									  <option selected>All Region</option>
-									  <option>5 stars</option>
-									  <option>4 stars</option>
-									  <option>3 stars</option>
-									  <option>2 stars</option>
-									  <option>1 stars</option>
-									</select>
-					</div>
-					<div class="clearfix"></div>
-				  	 <br>
-				 
-				 
-				<!-- End of Star ratings -->								
- 
- 
-				<div class="line2"></div>
-				
-				
-				<!-- Price range -->					
-				<button type="button" class="collapsebtn" data-toggle="collapse" data-target="#collapse2">
-				  Price range <span class="collapsearrow"></span>
-				</button>
-					
-				<div id="collapse2" class="collapse in">
-					<div class="padding20">
-						<div class="layout-slider wh100percent">
-						<span class="cstyle09"><input id="Slider1" type="slider" name="price" value="400;700" /></span>
-						</div>
-						<script type="text/javascript" >
-						  jQuery("#Slider1").slider({ from: 5, to: 2000, step: 5, smooth: true, round: 0, dimension: "&nbsp;$", skin: "round" });
-						</script>
-					</div>
+					<?php } ?>
 				</div>
-				<!-- End of Price range -->	
-				
-				<div class="line2"></div>
-				
-				<!-- Hotel Preferences -->
-				<button type="button" class="collapsebtn last" data-toggle="collapse" data-target="#collapse4">
-				  Fasilities <span class="collapsearrow"></span>
-				</button>	
-				<div id="collapse4" class="collapse in">
-					<div class="hpadding20">
-						<div class="checkbox">
-							<label>
-							  <input type="checkbox">High-speed Internet (41)
-							</label>
-						</div>
-						<div class="checkbox">
-							<label>
-							  <input type="checkbox">Air conditioning (52)
-							</label>
-						</div>
-						<div class="checkbox">
-							<label>
-							  <input type="checkbox">Swimming pool (55)
-							</label>
-						</div>
-						<div class="checkbox">
-							<label>
-							  <input type="checkbox">Childcare (12)
-							</label>
-						</div>
-						<div class="checkbox">
-							<label>
-							  <input type="checkbox">Fitness equipment (49)
-							</label>
-						</div>	
-						<div class="checkbox">
-							<label>
-							  <input type="checkbox">Free breakfast (14)
-							</label>
-						</div>	
-						<div class="checkbox">
-							<label>
-							  <input type="checkbox">Free parking (11)
-							</label>
-						</div>	
-						<div class="checkbox">
-							<label>
-							  <input type="checkbox">Hair dryer (48)
-							</label>
-						</div>	
-						<div class="checkbox">
-							<label>
-							  <input type="checkbox">Pets allowed (16)
-							</label>
-						</div>	
-						<div class="checkbox">
-							<label>
-							  <input type="checkbox">Restaurant in hotel (47)
-							</label>
-						</div>	
-						<div class="checkbox">
-							<label>
-							  <input type="checkbox">Room service (38)
-							</label>
-						</div>	
-						<div class="checkbox">
-							<label>
-							  <input type="checkbox">Spa services on site (57) 
-							</label>
-						</div>	
-
-					</div>
-					 						
-				</div>	
-				<!-- End of Hotel Preferences -->
-				
-				<div class="line2"></div>
+			</div>	
+			<div class="line2"></div>
+			<div class="clearfix"></div>
+			
+			<div class="padding20title"><h3 class="opensans dark">Tags</h3></div>
+			<div class="line2"></div><br />
+			<div class="hpadding20"> 
+				<?php foreach ($array_tag as $key => $row) { ?>
+				<?php if (!empty($key)) { ?>
 				<div class="clearfix"></div>
-			 
-					<div class="padding20title"><h3 class="opensans dark">Tags</h3></div>
-				<div class="line2"></div>
-<br>
-					<div class="hpadding20"> 
-						 	<label>
-							 <a href="#"> Batu Night Spektaculer (12) <a>
-							</label>
-							<div class="clearfix"></div>
-							<label>
-							  <a href="#"> Batu Mosque (10) <a>
-							</label>
-					</div>
-					<div class="clearfix"></div>
-				  
-				<br/>
-				<br><br>
-				
+				<?php } ?>
+				<label><a href="<?php echo $row['tag_link']; ?>"><?php echo $row['tag_title']; ?></a></label>
+				<?php } ?>
 			</div>
-			<!-- END OF FILTERS -->
-			<!-- END OF FILTERS -->
-			
-			<!-- LIST CONTENT-->
-			<div class="rightcontent col-md-9 offset-0">
-			
-				<div class="hpadding20">
-					<!-- Top filters -->
-					<div class="topsortby">
-						<div class="col-md-4 offset-0">
-								
-								<div class="left mt7"><b>Sort by:</b></div>
-								
-								<div class="right wh70percent">
-									<select class="form-control mySelectBoxClass ">
-                                      <option>All</option>  									  
-									  <option>Promo</option>
-									  <option>A to Z</option>
-									  <option>Z to A</option>
-									  <option>Top Review</option>
-									</select>
-								</div>
-								
-
-						</div>	
-	                   <div class="col-md-4">
-								
-								<div class="left mt7"><b>Show:</b></div>
-								
-								<div class="right wh70percent">
-									<select class="form-control mySelectBoxClass ">
-                                       <option>10</option>
-									  <option>20</option>
-									  <option>30</option>
-									   <option>40</option>
-									    <option>50</option>
-									</select>
-								</div>
-								
-
-						</div>						
-						 
-						 
-					</div>
-					<!-- End of topfilters-->
-				</div>
-				<!-- End of padding -->
-				
-				<br/><br/>
-				<div class="clearfix"></div>
-				
-
-				<div class="itemscontainer offset-1">
-			
-	
-					<div class="offset-2">
-						<div class="col-md-4 offset-0">
-							<div class="listitem2">
-								<a href="static/theme/forest/images/items/item7.jpg">
-								<img src="static/theme/forest/images/items/item7.jpg" alt=""/></a>
-								 
-							</div>
-						</div>
-						<div class="col-md-8 offset-0">
-							<div class="itemlabel3">
-								<div class="labelright">
-								<!--	<img src="static/theme/forest/images/filter-rating-5.png" width="60" alt=""/>--><br/><br/><br/>
-									<img src="static/theme/forest/images/user-rating-5.png" width="60" alt=""/><br/>
-									<span class="size11 grey">18 Reviews</span><br/><br/>
-								<!--	<span class="green size18"><b>$36.00</b></span>--><br/>
-										<!--<span class="size11 grey">avg/night</span>--><br/><br/><br/>
-									<form action="details.html">
-									 <button class="bookbtn mt1" type="submit">Book</button>	
-									</form>			
-								</div>
-								<div class="labelleft2">			
-									<b>Air Terjun Coban Rais</b><br/><br/><br/>
-									<p class="grey">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et.
-									Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.</p><br/>
-									
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="clearfix"></div>
-					<div class="offset-2"><hr class="featurette-divider3"></div>
-					
-					<div class="offset-2">
-						<div class="col-md-4 offset-0">
-							<div class="listitem2">
-								<a href="static/theme/forest/images/items/item7.jpg">
-								<img src="static/theme/forest/images/items/item7.jpg" alt=""/></a>
-								 
-							</div>
-						</div>
-						<div class="col-md-8 offset-0">
-							<div class="itemlabel3">
-								<div class="labelright">
-								<!--	<img src="static/theme/forest/images/filter-rating-5.png" width="60" alt=""/>--><br/><br/><br/>
-									<img src="static/theme/forest/images/user-rating-5.png" width="60" alt=""/><br/>
-									<span class="size11 grey">18 Reviews</span><br/><br/>
-								<!--	<span class="green size18"><b>$36.00</b></span>--><br/>
-										<!--<span class="size11 grey">avg/night</span>--><br/><br/><br/>
-									<form action="details.html">
-									 <button class="bookbtn mt1" type="submit">Book</button>	
-									</form>			
-								</div>
-								<div class="labelleft2">			
-									<b>Mabely Grand Hotel</b><br/><br/><br/>
-									<p class="grey">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et.
-									Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.</p><br/>
-									
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="clearfix"></div>
-					<div class="offset-2"><hr class="featurette-divider3"></div>
-					
-					 
-
-				</div>	
-				<!-- End of offset1-->		
-
-				<div class="hpadding20">
-				
-					<ul class="pagination right paddingbtm20">
-					  <li class="disabled"><a href="#">&laquo;</a></li>
-					  <li><a href="#">1</a></li>
-					  <li><a href="#">2</a></li>
-					  <li><a href="#">3</a></li>
-					  <li><a href="#">4</a></li>
-					  <li><a href="#">5</a></li>
-					  <li><a href="#">&raquo;</a></li>
-					</ul>
-
-				</div>
-
-			</div>
-			<!-- END OF LIST CONTENT-->
-			
-		
-
+			<div class="clearfix"></div><br /><br /><br />
 		</div>
-		<!-- END OF container-->
 		
-	</div>
-	<!-- END OF CONTENT -->
+		<div class="rightcontent col-md-9 offset-0">
+			<div class="hpadding20"><div class="topsortby">
+				<div class="col-md-4 offset-0">
+					<div class="left mt7"><b>Sort by:</b></div>
+					<div class="right wh70percent">
+						<select class="form-control mySelectBoxClass" name="page_order">			  
+							<option value="promo">Promo</option>
+							<option value="title_asc">A to Z</option>
+							<option value="title_desc">Z to A</option>
+							<option value="review">Top Review</option>
+						</select>
+					</div>
+				</div>	
+				<div class="col-md-4">
+					<div class="left mt7"><b>Show:</b></div>
+					<div class="right wh70percent">
+						<select class="form-control mySelectBoxClass" name="page_item">
+							<option value="20">20</option>
+							<option value="20">30</option>
+							<option value="40">40</option>
+							<option value="50">50</option>
+						</select>
+					</div>
+				</div>
+			</div></div><br /><br />
+			<div class="clearfix"></div>
+			<div class="cnt-post">&nbsp;</div>
+		</div>
+	</div></div>
 	
 	<?php $this->load->view( 'website/common/footer' ); ?>
+	<?php $this->load->view( 'website/common/library', array( 'js_add' => array( 'js-list3.js' ) ) ); ?>
 	
-	<?php $this->load->view( 'website/common/library', array( 'js_add' => array( 'js-list3.js', 'counter.js' ) ) ); ?>
+<script>
+jQuery(function($) {
+	var page = {
+		init: function() {
+			page.load_post({});
+			page.is_refresh();
+		},
+		load_post: function(p) {
+			Func.ajax({
+				is_json: 0,
+				url: web.base + 'destination/view',
+				param: Site.Form.GetValue('post-list'),
+				callback: function(content) {
+					$('.cnt-post').html(content);
+					
+					// paging
+					$('#post-list .pagination a').click(function() {
+						$('#post-list [name="page_active"]').val($(this).data('page_active'));
+						page.load_post();
+					});
+				}
+			});
+		},
+		is_refresh: function() {
+			setTimeout(function() {
+				page.is_refresh();
+				
+				// check reload post
+				if ($('#post-list [name="reload"]').val() == 1) {
+					page.load_post({});
+					$('#post-list [name="reload"]').val(0)
+				}
+			}, 1000);
+		}
+	}
+	
+	// count number
+	$('.destination-count').countTo({ from: 1, to: parseInt($('.destination-count').text(), 10), speed: 2000, refreshInterval: 50 });
+	
+	// filter
+	$('[name="category_sub_id"]').change(function() {
+		$('[name="page_active"]').val(1);
+		page.load_post();
+	});
+	$('[name="country_id"]').change(function() {
+		combo.region({ country_id: $(this).val(), target: $('[name="region_id"]'), label_empty_select: 'All Region', callback: function() {
+			$('[name="region_id"]').change();
+			$('[name="city_id"]').html('<option value="">All City</option>');
+			$('[name="city_id"]').change();
+			
+			$('[name="page_active"]').val(1);
+			page.load_post();
+		} });
+	});
+	$('[name="region_id"]').change(function() {
+		combo.city({ region_id: $(this).val(), target: $('[name="city_id"]'), label_empty_select: 'All City', callback: function() {
+			$('[name="page_active"]').val(1);
+			page.load_post();
+		} });
+	});
+	$('[name="city_id"]').change(function() {
+		$('[name="page_active"]').val(1);
+		page.load_post();
+	});
+	$('[name="facility_id[]"]').change(function() {
+		$('[name="page_active"]').val(1);
+		page.load_post();
+	});
+	
+	// order / limit
+	$('#post-list [name="page_order"]').change(function() {
+		page.load_post();
+	});
+	$('#post-list [name="page_item"]').change(function() {
+		page.load_post();
+	});
+	
+	// init page
+	page.init();
+});
+</script>
+
 </body>
 </html>

@@ -66,7 +66,7 @@
 				<?php } ?>
 				
 				<br /><br /><br /><br />
-				<span class="size11 grey">PROMO</span><br /><br />
+				<span class="size11 grey"><?php echo (empty($row['having_promo'])) ? '&nbsp;' : 'PROMO'; ?></span><br /><br />
 				<a class="bookbtn mt1" href="<?php echo $row['link_post']; ?>">View</a>
 			</div>
 			<div class="labelleft">
@@ -96,23 +96,23 @@
 <div class="hpadding20">
 	<ul class="pagination right paddingbtm20">
 		<?php if ($page_active > 1) { ?>
-		<li class="cursor"><a href="#">&laquo;</a></li>
+		<li class="cursor"><a data-page_active="1">&laquo;</a></li>
 		<?php } else { ?>
-		<li class="disabled"><a href="#">&laquo;</a></li>
+		<li class="disabled"><a>&laquo;</a></li>
 		<?php } ?>
 		
 		<?php for ($i = -5; $i <= 5; $i++) { ?>
 			<?php $page_counter = $page_active + $i; ?>
 			<?php $class = ($i == 0) ? 'active' : ''; ?>
 			<?php if ($page_counter > 0 && $page_counter <= $page_count) { ?>
-			<li class="cursor <?php echo $class; ?>"><a><?php echo $page_counter; ?></a></li>
+			<li class="cursor <?php echo $class; ?>"><a data-page_active="<?php echo $page_counter; ?>"><?php echo $page_counter; ?></a></li>
 			<?php } ?>
 		<?php } ?>
 		
 		<?php if ($page_active < $page_count) { ?>
-		<li class="cursor"><a href="#">&raquo;</a></li>
+		<li class="cursor"><a data-page_active="<?php echo $page_count; ?>">&raquo;</a></li>
 		<?php } else { ?>
-		<li class="disabled"><a href="#">&raquo;</a></li>
+		<li class="disabled"><a>&raquo;</a></li>
 		<?php } ?>
 	</ul>
 </div>

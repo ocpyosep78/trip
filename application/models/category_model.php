@@ -68,7 +68,7 @@ class category_model extends CI_Model {
         }
        
 		if ($param['tag_include']) {
-			$array['array_tag'] = $this->category_tag_model->get_array(array( 'post_id' => $array['id'] ));
+			$array['array_tag'] = $this->category_tag_model->get_array(array( 'category_id' => $array['id'] ));
 			$array['tag_content'] = $this->tag_model->get_string($array['array_tag']);
 		}
 		

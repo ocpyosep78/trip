@@ -6,7 +6,7 @@ class post_model extends CI_Model {
 		
         $this->field = array(
 			'id', 'city_id', 'member_id', 'category_sub_id', 'alias', 'title', 'address', 'desc_01', 'desc_02', 'desc_03', 'field_01', 'map', 'star', 'post_status',
-			'thumbnail', 'having_promo', 'review_count', 'rate_per_night', 'facility'
+			'thumbnail', 'having_promo', 'review_rate', 'review_count', 'rate_per_night', 'facility'
 		);
     }
 
@@ -194,6 +194,9 @@ class post_model extends CI_Model {
 		}
 		if (!empty($row['star'])) {
 			$row['link_star'] = base_url('static/theme/forest/images/filter-rating-'.$row['star'].'.png');
+		}
+		if (!empty($row['review_rate'])) {
+			$row['link_review_rate'] = base_url('static/theme/forest/images/user-rating-'.$row['review_rate'].'.png');
 		}
 		if (!empty($row['category_alias']) && !empty($row['region_alias']) && !empty($row['city_alias']) && !empty($row['alias'])) {
 			$row['link_post'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['alias']);

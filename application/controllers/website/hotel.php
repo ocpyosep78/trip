@@ -24,7 +24,7 @@ class hotel extends TRIP_Controller {
 		
 		$result = '';
 		if ($action == 'get_post_view') {
-			$result = $this->load->view( 'website/common/template_post', array(), true );
+			$result = $this->load->view( 'website/common/template_post_hotel', array(), true );
 		}
 		
 		echo $result;

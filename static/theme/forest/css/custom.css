@@ -1712,6 +1712,7 @@ background:url('../images/back-icon.png') #222 no-repeat  scroll -16px -31px;
 .labelleft{padding:10px 0 15px 15px;}
 .labelleft .title { height: 45px; }
 .labelleft2{padding:10px 0 15px 15px;font-family:"Open Sans"; font-size:13px; line-height:18px;}
+.labelleft2 .title { height: 30px; }
 
 
 

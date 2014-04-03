@@ -20,9 +20,7 @@
 	
 	// breadcrub
 	$array_breadcrub = array(
-		array( 'link' => '#', 'title' => 'Hotel' ),
-		array( 'link' => '#', 'title' => 'Jawa Timur' ),
-		array( 'link' => '#', 'title' => 'Malang Kab' )
+		array( 'link' => '#', 'title' => 'Hotel' )
 	);
 ?>
 
@@ -97,7 +95,7 @@
 			<div id="collapse2" class="collapse in">
 				<div class="padding20">
 					<div class="layout-slider wh100percent">
-						<span class="cstyle09"><input id="bar-slider" type="slider" name="price" value="5;2000" /></span>
+						<span class="cstyle09"><input id="bar-slider" type="slider" name="price" value="0;2000" /></span>
 					</div>
 					<script type="text/javascript">
 						$("#bar-slider").slider({
@@ -141,32 +139,30 @@
 		</div>
 		
 		<div class="rightcontent col-md-9 offset-0">
-			<div class="hpadding20">
-				<div class="topsortby">
-					<div class="col-md-4 offset-0">
-						<div class="left mt7"><b>Sort by:</b></div>
-						<div class="right wh70percent">
-							<select class="form-control mySelectBoxClass" name="page_order">			  
-								<option value="promo">Promo</option>
-								<option value="title_asc">A to Z</option>
-								<option value="title_desc">Z to A</option>
-								<option value="review">Top Review</option>
-							</select>
-						</div>
-					</div>	
-					<div class="col-md-4">
-						<div class="left mt7"><b>Show:</b></div>
-						<div class="right wh70percent">
-							<select class="form-control mySelectBoxClass" name="page_item">
-								<option value="20">20</option>
-								<option value="20">30</option>
-								<option value="40">40</option>
-								<option value="50">50</option>
-							</select>
-						</div>
+			<div class="hpadding20"><div class="topsortby">
+				<div class="col-md-4 offset-0">
+					<div class="left mt7"><b>Sort by:</b></div>
+					<div class="right wh70percent">
+						<select class="form-control mySelectBoxClass" name="page_order">			  
+							<option value="promo">Promo</option>
+							<option value="title_asc">A to Z</option>
+							<option value="title_desc">Z to A</option>
+							<option value="review">Top Review</option>
+						</select>
+					</div>
+				</div>	
+				<div class="col-md-4">
+					<div class="left mt7"><b>Show:</b></div>
+					<div class="right wh70percent">
+						<select class="form-control mySelectBoxClass" name="page_item">
+							<option value="20">20</option>
+							<option value="20">30</option>
+							<option value="40">40</option>
+							<option value="50">50</option>
+						</select>
 					</div>
 				</div>
-			</div><br /><br />
+			</div></div><br /><br />
 			<div class="clearfix"></div>
 			<div class="cnt-post">&nbsp;</div>
 		</div>
@@ -189,6 +185,12 @@ jQuery(function($) {
 				param: Site.Form.GetValue('post-list'),
 				callback: function(content) {
 					$('.cnt-post').html(content);
+					
+					// paging
+					$('#post-list .pagination a').click(function() {
+						$('#post-list [name="page_active"]').val($(this).data('page_active'));
+						page.load_post();
+					});
 				}
 			});
 		},
