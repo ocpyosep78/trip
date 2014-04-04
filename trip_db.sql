@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.4
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Apr 03, 2014 at 08:24 PM
--- Server version: 5.1.41
--- PHP Version: 5.3.1
+-- Host: 127.0.0.1
+-- Generation Time: Apr 04, 2014 at 03:23 PM
+-- Server version: 5.5.32
+-- PHP Version: 5.4.19
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -18,6 +19,8 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Database: `trip_db`
 --
+CREATE DATABASE IF NOT EXISTS `trip_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `trip_db`;
 
 -- --------------------------------------------------------
 
@@ -162,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `category_tag` (
   `tag_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `category_tag`
@@ -4301,11 +4304,6 @@ CREATE TABLE IF NOT EXISTS `city_ip` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
---
--- Dumping data for table `city_ip`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -4609,11 +4607,6 @@ CREATE TABLE IF NOT EXISTS `hotel_booking` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `hotel_booking`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -4627,11 +4620,6 @@ CREATE TABLE IF NOT EXISTS `hotel_detail` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `hotel_detail`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -4644,11 +4632,6 @@ CREATE TABLE IF NOT EXISTS `hotel_room_amenity` (
   `room_amenity_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `hotel_room_amenity`
---
-
 
 -- --------------------------------------------------------
 
@@ -4942,7 +4925,7 @@ CREATE TABLE IF NOT EXISTS `ip_log` (
   `ip_address` varchar(50) NOT NULL,
   `request_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4973 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5270 ;
 
 --
 -- Dumping data for table `ip_log`
@@ -9923,7 +9906,304 @@ INSERT INTO `ip_log` (`id`, `ip_address`, `request_time`) VALUES
 (4969, '::1', '2014-04-03 20:23:35'),
 (4970, '::1', '2014-04-03 20:23:36'),
 (4971, '::1', '2014-04-03 20:23:37'),
-(4972, '::1', '2014-04-03 20:23:37');
+(4972, '::1', '2014-04-03 20:23:37'),
+(4973, '::1', '2014-04-04 08:36:40'),
+(4974, '::1', '2014-04-04 08:54:02'),
+(4975, '::1', '2014-04-04 08:54:03'),
+(4976, '::1', '2014-04-04 08:55:55'),
+(4977, '::1', '2014-04-04 08:56:04'),
+(4978, '::1', '2014-04-04 08:56:05'),
+(4979, '::1', '2014-04-04 08:57:22'),
+(4980, '::1', '2014-04-04 08:57:23'),
+(4981, '::1', '2014-04-04 08:57:23'),
+(4982, '::1', '2014-04-04 08:58:00'),
+(4983, '::1', '2014-04-04 08:58:13'),
+(4984, '::1', '2014-04-04 08:58:13'),
+(4985, '::1', '2014-04-04 08:58:18'),
+(4986, '::1', '2014-04-04 08:59:00'),
+(4987, '::1', '2014-04-04 08:59:00'),
+(4988, '::1', '2014-04-04 08:59:04'),
+(4989, '::1', '2014-04-04 08:59:48'),
+(4990, '::1', '2014-04-04 08:59:49'),
+(4991, '::1', '2014-04-04 08:59:59'),
+(4992, '::1', '2014-04-04 09:00:25'),
+(4993, '::1', '2014-04-04 09:00:25'),
+(4994, '::1', '2014-04-04 09:00:46'),
+(4995, '::1', '2014-04-04 09:00:51'),
+(4996, '::1', '2014-04-04 09:00:52'),
+(4997, '::1', '2014-04-04 09:01:12'),
+(4998, '::1', '2014-04-04 09:01:21'),
+(4999, '::1', '2014-04-04 09:01:21'),
+(5000, '::1', '2014-04-04 09:01:26'),
+(5001, '::1', '2014-04-04 09:02:03'),
+(5002, '::1', '2014-04-04 09:02:03'),
+(5003, '::1', '2014-04-04 09:02:16'),
+(5004, '::1', '2014-04-04 09:02:20'),
+(5005, '::1', '2014-04-04 09:02:53'),
+(5006, '::1', '2014-04-04 09:03:01'),
+(5007, '::1', '2014-04-04 09:03:01'),
+(5008, '::1', '2014-04-04 09:03:17'),
+(5009, '::1', '2014-04-04 09:03:24'),
+(5010, '::1', '2014-04-04 09:03:24'),
+(5011, '::1', '2014-04-04 09:03:27'),
+(5012, '::1', '2014-04-04 09:03:50'),
+(5013, '::1', '2014-04-04 09:03:51'),
+(5014, '::1', '2014-04-04 09:04:52'),
+(5015, '::1', '2014-04-04 09:04:54'),
+(5016, '::1', '2014-04-04 09:06:02'),
+(5017, '::1', '2014-04-04 09:06:04'),
+(5018, '::1', '2014-04-04 09:06:09'),
+(5019, '::1', '2014-04-04 09:06:30'),
+(5020, '::1', '2014-04-04 09:08:30'),
+(5021, '::1', '2014-04-04 09:08:31'),
+(5022, '::1', '2014-04-04 09:12:31'),
+(5023, '::1', '2014-04-04 09:12:32'),
+(5024, '::1', '2014-04-04 09:13:46'),
+(5025, '::1', '2014-04-04 09:13:48'),
+(5026, '::1', '2014-04-04 09:16:56'),
+(5027, '::1', '2014-04-04 09:17:08'),
+(5028, '::1', '2014-04-04 09:17:09'),
+(5029, '::1', '2014-04-04 09:17:09'),
+(5030, '::1', '2014-04-04 09:17:11'),
+(5031, '::1', '2014-04-04 09:17:17'),
+(5032, '::1', '2014-04-04 09:17:55'),
+(5033, '::1', '2014-04-04 09:18:10'),
+(5034, '::1', '2014-04-04 09:18:18'),
+(5035, '::1', '2014-04-04 09:18:37'),
+(5036, '::1', '2014-04-04 09:18:41'),
+(5037, '::1', '2014-04-04 09:18:42'),
+(5038, '::1', '2014-04-04 09:18:42'),
+(5039, '::1', '2014-04-04 09:18:45'),
+(5040, '::1', '2014-04-04 09:19:05'),
+(5041, '::1', '2014-04-04 09:19:06'),
+(5042, '::1', '2014-04-04 09:19:06'),
+(5043, '::1', '2014-04-04 09:19:08'),
+(5044, '::1', '2014-04-04 09:20:21'),
+(5045, '::1', '2014-04-04 09:20:22'),
+(5046, '::1', '2014-04-04 09:20:22'),
+(5047, '::1', '2014-04-04 09:20:25'),
+(5048, '::1', '2014-04-04 09:21:53'),
+(5049, '::1', '2014-04-04 09:21:54'),
+(5050, '::1', '2014-04-04 09:21:54'),
+(5051, '::1', '2014-04-04 09:21:57'),
+(5052, '::1', '2014-04-04 09:22:15'),
+(5053, '::1', '2014-04-04 09:22:17'),
+(5054, '::1', '2014-04-04 09:22:26'),
+(5055, '::1', '2014-04-04 09:22:29'),
+(5056, '::1', '2014-04-04 09:23:02'),
+(5057, '::1', '2014-04-04 09:23:03'),
+(5058, '::1', '2014-04-04 09:23:03'),
+(5059, '::1', '2014-04-04 09:23:07'),
+(5060, '::1', '2014-04-04 09:23:15'),
+(5061, '::1', '2014-04-04 09:23:15'),
+(5062, '::1', '2014-04-04 09:23:27'),
+(5063, '::1', '2014-04-04 09:23:48'),
+(5064, '::1', '2014-04-04 09:23:50'),
+(5065, '::1', '2014-04-04 09:24:05'),
+(5066, '::1', '2014-04-04 09:24:07'),
+(5067, '::1', '2014-04-04 09:24:07'),
+(5068, '::1', '2014-04-04 09:24:09'),
+(5069, '::1', '2014-04-04 09:24:11'),
+(5070, '::1', '2014-04-04 09:24:11'),
+(5071, '::1', '2014-04-04 09:24:13'),
+(5072, '::1', '2014-04-04 09:24:17'),
+(5073, '::1', '2014-04-04 09:24:17'),
+(5074, '::1', '2014-04-04 09:24:19'),
+(5075, '::1', '2014-04-04 09:24:20'),
+(5076, '::1', '2014-04-04 09:24:25'),
+(5077, '::1', '2014-04-04 09:24:27'),
+(5078, '::1', '2014-04-04 09:24:28'),
+(5079, '::1', '2014-04-04 09:24:30'),
+(5080, '::1', '2014-04-04 09:24:32'),
+(5081, '::1', '2014-04-04 09:24:33'),
+(5082, '::1', '2014-04-04 09:24:35'),
+(5083, '::1', '2014-04-04 09:24:43'),
+(5084, '::1', '2014-04-04 09:24:44'),
+(5085, '::1', '2014-04-04 09:24:46'),
+(5086, '::1', '2014-04-04 09:24:52'),
+(5087, '::1', '2014-04-04 09:24:54'),
+(5088, '::1', '2014-04-04 09:24:54'),
+(5089, '::1', '2014-04-04 09:25:09'),
+(5090, '::1', '2014-04-04 09:25:10'),
+(5091, '::1', '2014-04-04 09:25:10'),
+(5092, '::1', '2014-04-04 09:25:11'),
+(5093, '::1', '2014-04-04 09:25:13'),
+(5094, '::1', '2014-04-04 09:25:17'),
+(5095, '::1', '2014-04-04 09:25:19'),
+(5096, '::1', '2014-04-04 09:25:20'),
+(5097, '::1', '2014-04-04 09:25:22'),
+(5098, '::1', '2014-04-04 09:25:24'),
+(5099, '::1', '2014-04-04 09:25:25'),
+(5100, '::1', '2014-04-04 09:25:27'),
+(5101, '::1', '2014-04-04 09:25:28'),
+(5102, '::1', '2014-04-04 09:25:29'),
+(5103, '::1', '2014-04-04 09:25:31'),
+(5104, '::1', '2014-04-04 09:25:33'),
+(5105, '::1', '2014-04-04 09:25:33'),
+(5106, '::1', '2014-04-04 09:25:35'),
+(5107, '::1', '2014-04-04 09:25:36'),
+(5108, '::1', '2014-04-04 09:27:31'),
+(5109, '::1', '2014-04-04 09:27:32'),
+(5110, '::1', '2014-04-04 09:27:32'),
+(5111, '::1', '2014-04-04 09:27:37'),
+(5112, '::1', '2014-04-04 09:28:18'),
+(5113, '::1', '2014-04-04 09:28:18'),
+(5114, '::1', '2014-04-04 09:31:20'),
+(5115, '::1', '2014-04-04 09:31:20'),
+(5116, '::1', '2014-04-04 09:33:25'),
+(5117, '::1', '2014-04-04 09:33:26'),
+(5118, '::1', '2014-04-04 09:34:37'),
+(5119, '::1', '2014-04-04 09:34:37'),
+(5120, '::1', '2014-04-04 09:35:46'),
+(5121, '::1', '2014-04-04 09:35:46'),
+(5122, '::1', '2014-04-04 09:37:01'),
+(5123, '::1', '2014-04-04 09:37:02'),
+(5124, '::1', '2014-04-04 09:37:07'),
+(5125, '::1', '2014-04-04 09:37:13'),
+(5126, '::1', '2014-04-04 09:37:13'),
+(5127, '::1', '2014-04-04 09:38:18'),
+(5128, '::1', '2014-04-04 09:38:21'),
+(5129, '::1', '2014-04-04 09:38:22'),
+(5130, '::1', '2014-04-04 09:38:49'),
+(5131, '::1', '2014-04-04 09:38:51'),
+(5132, '::1', '2014-04-04 09:39:11'),
+(5133, '::1', '2014-04-04 09:39:13'),
+(5134, '::1', '2014-04-04 09:39:21'),
+(5135, '::1', '2014-04-04 09:39:22'),
+(5136, '::1', '2014-04-04 09:39:33'),
+(5137, '::1', '2014-04-04 09:39:35'),
+(5138, '::1', '2014-04-04 09:39:36'),
+(5139, '::1', '2014-04-04 09:39:37'),
+(5140, '::1', '2014-04-04 09:39:38'),
+(5141, '::1', '2014-04-04 09:39:39'),
+(5142, '::1', '2014-04-04 09:40:26'),
+(5143, '::1', '2014-04-04 09:40:27'),
+(5144, '::1', '2014-04-04 09:40:33'),
+(5145, '::1', '2014-04-04 09:40:33'),
+(5146, '::1', '2014-04-04 09:40:33'),
+(5147, '::1', '2014-04-04 09:40:43'),
+(5148, '::1', '2014-04-04 09:40:45'),
+(5149, '::1', '2014-04-04 09:40:50'),
+(5150, '::1', '2014-04-04 09:40:58'),
+(5151, '::1', '2014-04-04 09:41:02'),
+(5152, '::1', '2014-04-04 09:41:41'),
+(5153, '::1', '2014-04-04 09:41:42'),
+(5154, '::1', '2014-04-04 09:42:36'),
+(5155, '::1', '2014-04-04 09:42:37'),
+(5156, '::1', '2014-04-04 09:42:58'),
+(5157, '::1', '2014-04-04 09:42:59'),
+(5158, '::1', '2014-04-04 09:43:12'),
+(5159, '::1', '2014-04-04 09:43:13'),
+(5160, '::1', '2014-04-04 09:43:15'),
+(5161, '::1', '2014-04-04 09:44:01'),
+(5162, '::1', '2014-04-04 09:44:02'),
+(5163, '::1', '2014-04-04 09:44:12'),
+(5164, '::1', '2014-04-04 09:44:14'),
+(5165, '::1', '2014-04-04 09:44:15'),
+(5166, '::1', '2014-04-04 09:44:17'),
+(5167, '::1', '2014-04-04 09:44:22'),
+(5168, '::1', '2014-04-04 09:44:22'),
+(5169, '::1', '2014-04-04 09:44:25'),
+(5170, '::1', '2014-04-04 09:44:28'),
+(5171, '::1', '2014-04-04 09:44:31'),
+(5172, '::1', '2014-04-04 09:44:33'),
+(5173, '::1', '2014-04-04 09:44:34'),
+(5174, '::1', '2014-04-04 09:44:36'),
+(5175, '::1', '2014-04-04 09:44:38'),
+(5176, '::1', '2014-04-04 09:44:40'),
+(5177, '::1', '2014-04-04 09:45:05'),
+(5178, '::1', '2014-04-04 09:46:48'),
+(5179, '::1', '2014-04-04 09:47:30'),
+(5180, '::1', '2014-04-04 09:48:59'),
+(5181, '::1', '2014-04-04 09:49:48'),
+(5182, '::1', '2014-04-04 09:50:25'),
+(5183, '::1', '2014-04-04 09:50:33'),
+(5184, '::1', '2014-04-04 09:50:47'),
+(5185, '::1', '2014-04-04 09:50:58'),
+(5186, '::1', '2014-04-04 09:51:41'),
+(5187, '::1', '2014-04-04 09:52:38'),
+(5188, '::1', '2014-04-04 09:53:09'),
+(5189, '::1', '2014-04-04 09:53:24'),
+(5190, '::1', '2014-04-04 09:53:27'),
+(5191, '::1', '2014-04-04 09:56:08'),
+(5192, '::1', '2014-04-04 09:56:22'),
+(5193, '::1', '2014-04-04 09:57:09'),
+(5194, '::1', '2014-04-04 09:57:18'),
+(5195, '::1', '2014-04-04 09:57:54'),
+(5196, '::1', '2014-04-04 09:58:00'),
+(5197, '::1', '2014-04-04 10:17:40'),
+(5198, '::1', '2014-04-04 10:20:59'),
+(5199, '::1', '2014-04-04 10:21:27'),
+(5200, '::1', '2014-04-04 10:21:30'),
+(5201, '::1', '2014-04-04 10:23:12'),
+(5202, '::1', '2014-04-04 10:23:46'),
+(5203, '::1', '2014-04-04 10:25:40'),
+(5204, '::1', '2014-04-04 10:26:21'),
+(5205, '::1', '2014-04-04 10:26:27'),
+(5206, '::1', '2014-04-04 10:26:39'),
+(5207, '::1', '2014-04-04 10:26:42'),
+(5208, '::1', '2014-04-04 10:27:10'),
+(5209, '::1', '2014-04-04 10:27:41'),
+(5210, '::1', '2014-04-04 10:28:33'),
+(5211, '::1', '2014-04-04 10:28:42'),
+(5212, '::1', '2014-04-04 10:28:46'),
+(5213, '::1', '2014-04-04 10:29:05'),
+(5214, '::1', '2014-04-04 10:29:12'),
+(5215, '::1', '2014-04-04 10:29:16'),
+(5216, '::1', '2014-04-04 10:33:27'),
+(5217, '::1', '2014-04-04 10:33:49'),
+(5218, '::1', '2014-04-04 10:34:24'),
+(5219, '::1', '2014-04-04 10:34:28'),
+(5220, '::1', '2014-04-04 10:34:41'),
+(5221, '::1', '2014-04-04 10:34:41'),
+(5222, '::1', '2014-04-04 10:37:37'),
+(5223, '::1', '2014-04-04 10:38:01'),
+(5224, '::1', '2014-04-04 10:38:27'),
+(5225, '::1', '2014-04-04 10:38:59'),
+(5226, '::1', '2014-04-04 10:38:59'),
+(5227, '::1', '2014-04-04 10:39:03'),
+(5228, '::1', '2014-04-04 10:39:24'),
+(5229, '::1', '2014-04-04 10:39:24'),
+(5230, '::1', '2014-04-04 10:40:00'),
+(5231, '::1', '2014-04-04 10:44:00'),
+(5232, '::1', '2014-04-04 10:45:58'),
+(5233, '::1', '2014-04-04 10:46:50'),
+(5234, '::1', '2014-04-04 10:50:00'),
+(5235, '::1', '2014-04-04 10:51:04'),
+(5236, '::1', '2014-04-04 10:51:30'),
+(5237, '::1', '2014-04-04 10:53:10'),
+(5238, '::1', '2014-04-04 10:53:42'),
+(5239, '::1', '2014-04-04 10:53:58'),
+(5240, '::1', '2014-04-04 10:54:17'),
+(5241, '::1', '2014-04-04 10:55:15'),
+(5242, '::1', '2014-04-04 10:55:32'),
+(5243, '::1', '2014-04-04 10:55:32'),
+(5244, '::1', '2014-04-04 10:55:46'),
+(5245, '::1', '2014-04-04 10:55:52'),
+(5246, '::1', '2014-04-04 10:55:52'),
+(5247, '::1', '2014-04-04 10:56:02'),
+(5248, '::1', '2014-04-04 10:56:02'),
+(5249, '::1', '2014-04-04 10:56:06'),
+(5250, '::1', '2014-04-04 10:56:09'),
+(5251, '::1', '2014-04-04 10:56:13'),
+(5252, '::1', '2014-04-04 10:56:13'),
+(5253, '::1', '2014-04-04 10:56:23'),
+(5254, '::1', '2014-04-04 10:56:26'),
+(5255, '::1', '2014-04-04 10:56:26'),
+(5256, '::1', '2014-04-04 10:56:29'),
+(5257, '::1', '2014-04-04 11:02:25'),
+(5258, '::1', '2014-04-04 11:02:32'),
+(5259, '::1', '2014-04-04 11:02:38'),
+(5260, '::1', '2014-04-04 11:03:03'),
+(5261, '::1', '2014-04-04 11:03:26'),
+(5262, '::1', '2014-04-04 11:03:26'),
+(5263, '::1', '2014-04-04 11:03:31'),
+(5264, '::1', '2014-04-04 11:04:03'),
+(5265, '::1', '2014-04-04 11:06:03'),
+(5266, '::1', '2014-04-04 11:06:55'),
+(5267, '::1', '2014-04-04 11:07:28'),
+(5268, '::1', '2014-04-04 11:07:41'),
+(5269, '::1', '2014-04-04 13:26:37');
 
 -- --------------------------------------------------------
 
@@ -10030,7 +10310,7 @@ CREATE TABLE IF NOT EXISTS `member` (
 --
 
 INSERT INTO `member` (`id`, `city_id`, `email`, `alias`, `first_name`, `last_name`, `passwd`, `passwd_reset_key`, `address`, `phone`, `postal_code`, `user_about`, `user_info`, `register_date`, `membership_date`, `verify_email`, `verify_email_key`, `verify_address`, `thumbnail`, `provider`, `is_active`) VALUES
-(2, 836, 'satu@mail.com', 'member', 'First', 'Last Name', '0fb539afefae0387d79c99c420e6f0a9', '', 'Address', 'Phone', 'Postal Cod', 'User About', 'User Info', '0000-00-00 00:00:00', '0000-00-00', 0, '', 0, '2014/03/24/20140324_131514_5142.jpg', 'facebook', 1);
+(2, 836, 'satu@mail.com', 'satu', 'First', 'Last Name', 'fe30fa79056939db8cbe99c8d601de74', '', 'Address', 'Phone', 'Postal Cod', 'User About', 'User Info', '0000-00-00 00:00:00', '0000-00-00', 0, '', 0, '2014/03/24/20140324_131514_5142.jpg', 'facebook', 1);
 
 -- --------------------------------------------------------
 
@@ -10046,11 +10326,6 @@ CREATE TABLE IF NOT EXISTS `page_static` (
   `post_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
---
--- Dumping data for table `page_static`
---
-
 
 -- --------------------------------------------------------
 
@@ -10110,7 +10385,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   `rate_per_night` int(11) NOT NULL,
   `post_status` varchar(50) NOT NULL COMMENT 'draft / request approve / approve / reject',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
 -- Dumping data for table `post`
@@ -10118,18 +10393,23 @@ CREATE TABLE IF NOT EXISTS `post` (
 
 INSERT INTO `post` (`id`, `city_id`, `member_id`, `category_sub_id`, `alias`, `title`, `address`, `desc_01`, `desc_02`, `desc_03`, `field_01`, `thumbnail`, `map`, `star`, `facility`, `review_rate`, `review_count`, `having_promo`, `rate_per_night`, `post_status`) VALUES
 (2, 169, 2, 16, 'Alias', '{"en":"Title English","ind":"Title Indonesia","mys":""}', 'Address', '{"en":"Description 1 English","ind":"Description 1 Indonesia","mys":""}', '{"en":"Description 2 English","ind":"Description 2 Indonesia","mys":""}', '{"en":"Description 3 English","ind":" Description 3 Indonesia","mys":""}', '{"en":"Field 1 English","ind":"Field 1 Indonesia","mys":""}', '2014/04/01/20140401_153758_7075.jpg', '{"en":"Map English 1<br>","ind":"Map Indonesia 2<br>","mys":""}', 0, '', 0, 0, 0, 10, 'draft'),
-(3, 1529, 2, 3, 'merbabu-guest-house', '{"en":"Merbabu Guest House","ind":"Merbabu Guest House","mys":"Merbabu Guest House"}', 'Jl. Merbabu 26 Malang 65112\nJawa Timur - Indonesia', '{"en":"Merbabu Guest House is located at the heart of Malang, at Merbabu Street behind Ijen Boulevard, the most prestigious and historical residential in Malang. English##001####001##It is walking distance to Ijen Cathedral and Ijen Boulevard, some wonderful western or eastern restaurants, and even to a traditional Indonesians market.","ind":"Merbabu Guest House is located at the heart of Malang, at Merbabu Street behind Ijen Boulevard, the most prestigious and historical residential in Malang. Indonesia##001####001##It is walking distance to Ijen Cathedral and Ijen Boulevard, some wonderful western or eastern restaurants, and even to a traditional Indonesians market.","mys":"Merbabu Guest House is located at the heart of Malang, at Merbabu Street behind Ijen Boulevard, the most prestigious and historical residential in Malang. Malaysia##001####001##It is walking distance to Ijen Cathedral and Ijen Boulevard, some wonderful western or eastern restaurants, and even to a traditional Indonesians market."}', '{"en":"Empty##001##Empty##001##Empty","ind":"Empty##001##Empty##001##Empty","mys":"Empty##001##Empty##001##Empty"}', '', '', '2014/03/28/20140328_101502_3745.jpg', '{"en":"Empty<br><font size=##002##5##002##>English</font> - <u><i><b>Bold</b></i></u> - <i>Italic </i>- <u>Underline</u><br>Empty","ind":"Empty<br><font size=##002##3##002##>Indonesia</font> - <u><i><b>Bold</b></i></u> - <i>Italic </i>- <u>Underline</u><br>Empty","mys":"Empty<br><font size=##002##1##002##>Malaysia</font> - <u><i><b>Bold</b></i></u> - <i>Italic </i>- <u>Underline</u><br>Empty"}', 1, ';3;8;9;14;15;7;', 0, 15, 1, 50, 'approve'),
-(4, 897, 2, 8, 'my-nature', '{"en":"Air Terjun Coban Rais","ind":"Air Terjun Coban Rais","mys":"Air Terjun Coban Rais"}', 'My Address', '{"en":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","ind":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","mys":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus."}', '{"en":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","ind":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","mys":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus."}', '{"en":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","ind":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","mys":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus."}', '{"en":"","ind":"","mys":""}', '2014/04/01/20140401_153459_9921.jpg', '{"en":"","ind":"","mys":""}', 0, '', 4, 0, 0, 80, 'draft'),
-(5, 3, 0, 13, 'american', '{"en":"My Title","ind":"Judul Saya","mys":""}', 'address', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '2014/04/01/20140401_153739_3212.jpg', '{"en":"","ind":"","mys":""}', 0, '', 0, 0, 0, 100, 'draft'),
-(6, 1529, 2, 2, 'hotel-tugu', '{"en":"Hotel Tugu Malang English","ind":"Hotel Tugu Malang Indonesia","mys":"Hotel Tugu Malang Malaysia"}', 'Hotel Tugu\nJl. Tugu no. 3\nMalang Indonesia', '{"en":"Malang, a city awarded as the loveliest town in South East Asia during the colonial times. Until this date it has remained one of Indonesia##003##s most beautiful cities, drifting along in an air of nostalgia. It is where old Dutch planters and civil servants used to retire to a life of ease and luxury, surrounded by hilly apple and tea plantations. It is also the departure point for an early morning trip to the magnificent Mt. Bromo.##001####001##Tugu Malang is located at the heart of the old town, looking out to the main monument of Indonesia##003##s struggle for independence and a beautiful lotus pond park.","ind":"Malang, a city awarded as the loveliest town in South East Asia during the colonial times. Until this date it has remained one of Indonesia##003##s most beautiful cities, drifting along in an air of nostalgia. It is where old Dutch planters and civil servants used to retire to a life of ease and luxury, surrounded by hilly apple and tea plantations. It is also the departure point for an early morning trip to the magnificent Mt. Bromo.##001####001##Tugu Malang is located at the heart of the old town, looking out to the main monument of Indonesia##003##s struggle for independence and a beautiful lotus pond park.","mys":"Malang, a city awarded as the loveliest town in South East Asia during the colonial times. Until this date it has remained one of Indonesia##003##s most beautiful cities, drifting along in an air of nostalgia. It is where old Dutch planters and civil servants used to retire to a life of ease and luxury, surrounded by hilly apple and tea plantations. It is also the departure point for an early morning trip to the magnificent Mt. Bromo.##001####001##Tugu Malang is located at the heart of the old town, looking out to the main monument of Indonesia##003##s struggle for independence and a beautiful lotus pond park."}', '{"en":"Tugu Malang houses a vast, priceless collection of antiques influenced by the Javanese Babah Peranakan (the hundreds-years-old mixed culture between the Chinese migrants in Java and the native Javanese). Tugu Malang is more than just a hotel; it has become most indigenous, most essential in experiencing the beautiful richness of the history of Java.","ind":"Tugu Malang houses a vast, priceless collection of antiques influenced by the Javanese Babah Peranakan (the hundreds-years-old mixed culture between the Chinese migrants in Java and the native Javanese). Tugu Malang is more than just a hotel; it has become most indigenous, most essential in experiencing the beautiful richness of the history of Java.","mys":"Tugu Malang houses a vast, priceless collection of antiques influenced by the Javanese Babah Peranakan (the hundreds-years-old mixed culture between the Chinese migrants in Java and the native Javanese). Tugu Malang is more than just a hotel; it has become most indigenous, most essential in experiencing the beautiful richness of the history of Java."}', '', '', '', '{"en":"","ind":"","mys":""}', 2, ';3;9;10;12;14;15;', 0, 0, 0, 150, 'approve'),
-(7, 1529, 0, 2, 'hotel-santika-malang', '{"en":"Hotel Santika Malang","ind":"Hotel Santika Malang","mys":"Hotel Santika Malang"}', 'Jalan Letjen Sutoyo No. 79\nMalang 65141 - INDONESIA\nPhone : (62-341) 405405\nFax : (62-341) 405500', '{"en":"Hotel Santika Premiere Malang is a refreshing interpretation of traditional Javanese design with a distinct modern twist. This smart four-star property is a comfortable base for corporate and leisure travellers whereby all needs are anticipated with exceptional facilities and services.","ind":"Hotel Santika Premiere Malang is a refreshing interpretation of traditional Javanese design with a distinct modern twist. This smart four-star property is a comfortable base for corporate and leisure travellers whereby all needs are anticipated with exceptional facilities and services.","mys":"Hotel Santika Premiere Malang is a refreshing interpretation of traditional Javanese design with a distinct modern twist. This smart four-star property is a comfortable base for corporate and leisure travellers whereby all needs are anticipated with exceptional facilities and services."}', '{"en":"Located in the centre of town, Hotel Santika Premiere Malang is just 15 minutes from the airport and is close to the commercial business district. Transportation can be easily arranged to visit local sites of interest or to just drive around and explore this agriculturally enriched area.","ind":"Located in the centre of town, Hotel Santika Premiere Malang is just 15 minutes from the airport and is close to the commercial business district. Transportation can be easily arranged to visit local sites of interest or to just drive around and explore this agriculturally enriched area.","mys":"Located in the centre of town, Hotel Santika Premiere Malang is just 15 minutes from the airport and is close to the commercial business district. Transportation can be easily arranged to visit local sites of interest or to just drive around and explore this agriculturally enriched area."}', '', '', '', '{"en":"<br>","ind":"<br>","mys":""}', 3, '', 0, 20, 1, 250, 'approve'),
-(8, 1529, 0, 3, 'Lovender Guest House', '{"en":"Lovender Guest House","ind":"Lovender Guest House","mys":"Lovender Guest House"}', 'Jl. Lamongan No.12\nMalang, 65125  ', '{"en":"Lovender Guets House is located in downtown Malang. It is an ideal place to stay for tourists, business people, and families visiting the beautiful city of Malang. Lovender was design to perform a modern-classical concept. The guesthouse is situated close to restaurants, library, army museum and very popular Ijen Street.","ind":"Lovender Guets House is located in downtown Malang. It is an ideal place to stay for tourists, business people, and families visiting the beautiful city of Malang. Lovender was design to perform a modern-classical concept. The guesthouse is situated close to restaurants, library, army museum and very popular Ijen Street.","mys":"Lovender Guets House is located in downtown Malang. It is an ideal place to stay for tourists, business people, and families visiting the beautiful city of Malang. Lovender was design to perform a modern-classical concept. The guesthouse is situated close to restaurants, library, army museum and very popular Ijen Street."}', '{"en":"There are 12 rooms, with modern facilities and amenities, available. One can choose from Standard Rooms, Deluxe Rooms, Junior Suites and a President Suite which are tastefully decorated furnished in a blend of classical and contemporary design. ","ind":"There are 12 rooms, with modern facilities and amenities, available. One can choose from Standard Rooms, Deluxe Rooms, Junior Suites and a President Suite which are tastefully decorated furnished in a blend of classical and contemporary design. ","mys":"There are 12 rooms, with modern facilities and amenities, available. One can choose from Standard Rooms, Deluxe Rooms, Junior Suites and a President Suite which are tastefully decorated furnished in a blend of classical and contemporary design. "}', '', '', '', '{"en":"<br>","ind":"<br>","mys":""}', 4, '', 0, 0, 0, 350, 'approve'),
-(9, 2755, 0, 5, 'hotel-bahagia', '{"en":"Hotel Bahagia","ind":"Hotel Bahagia","mys":"Hotel Bahagia"}', 'No. 68-78 Persiaran Bunga Raya , Langkawi Mall\nPhase II, Kuah, 07000 Langkawi\nKedah Darul Aman, Malaysia ', '{"en":"We proudly present to you our priced treasure, Hotel Bahagia. We have successfully attained our debut in 2009 and currently located at Kuah Town, within close proximity to local shopping centre such as Kamdar, local restaurants and Jetty.  The 130 rooms feature all the comfort of city-living. We are distinctive from our maroon colour large logo and red colour horizontal wall tiles. Our presence has humbly redefined the syline of Langkawi Mall amongst the rows of shophouses.","ind":"We proudly present to you our priced treasure, Hotel Bahagia. We have successfully attained our debut in 2009 and currently located at Kuah Town, within close proximity to local shopping centre such as Kamdar, local restaurants and Jetty.  The 130 rooms feature all the comfort of city-living. We are distinctive from our maroon colour large logo and red colour horizontal wall tiles. Our presence has humbly redefined the syline of Langkawi Mall amongst the rows of shophouses.","mys":"We proudly present to you our priced treasure, Hotel Bahagia. We have successfully attained our debut in 2009 and currently located at Kuah Town, within close proximity to local shopping centre such as Kamdar, local restaurants and Jetty.  The 130 rooms feature all the comfort of city-living. We are distinctive from our maroon colour large logo and red colour horizontal wall tiles. Our presence has humbly redefined the syline of Langkawi Mall amongst the rows of shophouses."}', '{"en":"Our hotel features trendy and chic living where the highlights of our warm room interiors have endowed a refreshing and sizzling change to world-renowned tropical retreat city.","ind":"Our hotel features trendy and chic living where the highlights of our warm room interiors have endowed a refreshing and sizzling change to world-renowned tropical retreat city.","mys":"Our hotel features trendy and chic living where the highlights of our warm room interiors have endowed a refreshing and sizzling change to world-renowned tropical retreat city."}', '', '', '', '{"en":"<br>","ind":"<br>","mys":""}', 5, ';7;', 0, 0, 0, 0, 'approve'),
-(10, 1529, 2, 5, 'hotel-camelia', '{"en":"Hotel Camelia","ind":"Hotel Camelia","mys":"Hotel Camelia"}', 'Camelia Hotel Malang\nJl. Dr. Cipto 24 Malang\nPhone. 0341- 323757', '{"en":"Hotel Camelia adalah hotel melati yang berada di jalan Dr. Cipto 24 di Malang .Dekat dengan Perkantoran, Perbankan, RSU Lavalette & Mardiwaluya, Stasiun Malang (Kota Baru), Monumen Tugu & Balai Kota Malang, Pasar Tradisional, Rumah Makan (Warung).","ind":"Hotel Camelia adalah hotel melati yang berada di jalan Dr. Cipto 24 di Malang .Dekat dengan Perkantoran, Perbankan, RSU Lavalette & Mardiwaluya, Stasiun Malang (Kota Baru), Monumen Tugu & Balai Kota Malang, Pasar Tradisional, Rumah Makan (Warung).","mys":"Hotel Camelia adalah hotel melati yang berada di jalan Dr. Cipto 24 di Malang .Dekat dengan Perkantoran, Perbankan, RSU Lavalette & Mardiwaluya, Stasiun Malang (Kota Baru), Monumen Tugu & Balai Kota Malang, Pasar Tradisional, Rumah Makan (Warung)."}', '{"en":"","ind":"","mys":""}', '', '', '', '{"en":"<br>","ind":"<br>","mys":""}', 0, '', 0, 0, 0, 0, 'approve'),
-(11, 1529, 0, 3, 'kertanegara-premium-guest-house', '{"en":"Kertanegara Premium Guest House","ind":"Kertanegara Premium Guest House","mys":"Kertanegara Premium Guest House"}', 'Jalan Semeru, Kepanjen\nMalang, Jawa Timur 65163\nIndonesia', '{"en":"Our accommodation is a new premium accommodation in Malang, Indonesia which was first launched in early October 2012. We offer a range of non-smoking only rooms at competitive prices. We pride ourselves in pioneering a direct online-booking system and instant credit-card processing via PayPal among an array of guest house establishments in Malang, Indonesia.","ind":"Our accommodation is a new premium accommodation in Malang, Indonesia which was first launched in early October 2012. We offer a range of non-smoking only rooms at competitive prices. We pride ourselves in pioneering a direct online-booking system and instant credit-card processing via PayPal among an array of guest house establishments in Malang, Indonesia.","mys":"Our accommodation is a new premium accommodation in Malang, Indonesia which was first launched in early October 2012. We offer a range of non-smoking only rooms at competitive prices. We pride ourselves in pioneering a direct online-booking system and instant credit-card processing via PayPal among an array of guest house establishments in Malang, Indonesia."}', '{"en":"Additionally, we pride ourselves in daring to be bold and enforce a smoke free environment inside the rooms and the common areas. Our accommodation also offer our guests the fastest dedicated high-speed broadband connection available in Malang region.","ind":"Additionally, we pride ourselves in daring to be bold and enforce a smoke free environment inside the rooms and the common areas. Our accommodation also offer our guests the fastest dedicated high-speed broadband connection available in Malang region.","mys":"Additionally, we pride ourselves in daring to be bold and enforce a smoke free environment inside the rooms and the common areas. Our accommodation also offer our guests the fastest dedicated high-speed broadband connection available in Malang region."}', '', '', '', '{"en":"<br>","ind":"<br>","mys":""}', 0, '', 0, 0, 0, 0, 'approve'),
-(12, 1529, 0, 4, 'villa-cemara-95', '{"en":"Villa Cemara 95","ind":"Villa Cemara 95","mys":"Villa Cemara 95"}', 'Batu Malang\nJawa timur Indonesia', '{"en":"Villa Cemara 95 BatuVilla Cemara 95 merupakan salah satu Villa yang terletak di kawasan Kota Batu tepatnya di Bukit Selecta Mas kav 92-95, Batu  Malang. Karena lokasi yang strategis yakni terletak di daerah pegunungan sekitar 1300m dari permukaan laut membuat Villa Cemara 95 dapat menjadi tempat penginapan exclusive untuk Anda yang ingin merasakan keindahan Kota Wisata Batu.","ind":"Villa Cemara 95 BatuVilla Cemara 95 merupakan salah satu Villa yang terletak di kawasan Kota Batu tepatnya di Bukit Selecta Mas kav 92-95, Batu  Malang. Karena lokasi yang strategis yakni terletak di daerah pegunungan sekitar 1300m dari permukaan laut membuat Villa Cemara 95 dapat menjadi tempat penginapan exclusive untuk Anda yang ingin merasakan keindahan Kota Wisata Batu.","mys":"Villa Cemara 95 BatuVilla Cemara 95 merupakan salah satu Villa yang terletak di kawasan Kota Batu tepatnya di Bukit Selecta Mas kav 92-95, Batu  Malang. Karena lokasi yang strategis yakni terletak di daerah pegunungan sekitar 1300m dari permukaan laut membuat Villa Cemara 95 dapat menjadi tempat penginapan exclusive untuk Anda yang ingin merasakan keindahan Kota Wisata Batu."}', '{"en":"Villa Cemara 95 Batu dilengkapi dengan berbagai fasilitas seperti 6 kamar tidur, 4 kamar mandi, full furniture, paviliun 2 lantai, kulkas, dispenser, mini bar,  TV & DVD, taman, kolam ikan hingga dapur beserta kompor dan alat-alat masak standard lainnya. Lokasi Villa Cemara 95 yang terbilang strategis menjadikan Villa Cemara  dekat dengan berbagai tempat wisata di Kota Wisata Batu antara lain seperti Air Terjun Coban Talun, Selecta (1,5 km), Wisata Petik Apel Junggo (200 m), Pemandian Air Panas Cangar dan objek wisata lainnya. Untuk harga sewanya sendiri dikenakan biaya berkisar Rp.2.200.000 / malam untuk hari biasa dan Rp.2.500.000 untuk musim libur / weekend.","ind":"Villa Cemara 95 Batu dilengkapi dengan berbagai fasilitas seperti 6 kamar tidur, 4 kamar mandi, full furniture, paviliun 2 lantai, kulkas, dispenser, mini bar,  TV & DVD, taman, kolam ikan hingga dapur beserta kompor dan alat-alat masak standard lainnya. Lokasi Villa Cemara 95 yang terbilang strategis menjadikan Villa Cemara  dekat dengan berbagai tempat wisata di Kota Wisata Batu antara lain seperti Air Terjun Coban Talun, Selecta (1,5 km), Wisata Petik Apel Junggo (200 m), Pemandian Air Panas Cangar dan objek wisata lainnya. Untuk harga sewanya sendiri dikenakan biaya berkisar Rp.2.200.000 / malam untuk hari biasa dan Rp.2.500.000 untuk musim libur / weekend.","mys":"Villa Cemara 95 Batu dilengkapi dengan berbagai fasilitas seperti 6 kamar tidur, 4 kamar mandi, full furniture, paviliun 2 lantai, kulkas, dispenser, mini bar,  TV & DVD, taman, kolam ikan hingga dapur beserta kompor dan alat-alat masak standard lainnya. Lokasi Villa Cemara 95 yang terbilang strategis menjadikan Villa Cemara  dekat dengan berbagai tempat wisata di Kota Wisata Batu antara lain seperti Air Terjun Coban Talun, Selecta (1,5 km), Wisata Petik Apel Junggo (200 m), Pemandian Air Panas Cangar dan objek wisata lainnya. Untuk harga sewanya sendiri dikenakan biaya berkisar Rp.2.200.000 / malam untuk hari biasa dan Rp.2.500.000 untuk musim libur / weekend."}', '', '', '', '{"en":"<br>","ind":"<br>","mys":""}', 0, ';7;', 0, 0, 0, 0, 'approve'),
-(13, 1529, 0, 4, 'ubud-hotel-villa-malang', '{"en":"Ubud Hotel & Villa Malang","ind":"Ubud Hotel & Villa Malang","mys":"Ubud Hotel & Villa Malang"}', 'Malang, Jawa Timur\nIndonesia', '{"en":"Villa Ubud HotelsBagi Anda yang kini igin merasakan sensasi Pualau Dewata, kini Anda tidak perlu jauh jauh berkunjung ke Bali dikarenakan di Kota malang sendiri sudah terdapat Hotel Ubut yang menyajikan pelayanan dan fasilitas ala daerah Ubud Pulau Dewata. Ubut Hotel & Villa ini menawarkan suasana alam dan pelayanan serupa dengan lokasi aslinya yakni Ubud Bali. Hotel Ubud Malang berlokasi di pusat Kota yang memudahkan para wisatawan mudah menemukannya. Karena lokasinya yang strategis, Hotel Ubud juga dekat dengan banyak lokasi penting seperti Bandara Abdurahman Saleh ( sekitar 20 menit ), Stasiun Kereta Api ( sekitar 5 menit ) dan pusat perbelanjaan.","ind":"Villa Ubud HotelsBagi Anda yang kini igin merasakan sensasi Pualau Dewata, kini Anda tidak perlu jauh jauh berkunjung ke Bali dikarenakan di Kota malang sendiri sudah terdapat Hotel Ubut yang menyajikan pelayanan dan fasilitas ala daerah Ubud Pulau Dewata. Ubut Hotel & Villa ini menawarkan suasana alam dan pelayanan serupa dengan lokasi aslinya yakni Ubud Bali. Hotel Ubud Malang berlokasi di pusat Kota yang memudahkan para wisatawan mudah menemukannya. Karena lokasinya yang strategis, Hotel Ubud juga dekat dengan banyak lokasi penting seperti Bandara Abdurahman Saleh ( sekitar 20 menit ), Stasiun Kereta Api ( sekitar 5 menit ) dan pusat perbelanjaan.","mys":"Villa Ubud HotelsBagi Anda yang kini igin merasakan sensasi Pualau Dewata, kini Anda tidak perlu jauh jauh berkunjung ke Bali dikarenakan di Kota malang sendiri sudah terdapat Hotel Ubut yang menyajikan pelayanan dan fasilitas ala daerah Ubud Pulau Dewata. Ubut Hotel & Villa ini menawarkan suasana alam dan pelayanan serupa dengan lokasi aslinya yakni Ubud Bali. Hotel Ubud Malang berlokasi di pusat Kota yang memudahkan para wisatawan mudah menemukannya. Karena lokasinya yang strategis, Hotel Ubud juga dekat dengan banyak lokasi penting seperti Bandara Abdurahman Saleh ( sekitar 20 menit ), Stasiun Kereta Api ( sekitar 5 menit ) dan pusat perbelanjaan."}', '{"en":"Meskipun lokasinya yang berada dipusat Kota Malang, keindahan dan panorama khas dari daerah Ubud Bali tidak pudar di Hotel yang satu ini. Dengan dikelilingi pepohonan yang rindang dan ditemani gemricik air sungai menambah suasana tenang di Hotel yang membawa budaya Bali ini. Selain keindahan luar Hotel yang eksotis, Ubud Hotel & Villa juga memberikan fasilitas dan layanan extra untuk memanjakan Anda ketika berada di area Hotel. Anda bisa menikmati berbagai fasilitas antara lain seperti belasan pondok Bali & suites, 12 River View Room, air panas dan air dingin, Tv Kabel, Free Wi-Fi, Kolam Renang, Balinese Traditional Spa, 9 Pool View Room completed with AC dan Bale Agung Restaurant yang menyajikan beragam menu khas Bali.","ind":"Meskipun lokasinya yang berada dipusat Kota Malang, keindahan dan panorama khas dari daerah Ubud Bali tidak pudar di Hotel yang satu ini. Dengan dikelilingi pepohonan yang rindang dan ditemani gemricik air sungai menambah suasana tenang di Hotel yang membawa budaya Bali ini. Selain keindahan luar Hotel yang eksotis, Ubud Hotel & Villa juga memberikan fasilitas dan layanan extra untuk memanjakan Anda ketika berada di area Hotel. Anda bisa menikmati berbagai fasilitas antara lain seperti belasan pondok Bali & suites, 12 River View Room, air panas dan air dingin, Tv Kabel, Free Wi-Fi, Kolam Renang, Balinese Traditional Spa, 9 Pool View Room completed with AC dan Bale Agung Restaurant yang menyajikan beragam menu khas Bali.","mys":"Meskipun lokasinya yang berada dipusat Kota Malang, keindahan dan panorama khas dari daerah Ubud Bali tidak pudar di Hotel yang satu ini. Dengan dikelilingi pepohonan yang rindang dan ditemani gemricik air sungai menambah suasana tenang di Hotel yang membawa budaya Bali ini. Selain keindahan luar Hotel yang eksotis, Ubud Hotel & Villa juga memberikan fasilitas dan layanan extra untuk memanjakan Anda ketika berada di area Hotel. Anda bisa menikmati berbagai fasilitas antara lain seperti belasan pondok Bali & suites, 12 River View Room, air panas dan air dingin, Tv Kabel, Free Wi-Fi, Kolam Renang, Balinese Traditional Spa, 9 Pool View Room completed with AC dan Bale Agung Restaurant yang menyajikan beragam menu khas Bali."}', '', '', '', '{"en":"<br>","ind":"<br>","mys":""}', 0, ';14;', 0, 0, 0, 0, 'approve'),
-(14, 1529, 0, 4, 'rumah-embun-pagi', '{"en":"Rumah Embun Pagi","ind":"Rumah Embun Pagi","mys":"Rumah Embun Pagi"}', 'Jl. Apel 1 / AA-178 Villa Panderman Hill\nBatu Malang\nJawa Timur Indonesia', '{"en":"Rumah Embun Pagi adalah villa keluarga di kota Batu Malang yang didisain dengan inspirasi memberikan layanan dengan cinta untuk liburan yang tak terlupakan bagi seluruh keluarga Anda. Hal tersebut kami wujudkan dengan memberikan layanan terbaik, disain terbaik dan pemilihan LOKASI Terbaik, dan tentu saja HARGA terbaik dengan FASILITAS Terbaik.","ind":"Rumah Embun Pagi adalah villa keluarga di kota Batu Malang yang didisain dengan inspirasi memberikan layanan dengan cinta untuk liburan yang tak terlupakan bagi seluruh keluarga Anda. Hal tersebut kami wujudkan dengan memberikan layanan terbaik, disain terbaik dan pemilihan LOKASI Terbaik, dan tentu saja HARGA terbaik dengan FASILITAS Terbaik.","mys":"Rumah Embun Pagi adalah villa keluarga di kota Batu Malang yang didisain dengan inspirasi memberikan layanan dengan cinta untuk liburan yang tak terlupakan bagi seluruh keluarga Anda. Hal tersebut kami wujudkan dengan memberikan layanan terbaik, disain terbaik dan pemilihan LOKASI Terbaik, dan tentu saja HARGA terbaik dengan FASILITAS Terbaik."}', '{"en":"","ind":"","mys":""}', '', '', '', '{"en":"<br>","ind":"<br>","mys":""}', 0, '', 0, 0, 0, 0, 'approve');
+(3, 1529, 2, 3, 'merbabu-guest-house', '{"en":"Merbabu Guest House","ind":"Merbabu Guest House","mys":"Merbabu Guest House"}', 'Jl. Merbabu 26 Malang 65112\nJawa Timur - Indonesia', '{"en":"Merbabu Guest House is located at the heart of Malang, at Merbabu Street behind Ijen Boulevard, the most prestigious and historical residential in Malang. English##001####001##It is walking distance to Ijen Cathedral and Ijen Boulevard, some wonderful western or eastern restaurants, and even to a traditional Indonesians market.","ind":"Merbabu Guest House is located at the heart of Malang, at Merbabu Street behind Ijen Boulevard, the most prestigious and historical residential in Malang. Indonesia##001####001##It is walking distance to Ijen Cathedral and Ijen Boulevard, some wonderful western or eastern restaurants, and even to a traditional Indonesians market.","mys":"Merbabu Guest House is located at the heart of Malang, at Merbabu Street behind Ijen Boulevard, the most prestigious and historical residential in Malang. Malaysia##001####001##It is walking distance to Ijen Cathedral and Ijen Boulevard, some wonderful western or eastern restaurants, and even to a traditional Indonesians market."}', '{"en":"Empty##001##Empty##001##Empty","ind":"Empty##001##Empty##001##Empty","mys":"Empty##001##Empty##001##Empty"}', '', '', '2014/04/04/20140404_085811_2159.jpg', '{"en":"Empty<br><font size=##002##5##002##>English</font> - <u><i><b>Bold</b></i></u> - <i>Italic </i>- <u>Underline</u><br>Empty","ind":"Empty<br><font size=##002##3##002##>Indonesia</font> - <u><i><b>Bold</b></i></u> - <i>Italic </i>- <u>Underline</u><br>Empty","mys":"Empty<br><font size=##002##1##002##>Malaysia</font> - <u><i><b>Bold</b></i></u> - <i>Italic </i>- <u>Underline</u><br>Empty"}', 1, ';3;8;9;14;15;7;', 0, 15, 1, 50, 'approve'),
+(4, 897, 2, 8, 'my-nature', '{"en":"Air Terjun Coban Rais","ind":"Air Terjun Coban Rais","mys":"Air Terjun Coban Rais"}', 'My Address', '{"en":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","ind":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","mys":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus."}', '{"en":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","ind":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","mys":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus."}', '{"en":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","ind":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","mys":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus."}', '{"en":"","ind":"","mys":""}', '2014/04/04/20140404_092814_4375.jpg', '{"en":"","ind":"","mys":""}', 0, '', 4, 0, 0, 80, 'approve'),
+(5, 3, 2, 13, 'american', '{"en":"My Title","ind":"Judul Saya","mys":""}', 'address', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '2014/04/01/20140401_153739_3212.jpg', '{"en":"","ind":"","mys":""}', 0, '', 0, 0, 0, 100, 'draft'),
+(6, 1529, 2, 2, 'hotel-tugu', '{"en":"Hotel Tugu Malang","ind":"Hotel Tugu Malang","mys":"Hotel Tugu Malang"}', 'Hotel Tugu\nJl. Tugu no. 3\nMalang Indonesia', '{"en":"Malang, a city awarded as the loveliest town in South East Asia during the colonial times. Until this date it has remained one of Indonesia##003##s most beautiful cities, drifting along in an air of nostalgia. It is where old Dutch planters and civil servants used to retire to a life of ease and luxury, surrounded by hilly apple and tea plantations. It is also the departure point for an early morning trip to the magnificent Mt. Bromo.##001####001##Tugu Malang is located at the heart of the old town, looking out to the main monument of Indonesia##003##s struggle for independence and a beautiful lotus pond park.","ind":"Malang, a city awarded as the loveliest town in South East Asia during the colonial times. Until this date it has remained one of Indonesia##003##s most beautiful cities, drifting along in an air of nostalgia. It is where old Dutch planters and civil servants used to retire to a life of ease and luxury, surrounded by hilly apple and tea plantations. It is also the departure point for an early morning trip to the magnificent Mt. Bromo.##001####001##Tugu Malang is located at the heart of the old town, looking out to the main monument of Indonesia##003##s struggle for independence and a beautiful lotus pond park.","mys":"Malang, a city awarded as the loveliest town in South East Asia during the colonial times. Until this date it has remained one of Indonesia##003##s most beautiful cities, drifting along in an air of nostalgia. It is where old Dutch planters and civil servants used to retire to a life of ease and luxury, surrounded by hilly apple and tea plantations. It is also the departure point for an early morning trip to the magnificent Mt. Bromo.##001####001##Tugu Malang is located at the heart of the old town, looking out to the main monument of Indonesia##003##s struggle for independence and a beautiful lotus pond park."}', '{"en":"Tugu Malang houses a vast, priceless collection of antiques influenced by the Javanese Babah Peranakan (the hundreds-years-old mixed culture between the Chinese migrants in Java and the native Javanese). Tugu Malang is more than just a hotel; it has become most indigenous, most essential in experiencing the beautiful richness of the history of Java.","ind":"Tugu Malang houses a vast, priceless collection of antiques influenced by the Javanese Babah Peranakan (the hundreds-years-old mixed culture between the Chinese migrants in Java and the native Javanese). Tugu Malang is more than just a hotel; it has become most indigenous, most essential in experiencing the beautiful richness of the history of Java.","mys":"Tugu Malang houses a vast, priceless collection of antiques influenced by the Javanese Babah Peranakan (the hundreds-years-old mixed culture between the Chinese migrants in Java and the native Javanese). Tugu Malang is more than just a hotel; it has become most indigenous, most essential in experiencing the beautiful richness of the history of Java."}', '', '', '2014/04/04/20140404_085857_9088.jpg', '{"en":"","ind":"","mys":""}', 2, ';3;9;10;12;14;15;', 0, 0, 0, 150, 'approve'),
+(7, 1529, 2, 2, 'hotel-santika-malang', '{"en":"Hotel Santika Malang","ind":"Hotel Santika Malang","mys":"Hotel Santika Malang"}', 'Jalan Letjen Sutoyo No. 79\nMalang 65141 - INDONESIA\nPhone : (62-341) 405405\nFax : (62-341) 405500', '{"en":"Hotel Santika Premiere Malang is a refreshing interpretation of traditional Javanese design with a distinct modern twist. This smart four-star property is a comfortable base for corporate and leisure travellers whereby all needs are anticipated with exceptional facilities and services.","ind":"Hotel Santika Premiere Malang is a refreshing interpretation of traditional Javanese design with a distinct modern twist. This smart four-star property is a comfortable base for corporate and leisure travellers whereby all needs are anticipated with exceptional facilities and services.","mys":"Hotel Santika Premiere Malang is a refreshing interpretation of traditional Javanese design with a distinct modern twist. This smart four-star property is a comfortable base for corporate and leisure travellers whereby all needs are anticipated with exceptional facilities and services."}', '{"en":"Located in the centre of town, Hotel Santika Premiere Malang is just 15 minutes from the airport and is close to the commercial business district. Transportation can be easily arranged to visit local sites of interest or to just drive around and explore this agriculturally enriched area.","ind":"Located in the centre of town, Hotel Santika Premiere Malang is just 15 minutes from the airport and is close to the commercial business district. Transportation can be easily arranged to visit local sites of interest or to just drive around and explore this agriculturally enriched area.","mys":"Located in the centre of town, Hotel Santika Premiere Malang is just 15 minutes from the airport and is close to the commercial business district. Transportation can be easily arranged to visit local sites of interest or to just drive around and explore this agriculturally enriched area."}', '', '', '2014/04/04/20140404_085948_9087.jpg', '{"en":"<br>","ind":"<br>","mys":""}', 3, '', 0, 20, 1, 250, 'approve'),
+(8, 1529, 2, 3, 'Lovender Guest House', '{"en":"Lovender Guest House","ind":"Lovender Guest House","mys":"Lovender Guest House"}', 'Jl. Lamongan No.12\nMalang, 65125  ', '{"en":"Lovender Guets House is located in downtown Malang. It is an ideal place to stay for tourists, business people, and families visiting the beautiful city of Malang. Lovender was design to perform a modern-classical concept. The guesthouse is situated close to restaurants, library, army museum and very popular Ijen Street.","ind":"Lovender Guets House is located in downtown Malang. It is an ideal place to stay for tourists, business people, and families visiting the beautiful city of Malang. Lovender was design to perform a modern-classical concept. The guesthouse is situated close to restaurants, library, army museum and very popular Ijen Street.","mys":"Lovender Guets House is located in downtown Malang. It is an ideal place to stay for tourists, business people, and families visiting the beautiful city of Malang. Lovender was design to perform a modern-classical concept. The guesthouse is situated close to restaurants, library, army museum and very popular Ijen Street."}', '{"en":"There are 12 rooms, with modern facilities and amenities, available. One can choose from Standard Rooms, Deluxe Rooms, Junior Suites and a President Suite which are tastefully decorated furnished in a blend of classical and contemporary design. ","ind":"There are 12 rooms, with modern facilities and amenities, available. One can choose from Standard Rooms, Deluxe Rooms, Junior Suites and a President Suite which are tastefully decorated furnished in a blend of classical and contemporary design. ","mys":"There are 12 rooms, with modern facilities and amenities, available. One can choose from Standard Rooms, Deluxe Rooms, Junior Suites and a President Suite which are tastefully decorated furnished in a blend of classical and contemporary design. "}', '', '', '2014/04/04/20140404_090015_5807.jpg', '{"en":"<br>","ind":"<br>","mys":""}', 4, '', 0, 0, 0, 350, 'approve'),
+(9, 2755, 2, 5, 'hotel-bahagia', '{"en":"Hotel Bahagia","ind":"Hotel Bahagia","mys":"Hotel Bahagia"}', 'No. 68-78 Persiaran Bunga Raya , Langkawi Mall\nPhase II, Kuah, 07000 Langkawi\nKedah Darul Aman, Malaysia ', '{"en":"We proudly present to you our priced treasure, Hotel Bahagia. We have successfully attained our debut in 2009 and currently located at Kuah Town, within close proximity to local shopping centre such as Kamdar, local restaurants and Jetty.  The 130 rooms feature all the comfort of city-living. We are distinctive from our maroon colour large logo and red colour horizontal wall tiles. Our presence has humbly redefined the syline of Langkawi Mall amongst the rows of shophouses.","ind":"We proudly present to you our priced treasure, Hotel Bahagia. We have successfully attained our debut in 2009 and currently located at Kuah Town, within close proximity to local shopping centre such as Kamdar, local restaurants and Jetty.  The 130 rooms feature all the comfort of city-living. We are distinctive from our maroon colour large logo and red colour horizontal wall tiles. Our presence has humbly redefined the syline of Langkawi Mall amongst the rows of shophouses.","mys":"We proudly present to you our priced treasure, Hotel Bahagia. We have successfully attained our debut in 2009 and currently located at Kuah Town, within close proximity to local shopping centre such as Kamdar, local restaurants and Jetty.  The 130 rooms feature all the comfort of city-living. We are distinctive from our maroon colour large logo and red colour horizontal wall tiles. Our presence has humbly redefined the syline of Langkawi Mall amongst the rows of shophouses."}', '{"en":"Our hotel features trendy and chic living where the highlights of our warm room interiors have endowed a refreshing and sizzling change to world-renowned tropical retreat city.","ind":"Our hotel features trendy and chic living where the highlights of our warm room interiors have endowed a refreshing and sizzling change to world-renowned tropical retreat city.","mys":"Our hotel features trendy and chic living where the highlights of our warm room interiors have endowed a refreshing and sizzling change to world-renowned tropical retreat city."}', '', '', '2014/04/04/20140404_090049_1002.jpg', '{"en":"<br>","ind":"<br>","mys":""}', 5, ';7;', 0, 0, 0, 0, 'approve'),
+(10, 1529, 2, 5, 'hotel-camelia', '{"en":"Hotel Camelia","ind":"Hotel Camelia","mys":"Hotel Camelia"}', 'Camelia Hotel Malang\nJl. Dr. Cipto 24 Malang\nPhone. 0341- 323757', '{"en":"Hotel Camelia adalah hotel melati yang berada di jalan Dr. Cipto 24 di Malang .Dekat dengan Perkantoran, Perbankan, RSU Lavalette & Mardiwaluya, Stasiun Malang (Kota Baru), Monumen Tugu & Balai Kota Malang, Pasar Tradisional, Rumah Makan (Warung).","ind":"Hotel Camelia adalah hotel melati yang berada di jalan Dr. Cipto 24 di Malang .Dekat dengan Perkantoran, Perbankan, RSU Lavalette & Mardiwaluya, Stasiun Malang (Kota Baru), Monumen Tugu & Balai Kota Malang, Pasar Tradisional, Rumah Makan (Warung).","mys":"Hotel Camelia adalah hotel melati yang berada di jalan Dr. Cipto 24 di Malang .Dekat dengan Perkantoran, Perbankan, RSU Lavalette & Mardiwaluya, Stasiun Malang (Kota Baru), Monumen Tugu & Balai Kota Malang, Pasar Tradisional, Rumah Makan (Warung)."}', '{"en":"","ind":"","mys":""}', '', '', '2014/04/04/20140404_090115_8691.jpg', '{"en":"<br>","ind":"<br>","mys":""}', 0, '', 0, 0, 0, 0, 'approve'),
+(11, 1529, 2, 3, 'kertanegara-premium-guest-house', '{"en":"Kertanegara Premium Guest House","ind":"Kertanegara Premium Guest House","mys":"Kertanegara Premium Guest House"}', 'Jalan Semeru, Kepanjen\nMalang, Jawa Timur 65163\nIndonesia', '{"en":"Our accommodation is a new premium accommodation in Malang, Indonesia which was first launched in early October 2012. We offer a range of non-smoking only rooms at competitive prices. We pride ourselves in pioneering a direct online-booking system and instant credit-card processing via PayPal among an array of guest house establishments in Malang, Indonesia.","ind":"Our accommodation is a new premium accommodation in Malang, Indonesia which was first launched in early October 2012. We offer a range of non-smoking only rooms at competitive prices. We pride ourselves in pioneering a direct online-booking system and instant credit-card processing via PayPal among an array of guest house establishments in Malang, Indonesia.","mys":"Our accommodation is a new premium accommodation in Malang, Indonesia which was first launched in early October 2012. We offer a range of non-smoking only rooms at competitive prices. We pride ourselves in pioneering a direct online-booking system and instant credit-card processing via PayPal among an array of guest house establishments in Malang, Indonesia."}', '{"en":"Additionally, we pride ourselves in daring to be bold and enforce a smoke free environment inside the rooms and the common areas. Our accommodation also offer our guests the fastest dedicated high-speed broadband connection available in Malang region.","ind":"Additionally, we pride ourselves in daring to be bold and enforce a smoke free environment inside the rooms and the common areas. Our accommodation also offer our guests the fastest dedicated high-speed broadband connection available in Malang region.","mys":"Additionally, we pride ourselves in daring to be bold and enforce a smoke free environment inside the rooms and the common areas. Our accommodation also offer our guests the fastest dedicated high-speed broadband connection available in Malang region."}', '', '', '2014/04/04/20140404_090155_7774.jpg', '{"en":"<br>","ind":"<br>","mys":""}', 0, '', 0, 0, 0, 0, 'approve'),
+(12, 1529, 2, 4, 'villa-cemara-95', '{"en":"Villa Cemara 95","ind":"Villa Cemara 95","mys":"Villa Cemara 95"}', 'Batu Malang\nJawa timur Indonesia', '{"en":"Villa Cemara 95 BatuVilla Cemara 95 merupakan salah satu Villa yang terletak di kawasan Kota Batu tepatnya di Bukit Selecta Mas kav 92-95, Batu  Malang. Karena lokasi yang strategis yakni terletak di daerah pegunungan sekitar 1300m dari permukaan laut membuat Villa Cemara 95 dapat menjadi tempat penginapan exclusive untuk Anda yang ingin merasakan keindahan Kota Wisata Batu.","ind":"Villa Cemara 95 BatuVilla Cemara 95 merupakan salah satu Villa yang terletak di kawasan Kota Batu tepatnya di Bukit Selecta Mas kav 92-95, Batu  Malang. Karena lokasi yang strategis yakni terletak di daerah pegunungan sekitar 1300m dari permukaan laut membuat Villa Cemara 95 dapat menjadi tempat penginapan exclusive untuk Anda yang ingin merasakan keindahan Kota Wisata Batu.","mys":"Villa Cemara 95 BatuVilla Cemara 95 merupakan salah satu Villa yang terletak di kawasan Kota Batu tepatnya di Bukit Selecta Mas kav 92-95, Batu  Malang. Karena lokasi yang strategis yakni terletak di daerah pegunungan sekitar 1300m dari permukaan laut membuat Villa Cemara 95 dapat menjadi tempat penginapan exclusive untuk Anda yang ingin merasakan keindahan Kota Wisata Batu."}', '{"en":"Villa Cemara 95 Batu dilengkapi dengan berbagai fasilitas seperti 6 kamar tidur, 4 kamar mandi, full furniture, paviliun 2 lantai, kulkas, dispenser, mini bar,  TV & DVD, taman, kolam ikan hingga dapur beserta kompor dan alat-alat masak standard lainnya. Lokasi Villa Cemara 95 yang terbilang strategis menjadikan Villa Cemara  dekat dengan berbagai tempat wisata di Kota Wisata Batu antara lain seperti Air Terjun Coban Talun, Selecta (1,5 km), Wisata Petik Apel Junggo (200 m), Pemandian Air Panas Cangar dan objek wisata lainnya. Untuk harga sewanya sendiri dikenakan biaya berkisar Rp.2.200.000 / malam untuk hari biasa dan Rp.2.500.000 untuk musim libur / weekend.","ind":"Villa Cemara 95 Batu dilengkapi dengan berbagai fasilitas seperti 6 kamar tidur, 4 kamar mandi, full furniture, paviliun 2 lantai, kulkas, dispenser, mini bar,  TV & DVD, taman, kolam ikan hingga dapur beserta kompor dan alat-alat masak standard lainnya. Lokasi Villa Cemara 95 yang terbilang strategis menjadikan Villa Cemara  dekat dengan berbagai tempat wisata di Kota Wisata Batu antara lain seperti Air Terjun Coban Talun, Selecta (1,5 km), Wisata Petik Apel Junggo (200 m), Pemandian Air Panas Cangar dan objek wisata lainnya. Untuk harga sewanya sendiri dikenakan biaya berkisar Rp.2.200.000 / malam untuk hari biasa dan Rp.2.500.000 untuk musim libur / weekend.","mys":"Villa Cemara 95 Batu dilengkapi dengan berbagai fasilitas seperti 6 kamar tidur, 4 kamar mandi, full furniture, paviliun 2 lantai, kulkas, dispenser, mini bar,  TV & DVD, taman, kolam ikan hingga dapur beserta kompor dan alat-alat masak standard lainnya. Lokasi Villa Cemara 95 yang terbilang strategis menjadikan Villa Cemara  dekat dengan berbagai tempat wisata di Kota Wisata Batu antara lain seperti Air Terjun Coban Talun, Selecta (1,5 km), Wisata Petik Apel Junggo (200 m), Pemandian Air Panas Cangar dan objek wisata lainnya. Untuk harga sewanya sendiri dikenakan biaya berkisar Rp.2.200.000 / malam untuk hari biasa dan Rp.2.500.000 untuk musim libur / weekend."}', '', '', '2014/04/04/20140404_090259_3529.jpg', '{"en":"<br>","ind":"<br>","mys":""}', 0, ';7;', 0, 0, 0, 0, 'approve'),
+(13, 1529, 2, 4, 'ubud-hotel-villa-malang', '{"en":"Ubud Hotel & Villa Malang","ind":"Ubud Hotel & Villa Malang","mys":"Ubud Hotel & Villa Malang"}', 'Malang, Jawa Timur\nIndonesia', '{"en":"Villa Ubud HotelsBagi Anda yang kini igin merasakan sensasi Pualau Dewata, kini Anda tidak perlu jauh jauh berkunjung ke Bali dikarenakan di Kota malang sendiri sudah terdapat Hotel Ubut yang menyajikan pelayanan dan fasilitas ala daerah Ubud Pulau Dewata. Ubut Hotel & Villa ini menawarkan suasana alam dan pelayanan serupa dengan lokasi aslinya yakni Ubud Bali. Hotel Ubud Malang berlokasi di pusat Kota yang memudahkan para wisatawan mudah menemukannya. Karena lokasinya yang strategis, Hotel Ubud juga dekat dengan banyak lokasi penting seperti Bandara Abdurahman Saleh ( sekitar 20 menit ), Stasiun Kereta Api ( sekitar 5 menit ) dan pusat perbelanjaan.","ind":"Villa Ubud HotelsBagi Anda yang kini igin merasakan sensasi Pualau Dewata, kini Anda tidak perlu jauh jauh berkunjung ke Bali dikarenakan di Kota malang sendiri sudah terdapat Hotel Ubut yang menyajikan pelayanan dan fasilitas ala daerah Ubud Pulau Dewata. Ubut Hotel & Villa ini menawarkan suasana alam dan pelayanan serupa dengan lokasi aslinya yakni Ubud Bali. Hotel Ubud Malang berlokasi di pusat Kota yang memudahkan para wisatawan mudah menemukannya. Karena lokasinya yang strategis, Hotel Ubud juga dekat dengan banyak lokasi penting seperti Bandara Abdurahman Saleh ( sekitar 20 menit ), Stasiun Kereta Api ( sekitar 5 menit ) dan pusat perbelanjaan.","mys":"Villa Ubud HotelsBagi Anda yang kini igin merasakan sensasi Pualau Dewata, kini Anda tidak perlu jauh jauh berkunjung ke Bali dikarenakan di Kota malang sendiri sudah terdapat Hotel Ubut yang menyajikan pelayanan dan fasilitas ala daerah Ubud Pulau Dewata. Ubut Hotel & Villa ini menawarkan suasana alam dan pelayanan serupa dengan lokasi aslinya yakni Ubud Bali. Hotel Ubud Malang berlokasi di pusat Kota yang memudahkan para wisatawan mudah menemukannya. Karena lokasinya yang strategis, Hotel Ubud juga dekat dengan banyak lokasi penting seperti Bandara Abdurahman Saleh ( sekitar 20 menit ), Stasiun Kereta Api ( sekitar 5 menit ) dan pusat perbelanjaan."}', '{"en":"Meskipun lokasinya yang berada dipusat Kota Malang, keindahan dan panorama khas dari daerah Ubud Bali tidak pudar di Hotel yang satu ini. Dengan dikelilingi pepohonan yang rindang dan ditemani gemricik air sungai menambah suasana tenang di Hotel yang membawa budaya Bali ini. Selain keindahan luar Hotel yang eksotis, Ubud Hotel & Villa juga memberikan fasilitas dan layanan extra untuk memanjakan Anda ketika berada di area Hotel. Anda bisa menikmati berbagai fasilitas antara lain seperti belasan pondok Bali & suites, 12 River View Room, air panas dan air dingin, Tv Kabel, Free Wi-Fi, Kolam Renang, Balinese Traditional Spa, 9 Pool View Room completed with AC dan Bale Agung Restaurant yang menyajikan beragam menu khas Bali.","ind":"Meskipun lokasinya yang berada dipusat Kota Malang, keindahan dan panorama khas dari daerah Ubud Bali tidak pudar di Hotel yang satu ini. Dengan dikelilingi pepohonan yang rindang dan ditemani gemricik air sungai menambah suasana tenang di Hotel yang membawa budaya Bali ini. Selain keindahan luar Hotel yang eksotis, Ubud Hotel & Villa juga memberikan fasilitas dan layanan extra untuk memanjakan Anda ketika berada di area Hotel. Anda bisa menikmati berbagai fasilitas antara lain seperti belasan pondok Bali & suites, 12 River View Room, air panas dan air dingin, Tv Kabel, Free Wi-Fi, Kolam Renang, Balinese Traditional Spa, 9 Pool View Room completed with AC dan Bale Agung Restaurant yang menyajikan beragam menu khas Bali.","mys":"Meskipun lokasinya yang berada dipusat Kota Malang, keindahan dan panorama khas dari daerah Ubud Bali tidak pudar di Hotel yang satu ini. Dengan dikelilingi pepohonan yang rindang dan ditemani gemricik air sungai menambah suasana tenang di Hotel yang membawa budaya Bali ini. Selain keindahan luar Hotel yang eksotis, Ubud Hotel & Villa juga memberikan fasilitas dan layanan extra untuk memanjakan Anda ketika berada di area Hotel. Anda bisa menikmati berbagai fasilitas antara lain seperti belasan pondok Bali & suites, 12 River View Room, air panas dan air dingin, Tv Kabel, Free Wi-Fi, Kolam Renang, Balinese Traditional Spa, 9 Pool View Room completed with AC dan Bale Agung Restaurant yang menyajikan beragam menu khas Bali."}', '', '', '2014/04/04/20140404_090320_7316.jpg', '{"en":"<br>","ind":"<br>","mys":""}', 0, ';14;', 0, 0, 0, 0, 'approve'),
+(14, 1529, 2, 4, 'rumah-embun-pagi', '{"en":"Rumah Embun Pagi","ind":"Rumah Embun Pagi","mys":"Rumah Embun Pagi"}', 'Jl. Apel 1 / AA-178 Villa Panderman Hill\nBatu Malang\nJawa Timur Indonesia', '{"en":"Rumah Embun Pagi adalah villa keluarga di kota Batu Malang yang didisain dengan inspirasi memberikan layanan dengan cinta untuk liburan yang tak terlupakan bagi seluruh keluarga Anda. Hal tersebut kami wujudkan dengan memberikan layanan terbaik, disain terbaik dan pemilihan LOKASI Terbaik, dan tentu saja HARGA terbaik dengan FASILITAS Terbaik.","ind":"Rumah Embun Pagi adalah villa keluarga di kota Batu Malang yang didisain dengan inspirasi memberikan layanan dengan cinta untuk liburan yang tak terlupakan bagi seluruh keluarga Anda. Hal tersebut kami wujudkan dengan memberikan layanan terbaik, disain terbaik dan pemilihan LOKASI Terbaik, dan tentu saja HARGA terbaik dengan FASILITAS Terbaik.","mys":"Rumah Embun Pagi adalah villa keluarga di kota Batu Malang yang didisain dengan inspirasi memberikan layanan dengan cinta untuk liburan yang tak terlupakan bagi seluruh keluarga Anda. Hal tersebut kami wujudkan dengan memberikan layanan terbaik, disain terbaik dan pemilihan LOKASI Terbaik, dan tentu saja HARGA terbaik dengan FASILITAS Terbaik."}', '{"en":"","ind":"","mys":""}', '', '', '2014/04/04/20140404_090348_4928.jpg', '{"en":"<br>","ind":"<br>","mys":""}', 0, '', 0, 0, 0, 0, 'approve'),
+(18, 1529, 2, 7, 'jawa-timur-park-1', '{"en":"Jawa Timur Park 1","ind":"Jawa Timur Park 1","mys":"Jawa Timur Park 1"}', 'Kota Batu\nMalang Indonesia', '{"en":"Pasti akan sangat menyenangkan sekali menghabiskan waktu liburan ke Jatimpark yang merupakan salah satu tempat wisata di Batu, Malang Jawa Timur bersama keluarga ataupun sahabat rombongan wisata Anda.","ind":"Pasti akan sangat menyenangkan sekali menghabiskan waktu liburan ke Jatimpark yang merupakan salah satu tempat wisata di Batu, Malang Jawa Timur bersama keluarga ataupun sahabat rombongan wisata Anda.","mys":"Pasti akan sangat menyenangkan sekali menghabiskan waktu liburan ke Jatimpark yang merupakan salah satu tempat wisata di Batu, Malang Jawa Timur bersama keluarga ataupun sahabat rombongan wisata Anda."}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '2014/04/04/20140404_093102_2680.jpg', '{"en":"","ind":"","mys":""}', 0, ';11;', 0, 0, 0, 0, 'approve'),
+(19, 1529, 2, 7, 'jawa-timur-park-2', '{"en":"Jawa Timur Park 2","ind":"Jawa Timur Park 2","mys":"Jawa Timur Park 2"}', 'Kota Batu\nMalang Indonesia', '{"en":"Berwisata kesini pasti seru deh dan anak-anak Anda pasti akan menyukainya karena disini terdapat banyak sekali wahana wisata anak-anak maupun dewasa yang berada pada lahan seluas 24 hektar.","ind":"Berwisata kesini pasti seru deh dan anak-anak Anda pasti akan menyukainya karena disini terdapat banyak sekali wahana wisata anak-anak maupun dewasa yang berada pada lahan seluas 24 hektar.","mys":"Berwisata kesini pasti seru deh dan anak-anak Anda pasti akan menyukainya karena disini terdapat banyak sekali wahana wisata anak-anak maupun dewasa yang berada pada lahan seluas 24 hektar."}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '2014/04/04/20140404_093321_5022.jpg', '{"en":"","ind":"","mys":""}', 0, ';11;', 0, 0, 0, 0, 'approve'),
+(20, 1529, 2, 9, 'taman-rekreasi-selecta', '{"en":"Taman Rekreasi Selecta","ind":"Taman Rekreasi Selecta","mys":"Taman Rekreasi Selecta"}', 'Kota Batu Malang', '{"en":"Tempat wisata di Malang yang satu ini jangan sampai terlewatkan, disini terdapat banyak sekali bunga-bunga yang beraneka ragam dan macam-macam jenisnya yang berasal dari luar maupun dalam negeri.","ind":"Tempat wisata di Malang yang satu ini jangan sampai terlewatkan, disini terdapat banyak sekali bunga-bunga yang beraneka ragam dan macam-macam jenisnya yang berasal dari luar maupun dalam negeri.","mys":"Tempat wisata di Malang yang satu ini jangan sampai terlewatkan, disini terdapat banyak sekali bunga-bunga yang beraneka ragam dan macam-macam jenisnya yang berasal dari luar maupun dalam negeri."}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '2014/04/04/20140404_093344_8423.jpg', '{"en":"","ind":"","mys":""}', 0, '', 0, 0, 0, 0, 'approve'),
+(21, 1529, 2, 6, 'taman-rekreasi-sengkaling', '{"en":"Taman Rekreasi Sengkaling","ind":"Taman Rekreasi Sengkaling","mys":"Taman Rekreasi Sengkaling"}', 'Kota Malang\nJawa Timur\nIndonesia', '{"en":"Nah taman rekreasi sengakling ini berada tidak jauh dari Universitas Muhammadiyah Malang, pasti sudah banyak yang mengetahuinya, disini Anda bisa berlibur bersama keluarga yang menyenangkan.","ind":"Nah taman rekreasi sengakling ini berada tidak jauh dari Universitas Muhammadiyah Malang, pasti sudah banyak yang mengetahuinya, disini Anda bisa berlibur bersama keluarga yang menyenangkan.","mys":"Nah taman rekreasi sengakling ini berada tidak jauh dari Universitas Muhammadiyah Malang, pasti sudah banyak yang mengetahuinya, disini Anda bisa berlibur bersama keluarga yang menyenangkan."}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '2014/04/04/20140404_093516_4557.jpg', '{"en":"","ind":"","mys":""}', 0, '', 0, 0, 0, 0, 'approve'),
+(22, 1529, 2, 10, 'air-terjun-coban-rondo', '{"en":"Air Terjun Coban Rondo","ind":"Air Terjun Coban Rondo","mys":"Air Terjun Coban Rondo"}', 'Kota Batu\nMalang Indonesia', '{"en":"Suka dengan alam? ini adalah tempat liburan di malang yang tepat untuk Anda yang menyukai alam yang indah, udara yang segar dan hawa yang dingin akan menemani Anda ketika berlibur kesini ^_^.","ind":"Suka dengan alam? ini adalah tempat liburan di malang yang tepat untuk Anda yang menyukai alam yang indah, udara yang segar dan hawa yang dingin akan menemani Anda ketika berlibur kesini ^_^.","mys":"Suka dengan alam? ini adalah tempat liburan di malang yang tepat untuk Anda yang menyukai alam yang indah, udara yang segar dan hawa yang dingin akan menemani Anda ketika berlibur kesini ^_^."}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '2014/04/04/20140404_093638_8431.jpg', '{"en":"","ind":"","mys":""}', 0, '', 0, 0, 0, 0, 'approve');
 
 -- --------------------------------------------------------
 
@@ -10142,7 +10422,7 @@ CREATE TABLE IF NOT EXISTS `post_facility` (
   `post_id` int(11) NOT NULL,
   `facility_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 --
 -- Dumping data for table `post_facility`
@@ -10165,7 +10445,9 @@ INSERT INTO `post_facility` (`id`, `post_id`, `facility_id`) VALUES
 (32, 6, 14),
 (30, 3, 14),
 (29, 3, 9),
-(37, 3, 7);
+(37, 3, 7),
+(38, 18, 11),
+(39, 19, 11);
 
 -- --------------------------------------------------------
 
@@ -10182,11 +10464,6 @@ CREATE TABLE IF NOT EXISTS `post_gallery` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `post_gallery`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -10198,7 +10475,7 @@ CREATE TABLE IF NOT EXISTS `post_tag` (
   `tag_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=75 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=94 ;
 
 --
 -- Dumping data for table `post_tag`
@@ -10207,14 +10484,19 @@ CREATE TABLE IF NOT EXISTS `post_tag` (
 INSERT INTO `post_tag` (`id`, `tag_id`, `post_id`) VALUES
 (63, 6, 5),
 (64, 7, 5),
-(66, 3, 3),
-(67, 1, 3),
-(68, 2, 3),
 (70, 6, 2),
-(71, 6, 4),
-(72, 7, 4),
-(73, 8, 4),
-(74, 9, 4);
+(78, 3, 3),
+(79, 1, 3),
+(80, 2, 3),
+(85, 12, 18),
+(86, 12, 19),
+(87, 12, 20),
+(88, 13, 21),
+(89, 12, 22),
+(90, 6, 4),
+(91, 7, 4),
+(92, 8, 4),
+(93, 9, 4);
 
 -- --------------------------------------------------------
 
@@ -10231,11 +10513,6 @@ CREATE TABLE IF NOT EXISTS `post_traveler_photo` (
   `post_status` varchar(50) NOT NULL COMMENT 'pending / approve / reject',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `post_traveler_photo`
---
-
 
 -- --------------------------------------------------------
 
@@ -10254,11 +10531,6 @@ CREATE TABLE IF NOT EXISTS `post_traveler_review` (
   `post_status` varchar(50) NOT NULL COMMENT 'pending / approve / reject',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `post_traveler_review`
---
-
 
 -- --------------------------------------------------------
 
@@ -11732,11 +12004,6 @@ CREATE TABLE IF NOT EXISTS `room_amenity` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
---
--- Dumping data for table `room_amenity`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -11748,7 +12015,7 @@ CREATE TABLE IF NOT EXISTS `tag` (
   `alias` varchar(150) NOT NULL,
   `title` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `tag`
@@ -11765,7 +12032,9 @@ INSERT INTO `tag` (`id`, `alias`, `title`) VALUES
 (8, 'tag-3', 'tag 3'),
 (9, 'tag-4', 'tag 4'),
 (10, 'alun-alun', 'Alun Alun'),
-(11, 'pusat-kota', 'Pusat Kota');
+(11, 'pusat-kota', 'Pusat Kota'),
+(12, 'kota-batu', 'Kota Batu'),
+(13, 'kota-malang', 'Kota Malang');
 
 -- --------------------------------------------------------
 
@@ -11801,7 +12070,7 @@ CREATE TABLE IF NOT EXISTS `traveler` (
 --
 
 INSERT INTO `traveler` (`id`, `city_id`, `email`, `alias`, `first_name`, `last_name`, `passwd`, `passwd_reset_key`, `address`, `phone`, `postal_code`, `user_about`, `user_info`, `register_date`, `verify_email`, `verify_email_key`, `thumbnail`, `provider`, `is_active`) VALUES
-(1, 1529, 'satu@mail.com', 'alias', 'First Name', '1', 'cb8eed4d556ba533cf5c6941d9eb5991', '', '3', '4', '5', '6', '7', '2014-03-31 00:00:00', 0, '', '2014/03/24/20140324_120833_9733.jpg', 'facebook 2', 0);
+(1, 1529, 'dua@mail.com', 'alias', 'First Name', '1', 'fe30fa79056939db8cbe99c8d601de74', '', '3', '4', '5', '6', '7', '2014-03-31 00:00:00', 0, '', '2014/03/24/20140324_120833_9733.jpg', 'facebook 2', 1);
 
 -- --------------------------------------------------------
 
@@ -11842,47 +12111,58 @@ INSERT INTO `user` (`id`, `user_type_id`, `email`, `first_name`, `last_name`, `p
 CREATE TABLE IF NOT EXISTS `user_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
+  `traveler_id` int(11) NOT NULL,
+  `member_id` int(11) NOT NULL,
   `log_time` datetime NOT NULL,
   `location` varchar(255) NOT NULL,
   `ip_remote` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
 --
 -- Dumping data for table `user_log`
 --
 
-INSERT INTO `user_log` (`id`, `user_id`, `log_time`, `location`, `ip_remote`) VALUES
-(1, 2, '2014-03-10 18:49:22', 'localhost', '::1'),
-(2, 2, '2014-03-10 18:49:27', 'localhost', '::1'),
-(3, 2, '2014-03-11 08:20:42', 'localhost', '::1'),
-(4, 2, '2014-03-11 10:27:35', 'localhost', '::1'),
-(5, 2, '2014-03-20 08:09:55', 'localhost', '::1'),
-(6, 2, '2014-03-20 08:10:00', 'localhost', '::1'),
-(7, 2, '2014-03-20 08:10:15', 'localhost', '::1'),
-(8, 2, '2014-03-20 09:24:50', 'localhost', '::1'),
-(9, 2, '2014-03-20 09:35:43', 'localhost', '::1'),
-(10, 2, '2014-03-20 14:17:20', 'localhost', '::1'),
-(11, 2, '2014-03-22 18:24:21', 'localhost', '::1'),
-(12, 2, '2014-03-23 06:53:36', 'localhost', '::1'),
-(13, 2, '2014-03-23 17:42:27', 'localhost', '::1'),
-(14, 2, '2014-03-24 07:55:46', 'localhost', '::1'),
-(15, 2, '2014-03-24 09:06:33', 'localhost', '::1'),
-(16, 29, '2014-03-24 09:56:02', 'localhost', '::1'),
-(17, 29, '2014-03-24 09:56:36', 'localhost', '::1'),
-(18, 2, '2014-03-24 11:40:15', 'localhost', '::1'),
-(19, 2, '2014-03-24 18:07:05', 'localhost', '::1'),
-(20, 2, '2014-03-25 07:51:45', 'localhost', '::1'),
-(21, 2, '2014-03-25 07:51:46', 'localhost', '::1'),
-(22, 2, '2014-03-25 14:35:07', 'localhost', '::1'),
-(23, 2, '2014-03-27 10:20:47', 'localhost', '::1'),
-(24, 2, '2014-03-28 09:37:50', 'localhost', '::1'),
-(25, 2, '2014-03-31 14:30:41', 'localhost', '::1'),
-(26, 2, '2014-04-01 13:57:21', 'localhost', '::1'),
-(27, 2, '2014-04-02 08:07:00', 'localhost', '::1'),
-(28, 2, '2014-04-03 10:26:39', 'localhost', '::1'),
-(29, 2, '2014-04-03 14:29:49', 'localhost', '::1'),
-(30, 2, '2014-04-03 18:58:14', 'localhost', '::1');
+INSERT INTO `user_log` (`id`, `user_id`, `traveler_id`, `member_id`, `log_time`, `location`, `ip_remote`) VALUES
+(1, 2, 0, 0, '2014-03-10 18:49:22', 'localhost', '::1'),
+(2, 2, 0, 0, '2014-03-10 18:49:27', 'localhost', '::1'),
+(3, 2, 0, 0, '2014-03-11 08:20:42', 'localhost', '::1'),
+(4, 2, 0, 0, '2014-03-11 10:27:35', 'localhost', '::1'),
+(5, 2, 0, 0, '2014-03-20 08:09:55', 'localhost', '::1'),
+(6, 2, 0, 0, '2014-03-20 08:10:00', 'localhost', '::1'),
+(7, 2, 0, 0, '2014-03-20 08:10:15', 'localhost', '::1'),
+(8, 2, 0, 0, '2014-03-20 09:24:50', 'localhost', '::1'),
+(9, 2, 0, 0, '2014-03-20 09:35:43', 'localhost', '::1'),
+(10, 2, 0, 0, '2014-03-20 14:17:20', 'localhost', '::1'),
+(11, 2, 0, 0, '2014-03-22 18:24:21', 'localhost', '::1'),
+(12, 2, 0, 0, '2014-03-23 06:53:36', 'localhost', '::1'),
+(13, 2, 0, 0, '2014-03-23 17:42:27', 'localhost', '::1'),
+(14, 2, 0, 0, '2014-03-24 07:55:46', 'localhost', '::1'),
+(15, 2, 0, 0, '2014-03-24 09:06:33', 'localhost', '::1'),
+(16, 29, 0, 0, '2014-03-24 09:56:02', 'localhost', '::1'),
+(17, 29, 0, 0, '2014-03-24 09:56:36', 'localhost', '::1'),
+(18, 2, 0, 0, '2014-03-24 11:40:15', 'localhost', '::1'),
+(19, 2, 0, 0, '2014-03-24 18:07:05', 'localhost', '::1'),
+(20, 2, 0, 0, '2014-03-25 07:51:45', 'localhost', '::1'),
+(21, 2, 0, 0, '2014-03-25 07:51:46', 'localhost', '::1'),
+(22, 2, 0, 0, '2014-03-25 14:35:07', 'localhost', '::1'),
+(23, 2, 0, 0, '2014-03-27 10:20:47', 'localhost', '::1'),
+(24, 2, 0, 0, '2014-03-28 09:37:50', 'localhost', '::1'),
+(25, 2, 0, 0, '2014-03-31 14:30:41', 'localhost', '::1'),
+(26, 2, 0, 0, '2014-04-01 13:57:21', 'localhost', '::1'),
+(27, 2, 0, 0, '2014-04-02 08:07:00', 'localhost', '::1'),
+(28, 2, 0, 0, '2014-04-03 10:26:39', 'localhost', '::1'),
+(29, 2, 0, 0, '2014-04-03 14:29:49', 'localhost', '::1'),
+(30, 2, 0, 0, '2014-04-03 18:58:14', 'localhost', '::1'),
+(31, 2, 0, 0, '2014-04-04 08:56:04', 'localhost', '::1'),
+(32, 0, 0, 2, '2014-04-04 10:33:27', 'localhost', '::1'),
+(33, 0, 0, 2, '2014-04-04 10:33:49', 'localhost', '::1'),
+(34, 0, 0, 2, '2014-04-04 10:34:28', 'localhost', '::1'),
+(35, 0, 0, 2, '2014-04-04 10:34:41', 'localhost', '::1'),
+(36, 0, 0, 2, '2014-04-04 10:39:24', 'localhost', '::1'),
+(37, 2, 0, 0, '2014-04-04 10:55:52', 'localhost', '::1'),
+(38, 0, 0, 2, '2014-04-04 10:56:13', 'localhost', '::1'),
+(39, 0, 1, 0, '2014-04-04 11:03:26', 'localhost', '::1');
 
 -- --------------------------------------------------------
 
