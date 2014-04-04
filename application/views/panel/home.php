@@ -1,14 +1,8 @@
 <?php
-	// site & user info
 	$user = $this->user_model->get_session();
-	$user_count = $this->user_model->get_count(array( 'total_user' => true ));
+	$user = $this->user_model->get_by_id(array( 'user_type_id' => $user['user_type_id'], 'id' => $user['id'] ));
 	
-	// time active
-	$unix_active_time = ConvertToUnixTime($user['active_time']);
-	$unix_current_limit = ConvertToUnixTime($this->config->item('current_datetime')) - LOGIN_ACTIVE_TIME;
-	$left_time = $unix_active_time - $unix_current_limit;
-	
-	$page['left_time'] = $left_time;
+	$page = array();
 ?>
 <?php $this->load->view( 'panel/common/meta' ); ?>
 <body>
@@ -30,7 +24,7 @@
 						
 						<div class="m-b-md">
 							<h3 class="m-b-none">Dashboard</h3>
-							<small>Welcome back, <?php echo $user['fullname']; ?></small>
+							<small>Welcome back, <?php echo $user['full_name']; ?></small>
 						</div>
 					</section>
 				</section>
@@ -49,23 +43,6 @@ $(document).ready(function() {
 			var raw_page = $('#cnt-page').html();
 			eval('var data = ' + raw_page);
 			page.data = data;
-			
-			page.init_time();
-		},
-		init_time: function() {
-			setInterval(function(){
-				// get minute
-				var minute = Math.floor(page.data.left_time / 60);
-				var second = str_pad(page.data.left_time % 60, 2, '0', 'STR_PAD_LEFT');
-				var label = minute + ':' + second;
-				$('.cnt-time-label strong').text(label);
-				
-				page.data.left_time--;
-				if (page.data.left_time <= 0) {
-					window.location = window.location.href;
-				}
-			},
-			1000);
 		}
 	}
 	page.init();

@@ -46,6 +46,13 @@ class traveler_model extends CI_Model {
 				WHERE traveler.id = '".$param['id']."'
 				LIMIT 1
 			";
+        } else if (isset($param['email'])) {
+            $select_query  = "
+				SELECT traveler.*
+				FROM ".TRAVELER." traveler
+				WHERE traveler.email = '".$param['email']."'
+				LIMIT 1
+			";
         } 
        
         $select_result = mysql_query($select_query) or die(mysql_error());
@@ -101,10 +108,57 @@ class traveler_model extends CI_Model {
 	function sync($row, $param = array()) {
 		$row = StripArray($row, array( 'register_date' ));
 		
+		// user type
+		$row['user_type_id'] = USER_TYPE_TRAVELER;
+		$row['user_type_title'] = 'Traveler';
+		
+		// thumbnail
+		$row['thumbnail_link'] = base_url('static/img/avatar.jpg');
+		if (isset($row['thumbnail'])) {
+			$file_path = $this->config->item('base_path').'/static/upload/'.$row['thumbnail'];
+			if (file_exists($file_path) && isset($row['thumbnail']) && !empty($row['thumbnail'])) {
+				$row['thumbnail_link'] = base_url('static/upload/'.$row['thumbnail']);
+			}
+		}
+		
+		if (isset($row['first_name']) && isset($row['last_name'])) {
+			$row['full_name'] = $row['first_name'].' '.$row['last_name'];
+		}
+		
 		if (count(@$param['column']) > 0) {
 			$row = dt_view_set($row, $param);
 		}
 		
 		return $row;
+	}
+	
+	function sign_in($param = array()) {
+		$traveler = $this->get_by_id(array( 'email' => $param['email'], 'with_passwd' => true ));
+		
+		$result = array( 'status' => false, 'message' => '' );
+		if (count($traveler) == 0) {
+			$result['message'] = 'Sorry, Email cannot be found.';
+		} else if ($traveler['is_active'] == 0) {
+			$result['message'] = 'Sorry, your user is inactive';
+		} else if ($traveler['passwd'] != EncriptPassword($param['passwd'])) {
+			$result['message'] = 'Sorry, password did not match.';
+		} else if ($traveler['passwd'] == EncriptPassword($param['passwd'])) {
+			// update last login
+			$param['traveler_id'] = $traveler['id'];
+			$param['log_time'] = $this->config->item('current_datetime');
+			$param['ip_remote'] = $_SERVER['REMOTE_ADDR'];
+			$param['location'] = $this->city_ip_model->get_location(array( 'ip' => $_SERVER['REMOTE_ADDR'] ));
+			$result = $this->user_log_model->update($param);
+			
+			// set session
+			$traveler['user_type_id'] = USER_TYPE_TRAVELER;
+			$this->user_model->set_session($traveler);
+			
+			// set result
+			$result['status'] = true;
+			$result['redirect_link'] = base_url('panel');
+		}
+		
+		return $result;
 	}
 }

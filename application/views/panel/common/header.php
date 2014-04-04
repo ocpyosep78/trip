@@ -1,7 +1,17 @@
 <?php
 	$user = $this->user_model->get_session();
-	$user = $this->user_model->get_by_id(array( 'id' => $user['id'] ));
-	$array_user_log = $this->user_log_model->get_array(array( 'user_id' => $user['id'], 'limit' => 3 ));
+	$user = $this->user_model->get_by_id(array( 'user_type_id' => $user['user_type_id'], 'id' => $user['id'] ));
+	
+	// user log
+	$param_user_log = array( 'limit' => 3 );
+	if ($user['user_type_id'] == USER_TYPE_MEMBER) {
+		$param_user_log['member_id'] = $user['id'];
+	} else if ($user['user_type_id'] == USER_TYPE_TRAVELER) {
+		$param_user_log['traveler_id'] = $user['id'];
+	} else {
+		$param_user_log['user_id'] = $user['id'];
+	}
+	$array_user_log = $this->user_log_model->get_array($param_user_log);
 ?>
 <header class="bg-dark dk header navbar navbar-fixed-top-xs">
 	<div class="navbar-header aside-md">
@@ -27,8 +37,8 @@
 						<img src="<?php echo $user['thumbnail_link']; ?>" class="img-circle">
 					</a>
 					<div class="clear">
-						<a href="#"><span class="text-white font-bold"><?php echo $user['fullname']; ?></span></a>
-						<small class="block"><?php echo $user['fullname']; ?></small>
+						<a href="#"><span class="text-white font-bold"><?php echo $user['full_name']; ?></span></a>
+						<small class="block"><?php echo $user['full_name']; ?></small>
 						<a href="#" class="btn btn-xs btn-success m-t-xs"><?php echo $user['user_type_title']; ?></a>
 					</div>
 				</div>
@@ -92,7 +102,7 @@
 				<span class="thumb-sm avatar pull-left">
 					<img src="<?php echo $user['thumbnail_link']; ?>">
 				</span>
-				<?php echo $user['fullname']; ?> <b class="caret"></b>
+				<?php echo $user['full_name']; ?> <b class="caret"></b>
 			</a>
 			
 			<ul class="dropdown-menu animated fadeInRight">

@@ -7,11 +7,6 @@
 ?>
 
 <?php $this->load->view( 'website/common/meta' ); ?>
-<style>
-.form-class .left { float: left; width: 33%; padding: 6px 0 0 0; text-align: right; }
-.form-class .right { float: right; width: 66%; padding: 0 0 10px 20px; }
-.form-class label.error { font-size: 10px; color: #F25D2E; padding: 5px 0 0 0; }
-</style>
 <body id="top" class="thebg">
 	<?php $this->load->view( 'website/common/header_menu' ); ?>
 	<?php $this->load->view( 'website/common/breadcrub', array( 'array' => $array_breadcrub ) ); ?>
@@ -21,7 +16,7 @@
 			<div class="col-md-8 pagecontainer2 offset-0">
 				<br />
 				<h2 class="opensans slim green2"><div style="margin-left:20px;">Confirmation</div></h2><br />
-				<div class="line2"></div>
+				<div class="line2"></div><br />
 				
 				<form class="form-class" id="form-payment">
 					<input type="hidden" name="action" value="payment_update" />
@@ -57,45 +52,7 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="col-md-4">
-				<div class="pagecontainer2 testimonialbox">
-					<div class="cpadding1">
-							<span class="icon-location"></span>
-							<h3 class="opensans">My Experince</h3>
-							<div class="clearfix"></div>
-						</div>
-						<div class="hpadding20">
-						 
-						<a href="#" class="booknow margtop20 btnmarg">Upload Your Photo</a><br /><br />
-					</div>
-				</div>
-				<div class="pagecontainer2 mt20 alsolikebox">
-					<div class="cpadding1">
-						<span class="icon-location"></span>
-						<h3 class="opensans">Random 3 tempat wisata sekitar malang</h3>
-						<div class="clearfix"></div>
-					</div>
-					<div class="cpadding1 ">
-						<a href="#"><img src="<?php echo base_url('static/theme/forest/images/smallthumb-1.jpg'); ?>" class="left mr20" alt=""/></a>
-						<a href="#" class="dark"><b>Pemandian dudo</b></a><br />
-					 <br />
-						<img src="<?php echo base_url('static/theme/forest/images/filter-rating-5.png'); ?>" alt=""/>
-					</div>
-					<div class="line5"></div>
-					<div class="cpadding1 ">
-						<a href="#"><img src="<?php echo base_url('static/theme/forest/images/smallthumb-2.jpg'); ?>" class="left mr20" alt=""/></a>
-						<a href="#" class="dark"><b>Hotel Amaragua</b></a><br />
-						 <br />
-						<img src="<?php echo base_url('static/theme/forest/images/filter-rating-5.png'); ?>" alt=""/>
-					</div>
-					<div class="line5"></div>			
-					<div class="cpadding1 ">
-						<a href="#"><img src="<?php echo base_url('static/theme/forest/images/smallthumb-3.jpg'); ?>" class="left mr20" alt=""/></a>
-						<a href="#" class="dark"><b>Hotel Amaragua</b></a><br />
-					 <br />
-						<img src="<?php echo base_url('static/theme/forest/images/filter-rating-5.png'); ?>" alt=""/>
-					</div>
-					<br />
-				</div>
+				<?php $this->load->view( 'website/common/random_post' ); ?>
 			</div>
 		</div>
 	</div>

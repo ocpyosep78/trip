@@ -65,6 +65,7 @@ class post_model extends CI_Model {
         if (isset($param['id'])) {
             $select_query  = "
 				SELECT post.*,
+					member.first_name, member.last_name,
 					category.id category_id, category.title category_title, category.alias category_alias,
 					category_sub.title category_sub_title, category_sub.alias category_sub_alias,
 					city.title city_title, city.alias city_alias,
@@ -189,8 +190,10 @@ class post_model extends CI_Model {
 		
 		// link
 		$row['link_thumbnail'] = base_url('static/theme/forest/images/post-default.jpg');
+		$row['link_thumbnail_small'] = base_url('static/theme/forest/images/post-default.jpg');
 		if (! empty($row['thumbnail'])) {
 			$row['link_thumbnail'] = base_url('static/upload/'.$row['thumbnail']);
+			$row['link_thumbnail_small'] = preg_replace('/\.(jpg|jpeg|png|gif)/i', '_s.$1', $row['link_thumbnail']);
 		}
 		if (!empty($row['star'])) {
 			$row['link_star'] = base_url('static/theme/forest/images/filter-rating-'.$row['star'].'.png');
@@ -221,16 +224,12 @@ class post_model extends CI_Model {
 	}
 	
 	function resize_image($param) {
-		return true;
-		
 		if (!empty($param['thumbnail'])) {
 			$image_path = $this->config->item('base_path') . '/static/upload/';
 			$image_source = $image_path . $param['thumbnail'];
-			$image_result = $image_source;
-			$image_small = preg_replace('/\.(jpg|jpeg|png|gif)/i', '_s.$1', $image_result);
+			$image_small = preg_replace('/\.(jpg|jpeg|png|gif)/i', '_s.$1', $image_source);
 			
-			ImageResize($image_source, $image_small, 194, 123, 1);
-			ImageResize($image_source, $image_result, 600, 374, 1);
+			ImageResize($image_source, $image_small, 250, 180, 1);
 		}
 	}
 	

@@ -12,14 +12,11 @@ LINK TEMPORARY
 - http://localhost/trip/trunk/about-us
 
 To do :
-1. Semua post Hotel diupdate thumbnail nya
-2. Semua post Destination diupdate thumbnail nya
-3. Isi post Destination (10 post)
-4. resize image
-5. login member
-5. login traveler
-
-
+- halaman website restaurant
+- panel untuk member
+- panel untuk traveler
+- halaman website search
+- halaman website page static
 
 ----------------------------------------------------------------------------------------------------------------
 Multi Language

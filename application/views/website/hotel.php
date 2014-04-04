@@ -88,26 +88,28 @@
 			<div class="clearfix"></div><br />
 			<div class="line2"></div>
 			
-			<button type="button" class="collapsebtn" data-toggle="collapse" data-target="#collapse2">
-				Price range
-				<span class="collapsearrow"></span>
-			</button>
-			<div id="collapse2" class="collapse in">
-				<div class="padding20">
-					<div class="layout-slider wh100percent">
-						<span class="cstyle09"><input id="bar-slider" type="slider" name="price" value="0;2000" /></span>
+			<div>
+				<button type="button" class="collapsebtn" data-toggle="collapse" data-target="#collapse2">
+					Price range
+					<span class="collapsearrow"></span>
+				</button>
+				<div id="collapse2" class="collapse in">
+					<div class="padding20">
+						<div class="layout-slider wh100percent">
+							<span class="cstyle09"><input id="bar-slider" type="slider" name="price" value="0;2000" /></span>
+						</div>
+						<script type="text/javascript">
+							$("#bar-slider").slider({
+								from: 0, to: 2000, step: 5, smooth: true, round: 0, dimension: "&nbsp;$", skin: "round",
+								callback: function(value) {
+									$('#post-list [name="reload"]').val(1);
+								}
+							});
+						</script>
 					</div>
-					<script type="text/javascript">
-						$("#bar-slider").slider({
-							from: 0, to: 2000, step: 5, smooth: true, round: 0, dimension: "&nbsp;$", skin: "round",
-							callback: function(value) {
-								$('#post-list [name="reload"]').val(1);
-							}
-						});
-					</script>
 				</div>
+				<div class="line2"></div>
 			</div>
-			<div class="line2"></div>
 			
 			<button type="button" class="collapsebtn last" data-toggle="collapse" data-target="#collapse4">
 				Fasilities

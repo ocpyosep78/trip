@@ -36,7 +36,16 @@ class User_model extends CI_Model {
 
     function get_by_id($param) {
         $array = array();
-       
+		
+		// check member / traveler
+		if (isset($param['user_type_id'])) {
+			if ($param['user_type_id'] == USER_TYPE_MEMBER) {
+				return $this->member_model->get_by_id($param);
+			} else if ($param['user_type_id'] == USER_TYPE_TRAVELER) {
+				return $this->traveler_model->get_by_id($param);
+			}
+		}
+		
         if (isset($param['id'])) {
             $select_query  = "
 				SELECT user.*, user_type.title user_type_title
@@ -113,7 +122,7 @@ class User_model extends CI_Model {
 		
 		// fullname
 		if (isset($row['first_name']) && isset($row['last_name'])) {
-			$row['fullname'] = $row['first_name'].' '.$row['last_name'];
+			$row['full_name'] = $row['first_name'].' '.$row['last_name'];
 		}
 		
 		// delete password
@@ -143,7 +152,7 @@ class User_model extends CI_Model {
 		// default param
 		$param['array_user_type_id'] = (isset($param['array_user_type_id']))
 			? $param['array_user_type_id']
-			: array( USER_TYPE_ADMINISTRATOR, USER_TYPE_EDITOR, USER_TYPE_MEMBER );
+			: array( USER_TYPE_ADMINISTRATOR, USER_TYPE_EDITOR, USER_TYPE_MEMBER, USER_TYPE_TRAVELER );
 		
 		// check user
 		$user = $this->get_session();

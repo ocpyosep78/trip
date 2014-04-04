@@ -57,8 +57,8 @@
 	<?php foreach ($array_post as $key => $row) { ?>
 	<div class="offset-2">
 		<div class="col-md-4 offset-0"><div class="listitem2">
-			<a href="static/theme/forest/images/items/item7.jpg">
-				<img src="<?php echo base_url('static/theme/forest/images/items/item7.jpg'); ?>" />
+			<a href="<?php echo $row['link_post']; ?>">
+				<img src="<?php echo $row['link_thumbnail_small']; ?>" />
 			</a>
 		</div></div>
 		<div class="col-md-8 offset-0"><div class="itemlabel3">
@@ -73,7 +73,7 @@
 				<span class="size11 grey"><?php echo $row['review_count']; ?> Reviews</span>
 				<br /><br /><br /><br /><br /><br />
 				
-				<a class="bookbtn mt1" href="<?php echo $row['link_post']; ?>">Book</a>
+				<a class="bookbtn mt1" href="<?php echo $row['link_post']; ?>">View</a>
 			</div>
 			<div class="labelleft2">
 				<div class="title"><b><?php echo $row['title_select']; ?></b></div>

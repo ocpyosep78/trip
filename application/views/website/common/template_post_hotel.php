@@ -57,7 +57,7 @@
 	<?php foreach ($array_post as $key => $row) { ?>
 	<div class="col-md-4">
 		<div class="listitem">
-			<img src="<?php echo base_url('static/theme/forest/images/post-default.jpg'); ?>" />
+			<img src="<?php echo $row['link_thumbnail_small']; ?>" />
 		</div>
 		<div class="itemlabel2">
 			<div class="labelright">

@@ -4,7 +4,7 @@ class user_log_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'user_id', 'log_time', 'location', 'ip_remote' );
+        $this->field = array( 'id', 'user_id', 'traveler_id', 'member_id', 'log_time', 'location', 'ip_remote' );
     }
 
     function update($param) {
@@ -49,6 +49,8 @@ class user_log_model extends CI_Model {
 		
 		$string_namelike = (!empty($param['namelike'])) ? "AND UserLog.location LIKE '%".$param['namelike']."%'" : '';
 		$string_user = (isset($param['user_id'])) ? "AND UserLog.user_id = '".$param['user_id']."'" : '';
+		$string_member = (isset($param['member_id'])) ? "AND UserLog.member_id = '".$param['member_id']."'" : '';
+		$string_traveler = (isset($param['traveler_id'])) ? "AND UserLog.traveler_id = '".$param['traveler_id']."'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'log_time DESC');
 		$string_limit = GetStringLimit($param);
@@ -56,7 +58,7 @@ class user_log_model extends CI_Model {
 		$select_query = "
 			SELECT SQL_CALC_FOUND_ROWS UserLog.*
 			FROM ".USER_LOG." UserLog
-			WHERE 1 $string_namelike $string_user $string_filter
+			WHERE 1 $string_namelike $string_user $string_member $string_traveler $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";

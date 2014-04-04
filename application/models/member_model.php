@@ -47,6 +47,13 @@ class member_model extends CI_Model {
 				WHERE member.id = '".$param['id']."'
 				LIMIT 1
 			";
+        } else if (isset($param['email'])) {
+            $select_query  = "
+				SELECT member.*
+				FROM ".MEMBER." member
+				WHERE member.email = '".$param['email']."'
+				LIMIT 1
+			";
         } 
        
         $select_result = mysql_query($select_query) or die(mysql_error());
@@ -102,6 +109,19 @@ class member_model extends CI_Model {
 	function sync($row, $param = array()) {
 		$row = StripArray($row);
 		
+		// user type
+		$row['user_type_id'] = USER_TYPE_MEMBER;
+		$row['user_type_title'] = 'Member';
+		
+		// thumbnail
+		$row['thumbnail_link'] = base_url('static/img/avatar.jpg');
+		if (isset($row['thumbnail'])) {
+			$file_path = $this->config->item('base_path').'/static/upload/'.$row['thumbnail'];
+			if (file_exists($file_path) && isset($row['thumbnail']) && !empty($row['thumbnail'])) {
+				$row['thumbnail_link'] = base_url('static/upload/'.$row['thumbnail']);
+			}
+		}
+		
 		if (isset($row['first_name']) && isset($row['last_name'])) {
 			$row['full_name'] = $row['first_name'].' '.$row['last_name'];
 		}
@@ -111,5 +131,35 @@ class member_model extends CI_Model {
 		}
 		
 		return $row;
+	}
+	
+	function sign_in($param = array()) {
+		$member = $this->get_by_id(array( 'email' => $param['email'], 'with_passwd' => true ));
+		
+		$result = array( 'status' => false, 'message' => '' );
+		if (count($member) == 0) {
+			$result['message'] = 'Sorry, Email cannot be found.';
+		} else if ($member['is_active'] == 0) {
+			$result['message'] = 'Sorry, your user is inactive';
+		} else if ($member['passwd'] != EncriptPassword($param['passwd'])) {
+			$result['message'] = 'Sorry, password did not match.';
+		} else if ($member['passwd'] == EncriptPassword($param['passwd'])) {
+			// update last login
+			$param['member_id'] = $member['id'];
+			$param['log_time'] = $this->config->item('current_datetime');
+			$param['ip_remote'] = $_SERVER['REMOTE_ADDR'];
+			$param['location'] = $this->city_ip_model->get_location(array( 'ip' => $_SERVER['REMOTE_ADDR'] ));
+			$result = $this->user_log_model->update($param);
+			
+			// set session
+			$member['user_type_id'] = USER_TYPE_MEMBER;
+			$this->user_model->set_session($member);
+			
+			// set result
+			$result['status'] = true;
+			$result['redirect_link'] = base_url('panel');
+		}
+		
+		return $result;
 	}
 }

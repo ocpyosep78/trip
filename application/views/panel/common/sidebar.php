@@ -1,6 +1,6 @@
 <?php
 	$user = $this->user_model->get_session();
-	$user = $this->user_model->get_by_id(array( 'id' => $user['id'] ));
+	$user = $this->user_model->get_by_id(array( 'user_type_id' => $user['user_type_id'], 'id' => $user['id'] ));
 ?>
 <aside class="bg-dark lter aside-md hidden-print" id="nav">
 	<section class="vbox">
@@ -255,7 +255,7 @@
 							</ul>
 						</li>
 					</ul>
-					<?php } else if ($user['user_type_id'] == USER_TYPE_TRAVELER) { ?>
+					<?php } else if ($user['user_type_id'] == USER_TYPE_MEMBER) { ?>
 					<ul class="nav">
 						<li>
 							<a href="<?php echo base_url('panel'); ?>">
@@ -332,7 +332,7 @@
 							</a>
 						</li>
 					</ul>
-					<?php } else if ($user['user_type_id'] == USER_TYPE_MEMBER) { ?>
+					<?php } else if ($user['user_type_id'] == USER_TYPE_TRAVELER) { ?>
 					<ul class="nav">
 						<li>
 							<a href="<?php echo base_url('panel'); ?>">
