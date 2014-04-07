@@ -29,6 +29,11 @@ class destination extends TRIP_Controller {
 		$result = '';
 		if ($action == 'get_post_view') {
 			$result = $this->load->view( 'website/common/template_post_public', array(), true );
+			
+			$result_check = trim(strip_tags($result));
+			if (empty($result_check)) {
+				$result = '<div style="padding: 0 20px;">Sorry, there is no post that match with your criteria.</div>';
+			}
 		}
 		
 		echo $result;

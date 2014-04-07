@@ -1,22 +1,30 @@
 <?php
+	// get category
+	$category_alias = (isset($this->uri->segments[1])) ? $this->uri->segments[1] : '';
+	$category = $this->category_model->get_by_id(array( 'alias' => $category_alias ));
+	if (count($category) == 0) {
+		echo 'category not found.';
+		exit;
+	}
+	
 	// master
 	$array_country = $this->country_model->get_array();
-	$array_category_sub = $this->category_sub_model->get_array(array( 'category_id' => CATEGORY_DESTINATION ));
+	$array_category_sub = $this->category_sub_model->get_array(array( 'category_id' => $category['id'] ));
 	
 	// post count
-	$destination_count = $this->post_model->get_count(array( 'query' => true, 'category_id' => CATEGORY_DESTINATION ));
+	$destination_count = $this->post_model->get_count(array( 'query' => true, 'category_id' => $category['id'] ));
 	
 	// post facility
 	$param_facility['searchable'] = 1;
-	$param_facility['category_id'] = CATEGORY_DESTINATION;
+	$param_facility['category_id'] = $category['id'];
 	$array_facility = $this->category_facility_model->get_array($param_facility);
 	
 	// category tag
-	$array_tag = $this->category_tag_model->get_array(array( 'category_id' => CATEGORY_DESTINATION ));
+	$array_tag = $this->category_tag_model->get_array(array( 'category_id' => $category['id'] ));
 	
 	// breadcrub
 	$array_breadcrub = array(
-		array( 'link' => '#', 'title' => 'Destination' )
+		array( 'link' => $category['link_category'], 'title' => $category['title'] )
 	);
 ?>
 <?php $this->load->view( 'website/common/meta' ); ?>
@@ -27,14 +35,14 @@
 	<div class="container"><div class="container pagecontainer offset-0" id="post-list">
 		<div class="col-md-3 filters offset-0">
 			<input type="hidden" name="action" value="get_post_view" />
-			<input type="hidden" name="category_id" value="<?php echo CATEGORY_DESTINATION; ?>" />
+			<input type="hidden" name="category_id" value="<?php echo $category['id']; ?>" />
 			<input type="hidden" name="page_active" value="1" />
 			<input type="hidden" name="reload" value="0" />
 			
 			<div class="filtertip">
 				<div class="padding20">
-					<p class="size13"><span class="size18 bold destination-count"><?php echo $destination_count; ?></span> Destinations</p>
-					<p class="size13">Narrow results or <a href="#">view all</a></p>
+					<p class="size13"><span class="size18 bold destination-count"><?php echo $destination_count; ?></span> <?php echo $category['title']; ?></p>
+					<p class="size13">Narrow results or <a>view all</a></p>
 				</div>
 				<div class="tip-arrow"></div>
 			</div>

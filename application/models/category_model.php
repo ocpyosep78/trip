@@ -60,6 +60,8 @@ class category_model extends CI_Model {
        
         if (isset($param['id'])) {
             $select_query  = "SELECT * FROM ".CATEGORY." WHERE id = '".$param['id']."' LIMIT 1";
+        } else if (isset($param['alias'])) {
+            $select_query  = "SELECT * FROM ".CATEGORY." WHERE alias = '".$param['alias']."' LIMIT 1";
         } 
        
         $select_result = mysql_query($select_query) or die(mysql_error());
@@ -120,6 +122,11 @@ class category_model extends CI_Model {
 	
 	function sync($row, $param = array()) {
 		$row = StripArray($row);
+		
+		// link
+		if (!empty($row['alias'])) {
+			$row['link_category'] = base_url($row['alias']);
+		}
 		
 		if (count(@$param['column']) > 0) {
 			$row = dt_view_set($row, $param);

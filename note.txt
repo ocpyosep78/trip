@@ -12,9 +12,8 @@ LINK TEMPORARY
 - http://localhost/trip/trunk/about-us
 
 To do :
-- halaman website restaurant
-- panel untuk member
-- panel untuk traveler
+- panel untuk member => fungsional
+- panel untuk traveler => fungsional
 - halaman website search
 - halaman website page static
 

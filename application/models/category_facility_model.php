@@ -47,6 +47,7 @@ class category_facility_model extends CI_Model {
     function get_array($param = array()) {
         $array = array();
 		
+		$param['field_replace']['facility_text'] = 'facility.title';
 		$param['field_replace']['category_title'] = 'category.title';
 		$param['field_replace']['facility_title'] = 'facility.title';
 		
