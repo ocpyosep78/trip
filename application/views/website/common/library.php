@@ -41,7 +41,7 @@
 <script src="<?php echo base_url('static/theme/forest/lib/typeahead/typeahead.bundle.js'); ?>"></script>
 <script src="<?php echo base_url('static/theme/forest/lib/typeahead/examples.js'); ?>"></script>
 
-<!--   typeahead   -->
+<!--   notify   -->
 <script src="<?php echo base_url('static/js/notify.min.js'); ?>"></script>
 
 <!-- Custom Select -->
