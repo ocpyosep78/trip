@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 3.2.4
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 04, 2014 at 03:23 PM
--- Server version: 5.5.32
--- PHP Version: 5.4.19
+-- Host: localhost
+-- Generation Time: Apr 09, 2014 at 08:43 PM
+-- Server version: 5.1.41
+-- PHP Version: 5.3.1
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -19,8 +18,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `trip_db`
 --
-CREATE DATABASE IF NOT EXISTS `trip_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `trip_db`;
 
 -- --------------------------------------------------------
 
@@ -4304,6 +4301,11 @@ CREATE TABLE IF NOT EXISTS `city_ip` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
+--
+-- Dumping data for table `city_ip`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -4607,6 +4609,11 @@ CREATE TABLE IF NOT EXISTS `hotel_booking` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `hotel_booking`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -4620,6 +4627,11 @@ CREATE TABLE IF NOT EXISTS `hotel_detail` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `hotel_detail`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -4632,6 +4644,11 @@ CREATE TABLE IF NOT EXISTS `hotel_room_amenity` (
   `room_amenity_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `hotel_room_amenity`
+--
+
 
 -- --------------------------------------------------------
 
@@ -4925,7 +4942,7 @@ CREATE TABLE IF NOT EXISTS `ip_log` (
   `ip_address` varchar(50) NOT NULL,
   `request_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5270 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5828 ;
 
 --
 -- Dumping data for table `ip_log`
@@ -10203,7 +10220,566 @@ INSERT INTO `ip_log` (`id`, `ip_address`, `request_time`) VALUES
 (5266, '::1', '2014-04-04 11:06:55'),
 (5267, '::1', '2014-04-04 11:07:28'),
 (5268, '::1', '2014-04-04 11:07:41'),
-(5269, '::1', '2014-04-04 13:26:37');
+(5269, '::1', '2014-04-04 13:26:37'),
+(5270, '::1', '2014-04-09 12:29:36'),
+(5271, '::1', '2014-04-09 12:29:45'),
+(5272, '::1', '2014-04-09 12:29:54'),
+(5273, '::1', '2014-04-09 12:29:54'),
+(5274, '::1', '2014-04-09 12:29:56'),
+(5275, '::1', '2014-04-09 12:30:19'),
+(5276, '::1', '2014-04-09 12:30:34'),
+(5277, '::1', '2014-04-09 12:30:34'),
+(5278, '::1', '2014-04-09 12:30:34'),
+(5279, '::1', '2014-04-09 12:30:36'),
+(5280, '::1', '2014-04-09 12:30:36'),
+(5281, '::1', '2014-04-09 12:30:36'),
+(5282, '::1', '2014-04-09 12:30:37'),
+(5283, '::1', '2014-04-09 12:30:38'),
+(5284, '::1', '2014-04-09 12:30:38'),
+(5285, '::1', '2014-04-09 12:30:39'),
+(5286, '::1', '2014-04-09 12:30:39'),
+(5287, '::1', '2014-04-09 12:30:39'),
+(5288, '::1', '2014-04-09 12:30:40'),
+(5289, '::1', '2014-04-09 12:30:41'),
+(5290, '::1', '2014-04-09 12:30:41'),
+(5291, '::1', '2014-04-09 12:30:42'),
+(5292, '::1', '2014-04-09 12:30:58'),
+(5293, '::1', '2014-04-09 12:56:59'),
+(5294, '::1', '2014-04-09 12:57:03'),
+(5295, '::1', '2014-04-09 12:57:04'),
+(5296, '::1', '2014-04-09 12:57:04'),
+(5297, '::1', '2014-04-09 12:58:16'),
+(5298, '::1', '2014-04-09 12:58:30'),
+(5299, '::1', '2014-04-09 12:58:45'),
+(5300, '::1', '2014-04-09 12:58:50'),
+(5301, '::1', '2014-04-09 12:58:59'),
+(5302, '::1', '2014-04-09 12:59:11'),
+(5303, '::1', '2014-04-09 12:59:27'),
+(5304, '::1', '2014-04-09 12:59:34'),
+(5305, '::1', '2014-04-09 12:59:36'),
+(5306, '::1', '2014-04-09 12:59:36'),
+(5307, '::1', '2014-04-09 12:59:38'),
+(5308, '::1', '2014-04-09 12:59:39'),
+(5309, '::1', '2014-04-09 12:59:42'),
+(5310, '::1', '2014-04-09 12:59:51'),
+(5311, '::1', '2014-04-09 12:59:59'),
+(5312, '::1', '2014-04-09 13:00:01'),
+(5313, '::1', '2014-04-09 13:00:01'),
+(5314, '::1', '2014-04-09 13:00:04'),
+(5315, '::1', '2014-04-09 13:00:05'),
+(5316, '::1', '2014-04-09 13:00:12'),
+(5317, '::1', '2014-04-09 13:00:12'),
+(5318, '::1', '2014-04-09 13:00:15'),
+(5319, '::1', '2014-04-09 13:05:37'),
+(5320, '::1', '2014-04-09 13:05:40'),
+(5321, '::1', '2014-04-09 13:05:43'),
+(5322, '::1', '2014-04-09 13:05:49'),
+(5323, '::1', '2014-04-09 13:05:49'),
+(5324, '::1', '2014-04-09 13:05:55'),
+(5325, '::1', '2014-04-09 13:05:55'),
+(5326, '::1', '2014-04-09 13:06:35'),
+(5327, '::1', '2014-04-09 13:06:35'),
+(5328, '::1', '2014-04-09 13:06:51'),
+(5329, '::1', '2014-04-09 13:06:51'),
+(5330, '::1', '2014-04-09 13:06:54'),
+(5331, '::1', '2014-04-09 13:07:09'),
+(5332, '::1', '2014-04-09 13:07:09'),
+(5333, '::1', '2014-04-09 13:07:11'),
+(5334, '::1', '2014-04-09 13:07:11'),
+(5335, '::1', '2014-04-09 13:07:14'),
+(5336, '::1', '2014-04-09 13:07:18'),
+(5337, '::1', '2014-04-09 13:07:18'),
+(5338, '::1', '2014-04-09 13:07:19'),
+(5339, '::1', '2014-04-09 13:07:19'),
+(5340, '::1', '2014-04-09 13:07:21'),
+(5341, '::1', '2014-04-09 13:07:21'),
+(5342, '::1', '2014-04-09 13:07:23'),
+(5343, '::1', '2014-04-09 13:08:09'),
+(5344, '::1', '2014-04-09 13:08:09'),
+(5345, '::1', '2014-04-09 13:08:17'),
+(5346, '::1', '2014-04-09 13:09:57'),
+(5347, '::1', '2014-04-09 13:09:57'),
+(5348, '::1', '2014-04-09 13:10:02'),
+(5349, '::1', '2014-04-09 13:10:34'),
+(5350, '::1', '2014-04-09 13:10:34'),
+(5351, '::1', '2014-04-09 13:10:37'),
+(5352, '::1', '2014-04-09 13:10:41'),
+(5353, '::1', '2014-04-09 13:10:41'),
+(5354, '::1', '2014-04-09 13:10:42'),
+(5355, '::1', '2014-04-09 13:10:46'),
+(5356, '::1', '2014-04-09 13:10:46'),
+(5357, '::1', '2014-04-09 13:10:47'),
+(5358, '::1', '2014-04-09 13:10:50'),
+(5359, '::1', '2014-04-09 13:10:51'),
+(5360, '::1', '2014-04-09 13:10:52'),
+(5361, '::1', '2014-04-09 13:10:55'),
+(5362, '::1', '2014-04-09 13:10:55'),
+(5363, '::1', '2014-04-09 13:11:27'),
+(5364, '::1', '2014-04-09 13:11:27'),
+(5365, '::1', '2014-04-09 13:11:29'),
+(5366, '::1', '2014-04-09 13:14:10'),
+(5367, '::1', '2014-04-09 13:14:29'),
+(5368, '::1', '2014-04-09 13:14:40'),
+(5369, '::1', '2014-04-09 13:14:48'),
+(5370, '::1', '2014-04-09 13:15:13'),
+(5371, '::1', '2014-04-09 13:16:09'),
+(5372, '::1', '2014-04-09 13:16:21'),
+(5373, '::1', '2014-04-09 13:16:21'),
+(5374, '::1', '2014-04-09 13:18:58'),
+(5375, '::1', '2014-04-09 13:19:27'),
+(5376, '::1', '2014-04-09 13:19:33'),
+(5377, '::1', '2014-04-09 13:23:53'),
+(5378, '::1', '2014-04-09 13:23:57'),
+(5379, '::1', '2014-04-09 13:24:01'),
+(5380, '::1', '2014-04-09 13:24:51'),
+(5381, '::1', '2014-04-09 13:26:30'),
+(5382, '::1', '2014-04-09 13:26:59'),
+(5383, '::1', '2014-04-09 13:27:13'),
+(5384, '::1', '2014-04-09 13:28:05'),
+(5385, '::1', '2014-04-09 13:28:07'),
+(5386, '::1', '2014-04-09 13:28:08'),
+(5387, '::1', '2014-04-09 13:28:09'),
+(5388, '::1', '2014-04-09 13:28:11'),
+(5389, '::1', '2014-04-09 13:28:12'),
+(5390, '::1', '2014-04-09 13:28:13'),
+(5391, '::1', '2014-04-09 13:28:15'),
+(5392, '::1', '2014-04-09 13:28:16'),
+(5393, '::1', '2014-04-09 13:28:26'),
+(5394, '::1', '2014-04-09 13:29:46'),
+(5395, '::1', '2014-04-09 13:32:19'),
+(5396, '::1', '2014-04-09 13:32:27'),
+(5397, '::1', '2014-04-09 13:33:21'),
+(5398, '::1', '2014-04-09 13:33:33'),
+(5399, '::1', '2014-04-09 13:33:37'),
+(5400, '::1', '2014-04-09 13:34:07'),
+(5401, '::1', '2014-04-09 13:35:16'),
+(5402, '::1', '2014-04-09 13:35:22'),
+(5403, '::1', '2014-04-09 13:36:34'),
+(5404, '::1', '2014-04-09 13:36:42'),
+(5405, '::1', '2014-04-09 13:36:48'),
+(5406, '::1', '2014-04-09 13:36:52'),
+(5407, '::1', '2014-04-09 13:36:57'),
+(5408, '::1', '2014-04-09 13:36:59'),
+(5409, '::1', '2014-04-09 13:37:02'),
+(5410, '::1', '2014-04-09 13:37:02'),
+(5411, '::1', '2014-04-09 13:37:02'),
+(5412, '::1', '2014-04-09 13:37:21'),
+(5413, '::1', '2014-04-09 13:37:21'),
+(5414, '::1', '2014-04-09 13:37:21'),
+(5415, '::1', '2014-04-09 13:37:27'),
+(5416, '::1', '2014-04-09 13:37:29'),
+(5417, '::1', '2014-04-09 13:39:15'),
+(5418, '::1', '2014-04-09 13:39:43'),
+(5419, '::1', '2014-04-09 13:41:06'),
+(5420, '::1', '2014-04-09 13:41:13'),
+(5421, '::1', '2014-04-09 13:41:16'),
+(5422, '::1', '2014-04-09 13:41:16'),
+(5423, '::1', '2014-04-09 13:41:16'),
+(5424, '::1', '2014-04-09 13:41:39'),
+(5425, '::1', '2014-04-09 13:41:39'),
+(5426, '::1', '2014-04-09 13:41:42'),
+(5427, '::1', '2014-04-09 13:42:05'),
+(5428, '::1', '2014-04-09 13:42:05'),
+(5429, '::1', '2014-04-09 13:42:08'),
+(5430, '::1', '2014-04-09 13:42:08'),
+(5431, '::1', '2014-04-09 13:42:08'),
+(5432, '::1', '2014-04-09 13:42:14'),
+(5433, '::1', '2014-04-09 13:42:21'),
+(5434, '::1', '2014-04-09 13:42:33'),
+(5435, '::1', '2014-04-09 13:43:08'),
+(5436, '::1', '2014-04-09 13:43:08'),
+(5437, '::1', '2014-04-09 13:43:08'),
+(5438, '::1', '2014-04-09 13:43:11'),
+(5439, '::1', '2014-04-09 13:43:21'),
+(5440, '::1', '2014-04-09 13:43:23'),
+(5441, '::1', '2014-04-09 13:43:23'),
+(5442, '::1', '2014-04-09 13:43:23'),
+(5443, '::1', '2014-04-09 13:43:25'),
+(5444, '::1', '2014-04-09 13:43:26'),
+(5445, '::1', '2014-04-09 13:43:26'),
+(5446, '::1', '2014-04-09 13:43:35'),
+(5447, '::1', '2014-04-09 13:43:36'),
+(5448, '::1', '2014-04-09 13:43:36'),
+(5449, '::1', '2014-04-09 13:43:39'),
+(5450, '::1', '2014-04-09 13:44:27'),
+(5451, '::1', '2014-04-09 13:44:28'),
+(5452, '::1', '2014-04-09 13:44:28'),
+(5453, '::1', '2014-04-09 13:44:31'),
+(5454, '::1', '2014-04-09 13:49:00'),
+(5455, '::1', '2014-04-09 13:49:01'),
+(5456, '::1', '2014-04-09 13:49:01'),
+(5457, '::1', '2014-04-09 13:50:12'),
+(5458, '::1', '2014-04-09 13:50:19'),
+(5459, '::1', '2014-04-09 13:50:20'),
+(5460, '::1', '2014-04-09 13:50:20'),
+(5461, '::1', '2014-04-09 13:50:23'),
+(5462, '::1', '2014-04-09 13:51:19'),
+(5463, '::1', '2014-04-09 13:51:20'),
+(5464, '::1', '2014-04-09 13:51:20'),
+(5465, '::1', '2014-04-09 13:51:21'),
+(5466, '::1', '2014-04-09 13:53:21'),
+(5467, '::1', '2014-04-09 13:53:29'),
+(5468, '::1', '2014-04-09 13:53:29'),
+(5469, '::1', '2014-04-09 13:53:29'),
+(5470, '::1', '2014-04-09 13:53:31'),
+(5471, '::1', '2014-04-09 13:53:46'),
+(5472, '::1', '2014-04-09 13:53:46'),
+(5473, '::1', '2014-04-09 13:54:00'),
+(5474, '::1', '2014-04-09 13:54:00'),
+(5475, '::1', '2014-04-09 13:54:00'),
+(5476, '::1', '2014-04-09 13:55:48'),
+(5477, '::1', '2014-04-09 13:55:49'),
+(5478, '::1', '2014-04-09 13:55:49'),
+(5479, '::1', '2014-04-09 13:56:05'),
+(5480, '::1', '2014-04-09 13:56:10'),
+(5481, '::1', '2014-04-09 13:56:11'),
+(5482, '::1', '2014-04-09 13:56:15'),
+(5483, '::1', '2014-04-09 13:56:16'),
+(5484, '::1', '2014-04-09 13:56:18'),
+(5485, '::1', '2014-04-09 13:56:18'),
+(5486, '::1', '2014-04-09 13:59:35'),
+(5487, '::1', '2014-04-09 13:59:35'),
+(5488, '::1', '2014-04-09 13:59:35'),
+(5489, '::1', '2014-04-09 13:59:37'),
+(5490, '::1', '2014-04-09 13:59:46'),
+(5491, '::1', '2014-04-09 13:59:47'),
+(5492, '::1', '2014-04-09 13:59:47'),
+(5493, '::1', '2014-04-09 13:59:49'),
+(5494, '::1', '2014-04-09 14:00:15'),
+(5495, '::1', '2014-04-09 14:00:32'),
+(5496, '::1', '2014-04-09 14:15:39'),
+(5497, '::1', '2014-04-09 14:15:40'),
+(5498, '::1', '2014-04-09 14:15:42'),
+(5499, '::1', '2014-04-09 14:16:30'),
+(5500, '::1', '2014-04-09 14:18:34'),
+(5501, '::1', '2014-04-09 14:18:35'),
+(5502, '::1', '2014-04-09 14:18:47'),
+(5503, '::1', '2014-04-09 14:21:05'),
+(5504, '::1', '2014-04-09 14:21:07'),
+(5505, '::1', '2014-04-09 14:23:20'),
+(5506, '::1', '2014-04-09 14:23:42'),
+(5507, '::1', '2014-04-09 14:23:44'),
+(5508, '::1', '2014-04-09 14:25:01'),
+(5509, '::1', '2014-04-09 14:25:05'),
+(5510, '::1', '2014-04-09 14:25:23'),
+(5511, '::1', '2014-04-09 14:25:25'),
+(5512, '::1', '2014-04-09 14:25:38'),
+(5513, '::1', '2014-04-09 14:25:38'),
+(5514, '::1', '2014-04-09 14:25:43'),
+(5515, '::1', '2014-04-09 14:30:08'),
+(5516, '::1', '2014-04-09 14:30:18'),
+(5517, '::1', '2014-04-09 14:31:14'),
+(5518, '::1', '2014-04-09 14:31:22'),
+(5519, '::1', '2014-04-09 14:31:22'),
+(5520, '::1', '2014-04-09 14:31:25'),
+(5521, '::1', '2014-04-09 18:06:25'),
+(5522, '::1', '2014-04-09 18:06:42'),
+(5523, '::1', '2014-04-09 18:07:02'),
+(5524, '::1', '2014-04-09 18:07:02'),
+(5525, '::1', '2014-04-09 18:07:10'),
+(5526, '::1', '2014-04-09 18:07:23'),
+(5527, '::1', '2014-04-09 18:07:25'),
+(5528, '::1', '2014-04-09 18:08:33'),
+(5529, '::1', '2014-04-09 18:09:07'),
+(5530, '::1', '2014-04-09 18:09:14'),
+(5531, '::1', '2014-04-09 18:09:18'),
+(5532, '::1', '2014-04-09 18:09:22'),
+(5533, '::1', '2014-04-09 18:09:46'),
+(5534, '::1', '2014-04-09 18:09:56'),
+(5535, '::1', '2014-04-09 18:10:39'),
+(5536, '::1', '2014-04-09 18:10:55'),
+(5537, '::1', '2014-04-09 18:11:04'),
+(5538, '::1', '2014-04-09 18:12:54'),
+(5539, '::1', '2014-04-09 18:14:23'),
+(5540, '::1', '2014-04-09 18:15:14'),
+(5541, '::1', '2014-04-09 18:15:58'),
+(5542, '::1', '2014-04-09 18:16:40'),
+(5543, '::1', '2014-04-09 18:16:41'),
+(5544, '::1', '2014-04-09 18:16:47'),
+(5545, '::1', '2014-04-09 18:16:48'),
+(5546, '::1', '2014-04-09 18:17:02'),
+(5547, '::1', '2014-04-09 18:17:05'),
+(5548, '::1', '2014-04-09 18:17:20'),
+(5549, '::1', '2014-04-09 18:17:33'),
+(5550, '::1', '2014-04-09 18:17:39'),
+(5551, '::1', '2014-04-09 18:26:16'),
+(5552, '::1', '2014-04-09 18:26:23'),
+(5553, '::1', '2014-04-09 18:28:08'),
+(5554, '::1', '2014-04-09 18:28:38'),
+(5555, '::1', '2014-04-09 18:29:52'),
+(5556, '::1', '2014-04-09 18:30:03'),
+(5557, '::1', '2014-04-09 18:30:37'),
+(5558, '::1', '2014-04-09 18:30:51'),
+(5559, '::1', '2014-04-09 18:30:58'),
+(5560, '::1', '2014-04-09 18:31:03'),
+(5561, '::1', '2014-04-09 18:32:20'),
+(5562, '::1', '2014-04-09 18:32:29'),
+(5563, '::1', '2014-04-09 18:32:31'),
+(5564, '::1', '2014-04-09 18:32:47'),
+(5565, '::1', '2014-04-09 18:33:05'),
+(5566, '::1', '2014-04-09 18:33:24'),
+(5567, '::1', '2014-04-09 18:33:26'),
+(5568, '::1', '2014-04-09 18:33:43'),
+(5569, '::1', '2014-04-09 18:33:46'),
+(5570, '::1', '2014-04-09 18:33:57'),
+(5571, '::1', '2014-04-09 18:34:00'),
+(5572, '::1', '2014-04-09 18:36:01'),
+(5573, '::1', '2014-04-09 18:36:01'),
+(5574, '::1', '2014-04-09 18:36:04'),
+(5575, '::1', '2014-04-09 18:36:07'),
+(5576, '::1', '2014-04-09 18:36:07'),
+(5577, '::1', '2014-04-09 18:36:14'),
+(5578, '::1', '2014-04-09 18:36:14');
+INSERT INTO `ip_log` (`id`, `ip_address`, `request_time`) VALUES
+(5579, '::1', '2014-04-09 18:37:03'),
+(5580, '::1', '2014-04-09 18:37:03'),
+(5581, '::1', '2014-04-09 18:38:03'),
+(5582, '::1', '2014-04-09 18:38:28'),
+(5583, '::1', '2014-04-09 18:38:29'),
+(5584, '::1', '2014-04-09 18:38:36'),
+(5585, '::1', '2014-04-09 18:38:50'),
+(5586, '::1', '2014-04-09 18:38:52'),
+(5587, '::1', '2014-04-09 18:38:52'),
+(5588, '::1', '2014-04-09 18:39:09'),
+(5589, '::1', '2014-04-09 18:39:10'),
+(5590, '::1', '2014-04-09 18:39:37'),
+(5591, '::1', '2014-04-09 18:39:37'),
+(5592, '::1', '2014-04-09 18:39:47'),
+(5593, '::1', '2014-04-09 18:39:47'),
+(5594, '::1', '2014-04-09 18:39:50'),
+(5595, '::1', '2014-04-09 18:40:02'),
+(5596, '::1', '2014-04-09 18:40:02'),
+(5597, '::1', '2014-04-09 18:40:09'),
+(5598, '::1', '2014-04-09 18:40:15'),
+(5599, '::1', '2014-04-09 18:40:15'),
+(5600, '::1', '2014-04-09 18:40:24'),
+(5601, '::1', '2014-04-09 18:40:43'),
+(5602, '::1', '2014-04-09 18:40:45'),
+(5603, '::1', '2014-04-09 18:41:47'),
+(5604, '::1', '2014-04-09 18:41:50'),
+(5605, '::1', '2014-04-09 18:41:55'),
+(5606, '::1', '2014-04-09 18:41:56'),
+(5607, '::1', '2014-04-09 18:43:08'),
+(5608, '::1', '2014-04-09 18:43:09'),
+(5609, '::1', '2014-04-09 18:43:18'),
+(5610, '::1', '2014-04-09 18:44:03'),
+(5611, '::1', '2014-04-09 18:45:18'),
+(5612, '::1', '2014-04-09 18:46:01'),
+(5613, '::1', '2014-04-09 18:46:02'),
+(5614, '::1', '2014-04-09 18:46:03'),
+(5615, '::1', '2014-04-09 18:58:04'),
+(5616, '::1', '2014-04-09 18:58:04'),
+(5617, '::1', '2014-04-09 18:59:03'),
+(5618, '::1', '2014-04-09 18:59:11'),
+(5619, '::1', '2014-04-09 18:59:12'),
+(5620, '::1', '2014-04-09 18:59:15'),
+(5621, '::1', '2014-04-09 18:59:18'),
+(5622, '::1', '2014-04-09 18:59:18'),
+(5623, '::1', '2014-04-09 18:59:31'),
+(5624, '::1', '2014-04-09 18:59:31'),
+(5625, '::1', '2014-04-09 18:59:32'),
+(5626, '::1', '2014-04-09 18:59:33'),
+(5627, '::1', '2014-04-09 18:59:40'),
+(5628, '::1', '2014-04-09 18:59:41'),
+(5629, '::1', '2014-04-09 19:52:08'),
+(5630, '::1', '2014-04-09 19:52:08'),
+(5631, '::1', '2014-04-09 19:52:37'),
+(5632, '::1', '2014-04-09 19:52:37'),
+(5633, '::1', '2014-04-09 19:52:39'),
+(5634, '::1', '2014-04-09 19:52:40'),
+(5635, '::1', '2014-04-09 19:53:16'),
+(5636, '::1', '2014-04-09 19:53:17'),
+(5637, '::1', '2014-04-09 19:53:33'),
+(5638, '::1', '2014-04-09 19:54:12'),
+(5639, '::1', '2014-04-09 19:54:47'),
+(5640, '::1', '2014-04-09 19:54:47'),
+(5641, '::1', '2014-04-09 19:54:56'),
+(5642, '::1', '2014-04-09 19:54:57'),
+(5643, '::1', '2014-04-09 19:55:06'),
+(5644, '::1', '2014-04-09 19:55:43'),
+(5645, '::1', '2014-04-09 19:55:54'),
+(5646, '::1', '2014-04-09 19:55:56'),
+(5647, '::1', '2014-04-09 19:55:56'),
+(5648, '::1', '2014-04-09 19:55:58'),
+(5649, '::1', '2014-04-09 19:56:02'),
+(5650, '::1', '2014-04-09 19:56:02'),
+(5651, '::1', '2014-04-09 19:56:04'),
+(5652, '::1', '2014-04-09 19:56:04'),
+(5653, '::1', '2014-04-09 19:56:11'),
+(5654, '::1', '2014-04-09 19:56:11'),
+(5655, '::1', '2014-04-09 19:56:27'),
+(5656, '::1', '2014-04-09 19:56:27'),
+(5657, '::1', '2014-04-09 19:56:30'),
+(5658, '::1', '2014-04-09 19:57:26'),
+(5659, '::1', '2014-04-09 19:57:27'),
+(5660, '::1', '2014-04-09 19:57:31'),
+(5661, '::1', '2014-04-09 19:57:31'),
+(5662, '::1', '2014-04-09 19:57:35'),
+(5663, '::1', '2014-04-09 19:57:59'),
+(5664, '::1', '2014-04-09 19:58:00'),
+(5665, '::1', '2014-04-09 19:58:01'),
+(5666, '::1', '2014-04-09 19:59:10'),
+(5667, '::1', '2014-04-09 19:59:11'),
+(5668, '::1', '2014-04-09 19:59:37'),
+(5669, '::1', '2014-04-09 19:59:37'),
+(5670, '::1', '2014-04-09 19:59:39'),
+(5671, '::1', '2014-04-09 19:59:42'),
+(5672, '::1', '2014-04-09 20:00:41'),
+(5673, '::1', '2014-04-09 20:00:42'),
+(5674, '::1', '2014-04-09 20:00:42'),
+(5675, '::1', '2014-04-09 20:06:09'),
+(5676, '::1', '2014-04-09 20:06:36'),
+(5677, '::1', '2014-04-09 20:06:57'),
+(5678, '::1', '2014-04-09 20:09:01'),
+(5679, '::1', '2014-04-09 20:10:07'),
+(5680, '::1', '2014-04-09 20:10:11'),
+(5681, '::1', '2014-04-09 20:10:11'),
+(5682, '::1', '2014-04-09 20:10:11'),
+(5683, '::1', '2014-04-09 20:10:13'),
+(5684, '::1', '2014-04-09 20:10:13'),
+(5685, '::1', '2014-04-09 20:10:23'),
+(5686, '::1', '2014-04-09 20:10:23'),
+(5687, '::1', '2014-04-09 20:10:28'),
+(5688, '::1', '2014-04-09 20:10:31'),
+(5689, '::1', '2014-04-09 20:10:31'),
+(5690, '::1', '2014-04-09 20:12:29'),
+(5691, '::1', '2014-04-09 20:12:29'),
+(5692, '::1', '2014-04-09 20:14:01'),
+(5693, '::1', '2014-04-09 20:14:01'),
+(5694, '::1', '2014-04-09 20:14:50'),
+(5695, '::1', '2014-04-09 20:15:43'),
+(5696, '::1', '2014-04-09 20:16:01'),
+(5697, '::1', '2014-04-09 20:16:02'),
+(5698, '::1', '2014-04-09 20:16:07'),
+(5699, '::1', '2014-04-09 20:16:08'),
+(5700, '::1', '2014-04-09 20:16:12'),
+(5701, '::1', '2014-04-09 20:16:36'),
+(5702, '::1', '2014-04-09 20:16:37'),
+(5703, '::1', '2014-04-09 20:16:38'),
+(5704, '::1', '2014-04-09 20:18:00'),
+(5705, '::1', '2014-04-09 20:18:14'),
+(5706, '::1', '2014-04-09 20:18:15'),
+(5707, '::1', '2014-04-09 20:18:26'),
+(5708, '::1', '2014-04-09 20:18:27'),
+(5709, '::1', '2014-04-09 20:18:39'),
+(5710, '::1', '2014-04-09 20:18:40'),
+(5711, '::1', '2014-04-09 20:18:59'),
+(5712, '::1', '2014-04-09 20:18:59'),
+(5713, '::1', '2014-04-09 20:19:39'),
+(5714, '::1', '2014-04-09 20:19:41'),
+(5715, '::1', '2014-04-09 20:19:44'),
+(5716, '::1', '2014-04-09 20:19:48'),
+(5717, '::1', '2014-04-09 20:19:53'),
+(5718, '::1', '2014-04-09 20:21:01'),
+(5719, '::1', '2014-04-09 20:22:45'),
+(5720, '::1', '2014-04-09 20:23:07'),
+(5721, '::1', '2014-04-09 20:23:18'),
+(5722, '::1', '2014-04-09 20:23:24'),
+(5723, '::1', '2014-04-09 20:23:27'),
+(5724, '::1', '2014-04-09 20:23:33'),
+(5725, '::1', '2014-04-09 20:23:35'),
+(5726, '::1', '2014-04-09 20:23:36'),
+(5727, '::1', '2014-04-09 20:24:01'),
+(5728, '::1', '2014-04-09 20:24:01'),
+(5729, '::1', '2014-04-09 20:24:02'),
+(5730, '::1', '2014-04-09 20:24:03'),
+(5731, '::1', '2014-04-09 20:24:06'),
+(5732, '::1', '2014-04-09 20:24:06'),
+(5733, '::1', '2014-04-09 20:24:09'),
+(5734, '::1', '2014-04-09 20:24:15'),
+(5735, '::1', '2014-04-09 20:24:15'),
+(5736, '::1', '2014-04-09 20:24:21'),
+(5737, '::1', '2014-04-09 20:24:21'),
+(5738, '::1', '2014-04-09 20:24:25'),
+(5739, '::1', '2014-04-09 20:24:25'),
+(5740, '::1', '2014-04-09 20:24:30'),
+(5741, '::1', '2014-04-09 20:24:30'),
+(5742, '::1', '2014-04-09 20:24:34'),
+(5743, '::1', '2014-04-09 20:24:37'),
+(5744, '::1', '2014-04-09 20:24:37'),
+(5745, '::1', '2014-04-09 20:24:42'),
+(5746, '::1', '2014-04-09 20:24:42'),
+(5747, '::1', '2014-04-09 20:24:45'),
+(5748, '::1', '2014-04-09 20:24:45'),
+(5749, '::1', '2014-04-09 20:25:42'),
+(5750, '::1', '2014-04-09 20:25:42'),
+(5751, '::1', '2014-04-09 20:25:44'),
+(5752, '::1', '2014-04-09 20:25:52'),
+(5753, '::1', '2014-04-09 20:25:52'),
+(5754, '::1', '2014-04-09 20:25:56'),
+(5755, '::1', '2014-04-09 20:25:57'),
+(5756, '::1', '2014-04-09 20:26:02'),
+(5757, '::1', '2014-04-09 20:29:59'),
+(5758, '::1', '2014-04-09 20:30:21'),
+(5759, '::1', '2014-04-09 20:30:31'),
+(5760, '::1', '2014-04-09 20:31:23'),
+(5761, '::1', '2014-04-09 20:32:21'),
+(5762, '::1', '2014-04-09 20:33:29'),
+(5763, '::1', '2014-04-09 20:33:46'),
+(5764, '::1', '2014-04-09 20:34:32'),
+(5765, '::1', '2014-04-09 20:34:34'),
+(5766, '::1', '2014-04-09 20:34:36'),
+(5767, '::1', '2014-04-09 20:34:58'),
+(5768, '::1', '2014-04-09 20:35:00'),
+(5769, '::1', '2014-04-09 20:35:02'),
+(5770, '::1', '2014-04-09 20:35:03'),
+(5771, '::1', '2014-04-09 20:36:42'),
+(5772, '::1', '2014-04-09 20:37:52'),
+(5773, '::1', '2014-04-09 20:37:54'),
+(5774, '::1', '2014-04-09 20:37:55'),
+(5775, '::1', '2014-04-09 20:37:57'),
+(5776, '::1', '2014-04-09 20:37:58'),
+(5777, '::1', '2014-04-09 20:37:59'),
+(5778, '::1', '2014-04-09 20:38:02'),
+(5779, '::1', '2014-04-09 20:38:03'),
+(5780, '::1', '2014-04-09 20:38:04'),
+(5781, '::1', '2014-04-09 20:38:06'),
+(5782, '::1', '2014-04-09 20:38:09'),
+(5783, '::1', '2014-04-09 20:38:10'),
+(5784, '::1', '2014-04-09 20:38:12'),
+(5785, '::1', '2014-04-09 20:38:13'),
+(5786, '::1', '2014-04-09 20:38:14'),
+(5787, '::1', '2014-04-09 20:38:16'),
+(5788, '::1', '2014-04-09 20:38:17'),
+(5789, '::1', '2014-04-09 20:38:19'),
+(5790, '::1', '2014-04-09 20:38:20'),
+(5791, '::1', '2014-04-09 20:38:22'),
+(5792, '::1', '2014-04-09 20:38:24'),
+(5793, '::1', '2014-04-09 20:38:28'),
+(5794, '::1', '2014-04-09 20:38:54'),
+(5795, '::1', '2014-04-09 20:39:09'),
+(5796, '::1', '2014-04-09 20:39:09'),
+(5797, '::1', '2014-04-09 20:39:11'),
+(5798, '::1', '2014-04-09 20:39:15'),
+(5799, '::1', '2014-04-09 20:39:15'),
+(5800, '::1', '2014-04-09 20:39:19'),
+(5801, '::1', '2014-04-09 20:39:21'),
+(5802, '::1', '2014-04-09 20:39:28'),
+(5803, '::1', '2014-04-09 20:39:31'),
+(5804, '::1', '2014-04-09 20:39:32'),
+(5805, '::1', '2014-04-09 20:39:34'),
+(5806, '::1', '2014-04-09 20:39:35'),
+(5807, '::1', '2014-04-09 20:39:39'),
+(5808, '::1', '2014-04-09 20:39:41'),
+(5809, '::1', '2014-04-09 20:39:42'),
+(5810, '::1', '2014-04-09 20:39:47'),
+(5811, '::1', '2014-04-09 20:39:52'),
+(5812, '::1', '2014-04-09 20:40:01'),
+(5813, '::1', '2014-04-09 20:40:01'),
+(5814, '::1', '2014-04-09 20:40:49'),
+(5815, '::1', '2014-04-09 20:40:52'),
+(5816, '::1', '2014-04-09 20:40:52'),
+(5817, '::1', '2014-04-09 20:40:53'),
+(5818, '::1', '2014-04-09 20:40:55'),
+(5819, '::1', '2014-04-09 20:40:55'),
+(5820, '::1', '2014-04-09 20:40:57'),
+(5821, '::1', '2014-04-09 20:40:57'),
+(5822, '::1', '2014-04-09 20:40:58'),
+(5823, '::1', '2014-04-09 20:41:00'),
+(5824, '::1', '2014-04-09 20:41:17'),
+(5825, '::1', '2014-04-09 20:41:19'),
+(5826, '::1', '2014-04-09 20:41:26'),
+(5827, '::1', '2014-04-09 20:41:29');
 
 -- --------------------------------------------------------
 
@@ -10291,6 +10867,7 @@ CREATE TABLE IF NOT EXISTS `member` (
   `passwd_reset_key` varchar(100) NOT NULL,
   `address` varchar(255) DEFAULT NULL,
   `phone` varchar(50) NOT NULL,
+  `bb_pin` varchar(50) NOT NULL,
   `postal_code` varchar(10) NOT NULL,
   `user_about` varchar(255) NOT NULL,
   `user_info` varchar(255) NOT NULL,
@@ -10309,8 +10886,30 @@ CREATE TABLE IF NOT EXISTS `member` (
 -- Dumping data for table `member`
 --
 
-INSERT INTO `member` (`id`, `city_id`, `email`, `alias`, `first_name`, `last_name`, `passwd`, `passwd_reset_key`, `address`, `phone`, `postal_code`, `user_about`, `user_info`, `register_date`, `membership_date`, `verify_email`, `verify_email_key`, `verify_address`, `thumbnail`, `provider`, `is_active`) VALUES
-(2, 836, 'satu@mail.com', 'satu', 'First', 'Last Name', 'fe30fa79056939db8cbe99c8d601de74', '', 'Address', 'Phone', 'Postal Cod', 'User About', 'User Info', '0000-00-00 00:00:00', '0000-00-00', 0, '', 0, '2014/03/24/20140324_131514_5142.jpg', 'facebook', 1);
+INSERT INTO `member` (`id`, `city_id`, `email`, `alias`, `first_name`, `last_name`, `passwd`, `passwd_reset_key`, `address`, `phone`, `bb_pin`, `postal_code`, `user_about`, `user_info`, `register_date`, `membership_date`, `verify_email`, `verify_email_key`, `verify_address`, `thumbnail`, `provider`, `is_active`) VALUES
+(2, 1529, 'satu@mail.com', 'satu', 'Herry', 'Satrio', 'fe30fa79056939db8cbe99c8d601de74', '', 'Sukun Malang', '034111', 'AXSW22', '65824', 'User About 343', 'User Info 454', '0000-00-00 00:00:00', '2015-04-09', 0, '', 1, '2014/04/09/20140409_142341_9125.jpg', 'facebook', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `membership`
+--
+
+CREATE TABLE IF NOT EXISTS `membership` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) NOT NULL,
+  `duration_time` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+
+--
+-- Dumping data for table `membership`
+--
+
+INSERT INTO `membership` (`id`, `title`, `duration_time`) VALUES
+(1, 'Basic', '3 Month'),
+(2, 'Premium', '6 Month'),
+(14, 'Free', '1 Month');
 
 -- --------------------------------------------------------
 
@@ -10326,6 +10925,11 @@ CREATE TABLE IF NOT EXISTS `page_static` (
   `post_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `page_static`
+--
+
 
 -- --------------------------------------------------------
 
@@ -10393,7 +10997,7 @@ CREATE TABLE IF NOT EXISTS `post` (
 
 INSERT INTO `post` (`id`, `city_id`, `member_id`, `category_sub_id`, `alias`, `title`, `address`, `desc_01`, `desc_02`, `desc_03`, `field_01`, `thumbnail`, `map`, `star`, `facility`, `review_rate`, `review_count`, `having_promo`, `rate_per_night`, `post_status`) VALUES
 (2, 169, 2, 16, 'Alias', '{"en":"Title English","ind":"Title Indonesia","mys":""}', 'Address', '{"en":"Description 1 English","ind":"Description 1 Indonesia","mys":""}', '{"en":"Description 2 English","ind":"Description 2 Indonesia","mys":""}', '{"en":"Description 3 English","ind":" Description 3 Indonesia","mys":""}', '{"en":"Field 1 English","ind":"Field 1 Indonesia","mys":""}', '2014/04/01/20140401_153758_7075.jpg', '{"en":"Map English 1<br>","ind":"Map Indonesia 2<br>","mys":""}', 0, '', 0, 0, 0, 10, 'draft'),
-(3, 1529, 2, 3, 'merbabu-guest-house', '{"en":"Merbabu Guest House","ind":"Merbabu Guest House","mys":"Merbabu Guest House"}', 'Jl. Merbabu 26 Malang 65112\nJawa Timur - Indonesia', '{"en":"Merbabu Guest House is located at the heart of Malang, at Merbabu Street behind Ijen Boulevard, the most prestigious and historical residential in Malang. English##001####001##It is walking distance to Ijen Cathedral and Ijen Boulevard, some wonderful western or eastern restaurants, and even to a traditional Indonesians market.","ind":"Merbabu Guest House is located at the heart of Malang, at Merbabu Street behind Ijen Boulevard, the most prestigious and historical residential in Malang. Indonesia##001####001##It is walking distance to Ijen Cathedral and Ijen Boulevard, some wonderful western or eastern restaurants, and even to a traditional Indonesians market.","mys":"Merbabu Guest House is located at the heart of Malang, at Merbabu Street behind Ijen Boulevard, the most prestigious and historical residential in Malang. Malaysia##001####001##It is walking distance to Ijen Cathedral and Ijen Boulevard, some wonderful western or eastern restaurants, and even to a traditional Indonesians market."}', '{"en":"Empty##001##Empty##001##Empty","ind":"Empty##001##Empty##001##Empty","mys":"Empty##001##Empty##001##Empty"}', '', '', '2014/04/04/20140404_085811_2159.jpg', '{"en":"Empty<br><font size=##002##5##002##>English</font> - <u><i><b>Bold</b></i></u> - <i>Italic </i>- <u>Underline</u><br>Empty","ind":"Empty<br><font size=##002##3##002##>Indonesia</font> - <u><i><b>Bold</b></i></u> - <i>Italic </i>- <u>Underline</u><br>Empty","mys":"Empty<br><font size=##002##1##002##>Malaysia</font> - <u><i><b>Bold</b></i></u> - <i>Italic </i>- <u>Underline</u><br>Empty"}', 1, ';3;8;9;14;15;7;', 0, 15, 1, 50, 'approve'),
+(3, 1529, 2, 3, 'merbabu-guest-house', '{"en":"Merbabu Guest House","ind":"Merbabu Guest House","mys":"Merbabu Guest House"}', 'Jl. Merbabu 26 Malang 65112\nJawa Timur - Indonesia', '{"en":"Merbabu Guest House is located at the heart of Malang, at Merbabu Street behind Ijen Boulevard, the most prestigious and historical residential in Malang. English##001####001##It is walking distance to Ijen Cathedral and Ijen Boulevard, some wonderful western or eastern restaurants, and even to a traditional Indonesians market.","ind":"Merbabu Guest House is located at the heart of Malang, at Merbabu Street behind Ijen Boulevard, the most prestigious and historical residential in Malang. Indonesia##001####001##It is walking distance to Ijen Cathedral and Ijen Boulevard, some wonderful western or eastern restaurants, and even to a traditional Indonesians market.","mys":"Merbabu Guest House is located at the heart of Malang, at Merbabu Street behind Ijen Boulevard, the most prestigious and historical residential in Malang. Malaysia##001####001##It is walking distance to Ijen Cathedral and Ijen Boulevard, some wonderful western or eastern restaurants, and even to a traditional Indonesians market."}', '{"en":"Empty##001##Empty##001##Empty","ind":"Empty##001##Empty##001##Empty","mys":"Empty##001##Empty##001##Empty"}', '', '', '2014/04/04/20140404_085811_2159.jpg', '{"en":"Empty<br><font size=##002##5##002##>English</font> - <u><i><b>Bold</b></i></u> - <i>Italic </i>- <u>Underline</u><br>Empty","ind":"Empty<br><font size=##002##3##002##>Indonesia</font> - <u><i><b>Bold</b></i></u> - <i>Italic </i>- <u>Underline</u><br>Empty","mys":"Empty<br><font size=##002##1##002##>Malaysia</font> - <u><i><b>Bold</b></i></u> - <i>Italic </i>- <u>Underline</u><br>Empty"}', 1, ';3;8;9;14;15;7;', 0, 15, 1, 50, 'draft'),
 (4, 897, 2, 8, 'my-nature', '{"en":"Air Terjun Coban Rais","ind":"Air Terjun Coban Rais","mys":"Air Terjun Coban Rais"}', 'My Address', '{"en":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","ind":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","mys":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus."}', '{"en":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","ind":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","mys":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus."}', '{"en":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","ind":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","mys":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus."}', '{"en":"","ind":"","mys":""}', '2014/04/04/20140404_092814_4375.jpg', '{"en":"","ind":"","mys":""}', 0, '', 4, 0, 0, 80, 'approve'),
 (5, 3, 2, 13, 'american', '{"en":"My Title","ind":"Judul Saya","mys":""}', 'address', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '2014/04/01/20140401_153739_3212.jpg', '{"en":"","ind":"","mys":""}', 0, '', 0, 0, 0, 100, 'draft'),
 (6, 1529, 2, 2, 'hotel-tugu', '{"en":"Hotel Tugu Malang","ind":"Hotel Tugu Malang","mys":"Hotel Tugu Malang"}', 'Hotel Tugu\nJl. Tugu no. 3\nMalang Indonesia', '{"en":"Malang, a city awarded as the loveliest town in South East Asia during the colonial times. Until this date it has remained one of Indonesia##003##s most beautiful cities, drifting along in an air of nostalgia. It is where old Dutch planters and civil servants used to retire to a life of ease and luxury, surrounded by hilly apple and tea plantations. It is also the departure point for an early morning trip to the magnificent Mt. Bromo.##001####001##Tugu Malang is located at the heart of the old town, looking out to the main monument of Indonesia##003##s struggle for independence and a beautiful lotus pond park.","ind":"Malang, a city awarded as the loveliest town in South East Asia during the colonial times. Until this date it has remained one of Indonesia##003##s most beautiful cities, drifting along in an air of nostalgia. It is where old Dutch planters and civil servants used to retire to a life of ease and luxury, surrounded by hilly apple and tea plantations. It is also the departure point for an early morning trip to the magnificent Mt. Bromo.##001####001##Tugu Malang is located at the heart of the old town, looking out to the main monument of Indonesia##003##s struggle for independence and a beautiful lotus pond park.","mys":"Malang, a city awarded as the loveliest town in South East Asia during the colonial times. Until this date it has remained one of Indonesia##003##s most beautiful cities, drifting along in an air of nostalgia. It is where old Dutch planters and civil servants used to retire to a life of ease and luxury, surrounded by hilly apple and tea plantations. It is also the departure point for an early morning trip to the magnificent Mt. Bromo.##001####001##Tugu Malang is located at the heart of the old town, looking out to the main monument of Indonesia##003##s struggle for independence and a beautiful lotus pond park."}', '{"en":"Tugu Malang houses a vast, priceless collection of antiques influenced by the Javanese Babah Peranakan (the hundreds-years-old mixed culture between the Chinese migrants in Java and the native Javanese). Tugu Malang is more than just a hotel; it has become most indigenous, most essential in experiencing the beautiful richness of the history of Java.","ind":"Tugu Malang houses a vast, priceless collection of antiques influenced by the Javanese Babah Peranakan (the hundreds-years-old mixed culture between the Chinese migrants in Java and the native Javanese). Tugu Malang is more than just a hotel; it has become most indigenous, most essential in experiencing the beautiful richness of the history of Java.","mys":"Tugu Malang houses a vast, priceless collection of antiques influenced by the Javanese Babah Peranakan (the hundreds-years-old mixed culture between the Chinese migrants in Java and the native Javanese). Tugu Malang is more than just a hotel; it has become most indigenous, most essential in experiencing the beautiful richness of the history of Java."}', '', '', '2014/04/04/20140404_085857_9088.jpg', '{"en":"","ind":"","mys":""}', 2, ';3;9;10;12;14;15;', 0, 0, 0, 150, 'approve'),
@@ -10464,6 +11068,11 @@ CREATE TABLE IF NOT EXISTS `post_gallery` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `post_gallery`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -10475,7 +11084,7 @@ CREATE TABLE IF NOT EXISTS `post_tag` (
   `tag_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=94 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=97 ;
 
 --
 -- Dumping data for table `post_tag`
@@ -10485,9 +11094,9 @@ INSERT INTO `post_tag` (`id`, `tag_id`, `post_id`) VALUES
 (63, 6, 5),
 (64, 7, 5),
 (70, 6, 2),
-(78, 3, 3),
-(79, 1, 3),
-(80, 2, 3),
+(96, 2, 3),
+(95, 1, 3),
+(94, 3, 3),
 (85, 12, 18),
 (86, 12, 19),
 (87, 12, 20),
@@ -10514,6 +11123,11 @@ CREATE TABLE IF NOT EXISTS `post_traveler_photo` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `post_traveler_photo`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -10531,6 +11145,11 @@ CREATE TABLE IF NOT EXISTS `post_traveler_review` (
   `post_status` varchar(50) NOT NULL COMMENT 'pending / approve / reject',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `post_traveler_review`
+--
+
 
 -- --------------------------------------------------------
 
@@ -12004,6 +12623,11 @@ CREATE TABLE IF NOT EXISTS `room_amenity` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
+--
+-- Dumping data for table `room_amenity`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -12053,6 +12677,7 @@ CREATE TABLE IF NOT EXISTS `traveler` (
   `passwd_reset_key` varchar(100) NOT NULL,
   `address` varchar(255) DEFAULT NULL,
   `phone` varchar(50) NOT NULL,
+  `bb_pin` varchar(50) NOT NULL,
   `postal_code` varchar(10) NOT NULL,
   `user_about` varchar(255) NOT NULL,
   `user_info` varchar(255) NOT NULL,
@@ -12069,8 +12694,8 @@ CREATE TABLE IF NOT EXISTS `traveler` (
 -- Dumping data for table `traveler`
 --
 
-INSERT INTO `traveler` (`id`, `city_id`, `email`, `alias`, `first_name`, `last_name`, `passwd`, `passwd_reset_key`, `address`, `phone`, `postal_code`, `user_about`, `user_info`, `register_date`, `verify_email`, `verify_email_key`, `thumbnail`, `provider`, `is_active`) VALUES
-(1, 1529, 'dua@mail.com', 'alias', 'First Name', '1', 'fe30fa79056939db8cbe99c8d601de74', '', '3', '4', '5', '6', '7', '2014-03-31 00:00:00', 0, '', '2014/03/24/20140324_120833_9733.jpg', 'facebook 2', 1);
+INSERT INTO `traveler` (`id`, `city_id`, `email`, `alias`, `first_name`, `last_name`, `passwd`, `passwd_reset_key`, `address`, `phone`, `bb_pin`, `postal_code`, `user_about`, `user_info`, `register_date`, `verify_email`, `verify_email_key`, `thumbnail`, `provider`, `is_active`) VALUES
+(1, 1561, 'dua@mail.com', 'alias', 'First Name 1', '1 2', 'fe30fa79056939db8cbe99c8d601de74', '', '3 3', '412', '551', '5 5', '63', '74', '2014-03-31 00:00:00', 0, '', '2014/03/24/20140324_120833_9733.jpg', 'facebook 2', 1);
 
 -- --------------------------------------------------------
 
@@ -12117,7 +12742,7 @@ CREATE TABLE IF NOT EXISTS `user_log` (
   `location` varchar(255) NOT NULL,
   `ip_remote` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
 
 --
 -- Dumping data for table `user_log`
@@ -12162,7 +12787,70 @@ INSERT INTO `user_log` (`id`, `user_id`, `traveler_id`, `member_id`, `log_time`,
 (36, 0, 0, 2, '2014-04-04 10:39:24', 'localhost', '::1'),
 (37, 2, 0, 0, '2014-04-04 10:55:52', 'localhost', '::1'),
 (38, 0, 0, 2, '2014-04-04 10:56:13', 'localhost', '::1'),
-(39, 0, 1, 0, '2014-04-04 11:03:26', 'localhost', '::1');
+(39, 0, 1, 0, '2014-04-04 11:03:26', 'localhost', '::1'),
+(40, 0, 0, 2, '2014-04-09 12:29:54', 'localhost', '::1'),
+(41, 2, 0, 0, '2014-04-09 12:59:34', 'localhost', '::1'),
+(42, 2, 0, 0, '2014-04-09 12:59:36', 'localhost', '::1'),
+(43, 2, 0, 0, '2014-04-09 12:59:59', 'localhost', '::1'),
+(44, 2, 0, 0, '2014-04-09 13:00:01', 'localhost', '::1'),
+(45, 2, 0, 0, '2014-04-09 13:05:49', 'localhost', '::1'),
+(46, 0, 0, 2, '2014-04-09 13:42:05', 'localhost', '::1'),
+(47, 2, 0, 0, '2014-04-09 13:56:10', 'localhost', '::1'),
+(48, 0, 0, 2, '2014-04-09 18:07:02', 'localhost', '::1'),
+(49, 2, 0, 0, '2014-04-09 18:36:07', 'localhost', '::1'),
+(50, 0, 0, 2, '2014-04-09 18:40:02', 'localhost', '::1'),
+(51, 2, 0, 0, '2014-04-09 18:59:18', 'localhost', '::1'),
+(52, 0, 0, 2, '2014-04-09 19:57:26', 'localhost', '::1'),
+(53, 2, 0, 0, '2014-04-09 20:10:31', 'localhost', '::1'),
+(54, 0, 0, 2, '2014-04-09 20:24:15', 'localhost', '::1'),
+(55, 2, 0, 0, '2014-04-09 20:24:37', 'localhost', '::1'),
+(56, 0, 0, 2, '2014-04-09 20:25:52', 'localhost', '::1'),
+(57, 0, 1, 0, '2014-04-09 20:39:15', 'localhost', '::1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_membership`
+--
+
+CREATE TABLE IF NOT EXISTS `user_membership` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `member_id` int(11) NOT NULL,
+  `membership_id` int(11) NOT NULL,
+  `request_time` datetime NOT NULL,
+  `status` varchar(11) NOT NULL COMMENT 'pending / approve / reject',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+
+--
+-- Dumping data for table `user_membership`
+--
+
+INSERT INTO `user_membership` (`id`, `member_id`, `membership_id`, `request_time`, `status`) VALUES
+(10, 2, 2, '2014-04-09 20:10:13', 'approve'),
+(11, 2, 2, '2014-04-09 20:24:25', 'approve');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_setting`
+--
+
+CREATE TABLE IF NOT EXISTS `user_setting` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `member_id` int(11) NOT NULL,
+  `traveler_id` int(11) NOT NULL,
+  `email_notify` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `user_setting`
+--
+
+INSERT INTO `user_setting` (`id`, `member_id`, `traveler_id`, `email_notify`) VALUES
+(3, 2, 0, 1),
+(4, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -12187,6 +12875,28 @@ INSERT INTO `user_type` (`id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `verify_address`
+--
+
+CREATE TABLE IF NOT EXISTS `verify_address` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `member_id` int(11) NOT NULL,
+  `request_time` datetime NOT NULL,
+  `code` varchar(50) NOT NULL,
+  `status` varchar(10) NOT NULL COMMENT 'pending / deliver / confirm',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `verify_address`
+--
+
+INSERT INTO `verify_address` (`id`, `member_id`, `request_time`, `code`, `status`) VALUES
+(3, 2, '2014-04-09 18:32:47', '1801-8669-5059', 'confirm');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `widget`
 --
 
@@ -12197,7 +12907,7 @@ CREATE TABLE IF NOT EXISTS `widget` (
   `content` longtext NOT NULL,
   `post_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `widget`
@@ -12205,7 +12915,9 @@ CREATE TABLE IF NOT EXISTS `widget` (
 
 INSERT INTO `widget` (`id`, `title`, `alias`, `content`, `post_time`) VALUES
 (1, 'Ticket', 'ticket', 'Isi widget ticket<br>', '2014-03-27 11:18:09'),
-(2, 'Promo Request Approve', 'promo-request-approve', 'Dear [#full_name#],<br><br>Your request promotion : [#post_title#]<br><br>Promotion detail :<br>- Title : [#promo_duration_title#]<br>- Duration : [#promo_duration#]<br>- Cost : [#promo_cost#]<br><br>To complete this promotion, please sent money to :<br>BCA<br>ridwan amir 0111593131<br>BRI<br>ridwan amir 43423423423<br><br>if you have complete your payment, please confirm your payment <a href="http://localhost/trip/trunk/payment/confirmation">here</a><br><br>\r\n', '2014-04-02 11:26:39');
+(2, 'Promo Request Approve', 'promo-request-approve', 'Dear [#full_name#],<br><br>Your request promotion : [#post_title#]<br><br>Promotion detail :<br>- Title : [#promo_duration_title#]<br>- Duration : [#promo_duration#]<br>- Cost : [#promo_cost#]<br><br>To complete this promotion, please sent money to :<br>BCA<br>ridwan amir 0111593131<br>BRI<br>ridwan amir 43423423423<br><br>if you have complete your payment, please confirm your payment <a href="http://localhost/trip/trunk/payment/confirmation">here</a><br><br>\r\n', '2014-04-02 11:26:39'),
+(3, 'Dashboard Member', 'dashboard-member', 'Dashboard Member isinya bisa diedit di Panel =&gt; Setup =&gt; Widget', '2014-04-09 13:10:46'),
+(4, 'Dashboard Traveler', 'dashboard-traveler', 'Dashboard Traveler isinya bisa diedit di Panel =&gt; Setup =&gt; Widget', '2014-04-09 13:10:55');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
