@@ -1,11 +1,15 @@
 <?php
-	$user = $this->user_model->get_session();
-	$user = $this->user_model->get_by_id(array( 'user_type_id' => $user['user_type_id'], 'id' => $user['id'] ));
+	$user_session = $this->user_model->get_session();
+	$user = $this->user_model->get_by_id(array( 'user_type_id' => $user_session['user_type_id'], 'id' => $user_session['id'] ));
 	
 	// setting
-//	$user_setting = $this->User_Setting_model->get_by_id(array( 'user_id' => $user['id'] ));
-//	$page['user_setting'] = $user_setting;
-	$page['user_setting'] = array();
+	if ($user['user_type_id'] == USER_TYPE_MEMBER) {
+		$param_setting['member_id'] = $user['id'];
+	} else if ($user['user_type_id'] == USER_TYPE_TRAVELER) {
+		$param_setting['traveler_id'] = $user['id'];
+	}
+	$user_setting = $this->user_setting_model->get_by_id($param_setting);
+	$page['user_setting'] = $user_setting;
 ?>
 <?php $this->load->view( 'panel/common/meta' ); ?>
 <body>
@@ -31,11 +35,6 @@
 							<div class="panel-body" style="margin: 0 0 25px 0;">
 								<form id="form-notify">
 									<input type="hidden" name="action" value="update" />
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" name="email_follow" value="1" /> Follow Posting
-										</label>
-									</div>
 									<div class="checkbox">
 										<label>
 											<input type="checkbox" name="email_notify" value="1" /> Notification

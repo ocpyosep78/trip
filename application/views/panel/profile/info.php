@@ -1,13 +1,16 @@
 <?php
-	$user = $this->user_model->get_session();
-	$user = $this->user_model->get_by_id(array( 'user_type_id' => $user['user_type_id'], 'id' => $user['id'] ));
+	$user_session = $this->user_model->get_session();
+	$user = $this->user_model->get_by_id(array( 'user_type_id' => $user_session['user_type_id'], 'id' => $user_session['id'] ));
 	
 	$page['user'] = $user;
 ?>
 <?php $this->load->view( 'panel/common/meta' ); ?>
 <body>
 <section class="vbox">
-	<div class="hide"><div id="cnt-page"><?php echo json_encode($page); ?></div></div>
+	<div class="hide">
+		<div id="cnt-page"><?php echo json_encode($page); ?></div>
+		<iframe name="iframe_thumbnail" src="<?php echo base_url('panel/upload?callback_name=set_thumbnail'); ?>"></iframe>
+	</div>
 	<?php $this->load->view( 'panel/common/header' ); ?>
 	
 	<section>
@@ -48,21 +51,12 @@
 											<textarea name="user_info" placeholder="Info" class="form-control"></textarea>
 										</div>
 										<div class="form-group" style="padding: 0 0 35px 0;">
-											<label class="col-lg-2 control-label" style="padding: 5px 0 0 0;">Thumbnail Profile</label>
+											<label class="col-lg-2 control-label" style="padding: 5px 0 0 0;">Thumbnail</label>
 											<div class="col-lg-7">
-												<input type="text" placeholder="Thumbnail Profile" class="form-control" name="thumbnail_profile">
+												<input type="text" placeholder="Thumbnail" class="form-control" name="thumbnail">
 											</div>
 											<div class="col-lg-3">
-												<button class="btn btn-default browse-thumbnail-profile" type="button">Select Picture</button>
-											</div>
-										</div>
-										<div class="form-group" style="padding: 0 0 35px 0;">
-											<label class="col-lg-2 control-label" style="padding: 5px 0 0 0;">Thumbnail Banner</label>
-											<div class="col-lg-7">
-												<input type="text" placeholder="Thumbnail Banner" class="form-control" name="thumbnail_banner">
-											</div>
-											<div class="col-lg-3">
-												<button class="btn btn-default browse-thumbnail-banner" type="button">Select Picture</button>
+												<button class="btn btn-default browse-thumbnail" type="button">Select Picture</button>
 											</div>
 										</div>
 										<button class="btn btn-sm btn-info" type="submit">Submit</button>
@@ -111,13 +105,9 @@ $(document).ready(function() {
 	});
 	
 	// upload
-	$('.browse-thumbnail-profile').click(function() { window.iframe_thumbnail_profile.browse() });
-	set_thumbnail_profile = function(p) {
-		$('#form-user [name="thumbnail_profile"]').val(p.file_name);
-	}
-	$('.browse-thumbnail-banner').click(function() { window.iframe_thumbnail_banner.browse() });
-	set_thumbnail_banner = function(p) {
-		$('#form-user [name="thumbnail_banner"]').val(p.file_name);
+	$('.browse-thumbnail').click(function() { window.iframe_thumbnail.browse() });
+	set_thumbnail = function(p) {
+		$('#form-user [name="thumbnail"]').val(p.file_name);
 	}
 });
 </script>

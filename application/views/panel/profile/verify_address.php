@@ -1,12 +1,13 @@
 <?php
-	$user = $this->user_model->get_session();
-	$user = $this->user_model->get_by_id(array( 'user_type_id' => $user['user_type_id'], 'id' => $user['id'] ));
+	$user_session = $this->user_model->get_session();
+	$member = $this->user_model->get_by_id(array( 'user_type_id' => $user_session['user_type_id'], 'id' => $user_session['id'] ));
 	
-	$array_region = $this->region_model->get_array();
-//	$verify_address_count = $this->Verify_Address_model->get_count(array( 'user_id' => $user['id'] ));
-//	$verify_address_left = VERIFY_ADDRESS_MAX - $verify_address_count;
+	// master
+	$array_country = $this->country_model->get_array(array( 'limit' => 1000 ));
+	$verify_address_count = $this->verify_address_model->get_count(array( 'member_id' => $member['id'] ));
+	$verify_address_left = VERIFY_ADDRESS_MAX - $verify_address_count;
 	
-	$page['user'] = $user;
+	$page['user'] = $member;
 ?>
 <?php $this->load->view( 'panel/common/meta' ); ?>
 <body>
@@ -22,7 +23,7 @@
         <section id="content">
 			<section class="vbox">
 				<header class="header bg-white b-b b-light">
-					<p><?php echo $user['first_name']; ?>'s profile</p>
+					<p><?php echo $member['first_name']; ?>'s profile</p>
 				</header>
 				
 				<section class="scrollable">
@@ -49,9 +50,15 @@
 										<textarea name="address" placeholder="Address Name" class="form-control" maxlength="200" data-required="true" disabled="disabled"></textarea>
 									</div>
 									<div class="form-group">
+										<label>Country</label>
+										<select name="country_id" class="form-control" data-required="true" disabled="disabled">
+											<?php echo ShowOption(array( 'Array' => $array_country )); ?>
+										</select>
+									</div>
+									<div class="form-group">
 										<label>Region</label>
 										<select name="region_id" class="form-control" data-required="true" disabled="disabled">
-											<?php echo ShowOption(array( 'Array' => $array_region, 'ArrayID' => 'id', 'ArrayTitle' => 'name' )); ?>
+											<option value="">-</option>
 										</select>
 									</div>
 									<div class="form-group">
@@ -102,6 +109,7 @@ $(document).ready(function() {
 			
 			Func.populate({ cnt: '#form-user', record: page.data.user });
 			combo.city({ region_id: page.data.user.region_id, target: $('#form-user [name="city_id"]'), value: page.data.user.city_id });
+			combo.region({ country_id: page.data.user.country_id, target: $('#form-user [name="region_id"]'), value: page.data.user.region_id });
 		}
 	}
 	page.init();

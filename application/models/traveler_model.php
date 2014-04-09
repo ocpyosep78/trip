@@ -6,7 +6,7 @@ class traveler_model extends CI_Model {
 		
         $this->field = array(
 			'id', 'city_id', 'email', 'alias', 'first_name', 'last_name', 'passwd', 'passwd_reset_key', 'address', 'phone', 'postal_code', 'user_about',
-			'user_info', 'register_date', 'verify_email', 'verify_email_key', 'thumbnail', 'provider', 'is_active'
+			'user_info', 'register_date', 'verify_email', 'verify_email_key', 'thumbnail', 'provider', 'is_active', 'bb_pin'
 		);
     }
 
@@ -87,12 +87,19 @@ class traveler_model extends CI_Model {
     }
 
     function get_count($param = array()) {
-		$select_query = "SELECT FOUND_ROWS() TotalRecord";
+		$param['query'] = (isset($param['query'])) ? $param['query'] : false;
+		if ($param['query']) {
+			$select_query = "SELECT COUNT(*) total FROM ".TRAVELER;
+		} else {
+			$select_query = "SELECT FOUND_ROWS() total";
+		}
+		
+		$select_query = "SELECT FOUND_ROWS() total";
 		$select_result = mysql_query($select_query) or die(mysql_error());
 		$row = mysql_fetch_assoc($select_result);
-		$TotalRecord = $row['TotalRecord'];
+		$total = $row['total'];
 		
-		return $TotalRecord;
+		return $total;
     }
 	
     function delete($param) {

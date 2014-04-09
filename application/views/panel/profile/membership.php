@@ -1,8 +1,10 @@
 <?php
-	$user = $this->user_model->get_session();
-	$user = $this->user_model->get_by_id(array( 'user_type_id' => $user['user_type_id'], 'id' => $user['id'] ));
-//	$has_request = $this->User_Membership_model->has_request(array( 'user_id' => $user['id'] ));
-	$has_request['status'] = false;
+	// user
+	$user_session = $this->user_model->get_session();
+	$user = $this->user_model->get_by_id(array( 'user_type_id' => $user_session['user_type_id'], 'id' => $user_session['id'] ));
+	
+	// page data
+	$has_request = $this->user_membership_model->has_request(array( 'member_id' => $user['id'] ));
 ?>
 <?php $this->load->view( 'panel/common/meta' ); ?>
 <body>
@@ -28,12 +30,12 @@
 										Membership Request
 									</a>
 								</div>
+								
 								<div id="collapseOne" class="panel-collapse in">
 									<div class="panel-body text-sm">
 										Detail<br />
-										Title : <?php echo $has_request['array']['title']; ?><br />
-										Advert Count : <?php echo $has_request['array']['advert_count']; ?><br />
-										Advert Time : <?php echo $has_request['array']['advert_time']; ?><br />
+										Title : <?php echo $has_request['array']['membership_title']; ?><br />
+										Duration Time : <?php echo $has_request['array']['duration_time']; ?><br />
 										Request Time : <?php echo $has_request['array']['request_time']; ?><br />
 										Status : <?php echo $has_request['array']['status']; ?><br /><br />
 										
@@ -51,9 +53,8 @@
 								<table class="table table-striped m-b-none" data-ride="datatable" id="datatable">
 								<thead>
 									<tr>
-										<th width="30%">Title</th>
-										<th width="30%">Advert Count</th>
-										<th width="20%">Duration</th>
+										<th width="40%">Title</th>
+										<th width="40%">Duration</th>
 										<th width="20%">&nbsp;</th>
 									</tr>
 								</thead>
@@ -79,7 +80,7 @@ $(document).ready(function() {
 		var param = {
 			id: 'datatable', aaSorting: [[1, 'ASC']], bPaginate: false,
 			source: web.base + 'panel/profile/membership/grid',
-			column: [ { }, { }, { }, { bSortable: false, sClass: 'center', sWidth: '10%' } ],
+			column: [ { }, { }, { bSortable: false, sClass: 'center', sWidth: '10%' } ],
 			callback: function() {
 				$('#datatable .btn-request').click(function() {
 					var raw_record = $(this).siblings('.hide').text();

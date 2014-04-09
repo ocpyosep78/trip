@@ -7,7 +7,7 @@ class member_model extends CI_Model {
         $this->field = array(
 			'id', 'city_id', 'email', 'alias', 'first_name', 'last_name', 'passwd', 'passwd_reset_key', 'address', 'phone', 'postal_code',
 			'user_about', 'user_info', 'register_date', 'membership_date', 'verify_email', 'verify_email_key', 'verify_address', 'thumbnail',
-			'provider', 'is_active'
+			'provider', 'is_active', 'bb_pin'
 		);
     }
 
@@ -88,12 +88,18 @@ class member_model extends CI_Model {
     }
 
     function get_count($param = array()) {
-		$select_query = "SELECT FOUND_ROWS() TotalRecord";
+		$param['query'] = (isset($param['query'])) ? $param['query'] : false;
+		if ($param['query']) {
+			$select_query = "SELECT COUNT(*) total FROM ".MEMBER;
+		} else {
+			$select_query = "SELECT FOUND_ROWS() total";
+		}
+		
 		$select_result = mysql_query($select_query) or die(mysql_error());
 		$row = mysql_fetch_assoc($select_result);
-		$TotalRecord = $row['TotalRecord'];
+		$total = $row['total'];
 		
-		return $TotalRecord;
+		return $total;
     }
 	
     function delete($param) {
@@ -107,7 +113,7 @@ class member_model extends CI_Model {
     }
 	
 	function sync($row, $param = array()) {
-		$row = StripArray($row);
+		$row = StripArray($row, array( 'membership_date' ));
 		
 		// user type
 		$row['user_type_id'] = USER_TYPE_MEMBER;

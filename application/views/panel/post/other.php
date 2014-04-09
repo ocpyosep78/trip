@@ -1,12 +1,23 @@
 <?php
+	// user
+	$user_session = $this->user_model->get_session();
+	
 	$array_country = $this->country_model->get_array();
 	$array_language = $this->language_model->get_array();
 	$array_category = $this->category_model->get_array(array( 'not_in' => CATEGORY_HOTEL.', '.CATEGORY_DESTINATION.', '.CATEGORY_RESTAURANT ));
+	
+	// page data
+	$page['USER_TYPE_ADMINISTRATOR'] = USER_TYPE_ADMINISTRATOR;
+	$page['USER_TYPE_EDITOR'] = USER_TYPE_EDITOR;
+	$page['USER_TYPE_MEMBER'] = USER_TYPE_MEMBER;
+	$page['user'] = $user_session;
 ?>
 
 <?php $this->load->view( 'panel/common/meta' ); ?>
 <body>
 <section class="vbox">
+	<div class="hide"><div id="cnt-page"><?php echo json_encode($page); ?></div></div>
+	
 	<div class="modal fade" id="modal-facility">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -135,7 +146,7 @@
 									<input type="hidden" name="id" value="0" />
 									<input type="hidden" name="member_id" value="0" />
 									
-									<div class="form-group">
+									<div class="form-group input-member">
 										<label class="col-lg-2 control-label">Member</label>
 										<div class="col-lg-10 cnt-typeahead"><input type="text" name="full_name" class="form-control member-typeahead" placeholder="Member" data-required="true" /></div>
 									</div>
@@ -169,8 +180,10 @@
 											<option value="">-</option>
 											<option value="draft">draft</option>
 											<option value="request approve">request approve</option>
+											<?php if (in_array($user['user_type_id'], array(USER_TYPE_ADMINISTRATOR, USER_TYPE_EDITOR))) { ?>
 											<option value="approve">approve</option>
 											<option value="reject">reject</option>
+											<?php } ?>
 										</select></div>
 									</div>
 									<div class="form-group">
@@ -247,7 +260,17 @@
 $(document).ready(function() {
 	var page = {
 		init: function() {
+			var raw_page = $('#cnt-page').html();
+			eval('var data = ' + raw_page);
+			page.data = data;
+			
+			// set form
 			Func.language();
+			
+			// set view
+			if (page.data.user.user_type_id == page.data.USER_TYPE_MEMBER) {
+				$('.panel-form .input-member').hide();
+			}
 		},
 		show_grid: function() {
 			$('.panel-form').hide();
@@ -280,6 +303,11 @@ $(document).ready(function() {
 				eval('var record = ' + raw_record);
 				
 				Func.ajax({ url: web.base + 'panel/post/other/action', param: { action: 'get_by_id', tag_include: true, id: record.id }, callback: function(result) {
+					// post status
+					if (Func.InArray(result.post_status, ['approve', 'reject'])) {
+						result.post_status = 'draft';
+					}
+					
 					Func.populate({ cnt: '.panel-form', record: result });
 					combo.category_sub({ category_id: result.category_id, target: $('.panel-form [name="category_sub_id"]'), value: result.category_sub_id });
 					combo.region({ country_id: result.country_id, target: $('.panel-form [name="region_id"]'), value: result.region_id });

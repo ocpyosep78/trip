@@ -13,14 +13,20 @@ class setting extends PANEL_Controller {
 		unset($_POST['action']);
 		
 		// user
-		$user = $this->User_model->get_session();
+		$user_session = $this->user_model->get_session();
 		
 		$result = array();
 		if ($action == 'update') {
-			$param['user_id'] = $user['id'];
-			$param['email_follow'] = $_POST['email_follow'];
+			// member or traveler
+			if ($user_session['user_type_id'] == USER_TYPE_MEMBER) {
+				$param['member_id'] = $user_session['id'];
+			} else if ($user_session['user_type_id'] == USER_TYPE_TRAVELER) {
+				$param['traveler_id'] = $user_session['id'];
+			}
+			
+			// update
 			$param['email_notify'] = $_POST['email_notify'];
-			$result = $this->User_Setting_model->update_by_user($param);
+			$result = $this->user_setting_model->update_by_user($param);
 		}
 		
 		echo json_encode($result);

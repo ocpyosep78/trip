@@ -2,8 +2,10 @@
 	$user = $this->user_model->get_session();
 	$user = $this->user_model->get_by_id(array( 'user_type_id' => $user['user_type_id'], 'id' => $user['id'] ));
 	
-	$array_region = $this->region_model->get_array();
+	// master
+	$array_country = $this->country_model->get_array(array( 'limit' => 1000 ));
 	
+	// page data
 	$page['user'] = $user;
 ?>
 <?php $this->load->view( 'panel/common/meta' ); ?>
@@ -14,7 +16,7 @@
 	
 	<section><section class="hbox stretch">
         <?php $this->load->view( 'panel/common/sidebar' ); ?>
-			
+		
         <section id="content">
 			<section class="vbox">
 				<header class="header bg-white b-b b-light">
@@ -45,9 +47,15 @@
 										<textarea name="address" placeholder="Address Name" class="form-control" maxlength="200" data-required="true"></textarea>
 									</div>
 									<div class="form-group">
+										<label>Country</label>
+										<select name="country_id" class="form-control" data-required="true">
+											<?php echo ShowOption(array( 'Array' => $array_country )); ?>
+										</select>
+									</div>
+									<div class="form-group">
 										<label>Region</label>
 										<select name="region_id" class="form-control" data-required="true">
-											<?php echo ShowOption(array( 'Array' => $array_region, 'ArrayID' => 'id', 'ArrayTitle' => 'name' )); ?>
+											<option value="">-</option>
 										</select>
 									</div>
 									<div class="form-group">
@@ -88,6 +96,7 @@ $(document).ready(function() {
 			
 			Func.populate({ cnt: '#form-user', record: page.data.user });
 			combo.city({ region_id: page.data.user.region_id, target: $('#form-user [name="city_id"]'), value: page.data.user.city_id });
+			combo.region({ country_id: page.data.user.country_id, target: $('#form-user [name="region_id"]'), value: page.data.user.region_id });
 			
 			if (page.data.user.verify_address == 1) {
 				$('#form-user input, #form-user select, #form-user textarea').prop('disabled', 'disabled');
@@ -99,6 +108,18 @@ $(document).ready(function() {
 	
 	// form
 	var form = $('#form-user').parsley();
+	$('#form-user [name="country_id"]').change(function() {
+		combo.region({
+			country_id: $(this).val(),
+			target: $('#form-user [name="region_id"]'),
+			callback: function() {
+				$('#form-user [name="city_id"]').val('');
+			}
+		});
+	});
+	$('#form-user [name="region_id"]').change(function() {
+		combo.city({ region_id: $(this).val(), target: $('#form-user [name="city_id"]') });
+	});
 	$('#form-user').submit(function(e) {
 		e.preventDefault();
 		if (! form.isValid()) {
@@ -109,14 +130,6 @@ $(document).ready(function() {
 		Func.update({
 			param: param,
 			link: web.base + 'panel/profile/user/action'
-		});
-	});
-	
-	// helper
-	$('#form-user [name="region_id"]').change(function() {
-		combo.city({
-			region_id: $(this).val(),
-			target: $('#form-user [name="city_id"]')
 		});
 	});
 });

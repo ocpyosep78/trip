@@ -27,6 +27,9 @@ define('LANGUAGE_DEFAULT',						'en');
 /*	MAXIMUM IP ACCESS PER HOUR */
 define('MAXIMUM_IP_ACCESS_PER_HOUR',			1000);
 
+/*	VERIFY ADDRESS MAX */
+define('VERIFY_ADDRESS_MAX',					5);
+
 define('CATEGORY_HOTEL',						1);
 define('CATEGORY_DESTINATION',					2);
 define('CATEGORY_RESTAURANT',					3);
@@ -55,6 +58,7 @@ define('IP_PASS',								'ip_pass');
 define('LANGUAGE',								'language');
 define('MASS_EMAIL',							'mass_email');
 define('MEMBER',								'member');
+define('MEMBERSHIP',							'membership');
 define('PAGE_STATIC',							'page_static');
 define('PAYMENT',								'payment');
 define('POST',									'post');
@@ -71,5 +75,8 @@ define('TAG',									'tag');
 define('TRAVELER',								'traveler');
 define('USER',									'user');
 define('USER_LOG',								'user_log');
+define('USER_MEMBERSHIP',						'user_membership');
+define('USER_SETTING',							'user_setting');
 define('USER_TYPE',								'user_type');
+define('VERIFY_ADDRESS',						'verify_address');
 define('WIDGET',								'widget');

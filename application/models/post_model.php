@@ -106,6 +106,7 @@ class post_model extends CI_Model {
 		
 		$string_namelike = (!empty($param['namelike'])) ? "AND post.title LIKE '%".$param['namelike']."%'" : '';
 		$string_star = (isset($param['star'])) ? "AND post.star = '".$param['star']."'" : '';
+		$string_member = (isset($param['member_id'])) ? "AND post.member_id = '".$param['member_id']."'" : '';
 		$string_category = (isset($param['category_id'])) ? "AND category_sub.category_id = '".$param['category_id']."'" : '';
 		$string_category_sub = (isset($param['category_sub_id'])) ? "AND post.category_sub_id = '".$param['category_sub_id']."'" : '';
 		$string_category_not_in = (isset($param['category_not_in'])) ? "AND category_sub.category_id NOT IN (".$param['category_not_in'].")" : '';
@@ -133,7 +134,7 @@ class post_model extends CI_Model {
 			LEFT JOIN ".REGION." region ON region.id = city.region_id
 			LEFT JOIN ".COUNTRY." country ON country.id = region.country_id
 			WHERE 1
-				$string_namelike $string_star $string_filter
+				$string_namelike $string_star $string_member $string_filter
 				$string_category $string_category_sub $string_category_not_in
 				$string_city $string_region $string_country
 				$string_facility $string_price_min $string_price_max

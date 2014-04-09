@@ -111,6 +111,18 @@
 										<span>Mass Email</span>
 									</a>
 								</li>
+								<li>
+									<a href="<?php echo base_url('panel/user/verify_address'); ?>" data-menu-child="verify_address">
+										<i class="fa fa-angle-right"></i>
+										<span>Verify Address</span>
+									</a>
+								</li>
+								<li>
+									<a href="<?php echo base_url('panel/user/verify_membership'); ?>" data-menu-child="verify_membership">
+										<i class="fa fa-angle-right"></i>
+										<span>Verify Membership</span>
+									</a>
+								</li>
 							</ul>
 						</li>
 						<li data-menu-parent="setup">
@@ -213,6 +225,12 @@
 									<a href="<?php echo base_url('panel/master/region'); ?>" data-menu-child="region">
 										<i class="fa fa-angle-right"></i>
 										<span>Region</span>
+									</a>
+								</li>
+								<li>
+									<a href="<?php echo base_url('panel/master/membership'); ?>" data-menu-child="membership">
+										<i class="fa fa-angle-right"></i>
+										<span>Membership</span>
 									</a>
 								</li>
 							</ul>
@@ -329,12 +347,14 @@
 										<span>Edit Profile</span>
 									</a>
 								</li>
+								<?php if (empty($user['verify_address'])) { ?>
 								<li>
 									<a href="<?php echo base_url('panel/profile/verify_address'); ?>" data-menu-child="verify_address">
 										<i class="fa fa-angle-right"></i>
 										<span>Get Verified</span>
 									</a>
 								</li>
+								<?php } ?>
 								<li>
 									<a href="<?php echo base_url('panel/profile/membership'); ?>" data-menu-child="membership">
 										<i class="fa fa-angle-right"></i>

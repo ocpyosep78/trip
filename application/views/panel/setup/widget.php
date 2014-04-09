@@ -115,7 +115,7 @@ $(document).ready(function() {
 				
 				Func.ajax({ url: web.base + 'panel/setup/widget/action', param: { action: 'get_by_id', id: record.id }, callback: function(result) {
 					Func.populate({ cnt: '.panel-form', record: result });
-					$('#form-content').html(result.content);
+					$('.panel-form #form-content').html(result.content);
 					page.show_form();
 				} });
 			});
@@ -167,6 +167,7 @@ $(document).ready(function() {
 		$('.panel-form form')[0].reset();
 		$('.panel-form form').parsley().reset();
 		$('.panel-form [name="id"]').val(0);
+		$('.panel-form #form-content').html('');
 	});
 });
 </script>

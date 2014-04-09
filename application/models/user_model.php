@@ -163,7 +163,7 @@ class User_model extends CI_Model {
 		$unix_current_limit = ConvertToUnixTime($this->config->item('current_datetime')) - LOGIN_ACTIVE_TIME;
 		
 		// is login or not ?
-		if ($result && !in_array($user['user_type_id'], $param['array_user_type_id'])) {
+		if ($result && !in_array(@$user['user_type_id'], $param['array_user_type_id'])) {
 			$result = false;
 		} else if ($unix_active_time < $unix_current_limit) {
 			$result = false;
