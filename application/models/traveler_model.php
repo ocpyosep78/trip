@@ -53,6 +53,20 @@ class traveler_model extends CI_Model {
 				WHERE traveler.email = '".$param['email']."'
 				LIMIT 1
 			";
+        } else if (isset($param['alias'])) {
+            $select_query  = "
+				SELECT traveler.*
+				FROM ".TRAVELER." traveler
+				WHERE traveler.alias = '".$param['alias']."'
+				LIMIT 1
+			";
+        } else if (isset($param['verify_email_key'])) {
+            $select_query  = "
+				SELECT traveler.*
+				FROM ".TRAVELER." traveler
+				WHERE traveler.verify_email_key = '".$param['verify_email_key']."'
+				LIMIT 1
+			";
         } 
        
         $select_result = mysql_query($select_query) or die(mysql_error());

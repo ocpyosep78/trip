@@ -1229,3 +1229,20 @@ $.format = $.validator.format;
 		}
 	});
 }(jQuery));
+
+// add new method
+$.validator.addMethod("letter_only", function(value, element) {
+	return this.optional(element) || /^[a-z]+$/i.test(value);
+}, "Please enter only letters.");
+
+$.validator.addMethod("no_special_char", function(value, element) {
+	return this.optional(element) || /^[a-z0-9 ]+$/i.test(value);
+}, "Please enter no special character.");
+
+$.validator.addMethod("no_uppercase", function(value, element) {
+	return this.optional(element) || !/[A-Z]/.test(value); 
+}, "Please enter no uppercase character");
+
+$.validator.addClassRules("digits", {
+	digits: true 
+});

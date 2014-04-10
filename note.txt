@@ -12,8 +12,8 @@ LINK TEMPORARY
 - http://localhost/trip/trunk/about-us
 
 To do :
-- halaman website search
-- halaman website page static
+- login member harusnya ada promo
+- halaman detail post (hotel & non hotel)
 
 ----------------------------------------------------------------------------------------------------------------
 Multi Language

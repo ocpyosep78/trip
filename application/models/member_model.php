@@ -54,6 +54,20 @@ class member_model extends CI_Model {
 				WHERE member.email = '".$param['email']."'
 				LIMIT 1
 			";
+        } else if (isset($param['alias'])) {
+            $select_query  = "
+				SELECT member.*
+				FROM ".MEMBER." member
+				WHERE member.alias = '".$param['alias']."'
+				LIMIT 1
+			";
+        } else if (isset($param['verify_email_key'])) {
+            $select_query  = "
+				SELECT member.*
+				FROM ".MEMBER." member
+				WHERE member.verify_email_key = '".$param['verify_email_key']."'
+				LIMIT 1
+			";
         } 
        
         $select_result = mysql_query($select_query) or die(mysql_error());

@@ -20,7 +20,18 @@ class home extends TRIP_Controller {
 		
 		$result = array();
 		if ($action == 'login') {
+			// editor
 			$result = $this->user_model->sign_in(array( 'email' => $_POST['email'], 'passwd' => $_POST['passwd']));
+			
+			// member
+			if (! $result['status']) {
+				$result = $this->member_model->sign_in(array( 'email' => $_POST['email'], 'passwd' => $_POST['passwd']));
+			}
+			
+			// traveler
+			if (! $result['status']) {
+				$result = $this->traveler_model->sign_in(array( 'email' => $_POST['email'], 'passwd' => $_POST['passwd']));
+			}
 		} else if ($action == 'get_notify' && $this->user_model->is_login()) {
 			$user = $this->user_model->get_session();
 			$result['count'] = $this->User_Contact_model->get_unread_count(array( 'user_id' => $user['id'] ));

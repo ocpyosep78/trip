@@ -25,10 +25,10 @@ if ($is_website) {
 	$route['hotel/([a-z0-9\-]+)'] = "website/hotel";
 	$route['(destination|restaurant)'] = "website/destination";
 	$route['(destination|restaurant)/([a-z0-9\-]+)'] = "website/destination";
-	$route['search(/([a-z0-9\-]+))*'] = "website/search";
-	$route['login'] = "website/login";
 	$route['login/([a-z0-9\-]+)'] = "website/login";
+	$route['search(/([a-z0-9\-]+))*'] = "website/search";
 	$route['payment(/([a-z0-9\-]+))*'] = "website/payment";
+	$route['register(/([a-z0-9\-]+))*'] = "website/register";
 	$route['([a-z0-9\-]+)'] = "website/selector";
 } else if ($is_panel) {
 	$route['panel'] = "panel/home";

@@ -30,6 +30,10 @@ define('MAXIMUM_IP_ACCESS_PER_HOUR',			1000);
 /*	VERIFY ADDRESS MAX */
 define('VERIFY_ADDRESS_MAX',					5);
 
+/*	WEBSITE INFO */
+define('WEBSITE_TITLE',							'Website Trip');
+define('WEBSITE_ALIAS',							'website trip');
+
 define('CATEGORY_HOTEL',						1);
 define('CATEGORY_DESTINATION',					2);
 define('CATEGORY_RESTAURANT',					3);

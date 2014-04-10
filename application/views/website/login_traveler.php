@@ -32,6 +32,7 @@
 					<div class="clearfix"></div>
 					<div class="left">&nbsp;</div>
 					<div class="right">
+						or <a href="<?php echo base_url('register/traveler'); ?>">Register</a><br />
 						or login via<br /><br />
 						<img class="logo" alt="Travel Agency Logo" src="http://localhost/trip/trunk/static/theme/forest/images/logo.png" />
 					</div>
