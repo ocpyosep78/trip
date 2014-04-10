@@ -25,8 +25,7 @@ if ($is_website) {
 	$route['hotel/([a-z0-9\-]+)'] = "website/hotel";
 	$route['(destination|restaurant)'] = "website/destination";
 	$route['(destination|restaurant)/([a-z0-9\-]+)'] = "website/destination";
-	$route['search'] = "website/search";
-	$route['search/([a-z0-9\-]+)'] = "website/search";
+	$route['search(/([a-z0-9\-]+))*'] = "website/search";
 	$route['login'] = "website/login";
 	$route['login/([a-z0-9\-]+)'] = "website/login";
 	$route['payment(/([a-z0-9\-]+))*'] = "website/payment";

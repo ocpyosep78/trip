@@ -39,7 +39,7 @@
 						<li>
 							<div style="float:none;margin-top:7px;width:95%">
 								<form id="form-header">
-									<input type="text" class="form-control" placeholder="Search">
+									<input type="text" name="namelike" class="form-control" placeholder="Search" />
 								</form>
 							</div>
 						</li>

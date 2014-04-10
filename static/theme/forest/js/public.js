@@ -2,7 +2,10 @@ $(document).ready(function () {
 	// search
 	$('#form-header').submit(function(e){
 		e.preventDefault();
-		window.location = web.base + 'search';
+		
+		// redirect
+		var namelike = Func.GetName($('#form-header [name="namelike"]').val());
+		window.location = web.base + 'search/' + namelike;
 	});
 
 	// datepicker

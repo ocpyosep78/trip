@@ -34,6 +34,8 @@ class page_static_model extends CI_Model {
        
         if (isset($param['id'])) {
             $select_query  = "SELECT * FROM ".PAGE_STATIC." WHERE id = '".$param['id']."' LIMIT 1";
+        } else if (isset($param['alias'])) {
+            $select_query  = "SELECT * FROM ".PAGE_STATIC." WHERE alias = '".$param['alias']."' LIMIT 1";
         } 
        
         $select_result = mysql_query($select_query) or die(mysql_error());

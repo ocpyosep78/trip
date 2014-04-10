@@ -1,115 +1,101 @@
+<?php
+	// get name like
+	preg_match('/search\/([a-z0-9\-]+)/', $_SERVER['REQUEST_URI'], $match);
+	$keyword = (empty($match[1])) ? '' : $match[1];
+	$namelike = str_replace('-', ' ', $keyword);
+	$link_search = base_url('search/'.$keyword);
+	
+	// get page info
+	preg_match('/page-([0-9]+)$/', $_SERVER['REQUEST_URI'], $match);
+	$page_item = 2;
+	$page_active = (empty($match[1])) ? 1 : $match[1];
+	
+	
+	// array post
+	if (!empty($namelike)) {
+		$param_post = array(
+			'namelike' => $namelike,
+			'title_asc' => '[{"property":"title","direction":"ASC"}]',
+			'start' => ($page_active - 1) * $page_item,
+			'limit' => $page_item
+		);
+		$array_post = $this->post_model->get_array($param_post);
+		$page_count = ceil($this->post_model->get_count() / $page_item);
+	}
+	
+	// breadcrub
+	$array_breadcrub = array(
+		array( 'link' => '#', 'title' => 'Search' ),
+		array( 'link' => '#', 'title' => ucwords($namelike) )
+	);
+?>
+
 <?php $this->load->view( 'website/common/meta' ); ?>
 <body id="top" class="thebg" >
 	<?php $this->load->view( 'website/common/header_menu' ); ?>
+	<?php $this->load->view( 'website/common/breadcrub', array( 'array' => $array_breadcrub ) ); ?>
 	
-	<div class="container breadcrub">
-	    <div>
-			<a class="homebtn left" href="#"></a>
-			<div class="left">
-				<ul class="bcrumbs">
-					<li>/</li>
-					<li><a href="#">Search</a></li>
-					<li>/</li>
-									
-					<li><a href="#" class="active">Malang</a></li>					
-				</ul>				
-			</div>
-			<a class="backbtn right" href="#"></a>
-		</div>
-		<div class="clearfix"></div>
-		<div class="brlines"></div>
-	</div>	
-
-	<!-- CONTENT -->
 	<div class="container">
-
-		
 		<div class="container mt25 offset-0">
-			
-			
-			<!-- LEFT CONTENT -->
 			<div class="col-md-8 pagecontainer2 offset-0">
-
-				<div class="padding30 grey">
-				
-			<div class="cpadding1">
+				<?php if (!empty($namelike)) { ?>
+					<div class="padding30 grey">
+						<div class="cpadding1">
+							<h3 class="opensans">Result of <u><?php echo ucwords($namelike); ?></u></h3>
+							<div class="clearfix"></div>
+						</div><br /><br />
 						
-						<h3 class="opensans">Result of <u>Malang</u></h3>
+						<?php foreach ($array_post as $key => $row) { ?>
+							<div class="deal">
+								<a href="details.html"><img src="<?php echo $row['link_thumbnail_small']; ?>" alt="<?php echo $row['title_select']; ?>" class="dealthumb" style="width: 50px; height: 50px;" /></a>
+								<div class="dealtitle" style="max-width: 85%;">
+									<p><a href="<?php echo $row['link_post']; ?>" class="dark"><?php echo $row['title_select']; ?></a></p>
+									<span class="size13 grey mt-9"><?php echo get_length_char(string_escape($row['desc_01_select']), 200, ' ...'); ?></span>
+								</div>
+							</div>
+						<?php } ?>
 						<div class="clearfix"></div>
-					</div><br><br>
-					
-					
-					<!-- End of first row-->
-					
-					 
-						 		
-						<div class="deal">
-							<a href="details.html"><img src="static/theme/forest/images/thumb-img.jpg" alt="" class="dealthumb"/></a>
-							<div class="dealtitle">
-								<p><a href="details.html" class="dark">Comfort Suites Paradise Island</a></p>
-								 <span class="size13 grey mt-9">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, </span>
-							</div>
-							 				
-						</div>
-						<div class="deal">
-							<a href="details.html"><img src="static/theme/forest/images/thumb-img.jpg" alt="" class="dealthumb"/></a>
-							<div class="dealtitle">
-								<p><a href="details.html" class="dark">Barcelo Malaga</a></p>
-							 <span class="size13 grey mt-9">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, </span>
-							</div>
-							 					
-						</div>	
-						<div class="deal">
-							<a href="details.html"><img src="static/theme/forest/images/thumb-img.jpg" alt="" class="dealthumb"/></a>
-							<div class="dealtitle">
-								<p><a href="details.html" class="dark">Palatino Hotel</a></p>
-							 <span class="size13 grey mt-9">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, </span>
-							</div>
-						 					
-						</div>				
-					 
-					<!-- End of first row-->
-					
-					
-					<div class="clearfix"></div>
-				 
-			
-			
-				</div>
-		
-			</div>
-			<!-- END OF LEFT CONTENT -->			
-		  <br/>
-			<!-- RIGHT CONTENT -->
-			<div class="col-md-4" >
-				
-				<div class="pagecontainer2 paymentbox grey">
-					<div class="padding30">
-						Soon
 					</div>
-					<div class="line3"></div>
 					
-					 
-				 
-
-
-				</div><br/>
-				
-				 
-			 
-			
+					<div class="hpadding20">
+						<ul class="pagination right paddingbtm20">
+							<?php if ($page_active > 1) { ?>
+							<li class="cursor"><a href="<?php echo $link_search; ?>">&laquo;</a></li>
+							<?php } else { ?>
+							<li class="disabled"><a>&laquo;</a></li>
+							<?php } ?>
+							
+							<?php for ($i = -5; $i <= 5; $i++) { ?>
+								<?php $page_counter = $page_active + $i; ?>
+								<?php $class = ($i == 0) ? 'active' : ''; ?>
+								<?php if ($page_counter > 0 && $page_counter <= $page_count) { ?>
+								<li class="cursor <?php echo $class; ?>"><a href="<?php echo $link_search.'/page-'.$page_counter; ?>"><?php echo $page_counter; ?></a></li>
+								<?php } ?>
+							<?php } ?>
+							
+							<?php if ($page_active < $page_count) { ?>
+							<li class="cursor"><a href="<?php echo $link_search.'/page-'.$page_count; ?>">&raquo;</a></li>
+							<?php } else { ?>
+							<li class="disabled"><a>&raquo;</a></li>
+							<?php } ?>
+						</ul>
+					</div>
+				<?php } else { ?>
+					<div class="padding30 grey">
+						<div class="cpadding1">
+							<h3 class="opensans">Please enter your keyword to search.</h3>
+							<div class="clearfix"></div>
+						</div><br /><br />
+					</div>
+				<?php } ?>
 			</div>
-			<!-- END OF RIGHT CONTENT -->
-			
-			
+			<div class="col-md-4">
+				<?php $this->load->view( 'website/common/random_post' ); ?>
+			</div>
 		</div>
-		
-		
 	</div>
-	<!-- END OF CONTENT -->
 	
 	<?php $this->load->view( 'website/common/footer' ); ?>
-	
 	<?php $this->load->view( 'website/common/library', array( 'js_add' => array( 'js-payment.js' ) ) ); ?>
 </body>
 </html>

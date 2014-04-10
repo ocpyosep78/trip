@@ -1090,3 +1090,12 @@
 			return $result;
 		}
 	}
+	
+	if (! function_exists('string_escape')) {
+		function string_escape($string = '') {
+			$result = str_replace('##001##', "\n", $string);
+			$result = str_replace('##002##', "\"", $result);
+			$result = str_replace('##003##', "\'", $result);
+			return $result;
+		}
+	}

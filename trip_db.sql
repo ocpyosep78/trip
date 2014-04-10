@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.4
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Apr 09, 2014 at 08:43 PM
--- Server version: 5.1.41
--- PHP Version: 5.3.1
+-- Host: 127.0.0.1
+-- Generation Time: Apr 10, 2014 at 09:23 AM
+-- Server version: 5.5.32
+-- PHP Version: 5.4.19
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -18,6 +19,8 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Database: `trip_db`
 --
+CREATE DATABASE IF NOT EXISTS `trip_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `trip_db`;
 
 -- --------------------------------------------------------
 
@@ -4301,11 +4304,6 @@ CREATE TABLE IF NOT EXISTS `city_ip` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
---
--- Dumping data for table `city_ip`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -4609,11 +4607,6 @@ CREATE TABLE IF NOT EXISTS `hotel_booking` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `hotel_booking`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -4627,11 +4620,6 @@ CREATE TABLE IF NOT EXISTS `hotel_detail` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `hotel_detail`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -4644,11 +4632,6 @@ CREATE TABLE IF NOT EXISTS `hotel_room_amenity` (
   `room_amenity_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `hotel_room_amenity`
---
-
 
 -- --------------------------------------------------------
 
@@ -4942,7 +4925,7 @@ CREATE TABLE IF NOT EXISTS `ip_log` (
   `ip_address` varchar(50) NOT NULL,
   `request_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5828 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5935 ;
 
 --
 -- Dumping data for table `ip_log`
@@ -10779,7 +10762,114 @@ INSERT INTO `ip_log` (`id`, `ip_address`, `request_time`) VALUES
 (5824, '::1', '2014-04-09 20:41:17'),
 (5825, '::1', '2014-04-09 20:41:19'),
 (5826, '::1', '2014-04-09 20:41:26'),
-(5827, '::1', '2014-04-09 20:41:29');
+(5827, '::1', '2014-04-09 20:41:29'),
+(5828, '::1', '2014-04-10 08:27:47'),
+(5829, '::1', '2014-04-10 08:28:00'),
+(5830, '::1', '2014-04-10 08:29:22'),
+(5831, '::1', '2014-04-10 08:29:29'),
+(5832, '::1', '2014-04-10 08:30:14'),
+(5833, '::1', '2014-04-10 08:30:18'),
+(5834, '::1', '2014-04-10 08:32:25'),
+(5835, '::1', '2014-04-10 08:33:38'),
+(5836, '::1', '2014-04-10 08:34:53'),
+(5837, '::1', '2014-04-10 08:35:01'),
+(5838, '::1', '2014-04-10 08:35:18'),
+(5839, '::1', '2014-04-10 08:38:57'),
+(5840, '::1', '2014-04-10 08:39:00'),
+(5841, '::1', '2014-04-10 08:39:36'),
+(5842, '::1', '2014-04-10 08:40:15'),
+(5843, '::1', '2014-04-10 08:40:48'),
+(5844, '::1', '2014-04-10 08:41:35'),
+(5845, '::1', '2014-04-10 08:43:27'),
+(5846, '::1', '2014-04-10 08:44:15'),
+(5847, '::1', '2014-04-10 08:44:19'),
+(5848, '::1', '2014-04-10 08:44:22'),
+(5849, '::1', '2014-04-10 08:44:40'),
+(5850, '::1', '2014-04-10 08:45:06'),
+(5851, '::1', '2014-04-10 08:45:41'),
+(5852, '::1', '2014-04-10 08:45:58'),
+(5853, '::1', '2014-04-10 08:46:08'),
+(5854, '::1', '2014-04-10 08:46:12'),
+(5855, '::1', '2014-04-10 08:48:40'),
+(5856, '::1', '2014-04-10 08:48:59'),
+(5857, '::1', '2014-04-10 08:49:32'),
+(5858, '::1', '2014-04-10 08:50:16'),
+(5859, '::1', '2014-04-10 08:50:27'),
+(5860, '::1', '2014-04-10 08:51:01'),
+(5861, '::1', '2014-04-10 08:51:55'),
+(5862, '::1', '2014-04-10 08:52:02'),
+(5863, '::1', '2014-04-10 08:52:17'),
+(5864, '::1', '2014-04-10 08:52:22'),
+(5865, '::1', '2014-04-10 08:52:35'),
+(5866, '::1', '2014-04-10 08:54:20'),
+(5867, '::1', '2014-04-10 08:55:04'),
+(5868, '::1', '2014-04-10 08:55:19'),
+(5869, '::1', '2014-04-10 08:55:29'),
+(5870, '::1', '2014-04-10 08:55:30'),
+(5871, '::1', '2014-04-10 08:56:02'),
+(5872, '::1', '2014-04-10 08:56:50'),
+(5873, '::1', '2014-04-10 08:56:54'),
+(5874, '::1', '2014-04-10 08:57:00'),
+(5875, '::1', '2014-04-10 08:58:47'),
+(5876, '::1', '2014-04-10 08:58:59'),
+(5877, '::1', '2014-04-10 08:59:15'),
+(5878, '::1', '2014-04-10 08:59:24'),
+(5879, '::1', '2014-04-10 08:59:31'),
+(5880, '::1', '2014-04-10 08:59:36'),
+(5881, '::1', '2014-04-10 09:01:20'),
+(5882, '::1', '2014-04-10 09:02:47'),
+(5883, '::1', '2014-04-10 09:02:51'),
+(5884, '::1', '2014-04-10 09:02:53'),
+(5885, '::1', '2014-04-10 09:02:56'),
+(5886, '::1', '2014-04-10 09:02:58'),
+(5887, '::1', '2014-04-10 09:03:00'),
+(5888, '::1', '2014-04-10 09:03:14'),
+(5889, '::1', '2014-04-10 09:03:22'),
+(5890, '::1', '2014-04-10 09:03:39'),
+(5891, '::1', '2014-04-10 09:03:42'),
+(5892, '::1', '2014-04-10 09:03:47'),
+(5893, '::1', '2014-04-10 09:03:49'),
+(5894, '::1', '2014-04-10 09:04:21'),
+(5895, '::1', '2014-04-10 09:04:23'),
+(5896, '::1', '2014-04-10 09:08:13'),
+(5897, '::1', '2014-04-10 09:08:27'),
+(5898, '::1', '2014-04-10 09:08:32'),
+(5899, '::1', '2014-04-10 09:08:34'),
+(5900, '::1', '2014-04-10 09:08:36'),
+(5901, '::1', '2014-04-10 09:08:37'),
+(5902, '::1', '2014-04-10 09:08:40'),
+(5903, '::1', '2014-04-10 09:08:42'),
+(5904, '::1', '2014-04-10 09:09:03'),
+(5905, '::1', '2014-04-10 09:09:06'),
+(5906, '::1', '2014-04-10 09:09:07'),
+(5907, '::1', '2014-04-10 09:09:10'),
+(5908, '::1', '2014-04-10 09:09:11'),
+(5909, '::1', '2014-04-10 09:09:26'),
+(5910, '::1', '2014-04-10 09:09:26'),
+(5911, '::1', '2014-04-10 09:11:38'),
+(5912, '::1', '2014-04-10 09:11:40'),
+(5913, '::1', '2014-04-10 09:11:44'),
+(5914, '::1', '2014-04-10 09:11:53'),
+(5915, '::1', '2014-04-10 09:11:54'),
+(5916, '::1', '2014-04-10 09:11:55'),
+(5917, '::1', '2014-04-10 09:12:19'),
+(5918, '::1', '2014-04-10 09:14:33'),
+(5919, '::1', '2014-04-10 09:16:14'),
+(5920, '::1', '2014-04-10 09:16:29'),
+(5921, '::1', '2014-04-10 09:17:05'),
+(5922, '::1', '2014-04-10 09:17:21'),
+(5923, '::1', '2014-04-10 09:17:25'),
+(5924, '::1', '2014-04-10 09:17:57'),
+(5925, '::1', '2014-04-10 09:18:19'),
+(5926, '::1', '2014-04-10 09:20:26'),
+(5927, '::1', '2014-04-10 09:21:33'),
+(5928, '::1', '2014-04-10 09:21:41'),
+(5929, '::1', '2014-04-10 09:21:43'),
+(5930, '::1', '2014-04-10 09:22:01'),
+(5931, '::1', '2014-04-10 09:22:01'),
+(5932, '::1', '2014-04-10 09:22:04'),
+(5933, '::1', '2014-04-10 09:22:38'),
+(5934, '::1', '2014-04-10 09:22:57');
 
 -- --------------------------------------------------------
 
@@ -10924,12 +11014,14 @@ CREATE TABLE IF NOT EXISTS `page_static` (
   `content` longtext NOT NULL,
   `post_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `page_static`
 --
 
+INSERT INTO `page_static` (`id`, `title`, `alias`, `content`, `post_time`) VALUES
+(4, 'Weddings', 'weddings', 'Isi content w<a href="http://localhost/trip/trunk/search/a/page-4#">eddings</a>', '2014-04-10 09:09:26');
 
 -- --------------------------------------------------------
 
@@ -11068,11 +11160,6 @@ CREATE TABLE IF NOT EXISTS `post_gallery` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `post_gallery`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -11123,11 +11210,6 @@ CREATE TABLE IF NOT EXISTS `post_traveler_photo` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `post_traveler_photo`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -11145,11 +11227,6 @@ CREATE TABLE IF NOT EXISTS `post_traveler_review` (
   `post_status` varchar(50) NOT NULL COMMENT 'pending / approve / reject',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `post_traveler_review`
---
-
 
 -- --------------------------------------------------------
 
@@ -12623,11 +12700,6 @@ CREATE TABLE IF NOT EXISTS `room_amenity` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
---
--- Dumping data for table `room_amenity`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -12742,7 +12814,7 @@ CREATE TABLE IF NOT EXISTS `user_log` (
   `location` varchar(255) NOT NULL,
   `ip_remote` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=59 ;
 
 --
 -- Dumping data for table `user_log`
@@ -12805,7 +12877,8 @@ INSERT INTO `user_log` (`id`, `user_id`, `traveler_id`, `member_id`, `log_time`,
 (54, 0, 0, 2, '2014-04-09 20:24:15', 'localhost', '::1'),
 (55, 2, 0, 0, '2014-04-09 20:24:37', 'localhost', '::1'),
 (56, 0, 0, 2, '2014-04-09 20:25:52', 'localhost', '::1'),
-(57, 0, 1, 0, '2014-04-09 20:39:15', 'localhost', '::1');
+(57, 0, 1, 0, '2014-04-09 20:39:15', 'localhost', '::1'),
+(58, 2, 0, 0, '2014-04-10 09:09:06', 'localhost', '::1');
 
 -- --------------------------------------------------------
 
@@ -12907,7 +12980,7 @@ CREATE TABLE IF NOT EXISTS `widget` (
   `content` longtext NOT NULL,
   `post_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `widget`
@@ -12917,7 +12990,8 @@ INSERT INTO `widget` (`id`, `title`, `alias`, `content`, `post_time`) VALUES
 (1, 'Ticket', 'ticket', 'Isi widget ticket<br>', '2014-03-27 11:18:09'),
 (2, 'Promo Request Approve', 'promo-request-approve', 'Dear [#full_name#],<br><br>Your request promotion : [#post_title#]<br><br>Promotion detail :<br>- Title : [#promo_duration_title#]<br>- Duration : [#promo_duration#]<br>- Cost : [#promo_cost#]<br><br>To complete this promotion, please sent money to :<br>BCA<br>ridwan amir 0111593131<br>BRI<br>ridwan amir 43423423423<br><br>if you have complete your payment, please confirm your payment <a href="http://localhost/trip/trunk/payment/confirmation">here</a><br><br>\r\n', '2014-04-02 11:26:39'),
 (3, 'Dashboard Member', 'dashboard-member', 'Dashboard Member isinya bisa diedit di Panel =&gt; Setup =&gt; Widget', '2014-04-09 13:10:46'),
-(4, 'Dashboard Traveler', 'dashboard-traveler', 'Dashboard Traveler isinya bisa diedit di Panel =&gt; Setup =&gt; Widget', '2014-04-09 13:10:55');
+(4, 'Dashboard Traveler', 'dashboard-traveler', 'Dashboard Traveler isinya bisa diedit di Panel =&gt; Setup =&gt; Widget', '2014-04-09 13:10:55'),
+(5, 'Widget 01', 'widget-01', 'Content Widget 01<br><br>Sooon<br><br>', '2014-04-10 09:22:01');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
