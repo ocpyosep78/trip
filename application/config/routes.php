@@ -21,10 +21,11 @@ if (count($array_arg) >= 1) {
 }
 
 if ($is_website) {
-	$route['hotel'] = "website/hotel";
-	$route['hotel/([a-z0-9\-]+)'] = "website/hotel";
-	$route['(destination|restaurant)'] = "website/destination";
-	$route['(destination|restaurant)/([a-z0-9\-]+)'] = "website/destination";
+	// post
+	$route['hotel(/([a-z0-9\-]+))*'] = "website/hotel";
+	$route['(destination|restaurant)(/([a-z0-9\-]+))*'] = "website/destination";
+	
+	// other page
 	$route['login/([a-z0-9\-]+)'] = "website/login";
 	$route['search(/([a-z0-9\-]+))*'] = "website/search";
 	$route['payment(/([a-z0-9\-]+))*'] = "website/payment";

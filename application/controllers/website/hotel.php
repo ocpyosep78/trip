@@ -11,7 +11,7 @@ class hotel extends TRIP_Controller {
 				$method_name = $this->uri->segments[2];
 				$this->$method_name();
 			} else {
-				$this->load->view( 'website/hotel_detail' );
+				$this->load->view( 'website/post_detail' );
 			}
 		} else {
 			$this->load->view( 'website/hotel' );
