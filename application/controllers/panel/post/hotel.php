@@ -33,6 +33,13 @@ class hotel extends PANEL_Controller {
 			$array = $this->post_facility_model->get_array($_POST);
 			$count = $this->post_facility_model->get_count();
 			$grid = array( 'sEcho' => $_POST['sEcho'], 'aaData' => $array, 'iTotalRecords' => $count, 'iTotalDisplayRecords' => $count );
+		} else if ($action == 'post_booking') {
+			$_POST['is_edit'] = '1';
+			$_POST['column'] = array( 'title', 'link' );
+			
+			$array = $this->hotel_booking_model->get_array($_POST);
+			$count = $this->hotel_booking_model->get_count();
+			$grid = array( 'sEcho' => $_POST['sEcho'], 'aaData' => $array, 'iTotalRecords' => $count, 'iTotalDisplayRecords' => $count );
 		}
 		
 		echo json_encode($grid);
@@ -61,6 +68,15 @@ class hotel extends PANEL_Controller {
 			$result = $this->post_facility_model->update($_POST);
 		} else if ($action == 'facility_delete') {
 			$result = $this->post_facility_model->delete($_POST);
+		}
+		
+		// booking
+		else if ($action == 'booking_update') {
+			$result = $this->hotel_booking_model->update($_POST);
+		} else if ($action == 'booking_get_by_id') {
+			$result = $this->hotel_booking_model->get_by_id(array( 'id' => $_POST['id'] ));
+		} else if ($action == 'booking_delete') {
+			$result = $this->hotel_booking_model->delete($_POST);
 		}
 		
 		echo json_encode($result);

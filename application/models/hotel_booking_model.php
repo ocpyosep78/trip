@@ -47,15 +47,16 @@ class hotel_booking_model extends CI_Model {
     function get_array($param = array()) {
         $array = array();
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND HotelBooking.name LIKE '%".$param['namelike']."%'" : '';
+		$string_namelike = (!empty($param['namelike'])) ? "AND hotel_booking.name LIKE '%".$param['namelike']."%'" : '';
+		$string_post = (isset($param['post_id'])) ? "AND hotel_booking.post_id = '".$param['post_id']."'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS HotelBooking.*
-			FROM ".HOTEL_BOOKING." HotelBooking
-			WHERE 1 $string_namelike $string_filter
+			SELECT SQL_CALC_FOUND_ROWS hotel_booking.*
+			FROM ".HOTEL_BOOKING." hotel_booking
+			WHERE 1 $string_namelike $string_post $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";

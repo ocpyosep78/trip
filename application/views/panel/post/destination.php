@@ -138,7 +138,7 @@
 							</div>
 						</section>
 						
-						<section class="panel panel-default panel-form hide">
+						<section class="panel panel-default panel-form hide" id="cnt-form-main">
 							<header class="panel-heading font-bold">Form Destination</header>
 							<div class="panel-body">
 								<form class="bs-example form-horizontal">
@@ -261,16 +261,16 @@ $(document).ready(function() {
 			
 			// set view
 			if (page.data.user.user_type_id == page.data.USER_TYPE_MEMBER) {
-				$('.panel-form .input-member').hide();
+				$('#cnt-form-main .input-member').hide();
 			}
 		},
 		show_grid: function() {
-			$('.panel-form').hide();
-			$('.panel-table').show();
+			$('#content .panel-form').hide();
+			$('#content .panel-table').show();
 		},
 		show_form: function() {
-			$('.panel-form').show();
-			$('.panel-table').hide();
+			$('#content .panel-form').show();
+			$('#content .panel-table').hide();
 		},
 	}
 	page.init();
@@ -278,7 +278,7 @@ $(document).ready(function() {
 	// upload
 	$('.browse-thumbnail').click(function() { window.iframe_thumbnail.browse() });
 	set_thumbnail = function(p) {
-		$('.panel-form form [name="thumbnail"]').val(p.file_name);
+		$('#cnt-form-main form [name="thumbnail"]').val(p.file_name);
 	}
 	
 	// grid post
@@ -300,9 +300,9 @@ $(document).ready(function() {
 						result.post_status = 'draft';
 					}
 					
-					Func.populate({ cnt: '.panel-form', record: result });
-					combo.region({ country_id: result.country_id, target: $('.panel-form [name="region_id"]'), value: result.region_id });
-					combo.city({ region_id: result.region_id, target: $('.panel-form [name="city_id"]'), value: result.city_id });
+					Func.populate({ cnt: '#cnt-form-main', record: result });
+					combo.region({ country_id: result.country_id, target: $('#cnt-form-main [name="region_id"]'), value: result.region_id });
+					combo.city({ region_id: result.region_id, target: $('#cnt-form-main [name="city_id"]'), value: result.city_id });
 					
 					page.show_form();
 				} });
@@ -380,21 +380,21 @@ $(document).ready(function() {
 		}
 	});
 	member_ahead.on('typeahead:selected',function(evt, data) {
-		$('.panel-form [name="member_id"]').val(data.id);
+		$('#cnt-form-main [name="member_id"]').val(data.id);
 	});
 	
 	// form
-	var form = $('.panel-form form').parsley();
-	$('.panel-form .btn-primary').click(function() {
+	var form = $('#cnt-form-main form').parsley();
+	$('#cnt-form-main .btn-primary').click(function() {
 		page.show_grid();
 	});
-	$('.panel-form [name="country_id"]').change(function(){
-		combo.region({ country_id: $(this).val(), target: $('.panel-form [name="region_id"]') });
+	$('#cnt-form-main [name="country_id"]').change(function(){
+		combo.region({ country_id: $(this).val(), target: $('#cnt-form-main [name="region_id"]') });
 	});
-	$('.panel-form [name="region_id"]').change(function(){
-		combo.city({ region_id: $(this).val(), target: $('.panel-form [name="city_id"]') });
+	$('#cnt-form-main [name="region_id"]').change(function(){
+		combo.city({ region_id: $(this).val(), target: $('#cnt-form-main [name="city_id"]') });
 	});
-	$('.panel-form form').submit(function(e) {
+	$('#cnt-form-main form').submit(function(e) {
 		e.preventDefault();
 		if (! form.isValid()) {
 			return false;
@@ -402,11 +402,11 @@ $(document).ready(function() {
 		
 		Func.update({
 			link: web.base + 'panel/post/destination/action',
-			param: Site.Form.GetValue('.panel-form form'),
+			param: Site.Form.GetValue('#cnt-form-main form'),
 			callback: function() {
 				dt.reload();
 				page.show_grid();
-				$('.panel-form form')[0].reset();
+				$('#cnt-form-main form')[0].reset();
 			}
 		});
 	});
@@ -447,14 +447,14 @@ $(document).ready(function() {
 	// helper
 	$('.show-dialog').click(function() {
 		page.show_form();
-		$('.panel-form form')[0].reset();
-		$('.panel-form form').parsley().reset();
-		$('.panel-form [name="id"]').val(0);
+		$('#cnt-form-main form')[0].reset();
+		$('#cnt-form-main form').parsley().reset();
+		$('#cnt-form-main [name="id"]').val(0);
 		
 		// set data for member
 		if (page.data.user.user_type_id == page.data.USER_TYPE_MEMBER) {
-			$('.panel-form [name="member_id"]').val(page.data.user.id);
-			$('.panel-form [name="full_name"]').val(page.data.user.full_name);
+			$('#cnt-form-main [name="member_id"]').val(page.data.user.id);
+			$('#cnt-form-main [name="full_name"]').val(page.data.user.full_name);
 		}
 	});
 });
