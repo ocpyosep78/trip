@@ -10,7 +10,14 @@ class promo extends PANEL_Controller {
 	
 	function grid() {
 		$_POST['grid_type'] = 'editor';
-		$_POST['column'] = array( 'post_title_text', 'promo_duration_title_text', 'publish_date_swap', 'promo_status' );
+		$_POST['column'] = array( 'post_title_text', 'promo_duration_title_text', 'publish_date_swap', 'close_date_swap', 'promo_status' );
+		
+		// param member
+		$user_session = $this->user_model->get_session();
+		$_POST['user_type_id'] = $user_session['user_type_id'];
+		if (! in_array($user_session['user_type_id'], array(USER_TYPE_ADMINISTRATOR, USER_TYPE_EDITOR))) {
+			$_POST['member_id'] = $user_session['id'];
+		}
 		
 		$array = $this->promo_model->get_array($_POST);
 		$count = $this->promo_model->get_count();

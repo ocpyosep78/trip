@@ -1,11 +1,24 @@
 <?php
+	// user
+	$user_session = $this->user_model->get_session();
+	$user = $this->user_model->get_by_id(array( 'user_type_id' => $user_session['user_type_id'], 'id' => $user_session['id'] ));
+	
+	// master
 	$array_language = $this->language_model->get_array();
 	$array_promo_duration = $this->promo_duration_model->get_array();
+	
+	// page data
+	$page['USER_TYPE_ADMINISTRATOR'] = USER_TYPE_ADMINISTRATOR;
+	$page['USER_TYPE_EDITOR'] = USER_TYPE_EDITOR;
+	$page['USER_TYPE_MEMBER'] = USER_TYPE_MEMBER;
+	$page['user'] = $user_session;
 ?>
 
 <?php $this->load->view( 'panel/common/meta' ); ?>
 <body>
 <section class="vbox">
+	<div class="hide"><div id="cnt-page"><?php echo json_encode($page); ?></div></div>
+	
 	<div class="modal fade" id="modal-confirm">
 		<div class="modal-dialog">
 			<div class="modal-content"><form>
@@ -83,9 +96,10 @@
 								<table class="table table-striped m-b-none" data-ride="datatable" id="datatable">
 								<thead>
 									<tr>
-										<th width="30%">Post</th>
-										<th width="20%">Duration</th>
-										<th width="20%">Publish Date</th>
+										<th width="25%">Post</th>
+										<th width="15%">Duration</th>
+										<th width="15%">Publish Date</th>
+										<th width="15%">Closed Date</th>
 										<th width="15%">Status</th>
 										<th width="15%">&nbsp;</th>
 									</tr>
@@ -121,7 +135,7 @@
 											<input type="text" name="publish_date" class="form-control datepicker-input" placeholder="Publish Date" data-date-format="dd-mm-yyyy" data-required="true" />
 										</div>
 									</div>
-									<div class="form-group">
+									<div class="form-group input-close-date">
 										<label class="col-lg-2 control-label">Closed Date</label>
 										<div class="col-lg-10">
 											<input type="text" name="close_date" class="form-control datepicker-input" placeholder="Closed Date" data-date-format="dd-mm-yyyy" />
@@ -134,10 +148,10 @@
 												<option value="">-</option>
 												<option value="draft">draft</option>
 												<option value="request approve">request approve</option>
-												<!--
+												<?php if (in_array($user['user_type_id'], array(USER_TYPE_ADMINISTRATOR, USER_TYPE_EDITOR))) { ?>
 												<option value="approve">approve</option>
 												<option value="reject">reject</option>
-												-->
+												<?php } ?>
 											</select>
 										</div>
 									</div>
@@ -182,7 +196,17 @@
 $(document).ready(function() {
 	var page = {
 		init: function() {
+			var raw_page = $('#cnt-page').html();
+			eval('var data = ' + raw_page);
+			page.data = data;
+			
+			// set form
 			Func.language();
+			
+			// set view
+			if (page.data.user.user_type_id == page.data.USER_TYPE_MEMBER) {
+				$('.panel-form .input-close-date').hide();
+			}
 		},
 		show_grid: function() {
 			$('.panel-form').hide();
@@ -221,7 +245,7 @@ $(document).ready(function() {
 	var param = {
 		id: 'datatable',
 		source: web.base + 'panel/post/promo/grid',
-		column: [ { }, { }, { }, { }, { bSortable: false, sClass: 'center', sWidth: '15%' } ],
+		column: [ { }, { }, { }, { }, { }, { bSortable: false, sClass: 'center', sWidth: '15%' } ],
 		callback: function() {
 			$('#datatable .btn-edit').click(function() {
 				var raw_record = $(this).siblings('.hide').text();

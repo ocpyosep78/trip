@@ -1,6 +1,7 @@
 <?php
 	// user
 	$user_session = $this->user_model->get_session();
+	$user = $this->user_model->get_by_id(array( 'user_type_id' => $user_session['user_type_id'], 'id' => $user_session['id'] ));
 	
 	$array_country = $this->country_model->get_array();
 	$array_language = $this->language_model->get_array();
@@ -17,7 +18,29 @@
 <?php $this->load->view( 'panel/common/meta' ); ?>
 <body>
 <section class="vbox">
-	<div class="hide"><div id="cnt-page"><?php echo json_encode($page); ?></div></div>
+	<div class="hide">
+		<div id="cnt-page"><?php echo json_encode($page); ?></div>
+		<iframe name="iframe_thumbnail" src="<?php echo base_url('panel/upload?callback_name=set_thumbnail'); ?>"></iframe>
+		
+		<div class="form-language">
+			<div class="form-group">
+				<label class="col-lg-2 control-label">Title</label>
+				<div class="col-lg-10"><input type="text" name="title" class="form-control" placeholder="Title" /></div>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-2 control-label">Description 1</label>
+				<div class="col-lg-10"><textarea name="desc_01" class="form-control" placeholder="Description 1"></textarea></div>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-2 control-label">Description 2</label>
+				<div class="col-lg-10"><textarea name="desc_02" class="form-control" placeholder="Description 2"></textarea></div>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-2 control-label">Map</label>
+				<div class="col-lg-10"><div name="map" class="input-tinymce"></div></div>
+			</div>
+		</div>
+	</div>
 	
 	<div class="modal fade" id="modal-facility">
 		<div class="modal-dialog">
@@ -61,31 +84,59 @@
 		</div>
 	</div>
 	
-	<div class="hide">
-		<iframe name="iframe_thumbnail" src="<?php echo base_url('panel/upload?callback_name=set_thumbnail'); ?>"></iframe>
-	</div>
-	<?php $this->load->view( 'panel/common/header' ); ?>
-	
-	<div class="hide">
-		<div class="form-language">
-			<div class="form-group">
-				<label class="col-lg-2 control-label">Title</label>
-				<div class="col-lg-10"><input type="text" name="title" class="form-control" placeholder="Title" /></div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-2 control-label">Description 1</label>
-				<div class="col-lg-10"><textarea name="desc_01" class="form-control" placeholder="Description 1"></textarea></div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-2 control-label">Description 2</label>
-				<div class="col-lg-10"><textarea name="desc_02" class="form-control" placeholder="Description 2"></textarea></div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-2 control-label">Map</label>
-				<div class="col-lg-10"><div name="map" class="input-tinymce"></div></div>
+	<div class="modal fade" id="modal-booking">
+		<div class="modal-dialog big">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Booking Form</h4>
+				</div>
+				<div class="modal-body">
+					<section class="panel panel-default panel-form">
+						<form>
+							<input type="hidden" name="action" value="booking_update" />
+							<input type="hidden" name="post_id" value="0" />
+						
+							<div class="panel-body">
+								<div class="form-group">
+									<label>Title</label>
+									<input type="text" class="form-control" name="title" data-required="true" placeholder="Title" />
+								</div>
+								<div class="form-group">
+									<label>Link</label>
+									<input type="text" class="form-control" name="link" data-required="true" placeholder="Link" />
+								</div>
+								<div class="form-group center">
+									<input type="button" class="btn btn-primary" value="Cancel" />
+									<input type="button" class="btn btn-info" value="Save" />
+								</div>
+							</div>
+						</form>
+					</section>
+					
+					<section class="panel panel-default panel-table">
+						<div class="table-responsive">
+							<table class="table table-striped m-b-none" data-ride="datatable" id="table-booking">
+							<thead>
+								<tr>
+									<th width="25%">Title</th>
+									<th width="60%">Link</th>
+									<th width="15%">&nbsp;</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+							</table>
+						</div>
+					</section>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
 			</div>
 		</div>
 	</div>
+	
+	<?php $this->load->view( 'panel/common/header' ); ?>
 	
     <section>
 		<section class="hbox stretch">
@@ -119,9 +170,10 @@
 								<table class="table table-striped m-b-none" data-ride="datatable" id="datatable">
 								<thead>
 									<tr>
-										<th width="20%">Category</th>
-										<th width="20%">Sub Category</th>
+										<th width="15%">Category</th>
+										<th width="15%">Sub Category</th>
 										<th width="30%">Title</th>
+										<th width="10%">Update Time</th>
 										<th width="15%">Status</th>
 										<th width="15%">&nbsp;</th>
 									</tr>
@@ -216,6 +268,14 @@
 											<button type="button" class="btn btn-default browse-thumbnail">Select Picture</button>
 										</div>
 									</div>
+									<div class="form-group">
+										<div class="center">
+											<input type="button" class="btn btn-default show-gallery" value="Gallery" />
+											<input type="button" class="btn btn-default show-booking" value="Booking" />
+											<input type="button" class="btn btn-default show-room-amenitues" value="Room Amenities" />
+											<input type="button" class="btn btn-default show-room-facility" value="Room Facility" />
+										</div>
+									</div>
 									
 									<header class="panel-heading bg-light"><ul class="nav nav-tabs nav-justified">
 										<?php foreach ($array_language as $key => $row) { ?>
@@ -266,13 +326,23 @@ $(document).ready(function() {
 			}
 		},
 		show_grid: function() {
-			$('.panel-form').hide();
-			$('.panel-table').show();
+			$('#content .panel-form').hide();
+			$('#content .panel-table').show();
 		},
 		show_form: function() {
-			$('.panel-form').show();
-			$('.panel-table').hide();
+			$('#content .panel-form').show();
+			$('#content .panel-table').hide();
 		},
+		modal_booking: {
+			show_grid: function() {
+				$('#modal-booking .panel-table').show();
+				$('#modal-booking .panel-form').hide();
+			},
+			show_form: function() {
+				$('#modal-booking .panel-form').hide();
+				$('#modal-booking .panel-table').show();
+			}
+		}
 	}
 	page.init();
 	
@@ -284,9 +354,9 @@ $(document).ready(function() {
 	
 	// grid post
 	var param = {
-		id: 'datatable',
+		id: 'datatable', aaSorting: [[ 3, 'DESC' ]],
 		source: web.base + 'panel/post/hotel/grid',
-		column: [ { }, { }, { }, { }, { bSortable: false, sClass: 'center', sWidth: '13%' } ],
+		column: [ { }, { }, { }, { sWidth: '15%' }, { }, { bSortable: false, sClass: 'center', sWidth: '13%' } ],
 		fnServerParams : function (aoData) {
 			aoData.push( { name: "action", "value": 'post' } )
 		},
@@ -343,6 +413,34 @@ $(document).ready(function() {
 			aoData.push(
 				{ name: "action", "value": 'post_facility' },
 				{ name: "post_id", "value": $('#modal-facility [name="post_id"]').val() }
+			)
+		},
+		callback: function() {
+			$('#table-facility .btn-delete').click(function() {
+				var raw_record = $(this).siblings('.hide').text();
+				eval('var record = ' + raw_record);
+				
+				Func.ajax({
+					url: web.base + 'panel/post/hotel/action',
+					param: { action: 'facility_delete', id: record.id },
+					callback: function(result) {
+						facility_dt.reload();
+					}
+				});
+			});
+		}
+	}
+	var facility_dt = Func.init_datatable(facility_param);
+	
+	// grid booking
+	var facility_param = {
+		id: 'table-booking',
+		source: web.base + 'panel/post/hotel/grid',
+		column: [ { }, { }, { bSortable: false, sClass: 'center', sWidth: '15%' } ],
+		fnServerParams : function (aoData) {
+			aoData.push(
+				{ name: "action", "value": 'post_booking' },
+				{ name: "post_id", "value": $('#modal-booking [name="post_id"]').val() }
 			)
 		},
 		callback: function() {
@@ -445,12 +543,27 @@ $(document).ready(function() {
 		});
 	});
 	
+	// form booking
+	$('.show-booking').click(function() {
+		page.modal_booking.show_grid();
+		$('#modal-booking').modal();
+		
+		// set post id
+		$('#modal-booking [name="post_id"]').val($('.panel-form [name="id"]').val());
+	});
+	
 	// helper
 	$('.show-dialog').click(function() {
 		page.show_form();
 		$('.panel-form form')[0].reset();
 		$('.panel-form form').parsley().reset();
 		$('.panel-form [name="id"]').val(0);
+		
+		// set data for member
+		if (page.data.user.user_type_id == page.data.USER_TYPE_MEMBER) {
+			$('.panel-form [name="member_id"]').val(page.data.user.id);
+			$('.panel-form [name="full_name"]').val(page.data.user.full_name);
+		}
 	});
 });
 </script>

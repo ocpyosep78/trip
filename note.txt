@@ -12,8 +12,12 @@ LINK TEMPORARY
 - http://localhost/trip/trunk/about-us
 
 To do :
-- login member harusnya ada promo
-- halaman detail post (hotel & non hotel)
+Panel Hotel
+- Booking => yang klo diklik buka window baru
+- Gallery => setiap post bisa punya banyak gambar untuk ditampilkan di single page, dan salah sata bisa dipilih sebagai tumbnail
+- Facility ditambah icon => tambah inputan untuk icon (http://localhost/trip/trunk/hotel/detail)
+- Room Amenities => formnya popup saja seperty facility hanya saja letaknya didalam halaman detail (bisa diisi klo sudah punya id)
+- Room Facility => sama seperti Room Amenities
 
 ----------------------------------------------------------------------------------------------------------------
 Multi Language

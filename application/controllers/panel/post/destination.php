@@ -15,7 +15,7 @@ class destination extends PANEL_Controller {
 		if ($action == 'post') {
 			$_POST['grid_type'] = 'member';
 			$_POST['category_id'] = CATEGORY_DESTINATION;
-			$_POST['column'] = array( 'category_title', 'category_sub_title', 'title_text', 'post_status' );
+			$_POST['column'] = array( 'category_title', 'category_sub_title', 'title_text', 'post_update', 'post_status' );
 			
 			// param member
 			$user_session = $this->user_model->get_session();
@@ -44,6 +44,11 @@ class destination extends PANEL_Controller {
 		
 		$result = array();
 		if ($action == 'update') {
+			// add update time
+			if (empty($_POST['id'])) {
+				$_POST['post_update'] = $this->config->item('current_datetime');
+			}
+			
 			$result = $this->post_model->update($_POST);
 		} else if ($action == 'get_by_id') {
 			$result = $this->post_model->get_by_id(array( 'id' => $_POST['id'], 'tag_include' => @$_POST['tag_include'] ));

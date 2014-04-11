@@ -1,6 +1,7 @@
 <?php
 	// user
 	$user_session = $this->user_model->get_session();
+	$user = $this->user_model->get_by_id(array( 'user_type_id' => $user_session['user_type_id'], 'id' => $user_session['id'] ));
 	
 	$array_country = $this->country_model->get_array();
 	$array_language = $this->language_model->get_array();
@@ -16,7 +17,37 @@
 <?php $this->load->view( 'panel/common/meta' ); ?>
 <body>
 <section class="vbox">
-	<div class="hide"><div id="cnt-page"><?php echo json_encode($page); ?></div></div>
+	<div class="hide">
+		<div id="cnt-page"><?php echo json_encode($page); ?></div>
+		<iframe name="iframe_thumbnail" src="<?php echo base_url('panel/upload?callback_name=set_thumbnail'); ?>"></iframe>
+		
+		<div class="form-language">
+			<div class="form-group">
+				<label class="col-lg-2 control-label">Title</label>
+				<div class="col-lg-10"><input type="text" name="title" class="form-control" placeholder="Title" /></div>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-2 control-label">Description 1</label>
+				<div class="col-lg-10"><textarea name="desc_01" class="form-control" placeholder="Description 1"></textarea></div>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-2 control-label">Description 2</label>
+				<div class="col-lg-10"><textarea name="desc_02" class="form-control" placeholder="Description 2"></textarea></div>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-2 control-label">Description 3</label>
+				<div class="col-lg-10"><textarea name="desc_03" class="form-control" placeholder="Description 3"></textarea></div>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-2 control-label">Map</label>
+				<div class="col-lg-10"><div name="map" class="input-tinymce"></div></div>
+			</div>
+			<div class="form-group">
+				<label class="col-lg-2 control-label">Field 1</label>
+				<div class="col-lg-10"><input type="text" name="field_01" class="form-control" placeholder="Field 1" /></div>
+			</div>
+		</div>
+	</div>
 	
 	<div class="modal fade" id="modal-facility">
 		<div class="modal-dialog">
@@ -60,39 +91,7 @@
 		</div>
 	</div>
 	
-	<div class="hide">
-		<iframe name="iframe_thumbnail" src="<?php echo base_url('panel/upload?callback_name=set_thumbnail'); ?>"></iframe>
-	</div>
 	<?php $this->load->view( 'panel/common/header' ); ?>
-	
-	<div class="hide">
-		<div class="form-language">
-			<div class="form-group">
-				<label class="col-lg-2 control-label">Title</label>
-				<div class="col-lg-10"><input type="text" name="title" class="form-control" placeholder="Title" /></div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-2 control-label">Description 1</label>
-				<div class="col-lg-10"><textarea name="desc_01" class="form-control" placeholder="Description 1"></textarea></div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-2 control-label">Description 2</label>
-				<div class="col-lg-10"><textarea name="desc_02" class="form-control" placeholder="Description 2"></textarea></div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-2 control-label">Description 3</label>
-				<div class="col-lg-10"><textarea name="desc_03" class="form-control" placeholder="Description 3"></textarea></div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-2 control-label">Map</label>
-				<div class="col-lg-10"><div name="map" class="input-tinymce"></div></div>
-			</div>
-			<div class="form-group">
-				<label class="col-lg-2 control-label">Field 1</label>
-				<div class="col-lg-10"><input type="text" name="field_01" class="form-control" placeholder="Field 1" /></div>
-			</div>
-		</div>
-	</div>
 	
     <section>
 		<section class="hbox stretch">
@@ -126,9 +125,10 @@
 								<table class="table table-striped m-b-none" data-ride="datatable" id="datatable">
 								<thead>
 									<tr>
-										<th width="20%">Category</th>
-										<th width="20%">Sub Category</th>
+										<th width="15%">Category</th>
+										<th width="15%">Sub Category</th>
 										<th width="30%">Title</th>
+										<th width="10%">Update Time</th>
 										<th width="15%">Status</th>
 										<th width="15%">&nbsp;</th>
 									</tr>
@@ -283,9 +283,9 @@ $(document).ready(function() {
 	
 	// grid post
 	var param = {
-		id: 'datatable',
+		id: 'datatable', aaSorting: [[ 3, 'DESC' ]],
 		source: web.base + 'panel/post/destination/grid',
-		column: [ { }, { }, { }, { }, { bSortable: false, sClass: 'center', sWidth: '13%' } ],
+		column: [ { }, { }, { }, { sWidth: '15%' }, { }, { bSortable: false, sClass: 'center', sWidth: '13%' } ],
 		fnServerParams : function (aoData) {
 			aoData.push( { name: "action", "value": 'post' } )
 		},
@@ -450,6 +450,12 @@ $(document).ready(function() {
 		$('.panel-form form')[0].reset();
 		$('.panel-form form').parsley().reset();
 		$('.panel-form [name="id"]').val(0);
+		
+		// set data for member
+		if (page.data.user.user_type_id == page.data.USER_TYPE_MEMBER) {
+			$('.panel-form [name="member_id"]').val(page.data.user.id);
+			$('.panel-form [name="full_name"]').val(page.data.user.full_name);
+		}
 	});
 });
 </script>

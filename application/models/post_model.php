@@ -6,7 +6,7 @@ class post_model extends CI_Model {
 		
         $this->field = array(
 			'id', 'city_id', 'member_id', 'category_sub_id', 'alias', 'title', 'address', 'desc_01', 'desc_02', 'desc_03', 'field_01', 'map', 'star', 'post_status',
-			'thumbnail', 'having_promo', 'review_rate', 'review_count', 'rate_per_night', 'facility'
+			'thumbnail', 'having_promo', 'review_rate', 'review_count', 'rate_per_night', 'facility', 'post_update'
 		);
     }
 

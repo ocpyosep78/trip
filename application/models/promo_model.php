@@ -60,6 +60,7 @@ class promo_model extends CI_Model {
 		$param['field_replace']['publish_date_swap'] = '';
 		
 		$string_namelike = (!empty($param['namelike'])) ? "AND promo.title LIKE '%".$param['namelike']."%'" : '';
+		$string_member = (isset($param['member_id'])) ? "AND post.member_id = '".$param['member_id']."'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'title ASC');
 		$string_limit = GetStringLimit($param);
@@ -71,7 +72,7 @@ class promo_model extends CI_Model {
 			FROM ".PROMO." promo
 			LEFT JOIN ".POST." post on post.id = promo.post_id
 			LEFT JOIN ".PROMO_DURATION." promo_duration on promo_duration.id = promo.promo_duration_id
-			WHERE 1 $string_namelike $string_filter
+			WHERE 1 $string_namelike $string_member $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
@@ -112,6 +113,9 @@ class promo_model extends CI_Model {
 		if (isset($row['publish_date'])) {
 			$row['publish_date_swap'] = GetFormatDate($row['publish_date']);
 		}
+		if (isset($row['close_date'])) {
+			$row['close_date_swap'] = GetFormatDate($row['close_date']);
+		}
 		
 		// label
 		if (isset($row['promo_duration_title']) && isset($row['promo_duration'])) {
@@ -122,7 +126,7 @@ class promo_model extends CI_Model {
 			if (isset($param['grid_type']) && $param['grid_type'] == 'editor') {
                 $param['is_custom']  = '<i class="cursor-button tool-tip fa fa-pencil btn-edit" title="Edit"></i> ';
 				
-				if ($row['promo_status'] == 'request approve') {
+				if (in_array($param['user_type_id'], array(USER_TYPE_ADMINISTRATOR, USER_TYPE_EDITOR)) && $row['promo_status'] == 'request approve') {
 					$param['is_custom'] .= '<i class="cursor-button tool-tip fa fa-check btn-approve" title="Approve"></i> ';
 					$param['is_custom'] .= '<i class="cursor-button tool-tip fa fa-times btn-reject" title="Reject"></i> ';
 				}

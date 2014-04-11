@@ -38,7 +38,14 @@
 	<div class="container">
 		<div class="container mt25 offset-0">
 			<div class="col-md-8 pagecontainer2 offset-0">
-				<?php if (!empty($namelike)) { ?>
+				<?php if (!empty($namelike) && count($array_post) == 0) { ?>
+					<div class="padding30 grey">
+						<div class="cpadding1">
+							<h3 class="opensans">No result found for <u><?php echo $namelike; ?></u>.</h3>
+							<div class="clearfix"></div>
+						</div><br /><br />
+					</div>
+				<?php } else if (!empty($namelike) && count($array_post) > 0) { ?>
 					<div class="padding30 grey">
 						<div class="cpadding1">
 							<h3 class="opensans">Result of <u><?php echo ucwords($namelike); ?></u></h3>

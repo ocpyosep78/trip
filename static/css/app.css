@@ -12,6 +12,12 @@
 .cursor-button:hover { color: #FB6B5B; }
 .dataTables_processing, .dataTables_length, .dataTables_filter { display: none !important; }
 
+/*   parsley   */
+.parsley-error-list { color: #FF5F5F; }
+
+/*   modal   */
+.modal-dialog.big { width: 900px; }
+
 html {
   background-color: #f7f7f7;
   overflow-x: hidden;
