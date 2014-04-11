@@ -33,6 +33,12 @@ class other extends PANEL_Controller {
 			$array = $this->post_facility_model->get_array($_POST);
 			$count = $this->post_facility_model->get_count();
 			$grid = array( 'sEcho' => $_POST['sEcho'], 'aaData' => $array, 'iTotalRecords' => $count, 'iTotalDisplayRecords' => $count );
+		} else if ($action == 'post_gallery') {
+			$_POST['column'] = array( 'title' );
+			
+			$array = $this->post_gallery_model->get_array($_POST);
+			$count = $this->post_gallery_model->get_count();
+			$grid = array( 'sEcho' => $_POST['sEcho'], 'aaData' => $array, 'iTotalRecords' => $count, 'iTotalDisplayRecords' => $count );
 		}
 		
 		echo json_encode($grid);
@@ -61,6 +67,15 @@ class other extends PANEL_Controller {
 			$result = $this->post_facility_model->update($_POST);
 		} else if ($action == 'facility_delete') {
 			$result = $this->post_facility_model->delete($_POST);
+		}
+		
+		// gallery
+		else if ($action == 'gallery_update') {
+			$result = $this->post_gallery_model->update($_POST);
+		} else if ($action == 'gallery_get_by_id') {
+			$result = $this->post_gallery_model->get_by_id(array( 'id' => $_POST['id'] ));
+		} else if ($action == 'gallery_delete') {
+			$result = $this->post_gallery_model->delete($_POST);
 		}
 		
 		echo json_encode($result);

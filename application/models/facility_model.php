@@ -4,7 +4,7 @@ class facility_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'title' );
+        $this->field = array( 'id', 'title', 'css_icon' );
     }
 
     function update($param) {

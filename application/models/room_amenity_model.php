@@ -49,9 +49,9 @@ class room_amenity_model extends CI_Model {
 		
 		$param['field_replace']['title_text'] = 'room_amenity.title';
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND room_amenity.name LIKE '%".$param['namelike']."%'" : '';
+		$string_namelike = (!empty($param['namelike'])) ? "AND room_amenity.title LIKE '%".$param['namelike']."%'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
-		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
+		$string_sorting = GetStringSorting($param, @$param['column'], 'title ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
@@ -90,6 +90,9 @@ class room_amenity_model extends CI_Model {
 	
 	function sync($row, $param = array()) {
 		$row = StripArray($row);
+		
+		// language
+		$row = get_row_language($row, array( 'title' ));
 		
 		if (isset($row['title'])) {
 			$temp = json_to_array($row['title']);

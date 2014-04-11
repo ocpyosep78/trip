@@ -20,6 +20,7 @@
 	<div class="hide">
 		<div id="cnt-page"><?php echo json_encode($page); ?></div>
 		<iframe name="iframe_thumbnail" src="<?php echo base_url('panel/upload?callback_name=set_thumbnail'); ?>"></iframe>
+		<iframe name="iframe_image_gallery" src="<?php echo base_url('panel/upload?callback_name=set_image_gallery'); ?>"></iframe>
 		
 		<div class="form-language">
 			<div class="form-group">
@@ -77,6 +78,68 @@
 								<tr>
 									<th width="75%">Facility</th>
 									<th width="25%">&nbsp;</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+							</table>
+						</div>
+					</section>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="modal-gallery">
+		<div class="modal-dialog big">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Gallery Form</h4>
+				</div>
+				<div class="modal-body">
+					<section class="panel panel-default panel-form">
+						<form class="bs-example form-horizontal">
+							<input type="hidden" name="action" value="gallery_update" />
+							<input type="hidden" name="id" value="0" />
+							<input type="hidden" name="post_id" value="0" />
+						
+							<div class="panel-body">
+								<div class="form-group">
+									<label class="col-lg-2 control-label">Title</label>
+									<div class="col-lg-10">
+										<input type="text" class="form-control" name="title" placeholder="Title" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-2 control-label">Image</label>
+									<div class="col-lg-7">
+										<input type="text" name="thumbnail" class="form-control" placeholder="Image" />
+									</div>
+									<div class="col-lg-3">
+										<button type="button" class="btn btn-default browse-image-gallery">Select Picture</button>
+									</div>
+								</div>
+								<div class="form-group center">
+									<input type="button" class="btn btn-primary show-gallery-grid" value="Cancel" />
+									<input type="submit" class="btn btn-info" value="Save" />
+								</div>
+							</div>
+						</form>
+					</section>
+					
+					<section class="panel panel-default panel-table">
+						<div style="padding: 5px 10px; text-align: center;">
+							<a class="btn btn-sm btn-default show-gallery-form"><i class="fa fa-plus"></i> Create</a>
+						</div>
+						<div class="table-responsive">
+							<table class="table table-striped m-b-none" data-ride="datatable" id="table-gallery">
+							<thead>
+								<tr>
+									<th style="width: 85%;">Title</th>
+									<th style="width: 15%;">&nbsp;</th>
 								</tr>
 							</thead>
 							<tbody></tbody>
@@ -223,6 +286,9 @@
 											<button type="button" class="btn btn-default browse-thumbnail">Select Picture</button>
 										</div>
 									</div>
+									<div class="form-group center post-detail">
+										<input type="button" class="btn btn-default show-gallery" value="Gallery" />
+									</div>
 									
 									<header class="panel-heading bg-light"><ul class="nav nav-tabs nav-justified">
 										<?php foreach ($array_language as $key => $row) { ?>
@@ -280,6 +346,16 @@ $(document).ready(function() {
 			$('#content .panel-form').show();
 			$('#content .panel-table').hide();
 		},
+		modal_gallery: {
+			show_grid: function() {
+				$('#modal-gallery .panel-table').show();
+				$('#modal-gallery .panel-form').hide();
+			},
+			show_form: function() {
+				$('#modal-gallery .panel-form').show();
+				$('#modal-gallery .panel-table').hide();
+			}
+		}
 	}
 	page.init();
 	
@@ -288,6 +364,52 @@ $(document).ready(function() {
 	set_thumbnail = function(p) {
 		$('#cnt-form-main form [name="thumbnail"]').val(p.file_name);
 	}
+	$('.browse-image-gallery').click(function() { window.iframe_image_gallery.browse() });
+	set_image_gallery = function(p) {
+		$('#modal-gallery form [name="thumbnail"]').val(p.file_name);
+	}
+	
+	// typeahead
+	var member_store = new Bloodhound({
+		limit: 15,
+		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('full_name'),
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		prefetch: web.base + 'panel/typeahead/?action=member',
+		remote: web.base + 'panel/typeahead/?action=member&namelike=%QUERY'
+	});
+	member_store.initialize();
+	var member_ahead = $('.member-typeahead').typeahead(null, {
+		name: 'member-selector',
+		displayKey: 'full_name',
+		source: member_store.ttAdapter(),
+		templates: {
+			empty: [ '<div class="empty-message">', 'no result', '</div>' ].join('\n'),
+			suggestion: Handlebars.compile('<p><strong>{{full_name}}</strong></p>')
+		}
+	});
+	member_ahead.on('typeahead:selected',function(evt, data) {
+		$('#cnt-form-main [name="member_id"]').val(data.id);
+	});
+	var facility_store = new Bloodhound({
+		limit: 15,
+		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title_text'),
+		queryTokenizer: Bloodhound.tokenizers.whitespace,
+		prefetch: web.base + 'panel/typeahead/?action=facility',
+		remote: web.base + 'panel/typeahead/?action=facility&namelike=%QUERY'
+	});
+	facility_store.initialize();
+	var facility_ahead = $('.facility-typeahead').typeahead(null, {
+		name: 'facility-selector',
+		displayKey: 'title_text',
+		source: facility_store.ttAdapter(),
+		templates: {
+			empty: [ '<div class="empty-message">', 'no result', '</div>' ].join('\n'),
+			suggestion: Handlebars.compile('<p><strong>{{title_text}}</strong></p>')
+		}
+	});
+	facility_ahead.on('typeahead:selected',function(evt, data) {
+		$('#modal-facility [name="facility_id"]').val(data.id);
+	});
 	
 	// grid post
 	var param = {
@@ -313,6 +435,7 @@ $(document).ready(function() {
 					combo.region({ country_id: result.country_id, target: $('#cnt-form-main [name="region_id"]'), value: result.region_id });
 					combo.city({ region_id: result.region_id, target: $('#cnt-form-main [name="city_id"]'), value: result.city_id });
 					
+					$('#cnt-form-main .post-detail').show();
 					page.show_form();
 				} });
 			});
@@ -370,30 +493,20 @@ $(document).ready(function() {
 	}
 	var facility_dt = Func.init_datatable(facility_param);
 	
-	// typeahead
-	var member_store = new Bloodhound({
-		limit: 15,
-		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('full_name'),
-		queryTokenizer: Bloodhound.tokenizers.whitespace,
-		prefetch: web.base + 'panel/typeahead/?action=member',
-		remote: web.base + 'panel/typeahead/?action=member&namelike=%QUERY'
-	});
-	member_store.initialize();
-	var member_ahead = $('.member-typeahead').typeahead(null, {
-		name: 'member-selector',
-		displayKey: 'full_name',
-		source: member_store.ttAdapter(),
-		templates: {
-			empty: [ '<div class="empty-message">', 'no result', '</div>' ].join('\n'),
-			suggestion: Handlebars.compile('<p><strong>{{full_name}}</strong></p>')
-		}
-	});
-	member_ahead.on('typeahead:selected',function(evt, data) {
-		$('#cnt-form-main [name="member_id"]').val(data.id);
-	});
-	
 	// form
 	var form = $('#cnt-form-main form').parsley();
+	$('.show-dialog').click(function() {
+		page.show_form();
+		$('#cnt-form-main form')[0].reset();
+		$('#cnt-form-main form').parsley().reset();
+		$('#cnt-form-main [name="id"]').val(0);
+		
+		// set data for member
+		if (page.data.user.user_type_id == page.data.USER_TYPE_MEMBER) {
+			$('#cnt-form-main [name="member_id"]').val(page.data.user.id);
+			$('#cnt-form-main [name="full_name"]').val(page.data.user.full_name);
+		}
+	});
 	$('#cnt-form-main .btn-primary').click(function() {
 		page.show_grid();
 	});
@@ -424,26 +537,6 @@ $(document).ready(function() {
 	});
 	
 	// form facility
-	var facility_store = new Bloodhound({
-		limit: 15,
-		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title_text'),
-		queryTokenizer: Bloodhound.tokenizers.whitespace,
-		prefetch: web.base + 'panel/typeahead/?action=facility',
-		remote: web.base + 'panel/typeahead/?action=facility&namelike=%QUERY'
-	});
-	facility_store.initialize();
-	var facility_ahead = $('.facility-typeahead').typeahead(null, {
-		name: 'facility-selector',
-		displayKey: 'title_text',
-		source: facility_store.ttAdapter(),
-		templates: {
-			empty: [ '<div class="empty-message">', 'no result', '</div>' ].join('\n'),
-			suggestion: Handlebars.compile('<p><strong>{{title_text}}</strong></p>')
-		}
-	});
-	facility_ahead.on('typeahead:selected',function(evt, data) {
-		$('#modal-facility [name="facility_id"]').val(data.id);
-	});
 	$('#modal-facility form').submit(function(e) {
 		e.preventDefault();
 		Func.update({
@@ -456,18 +549,43 @@ $(document).ready(function() {
 		});
 	});
 	
-	// helper
-	$('.show-dialog').click(function() {
-		page.show_form();
-		$('#cnt-form-main form')[0].reset();
-		$('#cnt-form-main form').parsley().reset();
-		$('#cnt-form-main [name="id"]').val(0);
+	// form gallery
+	var form_gallery = $('#modal-gallery form').parsley();
+	$('.show-gallery').click(function() {
+		page.modal_gallery.show_grid();
+		$('#modal-gallery').modal();
 		
-		// set data for member
-		if (page.data.user.user_type_id == page.data.USER_TYPE_MEMBER) {
-			$('#cnt-form-main [name="member_id"]').val(page.data.user.id);
-			$('#cnt-form-main [name="full_name"]').val(page.data.user.full_name);
+		// load dt
+		$('#modal-gallery [name="post_id"]').val($('#cnt-form-main [name="id"]').val());
+		gallery_dt.reload();
+	});
+	$('#modal-gallery .show-gallery-form').click(function() {
+		page.modal_gallery.show_form();
+		
+		// set default record
+		$('#modal-gallery form')[0].reset();
+		$('#modal-gallery form').parsley().reset();
+		$('#modal-gallery [name="id"]').val(0);
+		$('#modal-gallery [name="post_id"]').val($('#cnt-form-main [name="id"]').val());
+	});
+	$('#modal-gallery .show-gallery-grid').click(function() {
+		page.modal_gallery.show_grid();
+	});
+	$('#modal-gallery form').submit(function(e) {
+		e.preventDefault();
+		if (! form_gallery.isValid()) {
+			return false;
 		}
+		
+		Func.update({
+			link: web.base + 'panel/post/hotel/action',
+			param: Site.Form.GetValue('#modal-gallery form'),
+			callback: function() {
+				gallery_dt.reload();
+				page.modal_gallery.show_grid();
+				$('#modal-gallery form')[0].reset();
+			}
+		});
 	});
 });
 </script>

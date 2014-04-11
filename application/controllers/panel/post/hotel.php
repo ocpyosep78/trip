@@ -40,6 +40,19 @@ class hotel extends PANEL_Controller {
 			$array = $this->hotel_booking_model->get_array($_POST);
 			$count = $this->hotel_booking_model->get_count();
 			$grid = array( 'sEcho' => $_POST['sEcho'], 'aaData' => $array, 'iTotalRecords' => $count, 'iTotalDisplayRecords' => $count );
+		} else if ($action == 'post_gallery') {
+			$_POST['column'] = array( 'title' );
+			
+			$array = $this->post_gallery_model->get_array($_POST);
+			$count = $this->post_gallery_model->get_count();
+			$grid = array( 'sEcho' => $_POST['sEcho'], 'aaData' => $array, 'iTotalRecords' => $count, 'iTotalDisplayRecords' => $count );
+		} else if ($action == 'post_amenity') {
+			$_POST['is_delete'] = '1';
+			$_POST['column'] = array( 'title_default' );
+			
+			$array = $this->hotel_room_amenity_model->get_array($_POST);
+			$count = $this->hotel_room_amenity_model->get_count();
+			$grid = array( 'sEcho' => $_POST['sEcho'], 'aaData' => $array, 'iTotalRecords' => $count, 'iTotalDisplayRecords' => $count );
 		}
 		
 		echo json_encode($grid);
@@ -77,6 +90,24 @@ class hotel extends PANEL_Controller {
 			$result = $this->hotel_booking_model->get_by_id(array( 'id' => $_POST['id'] ));
 		} else if ($action == 'booking_delete') {
 			$result = $this->hotel_booking_model->delete($_POST);
+		}
+		
+		// gallery
+		else if ($action == 'gallery_update') {
+			$result = $this->post_gallery_model->update($_POST);
+		} else if ($action == 'gallery_get_by_id') {
+			$result = $this->post_gallery_model->get_by_id(array( 'id' => $_POST['id'] ));
+		} else if ($action == 'gallery_delete') {
+			$result = $this->post_gallery_model->delete($_POST);
+		}
+		
+		// amenity
+		else if ($action == 'amenity_update') {
+			$result = $this->hotel_room_amenity_model->update($_POST);
+		} else if ($action == 'amenity_get_by_id') {
+			$result = $this->hotel_room_amenity_model->get_by_id(array( 'id' => $_POST['id'] ));
+		} else if ($action == 'amenity_delete') {
+			$result = $this->hotel_room_amenity_model->delete($_POST);
 		}
 		
 		echo json_encode($result);

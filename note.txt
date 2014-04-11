@@ -13,34 +13,14 @@ LINK TEMPORARY
 
 To do :
 Panel Hotel
-- Gallery => setiap post bisa punya banyak gambar untuk ditampilkan di single page, dan salah sata bisa dipilih sebagai tumbnail
-- Facility ditambah icon => tambah inputan untuk icon (http://localhost/trip/trunk/hotel/detail)
-- Room Amenities => formnya popup saja seperty facility hanya saja letaknya didalam halaman detail (bisa diisi klo sudah punya id)
-- Room Facility => sama seperti Room Amenities
+- halaman website detail hotel & destination
 
 ----------------------------------------------------------------------------------------------------------------
 Multi Language
 
 ----------------------------------------------------------------------------------------------------------------
-MY NOTE
-----------------------------------------------------------------------------------------------------------------
-- Form nya pakai Multi Tab (http://localhost/kedai/trunk/_design/admin-full-notebook/components.html)
-- User ada 4 jenis (Admin, Editor, Member, Traveler)
-- Jika user yang akses server lebih dari 1000 tampilkan halaman overlod / seperti kaskus over posting
-
-----------------------------------------------------------------------------------------------------------------
 PANEL
 ----------------------------------------------------------------------------------------------------------------
-Modul Post - Booking
-- link : http://shoperindo.com/trip/4.%20booking%20proses.png
-- khusus untuk category hotel saja
-- isikan nama dan link
-- maks 6 link
-
-Modul Room Amenities
-- Multi Language
-- khusus untuk hotel
-
 Modul Image by Traveler
 - List gambar yang dikirim oleh traveler yang akan di approve oleh admin
 
@@ -181,12 +161,12 @@ Category (CategorySub)
 - Tempat Wisata (Wisata Candi, Wisata Pantai, Wisata Alam, Kuliner)
 
 ----------------------------------------------------------------------------------------------------------------
-ADDITIONAL
+MY NOTE
 ----------------------------------------------------------------------------------------------------------------
-
-
+- Form nya pakai Multi Tab (http://localhost/kedai/trunk/_design/admin-full-notebook/components.html)
+- User ada 4 jenis (Admin, Editor, Member, Traveler)
+- Jika user yang akses server lebih dari 1000 tampilkan halaman overlod / seperti kaskus over posting
 
 ----------------------------------------------------------------------------------------------------------------
-
 
 <input type="text" name="register_date" class="form-control datepicker-input" placeholder="Register Date" data-date-format="dd-mm-yyyy" readonly="readonly" />

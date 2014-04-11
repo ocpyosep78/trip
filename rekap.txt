@@ -38,6 +38,16 @@ Modul Promosi
 - Multi Language
 - Confirm Payment
 
+Modul Post - Booking
+- link : http://shoperindo.com/trip/4.%20booking%20proses.png
+- khusus untuk category hotel saja
+- isikan nama dan link
+- maks 6 link
+
+Modul Room Amenities
+- Multi Language
+- khusus untuk hotel
+
 ----------------------------------------------------------------------------------------------------------------
 PANEL EDITOR
 ----------------------------------------------------------------------------------------------------------------

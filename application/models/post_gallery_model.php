@@ -4,7 +4,7 @@ class post_gallery_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'post_id', 'title', 'content', 'post_date' );
+        $this->field = array( 'id', 'post_id', 'title', 'content', 'thumbnail', 'post_date' );
     }
 
     function update($param) {
@@ -47,15 +47,16 @@ class post_gallery_model extends CI_Model {
     function get_array($param = array()) {
         $array = array();
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND PostGallery.name LIKE '%".$param['namelike']."%'" : '';
+		$string_namelike = (!empty($param['namelike'])) ? "AND post_gallery.name LIKE '%".$param['namelike']."%'" : '';
+		$string_post = (isset($param['post_id'])) ? "AND post_gallery.post_id = '".$param['post_id']."'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS PostGallery.*
-			FROM ".POST_GALLERY." PostGallery
-			WHERE 1 $string_namelike $string_filter
+			SELECT SQL_CALC_FOUND_ROWS post_gallery.*
+			FROM ".POST_GALLERY." post_gallery
+			WHERE 1 $string_namelike $string_post $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
@@ -89,7 +90,16 @@ class post_gallery_model extends CI_Model {
 	function sync($row, $param = array()) {
 		$row = StripArray($row);
 		
+		// link
+		if (!empty($row['thumbnail'])) {
+			$row['link_thumbnail'] = base_url('static/upload/'.$row['thumbnail']);
+		}
+		
 		if (count(@$param['column']) > 0) {
+			$param['is_custom']  = '<i class="cursor-button tool-tip fa fa-pencil btn-edit" title="Edit"></i> ';
+			$param['is_custom'] .= '<i class="cursor-button tool-tip fa fa-link btn-preview" title="Preview"></i> ';
+			$param['is_custom'] .= '<i class="cursor-button tool-tip fa fa-power-off btn-delete" title="Delete"></i> ';
+			
 			$row = dt_view_set($row, $param);
 		}
 		

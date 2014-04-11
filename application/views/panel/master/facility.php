@@ -64,6 +64,13 @@
 									<input type="hidden" name="action" value="update" />
 									<input type="hidden" name="id" value="0" />
 									
+									<div class="form-group">
+										<label class="col-lg-2 control-label">CSS Icon</label>
+										<div class="col-lg-10">
+											<input name="css_icon" class="form-control" placeholder="CSS Icon" />
+										</div>
+									</div>
+									
 									<header class="panel-heading bg-light"><ul class="nav nav-tabs nav-justified">
 										<?php foreach ($array_language as $key => $row) { ?>
 										<?php $class_active = (empty($key)) ? 'active' : ''; ?>

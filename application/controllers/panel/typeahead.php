@@ -37,6 +37,8 @@ class typeahead extends CI_Controller {
 			foreach ($array_temp as $row) {
 				$array[] = array( 'id' => $row['id'], 'title_text' => $row['title_text'] );
 			}
+		} else if ($action == 'room_amenity') {
+			$array = $this->room_amenity_model->get_array($_GET);
 		}
 		
 		echo json_encode($array);

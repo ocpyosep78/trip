@@ -47,15 +47,19 @@ class hotel_room_amenity_model extends CI_Model {
     function get_array($param = array()) {
         $array = array();
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND HotelRoomAmenity.name LIKE '%".$param['namelike']."%'" : '';
+		$param['field_replace']['title_default'] = 'room_amenity.title';
+		
+		$string_namelike = (!empty($param['namelike'])) ? "AND room_amenity.title LIKE '%".$param['namelike']."%'" : '';
+		$string_post = (isset($param['post_id'])) ? "AND hotel_room_amenity.post_id = '".$param['post_id']."'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
-		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
+		$string_sorting = GetStringSorting($param, @$param['column'], 'title ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS HotelRoomAmenity.*
-			FROM ".HOTEL_ROOM_AMENITY." HotelRoomAmenity
-			WHERE 1 $string_namelike $string_filter
+			SELECT SQL_CALC_FOUND_ROWS hotel_room_amenity.*, room_amenity.title
+			FROM ".HOTEL_ROOM_AMENITY." hotel_room_amenity
+			LEFT JOIN ".ROOM_AMENITY." room_amenity ON room_amenity.id = hotel_room_amenity.room_amenity_id
+			WHERE 1 $string_namelike $string_post $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
@@ -88,6 +92,9 @@ class hotel_room_amenity_model extends CI_Model {
 	
 	function sync($row, $param = array()) {
 		$row = StripArray($row);
+		
+		// language
+		$row = get_row_language($row, array( 'title' ));
 		
 		if (count(@$param['column']) > 0) {
 			$row = dt_view_set($row, $param);
