@@ -47,10 +47,10 @@ class post_gallery_model extends CI_Model {
     function get_array($param = array()) {
         $array = array();
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND post_gallery.name LIKE '%".$param['namelike']."%'" : '';
+		$string_namelike = (!empty($param['namelike'])) ? "AND post_gallery.title LIKE '%".$param['namelike']."%'" : '';
 		$string_post = (isset($param['post_id'])) ? "AND post_gallery.post_id = '".$param['post_id']."'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
-		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
+		$string_sorting = GetStringSorting($param, @$param['column'], 'title ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "

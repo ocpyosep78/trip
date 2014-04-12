@@ -70,7 +70,8 @@ class post_facility_model extends CI_Model {
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS post_facility.*, facility.title facility_title
+			SELECT SQL_CALC_FOUND_ROWS post_facility.*,
+				facility.title facility_title, facility.css_icon facility_css_icon
 			FROM ".POST_FACILITY." post_facility
 			LEFT JOIN ".FACILITY." facility ON facility.id = post_facility.facility_id
 			WHERE 1 $string_post $string_namelike $string_filter

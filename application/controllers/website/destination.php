@@ -6,7 +6,10 @@ class destination extends TRIP_Controller {
     }
     
     function index() {
-		if (!empty($this->uri->segments[2])) {
+		if (!empty($this->uri->segments[5]) && $this->uri->segments[5] == 'review') {
+			$method_name = $this->uri->segments[2];
+			$this->review();
+		} else if (!empty($this->uri->segments[2])) {
 			if (method_exists($this, $this->uri->segments[2])) {
 				$method_name = $this->uri->segments[2];
 				$this->$method_name();
@@ -15,7 +18,7 @@ class destination extends TRIP_Controller {
 			} else if ($this->uri->segments[2] == 'gallery') {
 				$this->load->view( 'website/destination_gallery' );
 			} else {
-				$this->load->view( 'website/destination_detail' );
+				$this->load->view( 'website/post_detail' );
 			}
 		} else {
 			$this->load->view( 'website/destination' );
@@ -37,5 +40,9 @@ class destination extends TRIP_Controller {
 		}
 		
 		echo $result;
+	}
+	
+	function review() {
+		$this->load->view( 'website/post_review' );
 	}
 }

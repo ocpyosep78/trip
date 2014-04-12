@@ -1,10 +1,25 @@
 <?php
+	// post
+	$post = $this->post_model->get_by_id(array( 'city_alias' => $this->uri->segments[3], 'alias' => $this->uri->segments[4] ));
+	
+	// post galery
+	$array_gallery = $this->post_gallery_model->get_array(array( 'post_id' => $post['id'] ));
+	
+	// post facility
+	$array_facility = $this->post_facility_model->get_array(array( 'post_id' => $post['id'] ));
+	
+	// booking
+	$array_booking = $this->hotel_booking_model->get_array(array( 'post_id' => $post['id'] ));
+	
+	// room amenity
+	$array_room_amenity = $this->hotel_room_amenity_model->get_array(array( 'post_id' => $post['id'] ));
+	
 	// breadcrub
 	$array_breadcrub = array(
-		array( 'link' => '#', 'title' => 'Hotels' ),
-		array( 'link' => '#', 'title' => 'Jawa Timur' ),
-		array( 'link' => '#', 'title' => 'Malang Kab' ),
-		array( 'link' => '#', 'title' => 'Hotel Tugu Malang' )
+		array( 'link' => '#', 'title' => $post['category_title'] ),
+		array( 'link' => '#', 'title' => $post['region_title'] ),
+		array( 'link' => '#', 'title' => $post['city_title'] ),
+		array( 'link' => '#', 'title' => $post['title_select'] )
 	);
 ?>
 
@@ -15,6 +30,25 @@
 	
 	<div class="container">
 		<div class="container pagecontainer offset-0">
+			<?php if (count($array_gallery) == 0) { ?>
+			<div class="col-md-8 details-slider"><div id="c-carousel"><div id="wrapper">
+				<div id="inner">
+					<div id="caroufredsel_wrapper2">
+						<div id="carousel">
+							<img src="<?php echo base_url('static/theme/forest/images/details-slider/slide1.jpg'); ?>" alt=""/>					
+						</div>
+					</div>
+					<div id="pager-wrapper">
+						<div id="pager">
+							<img src="<?php echo base_url('static/theme/forest/images/details-slider/slide1.jpg" width="120" height="68'); ?>" alt=""/>				
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				<button id="prev_btn2" class="prev2"><img src="<?php echo base_url('static/theme/forest/images/spacer.png'); ?>" alt=""/></button>
+				<button id="next_btn2" class="next2"><img src="<?php echo base_url('static/theme/forest/images/spacer.png'); ?>" alt=""/></button>
+			</div></div></div>
+			<?php } else { ?>
 			<div class="col-md-8 details-slider"><div id="c-carousel"><div id="wrapper">
 				<div id="inner">
 					<div id="caroufredsel_wrapper2">
@@ -42,35 +76,69 @@
 				<button id="prev_btn2" class="prev2"><img src="<?php echo base_url('static/theme/forest/images/spacer.png'); ?>" alt=""/></button>
 				<button id="next_btn2" class="next2"><img src="<?php echo base_url('static/theme/forest/images/spacer.png'); ?>" alt=""/></button>
 			</div></div></div>
+			<?php } ?>
 			
 			<div class="col-md-4 detailsright offset-0">
 				<div class="padding20">
-					<h4 class="lh1">Hotel Tugu Malang</h4>
-					Jl Candi Blok 2a No 403
+					<h4 class="lh1"><?php echo $post['title_select']; ?></h4>
+					<?php echo nl2br($post['address']); ?>
 				</div>
 			 	<div class="line3"></div>
-				<div class="hpadding20">
-					<h2 class="opensans slim green2">Bintang 5</h2>
-				</div>
-				<div class="line3 margtop20"></div>
-				<div class="col-md-6 bordertype3">
-					Rate per night<br />
-				</div>
-				<div class="col-md-6 bordertype3">
-					<a href="#" class="grey">500 Per/night</a>
-				</div>
-				<div class="clearfix"></div><br />
-				<div class="hpadding20">
-					<a href="#" class="add2fav margtop5">Add to favourite</a>
-					<a href="#" class="booknow margtop20 btnmarg">Book now</a>
-				</div>
-				<ul class="checkbook">
-					<label><input type="checkbox"> Agoda</label>
-					<label><input type="checkbox"> Wego</label>
-					<label><input type="checkbox"> Tiket.com</label>
-					<label><input type="checkbox"> Pegi-pegi.com</label>
-					<label><input type="checkbox"> Hoteltravel.com</label>
-				</ul>
+				
+				<?php if ($post['category_id'] == CATEGORY_HOTEL) { ?>
+					<?php if (!empty($post['star'])) { ?>
+					<div class="hpadding20">
+						<h2 class="opensans slim green2">Bintang <?php echo $post['star']; ?></h2>
+					</div>
+					<?php } ?>
+					
+					<div class="line3 margtop20"></div>
+					<div class="col-md-6 bordertype3">
+						Rate per night<br />
+					</div>
+					<div class="col-md-6 bordertype3">
+						<a href="#" class="grey"><?php echo $post['rate_per_night']; ?> Per/night</a>
+					</div>
+					<div class="clearfix"></div><br />
+					
+					<div class="hpadding20">
+						<!--   <a href="#" class="add2fav margtop5">Add to favourite</a>   -->
+						<a class="booknow margtop20 btnmarg cursor btn-booking">Book now</a>
+					</div>
+				<?php } else { ?>
+					<?php if (!empty($post['field_01_select'])) { ?>
+					<div class="hpadding20">
+						<h2 class="opensans slim green2"><?php echo $post['field_01_select']; ?>!</h2>
+					</div>
+					<div class="line3 margtop20"></div>
+					<?php } ?>
+					
+					<div class="col-md-6 bordertype3">
+						<img src="<?php echo base_url('static/theme/forest/images/user-rating-4.png'); ?>" alt=""/><br />
+						18 reviews
+					</div>
+					<div class="col-md-6 bordertype3">
+						<a href="#" class="grey">+Add review</a>
+					</div>
+					<div class="clearfix"></div><br />
+					
+					<div class="hpadding20">
+						<!--   <a href="#" class="add2fav margtop5">Add to favourite</a>   -->
+						<a href="#" class="booknow margtop20 btnmarg">Upload Your Photo</a>
+					</div>  
+				<?php } ?>
+				
+				<?php if ($post['category_id'] == CATEGORY_HOTEL) { ?>
+					<?php if (count($array_booking) == 0) { ?>
+					<div class="center" style="padding: 5px 0; color: #999999;">No booking avaliable</div>
+					<?php } else { ?>
+					<ul class="checkbook">
+						<?php foreach ($array_booking as $row) { ?>
+						<label><input type="checkbox" name="booking[]" value="<?php echo $row['link']; ?>" /> <?php echo $row['title']; ?></label>
+						<?php } ?>
+					</ul>
+					<?php } ?>
+				<?php } ?>
 			</div>
 		</div>
 		
@@ -79,141 +147,77 @@
 				<div class="cstyle10"></div>
 		
 				<ul class="nav nav-tabs" id="myTab">
-					<li onclick="mySelectUpdate()" class="active"><a data-toggle="tab" href="#summary"><span class="summary"></span><span class="hidetext">Description</span>&nbsp;</a></li>
-					<li onclick="mySelectUpdate()" class=""><a data-toggle="tab" href="#preferences"><span class="preferences"></span><span class="hidetext">Preferences</span>&nbsp;</a></li>
+					<?php if ($post['category_id'] == CATEGORY_HOTEL) { ?>
+					<li class="active"><a data-toggle="tab" href="#summary"><span class="summary"></span><span class="hidetext">Description</span>&nbsp;</a></li>
+					<li class=""><a data-toggle="tab" href="#preferences"><span class="preferences"></span><span class="hidetext">Preferences</span>&nbsp;</a></li>
+					<?php } else { ?>
+					<li class="active"><a data-toggle="tab" href="#summary"><span class="summary"></span><span class="hidetext">Summary</span>&nbsp;</a></li>
+					<li class=""><a data-toggle="tab" href="#reviews"><span class="reviews"></span><span class="hidetext">Reviews</span>&nbsp;</a></li>
+					<?php } ?>
 			 	</ul>
 				<div class="tab-content4">
+					<?php if ($post['category_id'] == CATEGORY_HOTEL) { ?>
 					<div id="summary" class="tab-pane fade active in">
-						<p class="hpadding20">
-							Hotel Tugu Malang terletak di Jalan Tugu No 3 di Jawa Timur. Hotel ini memiliki sebuah kolam renang outdoor, spa, dan 6 pilihan tempat bersantap. Wi-Fi dan tempat parkir, keduanya tersedia secara gratis
-							Kamar-kamar di Hotel Tugu didekorasi bergaya kolonial. Masing-masing dilengkapi dengan TV satelit, pemutar CD, dan minibar.
-						</p>
-						<p class="hpadding20">
-							Aspara Spa menawarkan perawatan pijat. Tersedia layanan wisata dan penyewaan mobil atau sepeda. Anda juga dapat belajar memasak makanan Jawa atau mencoba sarung tradisional.
-						</p>
-						<p class="hpadding20">
-							Berbagai pilihan tempat bersantap meliputi aneka masakan lokal, Cina, dan Barat di Melati Pavilion Restaurant, serta bersantap romantis ala Prancis dan Italia di L'Amour Fou Restaurant. Roti Tugu Bakery and Sidewalk Café menyajikan roti yang baru dipanggang dan makanan lokal yang lezat. Tamu hotel juga akan menikmati teh sore gratis di Tugu Tea House atau Anda juga busa menyesap koktail di BAN LAM Wine Shop & Bar.
-						</p>
-						<p class="hpadding20">
-							Hotel Tugu Malang berjarak 5 menit jalan kaki dari Stasiun Kereta Api Tugu.
-						</p>
+						<?php if (!empty($post['desc_01_select'])) { ?>
+						<p class="hpadding20"><?php echo $post['desc_01_select']; ?></p>
+						<?php } ?>
+						
+						<?php if (!empty($post['desc_02_select'])) { ?>
+						<p class="hpadding20"><?php echo $post['desc_02_select']; ?></p>
+						<?php } ?>
+						
+						<?php if (!empty($post['field_01_select'])) { ?>
+						<p class="hpadding20"><?php echo $post['field_01_select']; ?></p>
+						<?php } ?>
 						<div class="line4"></div>
 						
+						<?php if (count($array_room_amenity) > 0) { ?>
 						<button type="button" class="collapsebtn2" data-toggle="collapse" data-target="#collapse6">
 							Room Amenities <span class="collapsearrow"></span>
 						</button>
 						<div id="collapse6" class="collapse in">
-							<div class="hpadding20">
-								<div class="col-md-4">
-									<ul class="checklist">
-										<li>Climate control</li>
-										<li>Air conditioning</li>
-										<li>Direct-dial phone</li>
-										<li>Minibar</li>
-									</ul>
+							<div class="column3">
+								<?php foreach ($array_room_amenity as $row) { ?>
+								<div class="item">
+									<div class="padd">
+										<img src="<?php echo base_url('static/theme/forest/images/check.png'); ?>" />
+										<?php echo $row['title_select']; ?>
+									</div>
 								</div>
-								<div class="col-md-4">
-									<ul class="checklist">
-										<li>Wake-up calls</li>
-										<li>Daily housekeeping</li>
-										<li>Private bathroom</li>
-										<li>Hair dryer</li>	
-									</ul>									
-								</div>	
-								<div class="col-md-4">
-									<ul class="checklist">								
-										<li>Makeup/shaving mirror</li>
-										<li>Shower/tub combination</li>
-										<li>Satellite TV service</li>
-										<li>Electronic/magnetic keys</li>	
-									</ul>									
-								</div>									
+								<?php } ?>
+								<div class="clear"></div>
 							</div>
-							<div class="clearfix"></div>
 						</div>
+						<?php } ?>
 					</div>
-					
 					<div id="preferences" class="tab-pane fade">
-						<p class="hpadding20">
-							The hotel offers a snack bar/deli. A bar/lounge is on site where guests can unwind with a drink. Guests can enjoy a complimentary breakfast. An Internet point is located on site and high-speed wireless Internet access is complimentary.
-						</p>
+						<?php if (!empty($post['desc_02_select'])) { ?>
+						<p class="hpadding20"><?php echo $post['desc_02_select']; ?></p>
+						<?php } ?>
 						<div class="line4"></div>
 						
+						<?php if (count($array_facility) > 0) { ?>
 						<button type="button" class="collapsebtn2" data-toggle="collapse" data-target="#collapse7">
 							Hotel facilities <span class="collapsearrow"></span>
 						</button>
 						<div id="collapse7" class="collapse in">
-							<div class="hpadding20">
-								<div class="col-md-4 offset-0">
-									<ul class="hotelpreferences2 left">
-										<li class="icohp-internet"></li>
-										<li class="icohp-air"></li>
-										<li class="icohp-pool"></li>
-										<li class="icohp-childcare"></li>
-										<li class="icohp-fitness"></li>
-										<li class="icohp-breakfast"></li>
-										<li class="icohp-parking"></li>
-										<li class="icohp-pets"></li>
-										<li class="icohp-spa"></li>
-										<li class="icohp-hairdryer"></li>
-									</ul>
-									<ul class="hpref-text left">
-										<li>High-speed Internet</li>
-										<li>Air conditioning</li>
-										<li>Swimming pool</li>
-										<li>Childcare</li>
-										<li>Fitness equipment</li>
-										<li>Free breakfast</li>
-										<li>Free parking</li>
-										<li>Pets allowed</li>
-										<li>Spa services on site</li>
-										<li>Hair dryer</li>
-									</ul>
+							<div class="column3 list-icon">
+								<?php foreach ($array_facility as $row) { ?>
+								<div class="item">
+									<div class="padd">
+										<div class="ic-logo"><div class="cnt <?php echo $row['facility_css_icon']; ?>"></div></div>
+										<div class="ic-title"><?php echo $row['facility_title_text']; ?></div>
+									</div>
 								</div>
-								<div class="col-md-4 offset-0">	
-									<ul class="hotelpreferences2 left">
-										<li class="icohp-garden"></li>
-										<li class="icohp-grill"></li>
-										<li class="icohp-kitchen"></li>
-										<li class="icohp-bar"></li>
-										<li class="icohp-living"></li>
-										<li class="icohp-tv"></li>
-										<li class="icohp-fridge"></li>
-										<li class="icohp-microwave"></li>
-										<li class="icohp-washing"></li>
-										<li class="icohp-roomservice"></li>
-									</ul>
-									<ul class="hpref-text left">
-										<li>Courtyard garden</li>
-										<li>Grill / Barbecue</li>
-										<li>Kitchen</li>
-										<li>Bar</li>
-										<li>Living</li>
-										<li>TV</li>
-										<li>Fridge</li>
-										<li>Microwave</li>
-										<li>Washing maschine</li>
-										<li>Room service</li>
-									</ul>		
-								</div>		
-								<div class="col-md-4 offset-0">	
-									<ul class="hotelpreferences2 left">
-										<li class="icohp-safe"></li>
-										<li class="icohp-playground"></li>
-										<li class="icohp-conferenceroom"></li>										
-									</ul>
-									<ul class="hpref-text left">
-										<li>Reception Safe</li>
-										<li>Playground</li>
-										<li>Conference room</li>
-									</ul>										
-								</div>									
-								<div class="clearfix"></div>
+								<?php } ?>
+								<div class="clear"></div>
 							</div>
 						</div>
+						<?php } ?>
 						<br />
 						<div class="line4"></div>							
 						
+						<!--
 						<button type="button" class="collapsebtn2" data-toggle="collapse" data-target="#collapse8">
 							Room facilities <span class="collapsearrow"></span>
 						</button>
@@ -246,49 +250,143 @@
 							</div>
 							<div class="clearfix"></div>
 						</div>
+						-->
 					</div>
+					<?php } else { ?>
+					<div id="summary" class="tab-pane fade active in">
+						<?php if (!empty($post['desc_01_select'])) { ?>
+						<p class="hpadding20"><?php echo $post['desc_01_select']; ?></p>
+						<div class="line4"></div>
+						<?php } ?>
+						
+						<?php if (!empty($post['desc_02_select'])) { ?>
+						<button type="button" class="collapsebtn2" data-toggle="collapse" data-target="#collapse1">
+							Description <span class="collapsearrow"></span>
+						</button>
+						<div id="collapse1" class="collapse in">
+							<div class="hpadding20"><?php echo $post['desc_02_select']; ?></div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="line4"></div>
+						<?php } ?>
+					</div>
+					<div id="reviews" class="tab-pane fade">
+						<div class="hpadding20"><br />
+							<span class="opensans dark size16 bold">Reviews</span>
+						</div>
+						<div class="line2"></div>
+						
+						<div class="hpadding20">							
+							<div class="col-md-4 offset-0 center">
+								<div class="padding20">
+									<div class="bordertype5">
+										<div class="circlewrap">
+											<img src="<?php echo base_url('static/theme/forest/images/user-avatar.jpg'); ?>" class="circleimg" alt=""/>
+											
+										</div>
+										<span class="dark">by Sena</span><br />
+										from London, UK<br />
+										<img src="<?php echo base_url('static/theme/forest/images/check.png'); ?>" alt=""/><br />
+										<span class="orange">Wonderful!</span>
+									</div>
+									
+								</div>
+							</div>
+							<div class="col-md-8 offset-0">
+								<div class="padding20">
+									<span class="opensans size16 dark">Rondo!!.. pokoke muantap bro..</span><br />
+									<span class="opensans size13 lgrey">Posted Jun 02, 2013</span><br />
+									<p>Excellent hotel, friendly staff would def go there again</p>	
+									 
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="line2"></div>
+						
+						<div class="hpadding20">	
+							<div class="col-md-4 offset-0 center">
+								<div class="padding20">
+									<div class="bordertype5">
+										<div class="circlewrap">
+											<img src="<?php echo base_url('static/theme/forest/images/user-avatar.jpg'); ?>" class="circleimg" alt=""/>
+											
+										</div>
+										<span class="dark">by Sena</span><br />
+										from London, UK<br />
+										<img src="<?php echo base_url('static/theme/forest/images/check.png'); ?>" alt=""/><br />
+										<span class="orange">Recommended<br />for Everyone</span>
+									</div>
+									
+								</div>
+							</div>
+							<div class="col-md-8 offset-0">
+								<div class="padding20">
+									<span class="opensans size16 dark">Great experience</span><br />
+									<span class="opensans size13 lgrey">Posted Jun 02, 2013</span><br />
+									<p>The view from our balcony in room # 409, was terrific. It was centrally located to everything on and around the port area. Wonderful service and everything was very clean. The breakfast was below average, although not bad. If back in Zante Town we would stay there again.</p>	
+									 
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="line2"></div>
+						
+						<div class="hpadding20">	
+							<div class="col-md-4 offset-0 center">
+								<div class="padding20">
+									<div class="bordertype5">
+										<div class="circlewrap">
+											<img src="<?php echo base_url('static/theme/forest/images/user-avatar.jpg'); ?>" class="circleimg" alt=""/>
+											
+										</div>
+										<span class="dark">by Sena</span><br />
+										from London, UK<br />
+										<img src="<?php echo base_url('static/theme/forest/images/check.png'); ?>" alt=""/><br />
+										<span class="orange">Recommended<br />for Everyone</span>
+									</div>
+									
+								</div>
+							</div>
+							<div class="col-md-8 offset-0">
+								<div class="padding20">
+									<span class="opensans size16 dark">Great experience</span><br />
+									<span class="opensans size13 lgrey">Posted Jun 02, 2013</span><br />
+									<p>It is close to everything but if you go in the lower season the pool won't be ready even though the temperature was quiet high already.</p>	
+									 
+								</div>
+							</div>
+							<div class="clearfix"></div>							
+						</div>	
+						<div class="line2"></div>
+						
+						<div class="wh33percent left center">&nbsp;</div>
+						<div class="wh66percent right offset-0">
+							<div class="padding20 relative wh70percent">
+								<div class="clearfix"></div>
+								<a class="btn-search4 margtop20 cursor" style="text-decoration: none;" href="<?php echo $post['link_post_review']; ?>">Submit Your Review</a>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<?php } ?>
 				</div>
 			</div>
 			<div class="col-md-4">
-				<div class="pagecontainer2 testimonialbox">
-					<div class="cpadding0 mt-10">soon</div>
-				</div>
-				
-				<div class="pagecontainer2 mt20 alsolikebox">
-					<div class="cpadding1">
-						<span class="icon-location"></span>
-						<h3 class="opensans">You May Also Like</h3>
-						<div class="clearfix"></div>
-					</div>
-					<div class="cpadding1 ">
-						<a href="#"><img src="<?php echo base_url('static/theme/forest/images/smallthumb-1.jpg'); ?>" class="left mr20" alt=""/></a>
-						<a href="#" class="dark"><b>Random Hotel di Malang</b></a><br />
-					 
-						<img src="<?php echo base_url('static/theme/forest/images/filter-rating-5.png'); ?>" alt=""/>
-					</div>
-					<div class="line5"></div>
-					<div class="cpadding1 ">
-						<a href="#"><img src="<?php echo base_url('static/theme/forest/images/smallthumb-2.jpg'); ?>" class="left mr20" alt=""/></a>
-						<a href="#" class="dark"><b>Hotel Amaragua</b></a><br /><br />
-						 
-						<img src="<?php echo base_url('static/theme/forest/images/filter-rating-5.png'); ?>" alt=""/>
-					</div>
-					<div class="line5"></div>			
-					<div class="cpadding1 ">
-						<a href="#"><img src="<?php echo base_url('static/theme/forest/images/smallthumb-3.jpg'); ?>" class="left mr20" alt=""/></a>
-						<a href="#" class="dark"><b>Hotel Amaragua</b></a><br /><br />
-						 
-						<img src="<?php echo base_url('static/theme/forest/images/filter-rating-5.png'); ?>" alt=""/>
-					</div>
-					<br />
-				
-					
-				</div>				
+				<?php $this->load->view( 'website/common/widget_02' ); ?>
+				<?php $this->load->view( 'website/common/random_post', array( 'class_style' => 'mt20 alsolikebox' ) ); ?>
 			</div>
 		</div>
 	</div>
 	
 	<?php $this->load->view( 'website/common/footer' ); ?>
 	<?php $this->load->view( 'website/common/library', array( 'js_add' => array( 'js-details.js', 'counter.js', 'initialize-carousel-detailspage.js' ) ) ); ?>
+<script>
+$('.btn-booking').click(function() {
+	$('[name="booking[]"]:checked').each(function() {
+		window.open(this.value);
+	});
+});
+</script>
 </body>
 </html>

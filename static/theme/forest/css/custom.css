@@ -2812,3 +2812,37 @@ padding-top:3px;
 .form-class .left { float: left; width: 33%; padding: 6px 0 0 0; text-align: right; }
 .form-class .right { float: right; width: 66%; padding: 0 0 10px 20px; }
 .form-class label.error { font-size: 10px; color: #F25D2E; padding: 5px 0 0 0; }
+
+/*   my custom   */
+
+.clear { clear: both; }
+.column3 .item { float: left; width: 31%; }
+.column3 .item .padd { padding: 0 0 7px 20px; }
+.column3 .item .padd .ic-logo { float: left; width: 35px; }
+.column3 .item .padd .ic-title { padding: 6px 0 0 0; }
+
+
+.list-icon .cnt { width:28px; height:28px; background:url('') #ff9900; border:2px solid #ff9900; padding:5px; color:#999; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; margin-top:4px; }
+.list-icon .icohp-internet{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -3px no-repeat;}
+.list-icon .icohp-air{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -33px no-repeat;}
+.list-icon .icohp-pool{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -63px no-repeat;}
+.list-icon .icohp-childcare{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -93px no-repeat;}
+.list-icon .icohp-fitness{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -123px no-repeat;}
+.list-icon .icohp-breakfast{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -153px no-repeat;}
+.list-icon .icohp-parking{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -183px no-repeat;}
+.list-icon .icohp-pets{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -213px no-repeat;}
+.list-icon .icohp-spa{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -243px no-repeat;}
+.list-icon .icohp-hairdryer{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -273px no-repeat;}
+.list-icon .icohp-garden{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -303px no-repeat;}
+.list-icon .icohp-grill{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -333px no-repeat;}
+.list-icon .icohp-kitchen{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -363px no-repeat;}
+.list-icon .icohp-bar{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -393px no-repeat;}
+.list-icon .icohp-living{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -423px no-repeat;}
+.list-icon .icohp-tv{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -453px no-repeat;}
+.list-icon .icohp-fridge{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -483px no-repeat;}
+.list-icon .icohp-microwave{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -513px no-repeat;}
+.list-icon .icohp-washing{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -543px no-repeat;}
+.list-icon .icohp-roomservice{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -573px no-repeat;}
+.list-icon .icohp-safe{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -603px no-repeat;}
+.list-icon .icohp-playground{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -633px no-repeat;}
+.list-icon .icohp-conferenceroom{background:url('../images/hotelpref-ico-green.png') #ff9900 scroll -3px -663px no-repeat;}

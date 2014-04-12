@@ -81,7 +81,28 @@ class post_model extends CI_Model {
 				WHERE post.id = '".$param['id']."'
 				LIMIT 1
 			";
-        } 
+        } else if (isset($param['alias']) && isset($param['city_alias'])) {
+            $select_query  = "
+				SELECT post.*,
+					member.first_name, member.last_name,
+					category.id category_id, category.title category_title, category.alias category_alias,
+					category_sub.title category_sub_title, category_sub.alias category_sub_alias,
+					city.title city_title, city.alias city_alias,
+					region.id region_id, region.title region_title, region.alias region_alias,
+					country.id country_id
+				FROM ".POST." post
+				LEFT JOIN ".CATEGORY_SUB." category_sub ON category_sub.id = post.category_sub_id
+				LEFT JOIN ".CATEGORY." category ON category.id = category_sub.category_id
+				LEFT JOIN ".CITY." city ON city.id = post.city_id
+				LEFT JOIN ".REGION." region ON region.id = city.region_id
+				LEFT JOIN ".COUNTRY." country ON country.id = region.country_id
+				LEFT JOIN ".MEMBER." member ON member.id = post.member_id
+				WHERE
+					post.alias = '".$param['alias']."'
+					AND city.alias = '".$param['city_alias']."'
+				LIMIT 1
+			";
+		}
        
         $select_result = mysql_query($select_query) or die(mysql_error());
         if (false !== $row = mysql_fetch_assoc($select_result)) {
@@ -204,6 +225,7 @@ class post_model extends CI_Model {
 		}
 		if (!empty($row['category_alias']) && !empty($row['region_alias']) && !empty($row['city_alias']) && !empty($row['alias'])) {
 			$row['link_post'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['alias']);
+			$row['link_post_review'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['alias'].'/review');
 		}
 		
 		// member fullname
