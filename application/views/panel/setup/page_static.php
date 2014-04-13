@@ -167,6 +167,7 @@ $(document).ready(function() {
 		$('.panel-form form')[0].reset();
 		$('.panel-form form').parsley().reset();
 		$('.panel-form [name="id"]').val(0);
+		$('.panel-form #form-content').html('');
 	});
 });
 </script>

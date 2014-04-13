@@ -107,9 +107,15 @@
 			
 			<ul class="dropdown-menu animated fadeInRight">
 				<span class="arrow top"></span>
-				<li><a href="#">Settings</a></li>
-				<li><a href="profile.html">Profile</a></li>
-				<li><a href="docs.html">Help</a></li>
+				<li><a href="<?php echo base_url(); ?>">Home</a></li>
+				<?php if ($user['user_type_id'] == USER_TYPE_MEMBER) { ?>
+				<li><a href="<?php echo base_url('panel/profile/user'); ?>">Profile</a></li>
+				<li><a href="<?php echo base_url('panel/setting'); ?>">Settings</a></li>
+				<?php } else if ($user['user_type_id'] == USER_TYPE_TRAVELER) { ?>
+				<li><a href="<?php echo base_url('panel/profile/user'); ?>">Profile</a></li>
+				<li><a href="<?php echo base_url('panel/setting'); ?>">Settings</a></li>
+				<?php } ?>
+				
 				<li class="divider"></li>
 				<li><a href="<?php echo base_url('panel/home/logout'); ?>">Logout</a></li>
 			</ul>

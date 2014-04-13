@@ -18,6 +18,11 @@
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="<?php echo base_url(); ?>">Home</a></li>
+						
+						<?php if ($is_login) { ?>
+						<li><a href="<?php echo base_url('panel'); ?>">Dashboard</a></li>
+						<?php } ?>
+						
 						<li><a href="<?php echo base_url('hotel'); ?>">Hotel</a></li>
 						<li><a href="<?php echo base_url('destination'); ?>">Destination</a></li>
 						<li><a href="<?php echo base_url('restaurant'); ?>">Restaurant</a></li>

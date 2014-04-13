@@ -2,6 +2,7 @@
 //About Page
 //------------------------------
 $(function() {
+	/*
 	$('.chart').easyPieChart({
 		animate: 2000,
 		barColor:   "#ff6633",
@@ -29,7 +30,7 @@ $(function() {
 		lineWidth: 1,								
 		size:50
 	});
-	
+	/*	*/
 });
 
 

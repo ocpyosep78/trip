@@ -6,8 +6,18 @@
 		$user = $this->user_model->get_by_id(array( 'user_type_id' => $user_session['user_type_id'], 'id' => $user_session['id'] ));
 	}
 	
+	// review alias
+	$with_review_alias = false;
+	if (!empty($this->uri->segments[6])) {
+		$with_review_alias = true;
+	}
+	
 	// post
 	$post = $this->post_model->get_by_id(array( 'city_alias' => $this->uri->segments[3], 'alias' => $this->uri->segments[4] ));
+	if ($with_review_alias) {
+		$param_traveler = array( 'post_id' => $post['id'], 'alias' => $this->uri->segments[6] );
+		$post_traveler_review = $this->post_traveler_review_model->get_by_id($param_traveler);
+	}
 	
 	// master
 	$array_language = $this->language_model->get_array();
@@ -27,6 +37,9 @@
 	if (!empty($_POST['language_id'])) {
 		$param_review['language_id'] = $_POST['language_id'];
 	}
+	if ($with_review_alias) {
+		$param_review['alias'] = $this->uri->segments[6];
+	}
 	
 	// array review
 	$array_review = $this->post_traveler_review_model->get_array($param_review);
@@ -42,6 +55,9 @@
 		array( 'link' => $post['link_post'], 'title' => $post['title_select'] ),
 		array( 'link' => $post['link_post_review'], 'title' => 'Review' )
 	);
+	if ($with_review_alias) {
+		$array_breadcrub[] = array( 'link' => $post_traveler_review['link_post_review_detail'], 'title' => $post_traveler_review['title'] );
+	}
 ?>
 
 <?php $this->load->view( 'website/common/meta' ); ?>
@@ -65,18 +81,22 @@
 					<div class="hpadding20">
 						<br /><br />
 						<span class="opensans dark size16 bold">Reviews</span>
+						<?php if (! $with_review_alias) { ?>
 						<div style="width:40%; float:right; margin-top:-15px;">
 							<select class="form-control mySelectBoxClass margtop10" name="language_id">
 								<?php echo ShowOption(array( 'Array' => $array_language, 'LabelEmptySelect' => 'Sort Language', 'Selected' => @$_POST['language_id'] )); ?>
 							</select>
 						</div>
+						<?php } ?>
 					</div>
 					<div class="line2"></div>
 				</form>
 				
 				<?php $this->load->view( 'website/common/review_list', array( 'array_review' => $array_review ) ); ?>
 				
-				<?php if (!empty($page_count)) { ?>
+				<?php if ($with_review_alias) { ?>
+				<div style="padding: 15px 15px 0 0;">&nbsp;</div>
+				<?php } else if (!empty($page_count)) { ?>
 				<div style="padding: 15px 15px 0 0;">
 					<ul class="pagination right paddingbtm20">
 						<?php if ($page_active > 1) { ?>
@@ -103,6 +123,7 @@
 				<div class="clearfix"></div>
 				<?php } ?>
 				
+				<?php if (! $with_review_alias) { ?>
 				<div id="cnt-review">
 					<div class="hpadding20">
 						<span class="opensans dark size16 bold">Write Your Reviews</span>
@@ -175,11 +196,12 @@
 					<?php } ?>
 				</div>
 				<div class="clearfix"></div>
+				<?php } ?>
 			</div>
 			
 			<div class="col-md-4">
 				<?php $this->load->view( 'website/common/side_upload', array( 'link_upload' => $post['link_post_upload'] ) ); ?>
-				<?php $this->load->view( 'website/common/random_post', array( 'class_style' => 'mt20 alsolikebox' ) ); ?>
+				<?php $this->load->view( 'website/common/random_post', array( 'class_style' => 'mt20 alsolikebox', 'city_id' => $post['city_id']) ); ?>
 			</div>
 		</div>
 	</div>

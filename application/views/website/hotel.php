@@ -1,5 +1,6 @@
 <?php
 	// master
+	$category = $this->category_model->get_by_id(array( 'id' => CATEGORY_HOTEL ));
 	$array_country = $this->country_model->get_array();
 	$array_category_sub = $this->category_sub_model->get_array(array( 'category_id' => CATEGORY_HOTEL ));
 	$array_hotel_star = $this->hotel_star_model->get_array();
@@ -31,8 +32,14 @@
 	
 	// breadcrub
 	$array_breadcrub = array(
-		array( 'link' => '#', 'title' => 'Hotel' )
+		array( 'link' => $category['link_category'], 'title' => 'Hotel' )
 	);
+	if (count($region) > 0) {
+		$array_breadcrub[] = array( 'link' => $category['link_category'].'/'.$region['alias'], 'title' => $region['title'] );
+	}
+	if (count($city) > 0) {
+		$array_breadcrub[] = array( 'link' => $category['link_category'].'/'.$region['alias'].'/'.$city['alias'], 'title' => $city['title'] );
+	}
 	
 	// page
 	$page['city'] = $city;

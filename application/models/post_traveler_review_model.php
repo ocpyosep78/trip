@@ -48,6 +48,27 @@ class post_traveler_review_model extends CI_Model {
 				WHERE post_traveler_review.id = '".$param['id']."'
 				LIMIT 1
 			";
+        } else if (isset($param['post_id']) && isset($param['alias'])) {
+            $select_query  = "
+				SELECT post_traveler_review.*,
+					post.title post_title, post.alias post_alias, language.title language_title,
+					region.title region_title, region.alias region_alias,
+					city.title city_title, city.alias city_alias, country.title country_title,
+					category.id category_id, category.title category_title, category.alias category_alias,
+					category_sub.title category_sub_title, category_sub.alias category_sub_alias
+				FROM ".POST_TRAVELER_REVIEW." post_traveler_review
+				LEFT JOIN ".POST." post ON post.id = post_traveler_review.post_id
+				LEFT JOIN ".LANGUAGE." language ON language.id = post_traveler_review.language_id
+				LEFT JOIN ".CITY." city ON city.id = post.city_id
+				LEFT JOIN ".REGION." region ON region.id = city.region_id
+				LEFT JOIN ".COUNTRY." country ON country.id = region.country_id
+				LEFT JOIN ".CATEGORY_SUB." category_sub ON category_sub.id = post.category_sub_id
+				LEFT JOIN ".CATEGORY." category ON category.id = category_sub.category_id
+				WHERE
+					post_traveler_review.alias = '".$param['alias']."'
+					AND post_traveler_review.post_id = '".$param['post_id']."'
+				LIMIT 1
+			";
         } 
        
         $select_result = mysql_query($select_query) or die(mysql_error());
@@ -68,6 +89,7 @@ class post_traveler_review_model extends CI_Model {
 		
 		$string_namelike = (!empty($param['namelike'])) ? "AND post_traveler_review.title LIKE '%".$param['namelike']."%'" : '';
 		$string_post = (isset($param['post_id'])) ? "AND post_traveler_review.post_id = '".$param['post_id']."'" : '';
+		$string_alias = (isset($param['alias'])) ? "AND post_traveler_review.alias = '".$param['alias']."'" : '';
 		$string_traveler = (isset($param['traveler_id'])) ? "AND post_traveler_review.traveler_id = '".$param['traveler_id']."'" : '';
 		$string_language = (isset($param['language_id'])) ? "AND post_traveler_review.language_id = '".$param['language_id']."'" : '';
 		$string_post_status = (isset($param['post_status'])) ? "AND post_traveler_review.post_status = '".$param['post_status']."'" : '';
@@ -77,17 +99,20 @@ class post_traveler_review_model extends CI_Model {
 		
 		$select_query = "
 			SELECT SQL_CALC_FOUND_ROWS post_traveler_review.*,
-				post.title post_title, language.title language_title,
-				traveler.first_name traveler_first_name, traveler.last_name traveler_last_name, traveler.thumbnail traveler_thumbnail,
-				city.title city_title, country.title country_title
+				post.title post_title, post.alias post_alias, language.title language_title,
+				region.title region_title, region.alias region_alias,
+				city.title city_title, city.alias city_alias, country.title country_title,
+				category.id category_id, category.title category_title, category.alias category_alias,
+				category_sub.title category_sub_title, category_sub.alias category_sub_alias
 			FROM ".POST_TRAVELER_REVIEW." post_traveler_review
 			LEFT JOIN ".POST." post ON post.id = post_traveler_review.post_id
 			LEFT JOIN ".LANGUAGE." language ON language.id = post_traveler_review.language_id
-			LEFT JOIN ".TRAVELER." traveler ON traveler.id = post_traveler_review.traveler_id
-			LEFT JOIN ".CITY." city ON city.id = traveler.city_id
+			LEFT JOIN ".CITY." city ON city.id = post.city_id
 			LEFT JOIN ".REGION." region ON region.id = city.region_id
 			LEFT JOIN ".COUNTRY." country ON country.id = region.country_id
-			WHERE 1 $string_namelike $string_post $string_traveler $string_language $string_post_status $string_filter
+			LEFT JOIN ".CATEGORY_SUB." category_sub ON category_sub.id = post.category_sub_id
+			LEFT JOIN ".CATEGORY." category ON category.id = category_sub.category_id
+			WHERE 1 $string_namelike $string_post $string_alias $string_traveler $string_language $string_post_status $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
@@ -154,23 +179,14 @@ class post_traveler_review_model extends CI_Model {
 		// language
 		$row = get_row_language($row, array( 'post_title' ));
 		
-		// fullname
-		if (isset($row['traveler_first_name']) && isset($row['traveler_last_name'])) {
-			$row['traveler_full_name'] = $row['traveler_first_name'].' '.$row['traveler_last_name'];
-		}
-		
 		// link
-		$row['traveler_thumbnail_link'] = base_url('static/img/avatar.jpg');
-		if (isset($row['traveler_thumbnail'])) {
-			$file_path = $this->config->item('base_path').'/static/upload/'.$row['traveler_thumbnail'];
-			if (file_exists($file_path) && !empty($row['traveler_thumbnail'])) {
-				$row['traveler_thumbnail_link'] = base_url('static/upload/'.$row['traveler_thumbnail']);
-			}
-		}
 		if (isset($row['rating'])) {
 			$row['rating_link'] = ($row['rating'] >= 3) ?
 				base_url('static/theme/forest/images/check.png') :
 				base_url('static/theme/forest/images/delete_old.png');
+		}
+		if (!empty($row['category_alias']) && !empty($row['region_alias']) && !empty($row['city_alias']) && !empty($row['post_alias'])) {
+			$row['link_post_review_detail'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['post_alias'].'/review/'.$row['alias']);
 		}
 		
 		if (count(@$param['column']) > 0) {

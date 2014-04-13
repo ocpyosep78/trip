@@ -139,3 +139,17 @@ MASTER DATA
 Category (CategorySub)
 - Hotel (Hotel Berbintang, Hotel Murah, Villa, Guest House)
 - Tempat Wisata (Wisata Candi, Wisata Pantai, Wisata Alam, Kuliner)
+
+----------------------------------------------------------------------------------------------------------------
+WEBSITE
+----------------------------------------------------------------------------------------------------------------
+
+Common
+- breadcrumb yang lengkap
+  - Hotel / Jawa Timur / Malang Kab / Nama Tempat
+- link yang sesuai
+  - trip.com/hotel/jawa-timur/malang/nama-tempat
+
+Page Single
+- Jika user berada pada bahasa perancis dan content tidak tersedia, tampilkan "this contnent is not available in your language"
+- Entry-an yang tidak diisi jangan ditampilkan

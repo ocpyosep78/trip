@@ -66,6 +66,7 @@ define('LANGUAGE',								'language');
 define('MASS_EMAIL',							'mass_email');
 define('MEMBER',								'member');
 define('MEMBERSHIP',							'membership');
+define('NEWSLETTER',							'newsletter');
 define('PAGE_STATIC',							'page_static');
 define('PAYMENT',								'payment');
 define('POST',									'post');

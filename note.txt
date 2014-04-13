@@ -12,7 +12,7 @@ LINK TEMPORARY
 - http://localhost/trip/trunk/about-us
 
 To do :
-- tag page
+- post dengan banyak gallery (http://localhost/trip/trunk/hotel/jawa-timur/kota-malang/hotel-santika-malang)
 
 ----------------------------------------------------------------------------------------------------------------
 Multi Language
@@ -20,12 +20,6 @@ Multi Language
 ----------------------------------------------------------------------------------------------------------------
 WEBSITE
 ----------------------------------------------------------------------------------------------------------------
-Common
-- breadcrumb yang lengkap
-  - Hotel / Jawa Timur / Malang Kab / Nama Tempat
-- link yang sesuai
-  - trip.com/hotel/jawa-timur/malang/nama-tempat
-
 Index
 - link hasil : http://shoperindo.com/trip/v3/indexx.html
 - Auto complete berdasarkan category yang diload dari table sendiri (table khusus auto complete tersendiri)
@@ -44,10 +38,6 @@ Listing Category : Public
 Listing Search
 - desain nya berbeda dengan Listing Category
 - sample page : list-search.html
-
-Page Single
-- Jika user berada pada bahasa perancis dan content tidak tersedia, tampilkan "this contnent is not available in your language"
-- Entry-an yang tidak diisi jangan ditampilkan
 
 Page Single - Tempat Wisata
 - sample : http://shoperindo.com/trip/v3/details-wisata.html

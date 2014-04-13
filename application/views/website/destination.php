@@ -37,6 +37,12 @@
 	$array_breadcrub = array(
 		array( 'link' => $category['link_category'], 'title' => $category['title'] )
 	);
+	if (count($region) > 0) {
+		$array_breadcrub[] = array( 'link' => $category['link_category'].'/'.$region['alias'], 'title' => $region['title'] );
+	}
+	if (count($city) > 0) {
+		$array_breadcrub[] = array( 'link' => $category['link_category'].'/'.$region['alias'].'/'.$city['alias'], 'title' => $city['title'] );
+	}
 	
 	// page
 	$page['city'] = $city;

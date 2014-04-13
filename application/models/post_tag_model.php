@@ -47,17 +47,29 @@ class post_tag_model extends CI_Model {
     function get_array($param = array()) {
         $array = array();
 		
+		$string_tag = (isset($param['tag_id'])) ? "AND post_tag.tag_id = '".$param['tag_id']."'" : '';
 		$string_post = (isset($param['post_id'])) ? "AND post_tag.post_id = '".$param['post_id']."'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'title ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS post_tag.*,
-				tag.alias tag_alias, tag.title tag_title
+			SELECT SQL_CALC_FOUND_ROWS post_tag.*, post.*,
+				tag.alias tag_alias, tag.title tag_title,
+				category.id category_id, category.title category_title, category.alias category_alias,
+				category_sub.title category_sub_title, category_sub.alias category_sub_alias,
+				city.title city_title, city.alias city_alias,
+				region.id region_id, region.title region_title, region.alias region_alias,
+				country.id country_id
 			FROM ".POST_TAG." post_tag
 			LEFT JOIN ".TAG." tag ON tag.id = post_tag.tag_id
-			WHERE 1 $string_post $string_filter
+			LEFT JOIN ".POST." post ON post.id = post_tag.post_id
+			LEFT JOIN ".CATEGORY_SUB." category_sub ON category_sub.id = post.category_sub_id
+			LEFT JOIN ".CATEGORY." category ON category.id = category_sub.category_id
+			LEFT JOIN ".CITY." city ON city.id = post.city_id
+			LEFT JOIN ".REGION." region ON region.id = city.region_id
+			LEFT JOIN ".COUNTRY." country ON country.id = region.country_id
+			WHERE 1 $string_tag $string_post $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
@@ -95,6 +107,31 @@ class post_tag_model extends CI_Model {
 	
 	function sync($row, $param = array()) {
 		$row = StripArray($row);
+		
+		// language
+		$row = get_row_language($row, array( 'title', 'desc_01', 'desc_02', 'desc_03', 'field_01', 'map' ));
+		
+		// link
+		$row['link_thumbnail'] = base_url('static/theme/forest/images/post-default.jpg');
+		$row['link_thumbnail_small'] = base_url('static/theme/forest/images/post-default.jpg');
+		if (! empty($row['thumbnail'])) {
+			$row['link_thumbnail'] = base_url('static/upload/'.$row['thumbnail']);
+			$row['link_thumbnail_small'] = preg_replace('/\.(jpg|jpeg|png|gif)/i', '_s.$1', $row['link_thumbnail']);
+		}
+		if (!empty($row['category_alias']) && !empty($row['region_alias']) && !empty($row['city_alias']) && !empty($row['alias'])) {
+			$row['link_post'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['alias']);
+			$row['link_post_review'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['alias'].'/review');
+			$row['link_post_upload'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['alias'].'/upload');
+			$row['link_post_gallery'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['alias'].'/gallery');
+			$row['link_category'] = base_url($row['category_alias']);
+			$row['link_region'] = base_url($row['category_alias'].'/'.$row['region_alias']);
+			$row['link_city'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias']);
+		}
+		
+		// member fullname
+		if (isset($row['first_name']) && isset($row['last_name'])) {
+			$row['full_name'] = $row['first_name'].' '.$row['last_name'];
+		}
 		
 		if (count(@$param['column']) > 0) {
 			$row = dt_view_set($row, $param);

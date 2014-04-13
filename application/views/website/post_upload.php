@@ -62,7 +62,7 @@
 				<?php } ?>
 			</div>
 			<div class="col-md-4">
-				<?php $this->load->view( 'website/common/random_post' ); ?>
+				<?php $this->load->view( 'website/common/random_post', array( 'city_id' => $post['city_id'] ) ); ?>
 			</div>
 		</div>
 	</div>

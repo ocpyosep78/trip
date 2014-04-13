@@ -27,4 +27,27 @@ $(document).ready(function () {
 			}
 		});
 	});
+	
+	// newsletter
+	$('#form-newsletter').validate({
+		rules: {
+			email: { required: true, email: true }
+		}
+	});
+
+	$('#form-newsletter').submit(function(e) {
+		e.preventDefault();
+		if (! $('#form-newsletter').valid()) {
+			return false;
+		}
+		
+		var param = Site.Form.GetValue('form-newsletter');
+		Func.update({
+			param: param,
+			link: web.base + 'service/setting',
+			callback: function(result) {
+				$('#form-newsletter')[0].reset();
+			}
+		});
+	});
 });

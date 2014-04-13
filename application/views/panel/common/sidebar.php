@@ -130,6 +130,12 @@
 									</a>
 								</li>
 								<li>
+									<a href="<?php echo base_url('panel/user/newsletter'); ?>" data-menu-child="newsletter">
+										<i class="fa fa-angle-right"></i>
+										<span>Newsletter</span>
+									</a>
+								</li>
+								<li>
 									<a href="<?php echo base_url('panel/user/verify_address'); ?>" data-menu-child="verify_address">
 										<i class="fa fa-angle-right"></i>
 										<span>Verify Address</span>

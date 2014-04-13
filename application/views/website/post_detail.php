@@ -166,21 +166,23 @@
 				<ul class="nav nav-tabs" id="myTab">
 					<?php if ($post['category_id'] == CATEGORY_HOTEL) { ?>
 					<li class="active"><a data-toggle="tab" href="#summary"><span class="summary"></span><span class="hidetext">Description</span>&nbsp;</a></li>
-					<li class=""><a data-toggle="tab" href="#preferences"><span class="preferences"></span><span class="hidetext">Preferences</span>&nbsp;</a></li>
+					<li><a data-toggle="tab" href="#preferences"><span class="preferences"></span><span class="hidetext">Preferences</span>&nbsp;</a></li>
 					<?php } else { ?>
 					<li class="active"><a data-toggle="tab" href="#summary"><span class="summary"></span><span class="hidetext">Summary</span>&nbsp;</a></li>
-					<li class=""><a data-toggle="tab" href="#reviews"><span class="reviews"></span><span class="hidetext">Reviews</span>&nbsp;</a></li>
+					<li><a data-toggle="tab" href="#reviews"><span class="reviews"></span><span class="hidetext">Reviews</span>&nbsp;</a></li>
 					<?php } ?>
 					
 					<!--   promo   -->
 					<?php if ($post['having_promo']) { ?>
-					<li class=""><a data-toggle="tab" href="#promo"><span class="rates"></span><span class="hidetext">Promo</span>&nbsp;</a></li>
+					<li><a data-toggle="tab" href="#promo"><span class="rates"></span><span class="hidetext">Promo</span>&nbsp;</a></li>
 					<?php } ?>
 			 	</ul>
 				<div class="tab-content4">
 					<?php if ($post['category_id'] == CATEGORY_HOTEL) { ?>
 					<div id="summary" class="tab-pane fade active in">
-						<?php if (!empty($post['desc_01_select'])) { ?>
+						<?php if (empty($post['desc_01_select'])) { ?>
+						<p class="hpadding20">This content is not available in your language.</p>
+						<?php } else { ?>
 						<p class="hpadding20"><?php echo $post['desc_01_select']; ?></p>
 						<?php } ?>
 						
@@ -276,10 +278,12 @@
 					</div>
 					<?php } else { ?>
 					<div id="summary" class="tab-pane fade active in">
-						<?php if (!empty($post['desc_01_select'])) { ?>
+						<?php if (empty($post['desc_01_select'])) { ?>
+						<p class="hpadding20">This content is not available in your language.</p>
+						<?php } else { ?>
 						<p class="hpadding20"><?php echo $post['desc_01_select']; ?></p>
-						<div class="line4"></div>
 						<?php } ?>
+						<div class="line4"></div>
 						
 						<?php if (!empty($post['desc_02_select'])) { ?>
 						<button type="button" class="collapsebtn2" data-toggle="collapse" data-target="#collapse1">
@@ -353,7 +357,7 @@
 			</div>
 			<div class="col-md-4">
 				<?php $this->load->view( 'website/common/widget_02' ); ?>
-				<?php $this->load->view( 'website/common/random_post', array( 'class_style' => 'mt20 alsolikebox' ) ); ?>
+				<?php $this->load->view( 'website/common/random_post', array( 'class_style' => 'mt20 alsolikebox', 'city_id' => $post['city_id'] ) ); ?>
 			</div>
 		</div>
 	</div>

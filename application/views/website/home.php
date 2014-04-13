@@ -68,11 +68,8 @@
 		</div>
 		<div class="lastminute2 lcfix">
 			<div class="container lmc">	
-				<img src="<?php echo base_url('static/theme/forest/images/rating-4.png'); ?>" alt=""/><br />
-				LAST MINUTE: <b>Barcelona</b> - 2 nights - Flight+4* Hotel, Dep 27h Aug from $209/person<br />
-				<form action="list4.html">
-					<button class="btn iosbtn" type="submit">Read more</button>
-				</form>
+				LAST MINUTE<br />
+				<a class="btn iosbtn" href="<?php echo base_url('last-minute'); ?>">Read more</a>
 			</div>
 		</div>
 		
@@ -120,7 +117,7 @@
 		}
 	});
 	hotel_ahead.on('typeahead:selected',function(evt, data) {
-		console.log(data);
+		window.location = data.link;
 	});
 	
 	// destination
@@ -142,7 +139,7 @@
 		}
 	});
 	destination_ahead.on('typeahead:selected',function(evt, data) {
-		console.log(data);
+		window.location = data.link;
 	});
 	
 	// restaurant
@@ -164,16 +161,8 @@
 		}
 	});
 	restaurant_ahead.on('typeahead:selected',function(evt, data) {
-		console.log(data);
+		window.location = data.link;
 	});
-	
-	/*
-	// for debug
-	setInterval(function() {
-		console.log($('#hotel2 .tt-dropdown-menu').html())
-		console.log(10)
-	}, 2000);
-	/*	*/
 </script>
 </body>
 </html>
