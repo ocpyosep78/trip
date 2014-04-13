@@ -70,8 +70,11 @@
 				<?php } ?>
 				<br />
 				
+				<span class="grey"><?php echo (empty($row['having_promo'])) ? '&nbsp;' : 'PROMO'; ?></span><br /><br />
+				
 				<span class="size11 grey"><?php echo $row['review_count']; ?> Reviews</span>
-				<br /><br /><br /><br /><br /><br />
+				<br /><br /><br />
+				
 				
 				<a class="bookbtn mt1" href="<?php echo $row['link_post']; ?>">View</a>
 			</div>

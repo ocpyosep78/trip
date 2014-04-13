@@ -18,6 +18,9 @@
 /*   modal   */
 .modal-dialog.big { width: 900px; }
 
+/*   datepicker   */
+.datepicker { z-index: 1500; }
+
 html {
   background-color: #f7f7f7;
   overflow-x: hidden;

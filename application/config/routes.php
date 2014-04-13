@@ -30,6 +30,7 @@ if ($is_website) {
 	$route['search(/([a-z0-9\-]+))*'] = "website/search";
 	$route['payment(/([a-z0-9\-]+))*'] = "website/payment";
 	$route['register(/([a-z0-9\-]+))*'] = "website/register";
+	$route['traveler(/([a-z0-9\-]+))*'] = "website/traveler";
 	$route['([a-z0-9\-]+)'] = "website/selector";
 } else if ($is_panel) {
 	$route['panel'] = "panel/home";

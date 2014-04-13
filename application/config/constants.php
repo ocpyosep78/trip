@@ -30,6 +30,9 @@ define('MAXIMUM_IP_ACCESS_PER_HOUR',			1000);
 /*	VERIFY ADDRESS MAX */
 define('VERIFY_ADDRESS_MAX',					5);
 
+/*	PROMO REMINDER   */
+define('PROMO_REMINDER',						'+1 Month');
+
 /*	WEBSITE INFO */
 define('WEBSITE_TITLE',							'Website Trip');
 define('WEBSITE_ALIAS',							'website trip');
@@ -70,6 +73,7 @@ define('POST_FACILITY',							'post_facility');
 define('POST_GALLERY',							'post_gallery');
 define('POST_TAG',								'post_tag');
 define('POST_TRAVELER_PHOTO',					'post_traveler_photo');
+define('POST_TRAVELER_REPORT',					'post_traveler_report');
 define('POST_TRAVELER_REVIEW',					'post_traveler_review');
 define('PROMO',									'promo');
 define('PROMO_DURATION',						'promo_duration');

@@ -38,7 +38,7 @@ class traveler_model extends CI_Model {
         if (isset($param['id'])) {
             $select_query  = "
 				SELECT traveler.*,
-					region.id region_id, region.country_id
+					region.id region_id, region.country_id, country.title country_title
 				FROM ".TRAVELER." traveler
 				LEFT JOIN ".CITY." city on city.id = traveler.city_id
 				LEFT JOIN ".REGION." region on region.id = city.region_id
@@ -140,6 +140,9 @@ class traveler_model extends CI_Model {
 			if (file_exists($file_path) && isset($row['thumbnail']) && !empty($row['thumbnail'])) {
 				$row['thumbnail_link'] = base_url('static/upload/'.$row['thumbnail']);
 			}
+		}
+		if (isset($row['alias'])) {
+			$row['link_traveler'] = base_url('traveler/'.$row['alias']);
 		}
 		
 		if (isset($row['first_name']) && isset($row['last_name'])) {

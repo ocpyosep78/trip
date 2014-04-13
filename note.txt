@@ -12,80 +12,10 @@ LINK TEMPORARY
 - http://localhost/trip/trunk/about-us
 
 To do :
-Panel Hotel
-- halaman website detail hotel & destination
+- tag page
 
 ----------------------------------------------------------------------------------------------------------------
 Multi Language
-
-----------------------------------------------------------------------------------------------------------------
-PANEL
-----------------------------------------------------------------------------------------------------------------
-Modul Image by Traveler
-- List gambar yang dikirim oleh traveler yang akan di approve oleh admin
-
-Module Review by Traveler
-- List review yang dikirim oleh traveler yang akan di approve oleh admin
-- Admin bisa edit seperti yang ada di kedaipedia untuk ganti category pada advert
-
-----------------------------------------------------------------------------------------------------------------
-PANEL MEMBER
-----------------------------------------------------------------------------------------------------------------
-Note
-- Member merupakan user yang memiliki tempat wisata
-- link http://shoperindo.com/trip/5.%20Menu%20admin.png
-
-Link Member
-- link : trip.com/alias
-
-Dashboard
-- Dashboard biasa
-
-Post
-- Agar user bisa membuat post tentang tempat wisata yang dia miliki
-
-Profile
-- Edit Info
-- Edit Account
-- Edit Profile
-- Get Verified
-- Request Membership
-
-Setting
-- Setting
-
-Promo (L)
-- link : http://shoperindo.com/trip/add%20promo.png
-- Promo memiliki durasi (1 bulan / 2 bulan / dkk)
-- 1 member hanya memiliki 1 promosi yang aktif untuk 1 post
-- input :
-  - form 1 : title, content, tag
-  - form 2 : durasi, term of user (checkbox)
-  - sent invoice via email
-
-----------------------------------------------------------------------------------------------------------------
-PANEL TRAVELER
-----------------------------------------------------------------------------------------------------------------
-Note
-- Traveler merupakan user yang mengunjungi tempat wisata
-- link http://shoperindo.com/trip/5.%20Menu%20admin.png
-
-Link Traveler
-- link : trip.com/traveler/alias
-
-Dashboard
-- Dashboard biasa
-
-My Review
-- Review tempat wisata yang sudah dikunjungi
-- Review akan membutuhkan validasi dari admin
-
-Profile
-- Edit Info
-- Edit Profile
-
-Setting
-- Setting
 
 ----------------------------------------------------------------------------------------------------------------
 WEBSITE
@@ -147,18 +77,6 @@ Upload Traveler
 Login Facebook
 - Support Login with FB
 
-----------------------------------------------------------------------------------------------------------------
-SYSTEM CRON
-----------------------------------------------------------------------------------------------------------------
-Promosi
-- Kirim notifikasi untuk promosi yang akan habis masa nya (1 minggu sebelumnya)
-
-----------------------------------------------------------------------------------------------------------------
-MASTER DATA
-----------------------------------------------------------------------------------------------------------------
-Category (CategorySub)
-- Hotel (Hotel Berbintang, Hotel Murah, Villa, Guest House)
-- Tempat Wisata (Wisata Candi, Wisata Pantai, Wisata Alam, Kuliner)
 
 ----------------------------------------------------------------------------------------------------------------
 MY NOTE
@@ -168,5 +86,3 @@ MY NOTE
 - Jika user yang akses server lebih dari 1000 tampilkan halaman overlod / seperti kaskus over posting
 
 ----------------------------------------------------------------------------------------------------------------
-
-<input type="text" name="register_date" class="form-control datepicker-input" placeholder="Register Date" data-date-format="dd-mm-yyyy" readonly="readonly" />

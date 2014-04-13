@@ -48,6 +48,13 @@ Modul Room Amenities
 - Multi Language
 - khusus untuk hotel
 
+Modul Image by Traveler
+- List gambar yang dikirim oleh traveler yang akan di approve oleh admin
+
+Module Review by Traveler
+- List review yang dikirim oleh traveler yang akan di approve oleh admin
+- Admin bisa edit seperti yang ada di kedaipedia untuk ganti category pada advert
+
 ----------------------------------------------------------------------------------------------------------------
 PANEL EDITOR
 ----------------------------------------------------------------------------------------------------------------
@@ -61,3 +68,74 @@ Modul Fasilitas
 Modul Promosi
 - Multi Language
 
+----------------------------------------------------------------------------------------------------------------
+PANEL MEMBER
+----------------------------------------------------------------------------------------------------------------
+Note
+- Member merupakan user yang memiliki tempat wisata
+- link http://shoperindo.com/trip/5.%20Menu%20admin.png
+
+Link Member
+- link : trip.com/alias
+
+Dashboard
+- Dashboard biasa
+
+Post
+- Agar user bisa membuat post tentang tempat wisata yang dia miliki
+
+Profile
+- Edit Info
+- Edit Account
+- Edit Profile
+- Get Verified
+- Request Membership
+
+Setting
+- Setting
+
+Promo (L)
+- link : http://shoperindo.com/trip/add%20promo.png
+- Promo memiliki durasi (1 bulan / 2 bulan / dkk)
+- 1 member hanya memiliki 1 promosi yang aktif untuk 1 post
+- input :
+  - form 1 : title, content, tag
+  - form 2 : durasi, term of user (checkbox)
+  - sent invoice via email
+
+----------------------------------------------------------------------------------------------------------------
+PANEL TRAVELER
+----------------------------------------------------------------------------------------------------------------
+Note
+- Traveler merupakan user yang mengunjungi tempat wisata
+- link http://shoperindo.com/trip/5.%20Menu%20admin.png
+
+Link Traveler
+- link : trip.com/traveler/alias
+
+Dashboard
+- Dashboard biasa
+
+My Review
+- Review tempat wisata yang sudah dikunjungi
+- Review akan membutuhkan validasi dari admin
+
+Profile
+- Edit Info
+- Edit Profile
+
+Setting
+- Setting
+
+----------------------------------------------------------------------------------------------------------------
+SYSTEM CRON
+----------------------------------------------------------------------------------------------------------------
+Promosi
+- Kirim notifikasi untuk promosi yang akan habis masa nya (1 bulan sebelumnya => bisa di set di constant)
+
+----------------------------------------------------------------------------------------------------------------
+MASTER DATA
+----------------------------------------------------------------------------------------------------------------
+Category (CategorySub)
+- Hotel (Hotel Berbintang, Hotel Murah, Villa, Guest House)
+- Tempat Wisata (Wisata Candi, Wisata Pantai, Wisata Alam, Kuliner)

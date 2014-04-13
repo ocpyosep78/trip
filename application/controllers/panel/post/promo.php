@@ -53,7 +53,11 @@ class promo extends PANEL_Controller {
 			}
 			
 			$result = $this->promo_model->update($_POST);
-		} else if ($action == 'update_status') {
+		}
+		else if ($action == 'update_status') {
+			// record
+			$promo = $this->promo_model->get_by_id(array( 'id' => $_POST['id'] ));
+			
 			// param update
 			$param_update['id'] = $_POST['id'];
 			$param_update['promo_status'] = $_POST['promo_status'];
@@ -69,9 +73,17 @@ class promo extends PANEL_Controller {
 			
 			// update
 			$result = $this->promo_model->update($param_update);
-		} else if ($action == 'get_by_id') {
+			
+			// sent mail
+			$param_mail['to'] = $promo['member_email'];
+			$param_mail['subject'] = $_POST['title'];
+			$param_mail['message'] = nl2br($_POST['content']);
+			sent_mail($param_mail);
+		}
+		else if ($action == 'get_by_id') {
 			$result = $this->promo_model->get_by_id(array( 'id' => $_POST['id'] ));
-		} else if ($action == 'delete') {
+		}
+		else if ($action == 'delete') {
 			$result = $this->promo_model->delete($_POST);
 		}
 		

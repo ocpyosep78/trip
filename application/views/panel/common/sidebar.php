@@ -69,6 +69,24 @@
 									</a>
 								</li>
 								<li>
+									<a href="<?php echo base_url('panel/post/review'); ?>" data-menu-child="review">
+										<i class="fa fa-angle-right"></i>
+										<span>Review</span>
+									</a>
+								</li>
+								<li>
+									<a href="<?php echo base_url('panel/post/gallery'); ?>" data-menu-child="gallery">
+										<i class="fa fa-angle-right"></i>
+										<span>Traveler Upload</span>
+									</a>
+								</li>
+								<li>
+									<a href="<?php echo base_url('panel/post/gallery_report'); ?>" data-menu-child="gallery_report">
+										<i class="fa fa-angle-right"></i>
+										<span>Traveler Report</span>
+									</a>
+								</li>
+								<li>
 									<a href="<?php echo base_url('panel/post/payment'); ?>" data-menu-child="payment">
 										<i class="fa fa-angle-right"></i>
 										<span>Payment</span>
@@ -384,10 +402,16 @@
 								<span>Dashboard</span>
 							</a>
 						</li>
-						<li>
-							<a href="<?php echo base_url('panel'); ?>">
+						<li data-menu-parent="review">
+							<a href="<?php echo base_url('panel/review'); ?>">
 								<i class="fa fa-file-text icon"><b class="bg-primary"></b></i>
 								<span>My Review</span>
+							</a>
+						</li>
+						<li data-menu-parent="gallery">
+							<a href="<?php echo base_url('panel/gallery'); ?>">
+								<i class="fa fa-file-text icon"><b class="bg-primary"></b></i>
+								<span>My Gallery</span>
 							</a>
 						</li>
 						<li data-menu-parent="profile">
@@ -415,7 +439,7 @@
 								</li>
 							</ul>
 						</li>
-						<li>
+						<li data-menu-parent="setting">
 							<a href="<?php echo base_url('panel/setting'); ?>">
 								<i class="fa fa-flask icon"><b class="bg-info"></b></i>
 								<span>Setting</span>

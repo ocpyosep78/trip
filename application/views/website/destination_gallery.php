@@ -1,3 +1,5 @@
+akan dihapus
+
 <?php $this->load->view( 'website/common/meta' ); ?>
 <body id="top" class="thebg">
 	<?php $this->load->view( 'website/common/header_menu' ); ?>

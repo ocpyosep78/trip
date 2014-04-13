@@ -14,12 +14,26 @@
 	// room amenity
 	$array_room_amenity = $this->hotel_room_amenity_model->get_array(array( 'post_id' => $post['id'] ));
 	
+	// review
+	$param_review = array(
+		'post_id' => $post['id'],
+		'post_status' => 'approve',
+		'sort' => '[{"property":"post_traveler_review.post_date","direction":"DESC"}]',
+		'limit' => 3
+	);
+	$array_review = $this->post_traveler_review_model->get_array($param_review);
+	
+	// promo
+	if ($post['having_promo']) {
+		$promo = $this->promo_model->get_by_id(array( 'post_id' => $post['id'], 'promo_status' => 'approve' ));
+	}
+	
 	// breadcrub
 	$array_breadcrub = array(
-		array( 'link' => '#', 'title' => $post['category_title'] ),
-		array( 'link' => '#', 'title' => $post['region_title'] ),
-		array( 'link' => '#', 'title' => $post['city_title'] ),
-		array( 'link' => '#', 'title' => $post['title_select'] )
+		array( 'link' => $post['link_category'], 'title' => $post['category_title'] ),
+		array( 'link' => $post['link_region'], 'title' => $post['region_title'] ),
+		array( 'link' => $post['link_city'], 'title' => $post['city_title'] ),
+		array( 'link' => $post['link_post'], 'title' => $post['title_select'] )
 	);
 ?>
 
@@ -35,12 +49,12 @@
 				<div id="inner">
 					<div id="caroufredsel_wrapper2">
 						<div id="carousel">
-							<img src="<?php echo base_url('static/theme/forest/images/details-slider/slide1.jpg'); ?>" alt=""/>					
+							<img src="<?php echo $post['link_thumbnail']; ?>" alt="<?php echo $post['title_select']; ?>"/>
 						</div>
 					</div>
 					<div id="pager-wrapper">
 						<div id="pager">
-							<img src="<?php echo base_url('static/theme/forest/images/details-slider/slide1.jpg" width="120" height="68'); ?>" alt=""/>				
+							<img src="<?php echo $post['link_thumbnail_small']; ?>" width="120" height="68" alt="<?php echo $post['title_select']; ?>" />				
 						</div>
 					</div>
 				</div>
@@ -114,17 +128,20 @@
 					<?php } ?>
 					
 					<div class="col-md-6 bordertype3">
-						<img src="<?php echo base_url('static/theme/forest/images/user-rating-4.png'); ?>" alt=""/><br />
-						18 reviews
+						<?php if (isset($post['link_review_rate'])) { ?>
+						<img src="<?php echo $post['link_review_rate']; ?>" alt=""/><br />
+						<?php } ?>
+						
+						<?php echo $post['review_count']; ?> reviews
 					</div>
 					<div class="col-md-6 bordertype3">
-						<a href="#" class="grey">+Add review</a>
+						<a href="<?php echo $post['link_post_review']; ?>" class="grey">+Add review</a>
 					</div>
 					<div class="clearfix"></div><br />
 					
 					<div class="hpadding20">
-						<!--   <a href="#" class="add2fav margtop5">Add to favourite</a>   -->
-						<a href="#" class="booknow margtop20 btnmarg">Upload Your Photo</a>
+						<a href="<?php echo $post['link_post_gallery']; ?>" class="add2fav margtop5">Traveler Gallery</a>
+						<a href="<?php echo $post['link_post_upload']; ?>" class="booknow margtop20 btnmarg">Upload Your Photo</a>
 					</div>  
 				<?php } ?>
 				
@@ -153,6 +170,11 @@
 					<?php } else { ?>
 					<li class="active"><a data-toggle="tab" href="#summary"><span class="summary"></span><span class="hidetext">Summary</span>&nbsp;</a></li>
 					<li class=""><a data-toggle="tab" href="#reviews"><span class="reviews"></span><span class="hidetext">Reviews</span>&nbsp;</a></li>
+					<?php } ?>
+					
+					<!--   promo   -->
+					<?php if ($post['having_promo']) { ?>
+					<li class=""><a data-toggle="tab" href="#promo"><span class="rates"></span><span class="hidetext">Promo</span>&nbsp;</a></li>
 					<?php } ?>
 			 	</ul>
 				<div class="tab-content4">
@@ -276,89 +298,7 @@
 						</div>
 						<div class="line2"></div>
 						
-						<div class="hpadding20">							
-							<div class="col-md-4 offset-0 center">
-								<div class="padding20">
-									<div class="bordertype5">
-										<div class="circlewrap">
-											<img src="<?php echo base_url('static/theme/forest/images/user-avatar.jpg'); ?>" class="circleimg" alt=""/>
-											
-										</div>
-										<span class="dark">by Sena</span><br />
-										from London, UK<br />
-										<img src="<?php echo base_url('static/theme/forest/images/check.png'); ?>" alt=""/><br />
-										<span class="orange">Wonderful!</span>
-									</div>
-									
-								</div>
-							</div>
-							<div class="col-md-8 offset-0">
-								<div class="padding20">
-									<span class="opensans size16 dark">Rondo!!.. pokoke muantap bro..</span><br />
-									<span class="opensans size13 lgrey">Posted Jun 02, 2013</span><br />
-									<p>Excellent hotel, friendly staff would def go there again</p>	
-									 
-								</div>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-						<div class="line2"></div>
-						
-						<div class="hpadding20">	
-							<div class="col-md-4 offset-0 center">
-								<div class="padding20">
-									<div class="bordertype5">
-										<div class="circlewrap">
-											<img src="<?php echo base_url('static/theme/forest/images/user-avatar.jpg'); ?>" class="circleimg" alt=""/>
-											
-										</div>
-										<span class="dark">by Sena</span><br />
-										from London, UK<br />
-										<img src="<?php echo base_url('static/theme/forest/images/check.png'); ?>" alt=""/><br />
-										<span class="orange">Recommended<br />for Everyone</span>
-									</div>
-									
-								</div>
-							</div>
-							<div class="col-md-8 offset-0">
-								<div class="padding20">
-									<span class="opensans size16 dark">Great experience</span><br />
-									<span class="opensans size13 lgrey">Posted Jun 02, 2013</span><br />
-									<p>The view from our balcony in room # 409, was terrific. It was centrally located to everything on and around the port area. Wonderful service and everything was very clean. The breakfast was below average, although not bad. If back in Zante Town we would stay there again.</p>	
-									 
-								</div>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-						<div class="line2"></div>
-						
-						<div class="hpadding20">	
-							<div class="col-md-4 offset-0 center">
-								<div class="padding20">
-									<div class="bordertype5">
-										<div class="circlewrap">
-											<img src="<?php echo base_url('static/theme/forest/images/user-avatar.jpg'); ?>" class="circleimg" alt=""/>
-											
-										</div>
-										<span class="dark">by Sena</span><br />
-										from London, UK<br />
-										<img src="<?php echo base_url('static/theme/forest/images/check.png'); ?>" alt=""/><br />
-										<span class="orange">Recommended<br />for Everyone</span>
-									</div>
-									
-								</div>
-							</div>
-							<div class="col-md-8 offset-0">
-								<div class="padding20">
-									<span class="opensans size16 dark">Great experience</span><br />
-									<span class="opensans size13 lgrey">Posted Jun 02, 2013</span><br />
-									<p>It is close to everything but if you go in the lower season the pool won't be ready even though the temperature was quiet high already.</p>	
-									 
-								</div>
-							</div>
-							<div class="clearfix"></div>							
-						</div>	
-						<div class="line2"></div>
+						<?php $this->load->view( 'website/common/review_list', array( 'array_review' => $array_review ) ); ?>
 						
 						<div class="wh33percent left center">&nbsp;</div>
 						<div class="wh66percent right offset-0">
@@ -368,6 +308,45 @@
 							</div>
 						</div>
 						<div class="clearfix"></div>
+					</div>
+					<?php } ?>
+					
+					<!--   promo   -->
+					<?php if ($post['having_promo']) { ?>
+					<div id="promo" class="tab-pane fade">
+						<div class="hpadding20"><br />
+							<span class="opensans dark size16 bold">Promo - <?php echo $promo['title_select']; ?></span>
+						</div>
+						<div class="line2"></div><br />
+						
+						<div class="hpadding20" style="padding-bottom: 10px;">
+							<div>Start Date : <?php echo GetFormatDate($promo['publish_date']); ?></div>
+							<div>End Date : <?php echo GetFormatDate($promo['close_date']); ?></div>
+						</div>
+						<div class="line2"></div><br />
+						
+						<button type="button" class="collapsebtn2" data-toggle="collapse" data-target="#collapse60">
+							Content <span class="collapsearrow"></span>
+						</button>
+						<div id="collapse60" class="collapse in">
+							<div class="hpadding20"><?php echo $promo['content_select']; ?></div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="line4"></div>
+						
+						<button type="button" class="collapsebtn2" data-toggle="collapse" data-target="#collapse61">
+							Keyword <span class="collapsearrow"></span>
+						</button>
+						<div id="collapse61" class="collapse in">
+							<div class="hpadding20">
+								<?php $array_temp = explode(',', $promo['keyword']); ?>
+								<?php foreach ($array_temp as $row) { ?>
+									<div>- <a href="<?php echo base_url('tag/'.get_name($row)); ?>"><?php echo $row; ?></a></div>
+								<?php } ?>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="line4"></div>
 					</div>
 					<?php } ?>
 				</div>
@@ -383,6 +362,11 @@
 	<?php $this->load->view( 'website/common/library', array( 'js_add' => array( 'js-details.js', 'counter.js', 'initialize-carousel-detailspage.js' ) ) ); ?>
 <script>
 $('.btn-booking').click(function() {
+	if ($('[name="booking[]"]:checked').length == 0) {
+		$.notify("Please select your booking option.", "error");
+		return false;
+	}
+	
 	$('[name="booking[]"]:checked').each(function() {
 		window.open(this.value);
 	});

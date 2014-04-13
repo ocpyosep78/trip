@@ -1,3 +1,5 @@
+akan dihapus
+
 <?php
 	// post
 	$post = $this->post_model->get_by_id(array( 'city_alias' => $this->uri->segments[3], 'alias' => $this->uri->segments[4] ));

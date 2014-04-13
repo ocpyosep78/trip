@@ -4,6 +4,17 @@
 	$array_category_sub = $this->category_sub_model->get_array(array( 'category_id' => CATEGORY_HOTEL ));
 	$array_hotel_star = $this->hotel_star_model->get_array();
 	
+	// get selected region & city
+	$region = $city = array();
+	$selected_region = (empty($this->uri->segments[2])) ? '' : $this->uri->segments[2];
+	$selected_city = (empty($this->uri->segments[3])) ? '' : $this->uri->segments[3];
+	if (!empty($selected_region)) {
+		$region = $this->region_model->get_by_id(array( 'alias' => $selected_region ));
+	}
+	if (!empty($selected_city)) {
+		$city = $this->city_model->get_by_id(array( 'alias' => $selected_city, 'region_id' => $region['id'] ));
+	}
+	
 	// rate
 	$rate_min = $this->post_model->get_rate_min();
 	
@@ -22,12 +33,19 @@
 	$array_breadcrub = array(
 		array( 'link' => '#', 'title' => 'Hotel' )
 	);
+	
+	// page
+	$page['city'] = $city;
+	$page['region'] = $region;
 ?>
 
 <?php $this->load->view( 'website/common/meta' ); ?>
 <body id="top" class="thebg">
 	<?php $this->load->view( 'website/common/header_menu' ); ?>
 	<?php $this->load->view( 'website/common/breadcrub', array( 'array' => $array_breadcrub ) ); ?>
+	<div class="hide">
+		<div id="cnt-page"><?php echo json_encode($page); ?></div>
+	</div>
 	
 	<div class="container"><div class="container pagecontainer offset-0" id="post-list">
 		<div class="col-md-3 filters offset-0">
@@ -62,7 +80,7 @@
 			<div class="line2"></div><br />
 			<div class="hpadding20">
 				<select name="country_id" class="form-control mySelectBoxClass">
-					<?php echo ShowOption(array( 'Array' => $array_country, 'LabelEmptySelect' => 'All Country' )); ?>
+					<?php echo ShowOption(array( 'Array' => $array_country, 'LabelEmptySelect' => 'All Country', 'Selected' => @$region['country_id'] )); ?>
 				</select>
 			</div>
 			<div class="clearfix"></div><br />
@@ -177,6 +195,18 @@
 jQuery(function($) {
 	var page = {
 		init: function() {
+			var raw_page = $('#cnt-page').html();
+			eval('var data = ' + raw_page);
+			page.data = data;
+			
+			// set city & region
+			if (page.data.region.id != null) {
+				combo.region({ country_id: page.data.region.country_id, target: $('[name="region_id"]'), value: page.data.region.id });
+			}
+			if (page.data.city.id != null) {
+				combo.city({ region_id: page.data.city.region_id, target: $('[name="city_id"]'), value: page.data.city.id });
+			}
+			
 			page.load_post({});
 			page.is_refresh();
 		},

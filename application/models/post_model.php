@@ -58,6 +58,27 @@ class post_model extends CI_Model {
 		}
 	}
 
+	function update_review($param = array()) {
+		// record
+		if (isset($param['post_id'])) {
+			$record = $param;
+		} else if (isset($param['post_traveler_review_id'])) {
+			$record = $this->post_traveler_review_model->get_by_id(array( 'id' => $param['post_traveler_review_id'] ));
+		}
+		
+		// review count
+		$total = $this->post_traveler_review_model->get_count(array( 'post_id' => $record['post_id'] ));
+		
+		// review rating
+		$rating = $this->post_traveler_review_model->get_rating(array( 'post_id' => $record['post_id'] ));
+		
+		// update
+		$param_update['id'] = $record['post_id'];
+		$param_update['review_count'] = $total;
+		$param_update['review_rate'] = $rating;
+		$this->update($param_update);
+	}
+	
     function get_by_id($param) {
         $array = array();
 		$param['tag_include'] = (isset($param['tag_include'])) ? $param['tag_include'] : false;
@@ -226,6 +247,11 @@ class post_model extends CI_Model {
 		if (!empty($row['category_alias']) && !empty($row['region_alias']) && !empty($row['city_alias']) && !empty($row['alias'])) {
 			$row['link_post'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['alias']);
 			$row['link_post_review'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['alias'].'/review');
+			$row['link_post_upload'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['alias'].'/upload');
+			$row['link_post_gallery'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['alias'].'/gallery');
+			$row['link_category'] = base_url($row['category_alias']);
+			$row['link_region'] = base_url($row['category_alias'].'/'.$row['region_alias']);
+			$row['link_city'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias']);
 		}
 		
 		// member fullname

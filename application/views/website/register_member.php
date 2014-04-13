@@ -89,7 +89,7 @@ $('#form-register').submit(function(e) {
 		param: param,
 		link: web.base + 'register/action',
 		callback: function(result) {
-			console.log(result);
+			$('#form-register')[0].reset();
 		}
 	});
 });

@@ -141,6 +141,9 @@ class member_model extends CI_Model {
 				$row['thumbnail_link'] = base_url('static/upload/'.$row['thumbnail']);
 			}
 		}
+		if (isset($row['alias'])) {
+			$row['link_member'] = base_url($row['alias']);
+		}
 		
 		if (isset($row['first_name']) && isset($row['last_name'])) {
 			$row['full_name'] = $row['first_name'].' '.$row['last_name'];

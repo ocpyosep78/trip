@@ -1,4 +1,5 @@
 <?php
+	$is_login = $this->user_model->is_login();
 	$array_language = $this->language_model->get_array();
 	$language = $this->language_model->get_session();
 ?>
@@ -29,6 +30,10 @@
 								<?php } ?>
 							</ul>
 						</li>
+						
+						<?php if ($is_login) { ?>
+						<li><a href="<?php echo base_url('panel/home/logout'); ?>">Log Out</a></li>
+						<?php } else { ?>
 						<li class="dropdown">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="<?php echo base_url('login/member'); ?>">Login<b class="lightcaret mt-2"></b></a>
 							<ul class="dropdown-menu">
@@ -36,6 +41,8 @@
 								<li><a href="<?php echo base_url('login/traveler'); ?>">Traveler</a></li>
 							</ul>
 						</li>
+						<?php } ?>
+						
 						<li>
 							<div style="float:none;margin-top:7px;width:95%">
 								<form id="form-header">

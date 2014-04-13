@@ -8,14 +8,16 @@ $('.link-post').click(function() {
 
 var link = window.location.href;
 var array_link = link.replace(new RegExp('^.+panel\/', 'gi'), '').split('/');
-if (array_link.length == 2) {
+if (array_link.length >= 1) {
 	// parent
 	$('[data-menu-parent="' + array_link[0] + '"]').addClass('active');
 	$('[data-menu-parent="' + array_link[0] + '"]').children('a').addClass('active');
 	
-	// child
-	$('[data-menu-parent="' + array_link[0] + '"]').find('[data-menu-child="' + array_link[1] + '"]').addClass('active');
-	$('[data-menu-parent="' + array_link[0] + '"]').find('[data-menu-child="' + array_link[1] + '"]').parent('li').addClass('active');
+	if (array_link.length == 2) {
+		// child
+		$('[data-menu-parent="' + array_link[0] + '"]').find('[data-menu-child="' + array_link[1] + '"]').addClass('active');
+		$('[data-menu-parent="' + array_link[0] + '"]').find('[data-menu-child="' + array_link[1] + '"]').parent('li').addClass('active');
+	}
 }
 
 /* Modernizr 2.6.2 (Custom Build) | MIT & BSD

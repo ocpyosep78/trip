@@ -49,6 +49,41 @@
 		</div>
 	</div>
 	
+	<div class="modal fade" id="modal-validation">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form>
+					<input type="hidden" name="action" value="update_status" />
+					<input type="hidden" name="id" value="0" />
+					<input type="hidden" name="promo_status" value="" />
+					
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Sent Mail Form</h4>
+					</div>
+					<div class="modal-body">
+						<section class="panel panel-default">
+							<div class="panel-body">
+								<div class="form-group">
+									<label>Title</label>
+									<input type="text" class="form-control" name="title" data-required="true" />
+								</div>
+								<div class="form-group">
+									<label>Content</label>
+									<textarea class="form-control" name="content" data-required="true"></textarea>
+								</div>
+							</div>
+						</section>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-info">Save changes</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
 	<?php $this->load->view( 'panel/common/header' ); ?>
 	
 	<div class="hide">
@@ -243,7 +278,7 @@ $(document).ready(function() {
 	
 	// grid
 	var param = {
-		id: 'datatable',
+		id: 'datatable', aaSorting: [[ 2, 'DESC' ]],
 		source: web.base + 'panel/post/promo/grid',
 		column: [ { }, { }, { }, { }, { }, { bSortable: false, sClass: 'center', sWidth: '15%' } ],
 		callback: function() {
@@ -266,6 +301,9 @@ $(document).ready(function() {
 				var raw_record = $(this).siblings('.hide').text();
 				eval('var record = ' + raw_record);
 				
+				Func.populate({ cnt: '#modal-validation', record: { id: record.id, promo_status: 'approve' } });
+				$('#modal-validation').modal();
+				/*
 				Func.update({
 					link: web.base + 'panel/post/promo/action',
 					param: { id: record.id, action: 'update_status', promo_status: 'approve' },
@@ -273,12 +311,17 @@ $(document).ready(function() {
 						dt.reload();
 					}
 				});
+				/*	*/
 			});
 			
 			$('#datatable .btn-reject').click(function() {
 				var raw_record = $(this).siblings('.hide').text();
 				eval('var record = ' + raw_record);
 				
+				Func.populate({ cnt: '#modal-validation', record: { id: record.id, promo_status: 'reject' } });
+				$('#modal-validation').modal();
+				
+				/*
 				Func.update({
 					link: web.base + 'panel/post/promo/action',
 					param: { id: record.id, action: 'update_status', promo_status: 'reject' },
@@ -286,6 +329,7 @@ $(document).ready(function() {
 						dt.reload();
 					}
 				});
+				/*	*/
 			});
 		
 			$('#datatable .btn-delete').click(function() {
@@ -347,6 +391,30 @@ $(document).ready(function() {
 				dt.reload();
 				page.show_grid();
 				$('#modal-confirm').modal('hide');
+			}
+		});
+	});
+	
+	// modal validation email
+	var form_validation = $('#modal-validation form').parsley();
+	$('#modal-validation form').submit(function(e) {
+		e.preventDefault();
+		if (! form_validation.isValid()) {
+			return false;
+		}
+		
+		// execute
+		var param = Site.Form.GetValue('#modal-validation form');
+		Func.update({
+			link: web.base + 'panel/post/promo/action',
+			param: param,
+			callback: function() {
+				dt.reload();
+				$('#modal-validation').modal('hide');
+				
+				if (param.promo_status == 'approve') {
+					Func.ajax({ url: web.base + 'service/post_update', is_json: false });
+				}
 			}
 		});
 	});

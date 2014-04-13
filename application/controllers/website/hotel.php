@@ -10,8 +10,10 @@ class hotel extends TRIP_Controller {
 			if (method_exists($this, $this->uri->segments[2])) {
 				$method_name = $this->uri->segments[2];
 				$this->$method_name();
-			} else {
+			} else if (count($this->uri->segments) >= 4) {
 				$this->load->view( 'website/post_detail' );
+			} else {
+				$this->load->view( 'website/hotel' );
 			}
 		} else {
 			$this->load->view( 'website/hotel' );

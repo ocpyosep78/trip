@@ -35,15 +35,30 @@ class promo_model extends CI_Model {
         if (isset($param['id'])) {
             $select_query  = "
 				SELECT promo.*,
-					post.title post_title, promo_duration.title promo_duration_title, promo_duration.duration promo_duration
+					post.title post_title, promo_duration.title promo_duration_title, promo_duration.duration promo_duration,
+					member.first_name member_first_name, member.last_name member_last_name, member.email member_email
 				FROM ".PROMO." promo
 				LEFT JOIN ".POST." post on post.id = promo.post_id
 				LEFT JOIN ".PROMO_DURATION." promo_duration on promo_duration.id = promo.promo_duration_id
+				LEFT JOIN ".MEMBER." member on member.id = post.member_id
 				WHERE promo.id = '".$param['id']."'
 				LIMIT 1
 			";
-        } 
-       
+        } else if (isset($param['post_id']) && isset($param['promo_status'])) {
+            $select_query  = "
+				SELECT promo.*,
+					post.title post_title, promo_duration.title promo_duration_title, promo_duration.duration promo_duration,
+					member.first_name member_first_name, member.last_name member_last_name, member.email member_email
+				FROM ".PROMO." promo
+				LEFT JOIN ".POST." post on post.id = promo.post_id
+				LEFT JOIN ".PROMO_DURATION." promo_duration on promo_duration.id = promo.promo_duration_id
+				LEFT JOIN ".MEMBER." member on member.id = post.member_id
+				WHERE promo.post_id = '".$param['post_id']."'
+					AND promo.promo_status = '".$param['promo_status']."'
+				LIMIT 1
+			";
+        }
+		
         $select_result = mysql_query($select_query) or die(mysql_error());
         if (false !== $row = mysql_fetch_assoc($select_result)) {
             $array = $this->sync($row);
@@ -56,23 +71,26 @@ class promo_model extends CI_Model {
         $array = array();
 		
 		$param['field_replace']['post_title_text'] = 'post.title';
+		$param['field_replace']['publish_date_swap'] = 'promo.publish_date';
 		$param['field_replace']['promo_duration_title_text'] = 'promo_duration.title';
-		$param['field_replace']['publish_date_swap'] = '';
 		
 		$string_namelike = (!empty($param['namelike'])) ? "AND promo.title LIKE '%".$param['namelike']."%'" : '';
 		$string_member = (isset($param['member_id'])) ? "AND post.member_id = '".$param['member_id']."'" : '';
+		$string_close_date = (isset($param['close_date'])) ? "AND promo.close_date = '".$param['close_date']."'" : '';
+		$string_between_date = (isset($param['between_date'])) ? "AND (promo.publish_date <= '".$param['between_date']."' AND promo.close_date >= '".$param['between_date']."')" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'title ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
 			SELECT SQL_CALC_FOUND_ROWS promo.*,
-				post.title post_title,
+				post.title post_title, member.email member_email,
 				promo_duration.title promo_duration_title, promo_duration.duration promo_duration
 			FROM ".PROMO." promo
 			LEFT JOIN ".POST." post on post.id = promo.post_id
 			LEFT JOIN ".PROMO_DURATION." promo_duration on promo_duration.id = promo.promo_duration_id
-			WHERE 1 $string_namelike $string_member $string_filter
+			LEFT JOIN ".MEMBER." member on member.id = post.member_id
+			WHERE 1 $string_namelike $string_member $string_close_date $string_between_date $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
@@ -106,10 +124,14 @@ class promo_model extends CI_Model {
 	function sync($row, $param = array()) {
 		$row = StripArray($row, array( 'close_date' ));
 		
-		if (isset($row['post_title'])) {
-			$temp = json_to_array($row['post_title']);
-			$row['post_title_text'] = (isset($temp[LANGUAGE_DEFAULT])) ? $temp[LANGUAGE_DEFAULT] : '';
+		// language
+		$row = get_row_language($row, array( 'title', 'content', 'post_title' ));
+		
+		// full name
+		if (isset($row['member_first_name']) && isset($row['member_last_name'])) {
+			$row['member_full_name'] = $row['member_first_name'].' '.$row['member_last_name'];
 		}
+		
 		if (isset($row['publish_date'])) {
 			$row['publish_date_swap'] = GetFormatDate($row['publish_date']);
 		}
