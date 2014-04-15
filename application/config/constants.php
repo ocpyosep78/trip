@@ -36,6 +36,7 @@ define('PROMO_REMINDER',						'+1 Month');
 /*	WEBSITE INFO */
 define('WEBSITE_TITLE',							'Website Trip');
 define('WEBSITE_ALIAS',							'website trip');
+define('WEBSITE_COOKIE',						'.suekarea.com');
 
 define('CATEGORY_HOTEL',						1);
 define('CATEGORY_DESTINATION',					2);

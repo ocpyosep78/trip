@@ -256,7 +256,7 @@ class User_model extends CI_Model {
 	
 	function set_cookie($user) {
 		$cookie_value = mcrypt_encode(json_encode($user));
-		setcookie("user_login", $cookie_value, time() + (60 * 60 * 5), '/', '.kedaipedia.com');	
+		setcookie("user_login", $cookie_value, time() + (60 * 60 * 5), '/', WEBSITE_COOKIE);	
 	}
 	
 	function get_cookie() {
@@ -272,7 +272,7 @@ class User_model extends CI_Model {
 	
 	function del_cookie() {
 		// delete cookie
-		setcookie("user_login", '', time() + 0, '/', '.kedaipedia.com');
+		setcookie("user_login", '', time() + 0, '/', WEBSITE_COOKIE);
 	}
 	
 	/*	End Region Cookie */

@@ -112,7 +112,7 @@ class city_ip_model extends CI_Model {
 				$this->update($param_update);
 			}
 		} else {
-			$result = $record['name'];
+			$result = @$record['name'];
 		}
 		
 		return $result;

@@ -32,7 +32,7 @@ class oathlogin {
 		}
 		
 		// user
-		$user = $ci->this->$model_name->get_by_id(array( 'email' => $email ));
+		$user = $this->ci->$model_name->get_by_id(array( 'email' => $email ));
 		
 		// new user
 		if (count($user) == 0) {
@@ -41,14 +41,14 @@ class oathlogin {
 			
 			if ($loginProvider == 'facebook') {
 				// biodata
-				$param['email'] = $userData['email'];
-				$param['first_name'] = $userData['first_name'];
-				$param['last_name'] = $userData['last_name'];
-				$param['register_date'] = $ci->this->config->item('current_datetime');
+				$param_update['email'] = $userData['email'];
+				$param_update['first_name'] = $userData['first_name'];
+				$param_update['last_name'] = $userData['last_name'];
+				$param_update['register_date'] = $this->ci->config->item('current_datetime');
 				
 				// set provider
-				$param['provider'] = $loginProvider;
-				$param['provider_id'] = $userData['id'];
+				$param_update['provider'] = $loginProvider;
+				$param_update['provider_id'] = $userData['id'];
 			}
 			else if ($loginProvider == 'google') {
 				$email =mysql_real_escape_string($userData['email']);
@@ -77,12 +77,16 @@ class oathlogin {
 				$last_name= mysql_real_escape_string($userData['last-name']);
 				$name =$first_name.' '.$last_name;
 			}
+			else {
+				echo "$loginProvider error to insert record.";
+				exit;
+			}
 			
 			// update record
-			$result_update = $ci->this->$model_name->update($param_update);
+			$result_update = $this->ci->$model_name->update($param_update);
 			
 			// set result
-			$user = $ci->this->$model_name->get_by_id(array( 'id' => $result_update['id'] ));
+			$user = $this->ci->$model_name->get_by_id(array( 'id' => $result_update['id'] ));
 			$result = array( 'status' => true, 'user' => $user );
 		}
 		

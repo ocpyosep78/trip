@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.4
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Apr 13, 2014 at 08:23 PM
--- Server version: 5.1.41
--- PHP Version: 5.3.1
+-- Host: 127.0.0.1
+-- Generation Time: Apr 15, 2014 at 05:12 PM
+-- Server version: 5.5.32
+-- PHP Version: 5.4.19
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -18,6 +19,8 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Database: `trip_db`
 --
+CREATE DATABASE IF NOT EXISTS `trip_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `trip_db`;
 
 -- --------------------------------------------------------
 
@@ -4301,11 +4304,6 @@ CREATE TABLE IF NOT EXISTS `city_ip` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
---
--- Dumping data for table `city_ip`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -4644,12 +4642,14 @@ CREATE TABLE IF NOT EXISTS `hotel_detail` (
   `post_id` int(11) NOT NULL,
   `booking` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `hotel_detail`
 --
 
+INSERT INTO `hotel_detail` (`id`, `post_id`, `booking`) VALUES
+(1, 7, '');
 
 -- --------------------------------------------------------
 
@@ -4979,7 +4979,7 @@ CREATE TABLE IF NOT EXISTS `ip_log` (
   `ip_address` varchar(50) NOT NULL,
   `request_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9231 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9708 ;
 
 --
 -- Dumping data for table `ip_log`
@@ -14221,7 +14221,484 @@ INSERT INTO `ip_log` (`id`, `ip_address`, `request_time`) VALUES
 (9227, '::1', '2014-04-13 20:22:52'),
 (9228, '::1', '2014-04-13 20:23:13'),
 (9229, '::1', '2014-04-13 20:23:18'),
-(9230, '::1', '2014-04-13 20:23:20');
+(9230, '::1', '2014-04-13 20:23:20'),
+(9231, '::1', '2014-04-14 14:13:05'),
+(9232, '::1', '2014-04-14 14:13:17'),
+(9233, '::1', '2014-04-14 14:59:02'),
+(9234, '::1', '2014-04-14 14:59:08'),
+(9235, '::1', '2014-04-14 14:59:08'),
+(9236, '::1', '2014-04-14 14:59:32'),
+(9237, '::1', '2014-04-14 14:59:33'),
+(9238, '::1', '2014-04-14 14:59:33'),
+(9239, '::1', '2014-04-14 14:59:33'),
+(9240, '::1', '2014-04-14 14:59:33'),
+(9241, '::1', '2014-04-14 14:59:33'),
+(9242, '::1', '2014-04-14 14:59:35'),
+(9243, '::1', '2014-04-14 14:59:37'),
+(9244, '::1', '2014-04-14 14:59:40'),
+(9245, '::1', '2014-04-14 15:00:08'),
+(9246, '::1', '2014-04-14 15:00:09'),
+(9247, '::1', '2014-04-14 15:00:30'),
+(9248, '::1', '2014-04-14 15:00:30'),
+(9249, '::1', '2014-04-14 15:00:44'),
+(9250, '::1', '2014-04-14 15:00:45'),
+(9251, '::1', '2014-04-14 15:01:12'),
+(9252, '::1', '2014-04-14 15:01:12'),
+(9253, '::1', '2014-04-14 15:01:29'),
+(9254, '::1', '2014-04-14 15:01:29'),
+(9255, '::1', '2014-04-14 15:01:50'),
+(9256, '::1', '2014-04-14 15:01:50'),
+(9257, '::1', '2014-04-14 15:01:54'),
+(9258, '::1', '2014-04-14 15:02:47'),
+(9259, '::1', '2014-04-14 15:04:42'),
+(9260, '::1', '2014-04-14 15:27:15'),
+(9261, '::1', '2014-04-14 15:27:17'),
+(9262, '::1', '2014-04-14 15:27:21'),
+(9263, '::1', '2014-04-14 15:27:24'),
+(9264, '::1', '2014-04-14 15:27:29'),
+(9265, '::1', '2014-04-14 15:27:39'),
+(9266, '::1', '2014-04-14 15:27:39'),
+(9267, '::1', '2014-04-14 15:27:41'),
+(9268, '::1', '2014-04-14 15:27:42'),
+(9269, '::1', '2014-04-14 15:27:45'),
+(9270, '::1', '2014-04-14 15:27:47'),
+(9271, '::1', '2014-04-14 15:28:20'),
+(9272, '::1', '2014-04-14 15:29:03'),
+(9273, '::1', '2014-04-14 15:29:21'),
+(9274, '::1', '2014-04-14 15:29:22'),
+(9275, '::1', '2014-04-14 15:29:26'),
+(9276, '::1', '2014-04-14 15:29:27'),
+(9277, '::1', '2014-04-14 15:29:30'),
+(9278, '::1', '2014-04-14 15:29:31'),
+(9279, '::1', '2014-04-14 15:29:36'),
+(9280, '::1', '2014-04-14 15:29:42'),
+(9281, '::1', '2014-04-14 15:29:42'),
+(9282, '::1', '2014-04-14 15:29:43'),
+(9283, '::1', '2014-04-14 15:29:44'),
+(9284, '::1', '2014-04-14 15:30:10'),
+(9285, '::1', '2014-04-14 15:30:11'),
+(9286, '::1', '2014-04-14 15:30:12'),
+(9287, '::1', '2014-04-14 15:30:13'),
+(9288, '::1', '2014-04-14 15:30:33'),
+(9289, '::1', '2014-04-14 15:30:36'),
+(9290, '::1', '2014-04-14 15:30:36'),
+(9291, '::1', '2014-04-14 15:30:38'),
+(9292, '::1', '2014-04-14 15:31:04'),
+(9293, '::1', '2014-04-14 15:31:05'),
+(9294, '::1', '2014-04-14 15:31:16'),
+(9295, '::1', '2014-04-14 15:31:18'),
+(9296, '::1', '2014-04-14 15:31:20'),
+(9297, '::1', '2014-04-14 15:31:25'),
+(9298, '::1', '2014-04-14 15:32:31'),
+(9299, '::1', '2014-04-14 15:32:39'),
+(9300, '::1', '2014-04-14 15:32:44'),
+(9301, '::1', '2014-04-14 15:32:45'),
+(9302, '::1', '2014-04-14 15:32:49'),
+(9303, '::1', '2014-04-14 15:32:49'),
+(9304, '::1', '2014-04-14 15:32:50'),
+(9305, '::1', '2014-04-14 15:32:50'),
+(9306, '::1', '2014-04-14 15:33:28'),
+(9307, '::1', '2014-04-14 15:33:29'),
+(9308, '::1', '2014-04-14 15:33:39'),
+(9309, '::1', '2014-04-14 15:33:44'),
+(9310, '::1', '2014-04-14 15:34:05'),
+(9311, '::1', '2014-04-14 15:34:08'),
+(9312, '::1', '2014-04-14 15:34:08'),
+(9313, '::1', '2014-04-14 15:34:12'),
+(9314, '::1', '2014-04-14 15:34:12'),
+(9315, '::1', '2014-04-14 15:34:13'),
+(9316, '::1', '2014-04-14 15:34:16'),
+(9317, '::1', '2014-04-14 15:34:26'),
+(9318, '::1', '2014-04-14 15:34:26'),
+(9319, '::1', '2014-04-14 15:34:27'),
+(9320, '::1', '2014-04-14 15:34:34'),
+(9321, '::1', '2014-04-14 15:34:35'),
+(9322, '::1', '2014-04-14 15:34:48'),
+(9323, '::1', '2014-04-14 15:35:09'),
+(9324, '::1', '2014-04-14 15:35:09'),
+(9325, '::1', '2014-04-14 15:35:11'),
+(9326, '::1', '2014-04-14 15:35:15'),
+(9327, '::1', '2014-04-14 15:35:16'),
+(9328, '::1', '2014-04-14 15:35:19'),
+(9329, '::1', '2014-04-14 15:35:19'),
+(9330, '::1', '2014-04-14 15:35:21'),
+(9331, '::1', '2014-04-14 15:35:28'),
+(9332, '::1', '2014-04-14 15:35:29'),
+(9333, '::1', '2014-04-14 15:35:35'),
+(9334, '::1', '2014-04-14 15:35:36'),
+(9335, '::1', '2014-04-14 15:36:31'),
+(9336, '::1', '2014-04-14 15:36:33'),
+(9337, '::1', '2014-04-14 15:37:20'),
+(9338, '::1', '2014-04-14 15:37:24'),
+(9339, '::1', '2014-04-14 15:37:28'),
+(9340, '::1', '2014-04-14 15:38:27'),
+(9341, '::1', '2014-04-14 15:38:32'),
+(9342, '::1', '2014-04-14 15:38:33'),
+(9343, '::1', '2014-04-14 15:38:35'),
+(9344, '::1', '2014-04-14 15:39:12'),
+(9345, '::1', '2014-04-14 15:39:12'),
+(9346, '::1', '2014-04-14 15:39:17'),
+(9347, '::1', '2014-04-14 15:39:21'),
+(9348, '::1', '2014-04-14 15:39:21'),
+(9349, '::1', '2014-04-14 15:43:16'),
+(9350, '::1', '2014-04-14 15:43:17'),
+(9351, '::1', '2014-04-14 15:43:17'),
+(9352, '::1', '2014-04-14 15:43:17'),
+(9353, '::1', '2014-04-14 15:43:17'),
+(9354, '::1', '2014-04-14 15:43:17'),
+(9355, '::1', '2014-04-14 15:43:22'),
+(9356, '::1', '2014-04-14 15:43:23'),
+(9357, '::1', '2014-04-14 15:44:01'),
+(9358, '::1', '2014-04-14 15:44:04'),
+(9359, '::1', '2014-04-14 15:44:10'),
+(9360, '::1', '2014-04-14 15:46:10'),
+(9361, '::1', '2014-04-14 15:46:16'),
+(9362, '::1', '2014-04-14 15:46:50'),
+(9363, '::1', '2014-04-14 15:47:54'),
+(9364, '::1', '2014-04-14 15:48:00'),
+(9365, '::1', '2014-04-14 15:48:08'),
+(9366, '::1', '2014-04-14 15:48:08'),
+(9367, '::1', '2014-04-14 15:48:14'),
+(9368, '::1', '2014-04-14 15:48:29'),
+(9369, '::1', '2014-04-14 15:48:30'),
+(9370, '::1', '2014-04-14 15:48:36'),
+(9371, '::1', '2014-04-14 15:48:41'),
+(9372, '::1', '2014-04-14 15:48:42'),
+(9373, '::1', '2014-04-14 15:48:43'),
+(9374, '::1', '2014-04-14 15:48:50'),
+(9375, '::1', '2014-04-14 15:48:53'),
+(9376, '::1', '2014-04-14 15:53:01'),
+(9377, '::1', '2014-04-14 15:53:07'),
+(9378, '::1', '2014-04-14 15:53:46'),
+(9379, '::1', '2014-04-14 15:54:01'),
+(9380, '::1', '2014-04-14 15:54:26'),
+(9381, '::1', '2014-04-14 15:54:26'),
+(9382, '::1', '2014-04-14 15:54:31'),
+(9383, '::1', '2014-04-14 15:57:42'),
+(9384, '::1', '2014-04-14 16:13:36'),
+(9385, '::1', '2014-04-14 16:14:08'),
+(9386, '::1', '2014-04-14 16:14:10'),
+(9387, '::1', '2014-04-14 16:14:14'),
+(9388, '::1', '2014-04-14 16:14:17'),
+(9389, '::1', '2014-04-14 16:14:20'),
+(9390, '::1', '2014-04-14 16:14:29'),
+(9391, '::1', '2014-04-14 16:14:30'),
+(9392, '::1', '2014-04-14 16:14:32'),
+(9393, '::1', '2014-04-14 16:14:35'),
+(9394, '::1', '2014-04-14 16:14:36'),
+(9395, '::1', '2014-04-14 16:15:11'),
+(9396, '::1', '2014-04-14 16:15:12'),
+(9397, '::1', '2014-04-14 16:15:15'),
+(9398, '::1', '2014-04-14 16:15:17'),
+(9399, '::1', '2014-04-14 16:15:24'),
+(9400, '::1', '2014-04-14 16:15:29'),
+(9401, '::1', '2014-04-14 16:15:32'),
+(9402, '::1', '2014-04-14 16:15:35'),
+(9403, '::1', '2014-04-14 16:15:41'),
+(9404, '::1', '2014-04-14 16:15:53'),
+(9405, '::1', '2014-04-14 16:15:57'),
+(9406, '::1', '2014-04-14 16:16:00'),
+(9407, '::1', '2014-04-14 16:16:03'),
+(9408, '::1', '2014-04-14 16:16:05'),
+(9409, '::1', '2014-04-14 16:19:23'),
+(9410, '::1', '2014-04-14 16:19:26'),
+(9411, '::1', '2014-04-14 16:19:36'),
+(9412, '::1', '2014-04-14 16:20:14'),
+(9413, '::1', '2014-04-14 16:21:30'),
+(9414, '::1', '2014-04-15 08:37:51'),
+(9415, '::1', '2014-04-15 08:37:57'),
+(9416, '::1', '2014-04-15 08:37:58'),
+(9417, '::1', '2014-04-15 08:38:00'),
+(9418, '::1', '2014-04-15 08:41:54'),
+(9419, '::1', '2014-04-15 08:41:57'),
+(9420, '::1', '2014-04-15 08:42:03'),
+(9421, '::1', '2014-04-15 08:42:03'),
+(9422, '::1', '2014-04-15 08:42:13'),
+(9423, '::1', '2014-04-15 08:42:14'),
+(9424, '::1', '2014-04-15 08:42:14'),
+(9425, '::1', '2014-04-15 08:42:14'),
+(9426, '::1', '2014-04-15 08:42:14'),
+(9427, '::1', '2014-04-15 08:42:14'),
+(9428, '::1', '2014-04-15 08:42:18'),
+(9429, '::1', '2014-04-15 08:42:32'),
+(9430, '::1', '2014-04-15 08:42:34'),
+(9431, '::1', '2014-04-15 08:43:19'),
+(9432, '::1', '2014-04-15 08:44:28'),
+(9433, '::1', '2014-04-15 08:45:17'),
+(9434, '::1', '2014-04-15 08:45:24'),
+(9435, '::1', '2014-04-15 08:45:44'),
+(9436, '::1', '2014-04-15 08:46:00'),
+(9437, '::1', '2014-04-15 08:46:08'),
+(9438, '::1', '2014-04-15 08:46:45'),
+(9439, '::1', '2014-04-15 08:46:47'),
+(9440, '::1', '2014-04-15 08:46:51'),
+(9441, '::1', '2014-04-15 08:46:52'),
+(9442, '::1', '2014-04-15 08:48:58'),
+(9443, '::1', '2014-04-15 08:49:15'),
+(9444, '::1', '2014-04-15 08:49:42'),
+(9445, '::1', '2014-04-15 08:49:46'),
+(9446, '::1', '2014-04-15 08:49:50'),
+(9447, '::1', '2014-04-15 08:56:06'),
+(9448, '::1', '2014-04-15 08:56:14'),
+(9449, '::1', '2014-04-15 08:56:16'),
+(9450, '::1', '2014-04-15 08:56:21'),
+(9451, '::1', '2014-04-15 08:56:22'),
+(9452, '::1', '2014-04-15 08:57:11'),
+(9453, '::1', '2014-04-15 08:58:17'),
+(9454, '::1', '2014-04-15 08:58:17'),
+(9455, '::1', '2014-04-15 08:58:23'),
+(9456, '::1', '2014-04-15 08:58:32'),
+(9457, '::1', '2014-04-15 08:58:32'),
+(9458, '::1', '2014-04-15 08:58:35'),
+(9459, '::1', '2014-04-15 09:06:27'),
+(9460, '::1', '2014-04-15 09:07:47'),
+(9461, '::1', '2014-04-15 09:07:48'),
+(9462, '::1', '2014-04-15 09:07:48'),
+(9463, '::1', '2014-04-15 09:07:48'),
+(9464, '::1', '2014-04-15 09:07:48'),
+(9465, '::1', '2014-04-15 09:07:48'),
+(9466, '::1', '2014-04-15 09:07:50'),
+(9467, '::1', '2014-04-15 09:07:55'),
+(9468, '::1', '2014-04-15 09:07:57'),
+(9469, '::1', '2014-04-15 09:07:58'),
+(9470, '::1', '2014-04-15 09:08:03'),
+(9471, '::1', '2014-04-15 09:08:12'),
+(9472, '::1', '2014-04-15 09:08:20'),
+(9473, '::1', '2014-04-15 09:08:20'),
+(9474, '::1', '2014-04-15 09:08:21'),
+(9475, '::1', '2014-04-15 09:08:22'),
+(9476, '::1', '2014-04-15 09:08:22'),
+(9477, '::1', '2014-04-15 09:08:23'),
+(9478, '::1', '2014-04-15 09:08:24'),
+(9479, '::1', '2014-04-15 09:08:25'),
+(9480, '::1', '2014-04-15 09:09:03'),
+(9481, '::1', '2014-04-15 09:09:04'),
+(9482, '::1', '2014-04-15 09:10:09'),
+(9483, '::1', '2014-04-15 09:10:10'),
+(9484, '::1', '2014-04-15 09:10:10'),
+(9485, '::1', '2014-04-15 09:10:10'),
+(9486, '::1', '2014-04-15 09:10:10'),
+(9487, '::1', '2014-04-15 09:10:10'),
+(9488, '::1', '2014-04-15 09:10:14'),
+(9489, '::1', '2014-04-15 09:10:19'),
+(9490, '::1', '2014-04-15 09:10:22'),
+(9491, '::1', '2014-04-15 09:10:28'),
+(9492, '::1', '2014-04-15 09:10:29'),
+(9493, '::1', '2014-04-15 09:10:30'),
+(9494, '::1', '2014-04-15 09:11:11'),
+(9495, '::1', '2014-04-15 09:11:13'),
+(9496, '::1', '2014-04-15 09:11:13'),
+(9497, '::1', '2014-04-15 09:11:32'),
+(9498, '::1', '2014-04-15 09:11:35'),
+(9499, '::1', '2014-04-15 09:11:35'),
+(9500, '::1', '2014-04-15 09:12:16'),
+(9501, '::1', '2014-04-15 09:12:17'),
+(9502, '::1', '2014-04-15 09:12:18'),
+(9503, '::1', '2014-04-15 09:12:19'),
+(9504, '::1', '2014-04-15 09:12:19'),
+(9505, '::1', '2014-04-15 09:12:20'),
+(9506, '::1', '2014-04-15 09:12:21'),
+(9507, '::1', '2014-04-15 09:12:22'),
+(9508, '::1', '2014-04-15 09:12:22'),
+(9509, '::1', '2014-04-15 09:12:24'),
+(9510, '::1', '2014-04-15 09:12:24'),
+(9511, '::1', '2014-04-15 09:12:25'),
+(9512, '::1', '2014-04-15 09:12:26'),
+(9513, '::1', '2014-04-15 09:12:27'),
+(9514, '::1', '2014-04-15 09:12:28'),
+(9515, '::1', '2014-04-15 09:12:29'),
+(9516, '::1', '2014-04-15 09:12:30'),
+(9517, '::1', '2014-04-15 09:12:30'),
+(9518, '::1', '2014-04-15 09:12:33'),
+(9519, '::1', '2014-04-15 09:14:01'),
+(9520, '::1', '2014-04-15 09:14:02'),
+(9521, '::1', '2014-04-15 09:14:08'),
+(9522, '::1', '2014-04-15 09:14:10'),
+(9523, '::1', '2014-04-15 09:14:10'),
+(9524, '::1', '2014-04-15 09:14:12'),
+(9525, '::1', '2014-04-15 09:14:19'),
+(9526, '::1', '2014-04-15 09:14:19'),
+(9527, '::1', '2014-04-15 09:14:25'),
+(9528, '::1', '2014-04-15 09:14:26'),
+(9529, '::1', '2014-04-15 09:14:26'),
+(9530, '::1', '2014-04-15 09:15:01'),
+(9531, '::1', '2014-04-15 09:15:07'),
+(9532, '::1', '2014-04-15 09:15:07'),
+(9533, '::1', '2014-04-15 09:15:08'),
+(9534, '::1', '2014-04-15 09:15:09'),
+(9535, '::1', '2014-04-15 09:15:58'),
+(9536, '::1', '2014-04-15 09:16:06'),
+(9537, '::1', '2014-04-15 09:16:06'),
+(9538, '::1', '2014-04-15 09:16:08'),
+(9539, '::1', '2014-04-15 09:16:10'),
+(9540, '::1', '2014-04-15 09:16:14'),
+(9541, '::1', '2014-04-15 09:16:14'),
+(9542, '::1', '2014-04-15 09:16:15'),
+(9543, '::1', '2014-04-15 09:16:16'),
+(9544, '::1', '2014-04-15 09:16:29'),
+(9545, '::1', '2014-04-15 09:16:44'),
+(9546, '::1', '2014-04-15 09:16:51'),
+(9547, '::1', '2014-04-15 09:16:51'),
+(9548, '::1', '2014-04-15 09:16:54'),
+(9549, '::1', '2014-04-15 09:17:07'),
+(9550, '::1', '2014-04-15 09:17:07'),
+(9551, '::1', '2014-04-15 09:17:52'),
+(9552, '::1', '2014-04-15 09:18:01'),
+(9553, '::1', '2014-04-15 09:18:45'),
+(9554, '::1', '2014-04-15 09:18:48'),
+(9555, '::1', '2014-04-15 09:20:32'),
+(9556, '::1', '2014-04-15 09:20:58'),
+(9557, '::1', '2014-04-15 09:21:17'),
+(9558, '::1', '2014-04-15 09:21:43'),
+(9559, '::1', '2014-04-15 09:21:52'),
+(9560, '::1', '2014-04-15 09:22:01'),
+(9561, '::1', '2014-04-15 09:22:01'),
+(9562, '::1', '2014-04-15 09:22:05'),
+(9563, '::1', '2014-04-15 09:22:05'),
+(9564, '::1', '2014-04-15 09:22:09'),
+(9565, '::1', '2014-04-15 09:22:21'),
+(9566, '::1', '2014-04-15 09:22:22'),
+(9567, '::1', '2014-04-15 09:22:24'),
+(9568, '::1', '2014-04-15 09:22:27'),
+(9569, '::1', '2014-04-15 09:23:25'),
+(9570, '::1', '2014-04-15 09:23:25'),
+(9571, '::1', '2014-04-15 09:23:27'),
+(9572, '::1', '2014-04-15 09:23:27'),
+(9573, '::1', '2014-04-15 09:23:28'),
+(9574, '::1', '2014-04-15 09:23:28'),
+(9575, '::1', '2014-04-15 09:23:29'),
+(9576, '::1', '2014-04-15 09:23:29'),
+(9577, '::1', '2014-04-15 09:23:35'),
+(9578, '::1', '2014-04-15 09:23:38'),
+(9579, '::1', '2014-04-15 09:23:40'),
+(9580, '::1', '2014-04-15 09:23:42'),
+(9581, '::1', '2014-04-15 09:23:47'),
+(9582, '::1', '2014-04-15 09:23:53'),
+(9583, '::1', '2014-04-15 09:23:56'),
+(9584, '::1', '2014-04-15 09:24:10'),
+(9585, '::1', '2014-04-15 09:24:38'),
+(9586, '::1', '2014-04-15 09:24:40'),
+(9587, '::1', '2014-04-15 09:24:40'),
+(9588, '::1', '2014-04-15 09:24:42'),
+(9589, '::1', '2014-04-15 09:24:51'),
+(9590, '::1', '2014-04-15 09:25:00'),
+(9591, '::1', '2014-04-15 09:25:00'),
+(9592, '::1', '2014-04-15 09:25:03'),
+(9593, '::1', '2014-04-15 09:25:04'),
+(9594, '::1', '2014-04-15 09:26:23'),
+(9595, '::1', '2014-04-15 09:26:23'),
+(9596, '::1', '2014-04-15 09:26:26'),
+(9597, '::1', '2014-04-15 09:26:26'),
+(9598, '::1', '2014-04-15 09:26:27'),
+(9599, '::1', '2014-04-15 09:26:34'),
+(9600, '::1', '2014-04-15 09:26:34'),
+(9601, '::1', '2014-04-15 09:26:36'),
+(9602, '::1', '2014-04-15 09:26:40'),
+(9603, '::1', '2014-04-15 09:26:40'),
+(9604, '::1', '2014-04-15 09:26:47'),
+(9605, '::1', '2014-04-15 09:27:07'),
+(9606, '::1', '2014-04-15 09:28:32'),
+(9607, '::1', '2014-04-15 09:28:35'),
+(9608, '::1', '2014-04-15 09:28:37'),
+(9609, '::1', '2014-04-15 09:28:37'),
+(9610, '::1', '2014-04-15 09:28:37'),
+(9611, '::1', '2014-04-15 09:28:38'),
+(9612, '::1', '2014-04-15 09:28:41'),
+(9613, '::1', '2014-04-15 09:28:44'),
+(9614, '::1', '2014-04-15 09:28:44'),
+(9615, '::1', '2014-04-15 09:28:48'),
+(9616, '::1', '2014-04-15 09:29:19'),
+(9617, '::1', '2014-04-15 09:29:26'),
+(9618, '::1', '2014-04-15 09:29:33'),
+(9619, '::1', '2014-04-15 09:29:33'),
+(9620, '::1', '2014-04-15 09:29:34'),
+(9621, '::1', '2014-04-15 09:29:39'),
+(9622, '::1', '2014-04-15 09:29:41'),
+(9623, '::1', '2014-04-15 09:29:54'),
+(9624, '::1', '2014-04-15 09:29:58'),
+(9625, '::1', '2014-04-15 09:29:58'),
+(9626, '::1', '2014-04-15 09:30:00'),
+(9627, '::1', '2014-04-15 09:37:25'),
+(9628, '::1', '2014-04-15 09:37:26'),
+(9629, '::1', '2014-04-15 09:37:26'),
+(9630, '::1', '2014-04-15 09:37:32'),
+(9631, '::1', '2014-04-15 09:37:37'),
+(9632, '::1', '2014-04-15 09:37:37'),
+(9633, '::1', '2014-04-15 09:37:37'),
+(9634, '::1', '2014-04-15 09:37:37'),
+(9635, '::1', '2014-04-15 09:37:37'),
+(9636, '::1', '2014-04-15 09:37:37'),
+(9637, '::1', '2014-04-15 09:37:38'),
+(9638, '::1', '2014-04-15 09:37:40'),
+(9639, '::1', '2014-04-15 09:37:43'),
+(9640, '::1', '2014-04-15 09:37:44'),
+(9641, '::1', '2014-04-15 09:37:46'),
+(9642, '::1', '2014-04-15 09:37:46'),
+(9643, '::1', '2014-04-15 09:54:24'),
+(9644, '::1', '2014-04-15 09:54:24'),
+(9645, '::1', '2014-04-15 09:57:21'),
+(9646, '::1', '2014-04-15 09:57:24'),
+(9647, '::1', '2014-04-15 09:57:40'),
+(9648, '::1', '2014-04-15 09:58:14'),
+(9649, '::1', '2014-04-15 09:58:43'),
+(9650, '::1', '2014-04-15 09:58:55'),
+(9651, '::1', '2014-04-15 09:59:18'),
+(9652, '::1', '2014-04-15 09:59:25'),
+(9653, '::1', '2014-04-15 09:59:37'),
+(9654, '::1', '2014-04-15 10:02:05'),
+(9655, '::1', '2014-04-15 10:02:09'),
+(9656, '::1', '2014-04-15 10:02:53'),
+(9657, '::1', '2014-04-15 10:03:27'),
+(9658, '::1', '2014-04-15 10:04:33'),
+(9659, '::1', '2014-04-15 10:04:43'),
+(9660, '::1', '2014-04-15 10:04:46'),
+(9661, '::1', '2014-04-15 10:04:51'),
+(9662, '::1', '2014-04-15 10:04:57'),
+(9663, '::1', '2014-04-15 10:05:37'),
+(9664, '::1', '2014-04-15 10:05:47'),
+(9665, '::1', '2014-04-15 10:05:50'),
+(9666, '::1', '2014-04-15 10:05:53'),
+(9667, '::1', '2014-04-15 10:05:59'),
+(9668, '::1', '2014-04-15 10:06:01'),
+(9669, '::1', '2014-04-15 10:07:51'),
+(9670, '::1', '2014-04-15 10:08:29'),
+(9671, '::1', '2014-04-15 10:09:15'),
+(9672, '::1', '2014-04-15 10:09:21'),
+(9673, '::1', '2014-04-15 10:10:16'),
+(9674, '::1', '2014-04-15 10:26:39'),
+(9675, '::1', '2014-04-15 10:28:24'),
+(9676, '::1', '2014-04-15 13:46:01'),
+(9677, '::1', '2014-04-15 13:46:08'),
+(9678, '::1', '2014-04-15 13:46:17'),
+(9679, '::1', '2014-04-15 14:27:07'),
+(9680, '::1', '2014-04-15 16:55:01'),
+(9681, '::1', '2014-04-15 16:55:08'),
+(9682, '::1', '2014-04-15 16:55:11'),
+(9683, '::1', '2014-04-15 16:55:13'),
+(9684, '::1', '2014-04-15 16:55:14'),
+(9685, '::1', '2014-04-15 16:55:15'),
+(9686, '::1', '2014-04-15 16:55:15'),
+(9687, '::1', '2014-04-15 16:55:15'),
+(9688, '::1', '2014-04-15 16:55:15'),
+(9689, '::1', '2014-04-15 16:55:16'),
+(9690, '::1', '2014-04-15 16:55:17'),
+(9691, '::1', '2014-04-15 16:55:17'),
+(9692, '::1', '2014-04-15 16:55:18'),
+(9693, '::1', '2014-04-15 16:55:18'),
+(9694, '::1', '2014-04-15 16:55:19'),
+(9695, '::1', '2014-04-15 16:55:19'),
+(9696, '::1', '2014-04-15 16:55:20'),
+(9697, '::1', '2014-04-15 16:55:20'),
+(9698, '::1', '2014-04-15 16:55:20'),
+(9699, '::1', '2014-04-15 16:55:20'),
+(9700, '::1', '2014-04-15 16:55:20'),
+(9701, '::1', '2014-04-15 16:55:21'),
+(9702, '::1', '2014-04-15 16:55:21'),
+(9703, '::1', '2014-04-15 16:55:21'),
+(9704, '::1', '2014-04-15 16:55:21'),
+(9705, '::1', '2014-04-15 16:55:21'),
+(9706, '::1', '2014-04-15 16:55:22'),
+(9707, '::1', '2014-04-15 16:55:25');
 
 -- --------------------------------------------------------
 
@@ -14481,8 +14958,7 @@ CREATE TABLE IF NOT EXISTS `post` (
 
 INSERT INTO `post` (`id`, `city_id`, `member_id`, `category_sub_id`, `alias`, `title`, `address`, `desc_01`, `desc_02`, `desc_03`, `field_01`, `thumbnail`, `map`, `star`, `facility`, `review_rate`, `review_count`, `having_promo`, `rate_per_night`, `post_status`, `post_update`) VALUES
 (2, 169, 2, 16, 'Alias', '{"en":"Title English","ind":"Title Indonesia","mys":""}', 'Address', '{"en":"Description 1 English","ind":"Description 1 Indonesia","mys":""}', '{"en":"Description 2 English","ind":"Description 2 Indonesia","mys":""}', '{"en":"Description 3 English","ind":" Description 3 Indonesia","mys":""}', '{"en":"Field 1 English","ind":"Field 1 Indonesia","mys":""}', '2014/04/01/20140401_153758_7075.jpg', '{"en":"Map English 1<br>","ind":"Map Indonesia 2<br>","mys":""}', 0, '', 0, 0, 0, 10, 'draft', '0000-00-00 00:00:00'),
-(4, 897, 2, 8, 'my-nature', '{"en":"Air Terjun Coban Rais","ind":"Air Terjun Coban Rais","mys":"Air Terjun Coban Rais"}', 'My Address', '{"en":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","ind":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","mys":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus."}', '{"en":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","ind":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","mys":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus."}', '{"en":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","ind":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","mys":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus."}', '{"en":"Field 1","ind":"","mys":""}', '2014/04/04/20140404_092814_4375.jpg', '{"en":"","ind":"","mys":""}', 0, ';8;11;', 5, 3, 0, 80, 'draft', '0000-00-00 00:00:00'),
-(5, 3, 2, 13, 'american', '{"en":"My Title","ind":"Judul Saya","mys":""}', 'address', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '2014/04/01/20140401_153739_3212.jpg', '{"en":"","ind":"","mys":""}', 0, '', 0, 0, 0, 100, 'draft', '2014-04-11 09:04:47'),
+(4, 897, 2, 8, 'my-nature', '{"en":"Air Terjun Coban Rais","ind":"Air Terjun Coban Rais","mys":"Air Terjun Coban Rais"}', 'My Address', '{"en":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","ind":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","mys":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus."}', '{"en":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","ind":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","mys":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus."}', '{"en":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","ind":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus.","mys":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec semper lectus. Suspendisse placerat enim mauris, eget lobortis nisi egestas et. Donec elementum metus et mi aliquam eleifend. Suspendisse volutpat egestas rhoncus."}', '{"en":"Field 1","ind":"","mys":""}', '2014/04/04/20140404_092814_4375.jpg', '{"en":"","ind":"","mys":""}', 0, ';8;11;', 5, 3, 0, 80, 'approve', '0000-00-00 00:00:00'),
 (6, 1529, 2, 2, 'hotel-tugu', '{"en":"Hotel Tugu Malang","ind":"Hotel Tugu Malang","mys":"Hotel Tugu Malang"}', 'Hotel Tugu\nJl. Tugu no. 3\nMalang Indonesia', '{"en":"Malang, a city awarded as the loveliest town in South East Asia during the colonial times. Until this date it has remained one of Indonesia##003##s most beautiful cities, drifting along in an air of nostalgia. It is where old Dutch planters and civil servants used to retire to a life of ease and luxury, surrounded by hilly apple and tea plantations. It is also the departure point for an early morning trip to the magnificent Mt. Bromo.##001####001##Tugu Malang is located at the heart of the old town, looking out to the main monument of Indonesia##003##s struggle for independence and a beautiful lotus pond park.","ind":"Malang, a city awarded as the loveliest town in South East Asia during the colonial times. Until this date it has remained one of Indonesia##003##s most beautiful cities, drifting along in an air of nostalgia. It is where old Dutch planters and civil servants used to retire to a life of ease and luxury, surrounded by hilly apple and tea plantations. It is also the departure point for an early morning trip to the magnificent Mt. Bromo.##001####001##Tugu Malang is located at the heart of the old town, looking out to the main monument of Indonesia##003##s struggle for independence and a beautiful lotus pond park.","mys":"Malang, a city awarded as the loveliest town in South East Asia during the colonial times. Until this date it has remained one of Indonesia##003##s most beautiful cities, drifting along in an air of nostalgia. It is where old Dutch planters and civil servants used to retire to a life of ease and luxury, surrounded by hilly apple and tea plantations. It is also the departure point for an early morning trip to the magnificent Mt. Bromo.##001####001##Tugu Malang is located at the heart of the old town, looking out to the main monument of Indonesia##003##s struggle for independence and a beautiful lotus pond park."}', '{"en":"Tugu Malang houses a vast, priceless collection of antiques influenced by the Javanese Babah Peranakan (the hundreds-years-old mixed culture between the Chinese migrants in Java and the native Javanese). Tugu Malang is more than just a hotel; it has become most indigenous, most essential in experiencing the beautiful richness of the history of Java.","ind":"Tugu Malang houses a vast, priceless collection of antiques influenced by the Javanese Babah Peranakan (the hundreds-years-old mixed culture between the Chinese migrants in Java and the native Javanese). Tugu Malang is more than just a hotel; it has become most indigenous, most essential in experiencing the beautiful richness of the history of Java.","mys":"Tugu Malang houses a vast, priceless collection of antiques influenced by the Javanese Babah Peranakan (the hundreds-years-old mixed culture between the Chinese migrants in Java and the native Javanese). Tugu Malang is more than just a hotel; it has become most indigenous, most essential in experiencing the beautiful richness of the history of Java."}', '', '', '2014/04/04/20140404_085857_9088.jpg', '{"en":"","ind":"","mys":""}', 2, ';3;9;10;12;14;15;', 0, 0, 0, 150, 'approve', '0000-00-00 00:00:00'),
 (7, 1529, 2, 2, 'hotel-santika-malang', '{"en":"Hotel Santika Malang","ind":"Hotel Santika Malang","mys":"Hotel Santika Malang"}', 'Jalan Letjen Sutoyo No. 79\nMalang 65141 - INDONESIA\nPhone : (62-341) 405405\nFax : (62-341) 405500', '{"en":"Hotel Santika Premiere Malang is a refreshing interpretation of traditional Javanese design with a distinct modern twist. This smart four-star property is a comfortable base for corporate and leisure travellers whereby all needs are anticipated with exceptional facilities and services.","ind":"Hotel Santika Premiere Malang is a refreshing interpretation of traditional Javanese design with a distinct modern twist. This smart four-star property is a comfortable base for corporate and leisure travellers whereby all needs are anticipated with exceptional facilities and services.","mys":"Hotel Santika Premiere Malang is a refreshing interpretation of traditional Javanese design with a distinct modern twist. This smart four-star property is a comfortable base for corporate and leisure travellers whereby all needs are anticipated with exceptional facilities and services."}', '{"en":"Located in the centre of town, Hotel Santika Premiere Malang is just 15 minutes from the airport and is close to the commercial business district. Transportation can be easily arranged to visit local sites of interest or to just drive around and explore this agriculturally enriched area.","ind":"Located in the centre of town, Hotel Santika Premiere Malang is just 15 minutes from the airport and is close to the commercial business district. Transportation can be easily arranged to visit local sites of interest or to just drive around and explore this agriculturally enriched area.","mys":"Located in the centre of town, Hotel Santika Premiere Malang is just 15 minutes from the airport and is close to the commercial business district. Transportation can be easily arranged to visit local sites of interest or to just drive around and explore this agriculturally enriched area."}', '', '', '2014/04/04/20140404_085948_9087.jpg', '{"en":"<br>","ind":"<br>","mys":""}', 3, ';3;20;8;29;17;9;10;11;23;18;12;6;19;21;24;13;28;27;15;16;7;22;25;', 5, 1, 1, 250, 'approve', '0000-00-00 00:00:00'),
 (8, 1529, 2, 3, 'Lovender Guest House', '{"en":"Lovender Guest House","ind":"Lovender Guest House","mys":"Lovender Guest House"}', 'Jl. Lamongan No.12\nMalang, 65125  ', '{"en":"Lovender Guets House is located in downtown Malang. It is an ideal place to stay for tourists, business people, and families visiting the beautiful city of Malang. Lovender was design to perform a modern-classical concept. The guesthouse is situated close to restaurants, library, army museum and very popular Ijen Street.","ind":"Lovender Guets House is located in downtown Malang. It is an ideal place to stay for tourists, business people, and families visiting the beautiful city of Malang. Lovender was design to perform a modern-classical concept. The guesthouse is situated close to restaurants, library, army museum and very popular Ijen Street.","mys":"Lovender Guets House is located in downtown Malang. It is an ideal place to stay for tourists, business people, and families visiting the beautiful city of Malang. Lovender was design to perform a modern-classical concept. The guesthouse is situated close to restaurants, library, army museum and very popular Ijen Street."}', '{"en":"There are 12 rooms, with modern facilities and amenities, available. One can choose from Standard Rooms, Deluxe Rooms, Junior Suites and a President Suite which are tastefully decorated furnished in a blend of classical and contemporary design. ","ind":"There are 12 rooms, with modern facilities and amenities, available. One can choose from Standard Rooms, Deluxe Rooms, Junior Suites and a President Suite which are tastefully decorated furnished in a blend of classical and contemporary design. ","mys":"There are 12 rooms, with modern facilities and amenities, available. One can choose from Standard Rooms, Deluxe Rooms, Junior Suites and a President Suite which are tastefully decorated furnished in a blend of classical and contemporary design. "}', '', '', '2014/04/04/20140404_090015_5807.jpg', '{"en":"<br>","ind":"<br>","mys":""}', 4, '', 0, 0, 0, 350, 'approve', '0000-00-00 00:00:00'),
@@ -14497,7 +14973,7 @@ INSERT INTO `post` (`id`, `city_id`, `member_id`, `category_sub_id`, `alias`, `t
 (20, 1529, 2, 9, 'taman-rekreasi-selecta', '{"en":"Taman Rekreasi Selecta","ind":"Taman Rekreasi Selecta","mys":"Taman Rekreasi Selecta"}', 'Kota Batu Malang', '{"en":"Tempat wisata di Malang yang satu ini jangan sampai terlewatkan, disini terdapat banyak sekali bunga-bunga yang beraneka ragam dan macam-macam jenisnya yang berasal dari luar maupun dalam negeri.","ind":"Tempat wisata di Malang yang satu ini jangan sampai terlewatkan, disini terdapat banyak sekali bunga-bunga yang beraneka ragam dan macam-macam jenisnya yang berasal dari luar maupun dalam negeri.","mys":"Tempat wisata di Malang yang satu ini jangan sampai terlewatkan, disini terdapat banyak sekali bunga-bunga yang beraneka ragam dan macam-macam jenisnya yang berasal dari luar maupun dalam negeri."}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '2014/04/04/20140404_093344_8423.jpg', '{"en":"","ind":"","mys":""}', 0, '', 0, 0, 0, 0, 'approve', '0000-00-00 00:00:00'),
 (21, 1529, 2, 6, 'taman-rekreasi-sengkaling', '{"en":"Taman Rekreasi Sengkaling","ind":"Taman Rekreasi Sengkaling","mys":"Taman Rekreasi Sengkaling"}', 'Kota Malang\nJawa Timur\nIndonesia', '{"en":"Nah taman rekreasi sengakling ini berada tidak jauh dari Universitas Muhammadiyah Malang, pasti sudah banyak yang mengetahuinya, disini Anda bisa berlibur bersama keluarga yang menyenangkan.","ind":"Nah taman rekreasi sengakling ini berada tidak jauh dari Universitas Muhammadiyah Malang, pasti sudah banyak yang mengetahuinya, disini Anda bisa berlibur bersama keluarga yang menyenangkan.","mys":"Nah taman rekreasi sengakling ini berada tidak jauh dari Universitas Muhammadiyah Malang, pasti sudah banyak yang mengetahuinya, disini Anda bisa berlibur bersama keluarga yang menyenangkan."}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '2014/04/04/20140404_093516_4557.jpg', '{"en":"","ind":"","mys":""}', 0, '', 0, 0, 0, 0, 'approve', '0000-00-00 00:00:00'),
 (22, 1529, 2, 10, 'air-terjun-coban-rondo', '{"en":"Air Terjun Coban Rondo","ind":"Air Terjun Coban Rondo","mys":"Air Terjun Coban Rondo"}', 'Kota Batu\nMalang Indonesia', '{"en":"Suka dengan alam? ini adalah tempat liburan di malang yang tepat untuk Anda yang menyukai alam yang indah, udara yang segar dan hawa yang dingin akan menemani Anda ketika berlibur kesini ^_^.","ind":"Suka dengan alam? ini adalah tempat liburan di malang yang tepat untuk Anda yang menyukai alam yang indah, udara yang segar dan hawa yang dingin akan menemani Anda ketika berlibur kesini ^_^.","mys":"Suka dengan alam? ini adalah tempat liburan di malang yang tepat untuk Anda yang menyukai alam yang indah, udara yang segar dan hawa yang dingin akan menemani Anda ketika berlibur kesini ^_^."}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '2014/04/04/20140404_093638_8431.jpg', '{"en":"","ind":"","mys":""}', 0, '', 0, 0, 0, 0, 'approve', '0000-00-00 00:00:00'),
-(23, 1529, 3, 15, 'daun-pala-resto', '{"en":"Daun Pala Resto","ind":"Daun Pala Resto","mys":"Daun Pala Resto"}', 'Ruko Griya Santa Blok DR No.16 Jalan Soekarno Hatta\nMalang\nJawa Timur', '{"en":"Daun Pala merupakan salah satu resto yang menawarkan sajian menu tradisional cuisine di Malang. Beragam masakan tradisional seperti Rawon Iga, Sayur Asam, Sop Buntut, Cah Kangkung, dan lainnya bisa Ngalamers pesan di Daun Pala Resto ini. Menu andalan resto ini seperti Bandeng Tanpa Duri Bakar, Iga Bakar, dan Empal Cobek yang memiliki citarasa juara pun patut Ngalamers cicipi. Semua kelezatan citarasa tradisional tersebut bisa Ngalamers nikmati dengan harga yang relatif terjangkau. Ngalamers hanya perlu membayar sekitar Rp 10.000 hingga 25.000 per menunya.","ind":"Daun Pala merupakan salah satu resto yang menawarkan sajian menu tradisional cuisine di Malang. Beragam masakan tradisional seperti Rawon Iga, Sayur Asam, Sop Buntut, Cah Kangkung, dan lainnya bisa Ngalamers pesan di Daun Pala Resto ini. Menu andalan resto ini seperti Bandeng Tanpa Duri Bakar, Iga Bakar, dan Empal Cobek yang memiliki citarasa juara pun patut Ngalamers cicipi. Semua kelezatan citarasa tradisional tersebut bisa Ngalamers nikmati dengan harga yang relatif terjangkau. Ngalamers hanya perlu membayar sekitar Rp 10.000 hingga 25.000 per menunya.","mys":"Daun Pala merupakan salah satu resto yang menawarkan sajian menu tradisional cuisine di Malang. Beragam masakan tradisional seperti Rawon Iga, Sayur Asam, Sop Buntut, Cah Kangkung, dan lainnya bisa Ngalamers pesan di Daun Pala Resto ini. Menu andalan resto ini seperti Bandeng Tanpa Duri Bakar, Iga Bakar, dan Empal Cobek yang memiliki citarasa juara pun patut Ngalamers cicipi. Semua kelezatan citarasa tradisional tersebut bisa Ngalamers nikmati dengan harga yang relatif terjangkau. Ngalamers hanya perlu membayar sekitar Rp 10.000 hingga 25.000 per menunya."}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '2014/04/11/20140411_085845_9420.jpg', '{"en":"","ind":"","mys":""}', 0, '', 0, 0, 1, 0, 'approve', '2014-04-11 09:08:24');
+(23, 1529, 3, 15, 'daun-pala-resto', '{"en":"Daun Pala Resto","ind":"Daun Pala Resto","mys":"Daun Pala Resto"}', 'Ruko Griya Santa Blok DR No.16 Jalan Soekarno Hatta\nMalang\nJawa Timur', '{"en":"Daun Pala merupakan salah satu resto yang menawarkan sajian menu tradisional cuisine di Malang. Beragam masakan tradisional seperti Rawon Iga, Sayur Asam, Sop Buntut, Cah Kangkung, dan lainnya bisa Ngalamers pesan di Daun Pala Resto ini. Menu andalan resto ini seperti Bandeng Tanpa Duri Bakar, Iga Bakar, dan Empal Cobek yang memiliki citarasa juara pun patut Ngalamers cicipi. Semua kelezatan citarasa tradisional tersebut bisa Ngalamers nikmati dengan harga yang relatif terjangkau. Ngalamers hanya perlu membayar sekitar Rp 10.000 hingga 25.000 per menunya.","ind":"Daun Pala merupakan salah satu resto yang menawarkan sajian menu tradisional cuisine di Malang. Beragam masakan tradisional seperti Rawon Iga, Sayur Asam, Sop Buntut, Cah Kangkung, dan lainnya bisa Ngalamers pesan di Daun Pala Resto ini. Menu andalan resto ini seperti Bandeng Tanpa Duri Bakar, Iga Bakar, dan Empal Cobek yang memiliki citarasa juara pun patut Ngalamers cicipi. Semua kelezatan citarasa tradisional tersebut bisa Ngalamers nikmati dengan harga yang relatif terjangkau. Ngalamers hanya perlu membayar sekitar Rp 10.000 hingga 25.000 per menunya.","mys":"Daun Pala merupakan salah satu resto yang menawarkan sajian menu tradisional cuisine di Malang. Beragam masakan tradisional seperti Rawon Iga, Sayur Asam, Sop Buntut, Cah Kangkung, dan lainnya bisa Ngalamers pesan di Daun Pala Resto ini. Menu andalan resto ini seperti Bandeng Tanpa Duri Bakar, Iga Bakar, dan Empal Cobek yang memiliki citarasa juara pun patut Ngalamers cicipi. Semua kelezatan citarasa tradisional tersebut bisa Ngalamers nikmati dengan harga yang relatif terjangkau. Ngalamers hanya perlu membayar sekitar Rp 10.000 hingga 25.000 per menunya."}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '2014/04/15/20140415_091604_1949.jpg', '{"en":"","ind":"","mys":""}', 0, '', 5, 1, 1, 0, 'approve', '2014-04-11 09:08:24');
 
 -- --------------------------------------------------------
 
@@ -14576,16 +15052,22 @@ CREATE TABLE IF NOT EXISTS `post_gallery` (
   `thumbnail` varchar(50) NOT NULL,
   `post_date` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `post_gallery`
 --
 
 INSERT INTO `post_gallery` (`id`, `post_id`, `title`, `content`, `thumbnail`, `post_date`) VALUES
-(2, 6, 'Image 01', '', '2014/04/11/20140411_131136_3548.jpg', '0000-00-00 00:00:00'),
-(3, 6, 'Image 02', '', '2014/04/11/20140411_131341_7168.jpg', '0000-00-00 00:00:00'),
-(4, 6, 'Image 03', '', '2014/04/11/20140411_133334_1805.jpg', '0000-00-00 00:00:00');
+(2, 6, 'Image 01', '', '2014/04/04/20140411_131136_3548.jpg', '0000-00-00 00:00:00'),
+(3, 6, 'Image 02', '', '2014/04/04/20140411_131341_7168.jpg', '0000-00-00 00:00:00'),
+(4, 6, 'Image 03', '', '2014/04/04/20140411_133334_1805.jpg', '0000-00-00 00:00:00'),
+(5, 7, 'Front Garden', '', '2014/04/04/20140415_091134_2057.jpg', '2014-04-15 09:37:46'),
+(6, 7, 'Inner Room', '', '2014/04/04/20140414_150026_2225.jpg', '0000-00-00 00:00:00'),
+(7, 7, 'Front Office', '', '2014/04/04/20140414_150042_1372.jpg', '0000-00-00 00:00:00'),
+(8, 7, 'Pool', '', '2014/04/04/20140414_150111_7110.jpg', '0000-00-00 00:00:00'),
+(9, 7, 'Hall', '', '2014/04/04/20140414_150129_7909.jpg', '0000-00-00 00:00:00'),
+(10, 7, 'Restaurant', '', '2014/04/04/20140414_150149_5737.jpg', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -14598,15 +15080,15 @@ CREATE TABLE IF NOT EXISTS `post_tag` (
   `tag_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=113 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=122 ;
 
 --
 -- Dumping data for table `post_tag`
 --
 
 INSERT INTO `post_tag` (`id`, `tag_id`, `post_id`) VALUES
-(100, 7, 5),
-(99, 6, 5),
+(116, 7, 5),
+(115, 6, 5),
 (70, 6, 2),
 (104, 2, 3),
 (103, 1, 3),
@@ -14616,11 +15098,11 @@ INSERT INTO `post_tag` (`id`, `tag_id`, `post_id`) VALUES
 (87, 12, 20),
 (88, 13, 21),
 (89, 12, 22),
-(112, 9, 4),
-(111, 8, 4),
-(110, 7, 4),
-(109, 6, 4),
-(101, 14, 23);
+(121, 6, 4),
+(120, 7, 4),
+(119, 8, 4),
+(118, 9, 4),
+(117, 14, 23);
 
 -- --------------------------------------------------------
 
@@ -14639,17 +15121,18 @@ CREATE TABLE IF NOT EXISTS `post_traveler_photo` (
   `post_date` datetime NOT NULL,
   `post_status` varchar(50) NOT NULL COMMENT 'pending / approve / reject',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `post_traveler_photo`
 --
 
 INSERT INTO `post_traveler_photo` (`id`, `post_id`, `traveler_id`, `title`, `alias`, `content`, `thumbnail`, `post_date`, `post_status`) VALUES
-(3, 4, 1, '1', '1', '1', '2014/04/13/20140413_104348_3916.png', '2014-04-13 10:43:53', 'pending'),
-(4, 4, 1, '2', '2', '2', '2014/04/13/20140413_104356_4123.png', '2014-04-13 10:44:00', 'pending'),
-(5, 4, 1, '3', '3', '3', '2014/04/13/20140413_104402_7531.png', '2014-04-13 10:44:05', 'approve'),
-(7, 4, 1, '5', '5', '5', '2014/04/13/20140413_104413_6638.png', '2014-04-13 10:44:14', 'approve');
+(11, 4, 1, 'Panorama', 'panorama', 'Gambar Panorama', '2014/04/04/20140415_092651_8690.jpg', '2014-04-15 09:27:07', 'approve'),
+(12, 4, 1, 'Gambar Setapak', 'gambar-setapak', 'Jalan Menuju Air Terjun', '2014/04/04/20140415_092819_2089.png', '2014-04-15 09:28:32', 'approve'),
+(8, 23, 1, 'Menu Utama', 'menu-utama', 'Preview Menu Utama', '2014/04/04/20140415_092049_1508.jpg', '2014-04-15 09:20:58', 'approve'),
+(9, 23, 1, 'Soup Pala', 'soup-pala', 'Enak', '2014/04/04/20140415_092111_7662.jpg', '2014-04-15 09:21:17', 'approve'),
+(10, 23, 1, 'Sayur Soup', 'sayur-soup', 'Content Sayur Soup', '2014/04/04/20140415_092132_2877.jpg', '2014-04-15 09:21:43', 'approve');
 
 -- --------------------------------------------------------
 
@@ -14667,12 +15150,14 @@ CREATE TABLE IF NOT EXISTS `post_traveler_report` (
   `post_date` datetime NOT NULL,
   `status` varchar(50) NOT NULL COMMENT 'pending / done',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `post_traveler_report`
 --
 
+INSERT INTO `post_traveler_report` (`id`, `post_traveler_photo_id`, `name`, `email`, `topic`, `content`, `post_date`, `status`) VALUES
+(6, 12, 'First Name 1 1 2', 'dua@mail.com', 'Test', 'Report aja deh', '2014-04-15 09:29:54', 'pending');
 
 -- --------------------------------------------------------
 
@@ -14694,7 +15179,7 @@ CREATE TABLE IF NOT EXISTS `post_traveler_review` (
   `post_date` datetime NOT NULL,
   `post_status` varchar(50) NOT NULL COMMENT 'pending / approve / reject',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `post_traveler_review`
@@ -14704,7 +15189,8 @@ INSERT INTO `post_traveler_review` (`id`, `post_id`, `traveler_id`, `language_id
 (13, 4, 1, 1, 'rondo-pokoke-muantap-bro', 'Rondo!!.. pokoke muantap bro..', 4, 'Excellent place, friendly staff would def go there again', 'Wonderful!', '2014-01-02', '2014-04-13 09:14:20', 'approve'),
 (14, 4, 1, 2, 'great-experience', 'Great experience', 4, 'The view from our balcony in room # 409, was terrific. It was centrally located to everything on and around the port area. Wonderful service and everything was very clean. The breakfast was below average, although not bad. If back in Zante Town we would stay there again.', 'Recommended for Everyone', '2014-02-01', '2014-04-13 09:15:05', 'approve'),
 (15, 4, 1, 2, 'excelent-place', 'Excelent Place', 5, 'It is close to everything but if you go in the lower season the pool won''t be ready even though the temperature was quiet high already.', 'Wonderful!', '2014-04-01', '2014-04-13 09:15:43', 'approve'),
-(16, 7, 1, 1, 'hello-world', 'Hello World', 5, 'My review is pending', 'Wonderful!', '2014-04-01', '2014-04-13 20:20:46', 'approve');
+(16, 7, 1, 1, 'hello-world', 'Hello World', 5, 'My review is pending', 'Wonderful!', '2014-04-01', '2014-04-13 20:20:46', 'approve'),
+(19, 23, 1, 1, 'air-terjun-keren', 'Air Terjun Keren', 5, 'Air Terjun nya, embunnya, pemandangan yang bagus, pengen balik kesini lagi', 'Recommended for Everyone', '2014-04-01', '2014-04-14 15:35:11', 'approve');
 
 -- --------------------------------------------------------
 
@@ -16255,6 +16741,7 @@ CREATE TABLE IF NOT EXISTS `traveler` (
   `verify_email_key` varchar(75) NOT NULL,
   `thumbnail` varchar(75) NOT NULL,
   `provider` varchar(50) NOT NULL,
+  `provider_id` varchar(50) NOT NULL,
   `is_active` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
@@ -16263,9 +16750,9 @@ CREATE TABLE IF NOT EXISTS `traveler` (
 -- Dumping data for table `traveler`
 --
 
-INSERT INTO `traveler` (`id`, `city_id`, `email`, `alias`, `first_name`, `last_name`, `passwd`, `passwd_reset_key`, `address`, `phone`, `bb_pin`, `postal_code`, `user_about`, `user_info`, `register_date`, `verify_email`, `verify_email_key`, `thumbnail`, `provider`, `is_active`) VALUES
-(1, 1561, 'dua@mail.com', 'alias', 'First Name 1', '1 2', 'fe30fa79056939db8cbe99c8d601de74', '', '3 3', '412', '551', '5 5', '63', '74', '2014-03-31 00:00:00', 0, '', '2014/03/24/20140324_120833_9733.jpg', 'facebook 2', 1),
-(2, 0, 'solid@mail.com', 'solid', 'First Name', 'Last Name', 'fe30fa79056939db8cbe99c8d601de74', '', 'Address', 'Phone', '', '', '', '', '2014-04-10 15:08:52', 1, '', '', 'website trip', 1);
+INSERT INTO `traveler` (`id`, `city_id`, `email`, `alias`, `first_name`, `last_name`, `passwd`, `passwd_reset_key`, `address`, `phone`, `bb_pin`, `postal_code`, `user_about`, `user_info`, `register_date`, `verify_email`, `verify_email_key`, `thumbnail`, `provider`, `provider_id`, `is_active`) VALUES
+(1, 1561, 'dua@mail.com', 'alias', 'First Name 1', '1 2', 'fe30fa79056939db8cbe99c8d601de74', '', '3 3', '412', '551', '5 5', '63', '74', '2014-03-31 00:00:00', 0, '', '2014/03/24/20140324_120833_9733.jpg', 'facebook 2', '', 1),
+(2, 0, 'solid@mail.com', 'solid', 'First Name', 'Last Name', 'fe30fa79056939db8cbe99c8d601de74', '', 'Address', 'Phone', '', '', '', '', '2014-04-10 15:08:52', 1, '', '', 'website trip', '', 1);
 
 -- --------------------------------------------------------
 
@@ -16312,7 +16799,7 @@ CREATE TABLE IF NOT EXISTS `user_log` (
   `location` varchar(255) NOT NULL,
   `ip_remote` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=102 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=109 ;
 
 --
 -- Dumping data for table `user_log`
@@ -16419,7 +16906,14 @@ INSERT INTO `user_log` (`id`, `user_id`, `traveler_id`, `member_id`, `log_time`,
 (98, 0, 1, 0, '2014-04-13 19:28:04', 'localhost', '::1'),
 (99, 2, 0, 0, '2014-04-13 19:30:49', 'localhost', '::1'),
 (100, 0, 1, 0, '2014-04-13 20:20:09', 'localhost', '::1'),
-(101, 2, 0, 0, '2014-04-13 20:20:56', 'localhost', '::1');
+(101, 2, 0, 0, '2014-04-13 20:20:56', 'localhost', '::1'),
+(102, 2, 0, 0, '2014-04-14 14:59:08', 'localhost', '::1'),
+(103, 0, 1, 0, '2014-04-14 15:31:04', 'localhost', '::1'),
+(104, 2, 0, 0, '2014-04-14 15:32:44', 'localhost', '::1'),
+(105, 2, 0, 0, '2014-04-14 15:39:21', 'localhost', '::1'),
+(106, 2, 0, 0, '2014-04-15 08:42:03', 'localhost', '::1'),
+(107, 0, 1, 0, '2014-04-15 09:17:07', 'localhost', '::1'),
+(108, 2, 0, 0, '2014-04-15 09:22:01', 'localhost', '::1');
 
 -- --------------------------------------------------------
 
