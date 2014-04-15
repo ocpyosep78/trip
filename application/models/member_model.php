@@ -7,7 +7,7 @@ class member_model extends CI_Model {
         $this->field = array(
 			'id', 'city_id', 'email', 'alias', 'first_name', 'last_name', 'passwd', 'passwd_reset_key', 'address', 'phone', 'postal_code',
 			'user_about', 'user_info', 'register_date', 'membership_date', 'verify_email', 'verify_email_key', 'verify_address', 'thumbnail',
-			'provider', 'is_active', 'bb_pin'
+			'provider', 'provider_id', 'is_active', 'bb_pin'
 		);
     }
 
@@ -135,7 +135,9 @@ class member_model extends CI_Model {
 		
 		// thumbnail
 		$row['thumbnail_link'] = base_url('static/img/avatar.jpg');
-		if (isset($row['thumbnail'])) {
+		if (!empty($row['provider']) && !empty($row['provider_id']) && $row['provider'] == 'facebook') {
+			$row['thumbnail_link'] = 'https://graph.facebook.com/'.$row['provider_id'].'/picture';
+		} else if (isset($row['thumbnail'])) {
 			$file_path = $this->config->item('base_path').'/static/upload/'.$row['thumbnail'];
 			if (file_exists($file_path) && isset($row['thumbnail']) && !empty($row['thumbnail'])) {
 				$row['thumbnail_link'] = base_url('static/upload/'.$row['thumbnail']);
@@ -157,16 +159,27 @@ class member_model extends CI_Model {
 	}
 	
 	function sign_in($param = array()) {
+		// parameter
+		$param['login_facebook'] = (isset($param['login_facebook'])) ? $param['login_facebook'] : false;
+		
+		// member
 		$member = $this->get_by_id(array( 'email' => $param['email'], 'with_passwd' => true ));
 		
 		$result = array( 'status' => false, 'message' => '' );
-		if (count($member) == 0) {
+		if ($param['login_facebook']) {
+			$is_login = true;
+		} else if (count($member) == 0) {
 			$result['message'] = 'Sorry, Email cannot be found.';
 		} else if ($member['is_active'] == 0) {
 			$result['message'] = 'Sorry, your user is inactive';
 		} else if ($member['passwd'] != EncriptPassword($param['passwd'])) {
 			$result['message'] = 'Sorry, password did not match.';
 		} else if ($member['passwd'] == EncriptPassword($param['passwd'])) {
+			$is_login = true;
+		}
+		
+		// is login
+		if ($is_login) {
 			// update last login
 			$param['member_id'] = $member['id'];
 			$param['log_time'] = $this->config->item('current_datetime');

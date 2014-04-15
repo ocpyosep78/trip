@@ -35,7 +35,7 @@
 						or <a href="<?php echo base_url('register/traveler'); ?>">Register</a><br />
 						or login via
 						<div style="padding: 12px 0;">
-							<a href="<?php echo base_url('login/traveler/fb'); ?>">
+							<a href="<?php echo base_url('oathlogin/facebook_login.php?user_type=traveler'); ?>">
 								<img alt="Login with Facebook" src="<?php echo base_url('static/img/fb-login.png'); ?>" />
 							</a>
 						</div>

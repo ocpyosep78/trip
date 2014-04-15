@@ -8,7 +8,7 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
 	$db['default']['username'] = 'root';
 	$db['default']['password'] = '';
 	$db['default']['database'] = 'trip_db';
-} else if ($_SERVER['SERVER_NAME'] == 'suekarea.com') {
+} else if ($_SERVER['SERVER_NAME'] == 'suekarea.com' || $_SERVER['SERVER_NAME'] == 'www.suekarea.com') {
 	$db['default']['hostname'] = 'localhost';
 	$db['default']['username'] = 'suekare1_trip';
 	$db['default']['password'] = 'z[^StMr$;C1T';

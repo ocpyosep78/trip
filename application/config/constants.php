@@ -38,6 +38,11 @@ define('WEBSITE_TITLE',							'Website Trip');
 define('WEBSITE_ALIAS',							'website trip');
 define('WEBSITE_COOKIE',						'.suekarea.com');
 
+/*	FACEBOOK INFO */
+define('FB_APP_ID',								'674480649266643');
+define('FB_APP_SECRET',							'596a165dad8c22cfa86706877ca41554');
+define('FB_LOGIN_SUCCESS',						'http://suekarea.com/trip/login/traveler/fb');
+
 define('CATEGORY_HOTEL',						1);
 define('CATEGORY_DESTINATION',					2);
 define('CATEGORY_RESTAURANT',					3);

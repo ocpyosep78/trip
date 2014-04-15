@@ -1,7 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
 
-require 'facebook_lib/facebook.php';
-
 class oathlogin {
 	function __construct() {
 		$this->ci = get_instance();

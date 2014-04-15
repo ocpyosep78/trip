@@ -33,8 +33,12 @@
 					<div class="left">&nbsp;</div>
 					<div class="right">
 						or <a href="<?php echo base_url('register/member'); ?>">Register</a><br />
-						or login via<br /><br />
-						<img class="logo" alt="Travel Agency Logo" src="http://localhost/trip/trunk/static/theme/forest/images/logo.png" />
+						or login via
+						<div style="padding: 12px 0;">
+							<a href="<?php echo base_url('oathlogin/facebook_login.php?user_type=member'); ?>">
+								<img alt="Login with Facebook" src="<?php echo base_url('static/img/fb-login.png'); ?>" />
+							</a>
+						</div>
 					</div>
 					<div class="clearfix"></div>
 				</form>
