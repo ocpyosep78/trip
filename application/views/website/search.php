@@ -14,6 +14,7 @@
 	// array post
 	if (!empty($namelike)) {
 		$param_post = array(
+			'post_status' => 'approve',
 			'namelike' => $namelike,
 			'sort' => '[{"property":"title","direction":"ASC"}]',
 			'start' => ($page_active - 1) * $page_item,

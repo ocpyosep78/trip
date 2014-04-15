@@ -158,6 +158,7 @@ class post_model extends CI_Model {
 		$string_facility = (isset($param['array_facility'])) ? get_query_post_facility($param['array_facility']) : '';
 		$string_price_min = (isset($param['price_min'])) ? "AND post.rate_per_night >= '".$param['price_min']."'" : '';
 		$string_price_max = (isset($param['price_max'])) ? "AND post.rate_per_night <= '".$param['price_max']."'" : '';
+		$string_post_status = (isset($param['post_status'])) ? "AND post.post_status = '".$param['post_status']."'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'post.title ASC');
 		$string_limit = GetStringLimit($param);
@@ -179,11 +180,10 @@ class post_model extends CI_Model {
 				$string_namelike $string_star $string_member $string_filter
 				$string_category $string_category_sub $string_category_not_in
 				$string_city $string_region $string_country
-				$string_facility $string_price_min $string_price_max
+				$string_facility $string_price_min $string_price_max $string_post_status
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
-//		echo "<pre>$select_query</pre>"; exit;
         $select_result = mysql_query($select_query) or die(mysql_error());
 		while ( $row = mysql_fetch_assoc( $select_result ) ) {
 			$array[] = $this->sync($row, $param);

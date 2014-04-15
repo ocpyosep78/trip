@@ -28,12 +28,27 @@ class hotel_detail_model extends CI_Model {
        
         return $result;
     }
-
+	
+	function update_post($param) {
+		// check existing record
+		$row_check = $this->get_by_id(array( 'post_id' => $param['post_id'] ));
+		
+		// update current param
+		if (count($row_check) > 0) {
+			$param['id'] = $row_check['id'];
+		}
+		
+		// update it
+		$this->update($param);
+	}
+	
     function get_by_id($param) {
         $array = array();
        
         if (isset($param['id'])) {
             $select_query  = "SELECT * FROM ".HOTEL_DETAIL." WHERE id = '".$param['id']."' LIMIT 1";
+        } else if (isset($param['post_id'])) {
+            $select_query  = "SELECT * FROM ".HOTEL_DETAIL." WHERE post_id = '".$param['post_id']."' LIMIT 1";
         } 
        
         $select_result = mysql_query($select_query) or die(mysql_error());

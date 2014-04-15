@@ -9,6 +9,7 @@
 	
 	// array post
 	$param_post = array(
+		'post_status' => 'approve',
 		'sort' => '{"is_custom":"1","query":"RAND()"}',
 		'limit' => 3
 	);

@@ -49,6 +49,7 @@ class post_tag_model extends CI_Model {
 		
 		$string_tag = (isset($param['tag_id'])) ? "AND post_tag.tag_id = '".$param['tag_id']."'" : '';
 		$string_post = (isset($param['post_id'])) ? "AND post_tag.post_id = '".$param['post_id']."'" : '';
+		$string_post_status = (isset($param['post_status'])) ? "AND post.post_status = '".$param['post_status']."'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'title ASC');
 		$string_limit = GetStringLimit($param);
@@ -69,7 +70,7 @@ class post_tag_model extends CI_Model {
 			LEFT JOIN ".CITY." city ON city.id = post.city_id
 			LEFT JOIN ".REGION." region ON region.id = city.region_id
 			LEFT JOIN ".COUNTRY." country ON country.id = region.country_id
-			WHERE 1 $string_tag $string_post $string_filter
+			WHERE 1 $string_tag $string_post $string_post_status $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";

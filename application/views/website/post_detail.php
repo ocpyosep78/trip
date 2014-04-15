@@ -2,6 +2,13 @@
 	// post
 	$post = $this->post_model->get_by_id(array( 'city_alias' => $this->uri->segments[3], 'alias' => $this->uri->segments[4] ));
 	
+	// redirect
+	if (count($post) == 0 || $post['post_status'] != 'approve') {
+		header("HTTP/1.1 301 Moved Permanently");
+		header('Location: '.base_url());
+		exit;
+	}
+	
 	// post galery
 	$array_gallery = $this->post_gallery_model->get_array(array( 'post_id' => $post['id'] ));
 	
@@ -26,6 +33,12 @@
 	// promo
 	if ($post['having_promo']) {
 		$promo = $this->promo_model->get_by_id(array( 'post_id' => $post['id'], 'promo_status' => 'approve' ));
+	}
+	
+	// hotel detail
+	$post_detail = array();
+	if ($post['category_id'] == CATEGORY_HOTEL) {
+		$post_detail = $this->hotel_detail_model->get_by_id(array( 'post_id' => $post['id'] ));
 	}
 	
 	// breadcrub
@@ -67,22 +80,16 @@
 				<div id="inner">
 					<div id="caroufredsel_wrapper2">
 						<div id="carousel">
-							<img src="<?php echo base_url('static/theme/forest/images/details-slider/slide1.jpg'); ?>" alt=""/>
-							<img src="<?php echo base_url('static/theme/forest/images/details-slider/slide2.jpg'); ?>" alt=""/>
-							<img src="<?php echo base_url('static/theme/forest/images/details-slider/slide3.jpg'); ?>" alt=""/>
-							<img src="<?php echo base_url('static/theme/forest/images/details-slider/slide4.jpg'); ?>" alt=""/>
-							<img src="<?php echo base_url('static/theme/forest/images/details-slider/slide5.jpg'); ?>" alt=""/>
-							<img src="<?php echo base_url('static/theme/forest/images/details-slider/slide6.jpg'); ?>" alt=""/>						
+							<?php foreach ($array_gallery as $row) { ?>
+							<img src="<?php echo $row['link_thumbnail']; ?>" alt="<?php echo $row['title']; ?>" />
+							<?php } ?>						
 						</div>
 					</div>
 					<div id="pager-wrapper">
 						<div id="pager">
-							<img src="<?php echo base_url('static/theme/forest/images/details-slider/slide1.jpg" width="120" height="68'); ?>" alt=""/>
-							<img src="<?php echo base_url('static/theme/forest/images/details-slider/slide2.jpg" width="120" height="68'); ?>" alt=""/>
-							<img src="<?php echo base_url('static/theme/forest/images/details-slider/slide3.jpg" width="120" height="68'); ?>" alt=""/>
-							<img src="<?php echo base_url('static/theme/forest/images/details-slider/slide4.jpg" width="120" height="68'); ?>" alt=""/>
-							<img src="<?php echo base_url('static/theme/forest/images/details-slider/slide5.jpg" width="120" height="68'); ?>" alt=""/>
-							<img src="<?php echo base_url('static/theme/forest/images/details-slider/slide6.jpg" width="120" height="68'); ?>" alt=""/>						
+							<?php foreach ($array_gallery as $row) { ?>
+							<img src="<?php echo $row['link_thumbnail']; ?>" width="120" height="68" alt="<?php echo $row['title']; ?>" />
+							<?php } ?>
 						</div>
 					</div>
 				</div>
@@ -170,6 +177,11 @@
 					<?php } else { ?>
 					<li class="active"><a data-toggle="tab" href="#summary"><span class="summary"></span><span class="hidetext">Summary</span>&nbsp;</a></li>
 					<li><a data-toggle="tab" href="#reviews"><span class="reviews"></span><span class="hidetext">Reviews</span>&nbsp;</a></li>
+					<?php } ?>
+					
+					<!--   how to booking   -->
+					<?php if (count($post_detail) > 0) { ?>
+					<li><a data-toggle="tab" href="#how-booking"><span class="rates"></span><span class="hidetext">How to Booking</span>&nbsp;</a></li>
 					<?php } ?>
 					
 					<!--   promo   -->
@@ -312,6 +324,16 @@
 							</div>
 						</div>
 						<div class="clearfix"></div>
+					</div>
+					<?php } ?>
+					
+					<!--   how to booking   -->
+					<?php if (count($post_detail) > 0) { ?>
+					<div id="how-booking" class="tab-pane fade">
+						<div class="hpadding20">
+							<?php echo nl2br($post_detail['booking']); ?>
+						</div>
+						<div class="line2"></div><br />
 					</div>
 					<?php } ?>
 					

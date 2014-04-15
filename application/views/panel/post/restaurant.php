@@ -418,8 +418,10 @@ $(document).ready(function() {
 				
 				Func.ajax({ url: web.base + 'panel/post/restaurant/action', param: { action: 'get_by_id', tag_include: true, id: record.id }, callback: function(result) {
 					// post status
-					if (Func.InArray(result.post_status, ['approve', 'reject'])) {
-						result.post_status = 'draft';
+					if (page.data.user.user_type_id == page.data.USER_TYPE_MEMBER) {
+						if (Func.InArray(result.post_status, ['approve', 'reject'])) {
+							result.post_status = 'draft';
+						}
 					}
 					
 					Func.populate({ cnt: '#cnt-form-main', record: result });

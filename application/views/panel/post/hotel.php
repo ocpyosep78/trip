@@ -251,172 +251,174 @@
 	
 	<?php $this->load->view( 'panel/common/header' ); ?>
 	
-    <section>
-		<section class="hbox stretch">
-			<?php $this->load->view( 'panel/common/sidebar' ); ?>
-			
-			<section id="content">
-				<section class="vbox">
-					<section class="scrollable padder">
-						<div class="m-b-md">
-							<h3 class="m-b-none">Hotel</h3>
-						</div>
-						
-						<section class="panel panel-default panel-table">
-							<header class="header bg-white b-b clearfix">
-								<div class="row m-t-sm">
-									<div class="col-sm-8 m-b-xs">
-										<a class="btn btn-sm btn-default show-dialog"><i class="fa fa-plus"></i> Create</a>
-									</div>
-									<div class="col-sm-4 m-b-xs">
-										<div class="input-group">
-											<input type="text" class="input-sm form-control input-keyword" placeholder="Search" />
-											<span class="input-group-btn">
-												<button class="btn btn-sm btn-default btn-search" type="button">Go!</button>
-											</span>
-										</div>
+    <section><section class="hbox stretch">
+		<?php $this->load->view( 'panel/common/sidebar' ); ?>
+		
+		<section id="content">
+			<section class="vbox">
+				<section class="scrollable padder">
+					<div class="m-b-md">
+						<h3 class="m-b-none">Hotel</h3>
+					</div>
+					
+					<section class="panel panel-default panel-table">
+						<header class="header bg-white b-b clearfix">
+							<div class="row m-t-sm">
+								<div class="col-sm-8 m-b-xs">
+									<a class="btn btn-sm btn-default show-dialog"><i class="fa fa-plus"></i> Create</a>
+								</div>
+								<div class="col-sm-4 m-b-xs">
+									<div class="input-group">
+										<input type="text" class="input-sm form-control input-keyword" placeholder="Search" />
+										<span class="input-group-btn">
+											<button class="btn btn-sm btn-default btn-search" type="button">Go!</button>
+										</span>
 									</div>
 								</div>
-							</header>
-							
-							<div class="table-responsive">
-								<table class="table table-striped m-b-none" data-ride="datatable" id="datatable">
-								<thead>
-									<tr>
-										<th width="15%">Category</th>
-										<th width="15%">Sub Category</th>
-										<th width="30%">Title</th>
-										<th width="10%">Update Time</th>
-										<th width="15%">Status</th>
-										<th width="15%">&nbsp;</th>
-									</tr>
-								</thead>
-								<tbody></tbody>
-								</table>
 							</div>
-						</section>
+						</header>
 						
-						<section class="panel panel-default panel-form hide" id="cnt-form-main">
-							<header class="panel-heading font-bold">Form Hotel</header>
-							<div class="panel-body">
-								<form class="bs-example form-horizontal">
-									<input type="hidden" name="action" value="update" />
-									<input type="hidden" name="id" value="0" />
-									<input type="hidden" name="member_id" value="0" />
-									
-									<div class="form-group input-member">
-										<label class="col-lg-2 control-label">Member</label>
-										<div class="col-lg-10 cnt-typeahead"><input type="text" name="full_name" class="form-control member-typeahead" placeholder="Member" data-required="true" /></div>
+						<div class="table-responsive">
+							<table class="table table-striped m-b-none" data-ride="datatable" id="datatable">
+							<thead>
+								<tr>
+									<th width="15%">Category</th>
+									<th width="15%">Sub Category</th>
+									<th width="30%">Title</th>
+									<th width="10%">Update Time</th>
+									<th width="15%">Status</th>
+									<th width="15%">&nbsp;</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+							</table>
+						</div>
+					</section>
+					
+					<section class="panel panel-default panel-form hide" id="cnt-form-main">
+						<header class="panel-heading font-bold">Form Hotel</header>
+						<div class="panel-body">
+							<form class="bs-example form-horizontal">
+								<input type="hidden" name="action" value="update" />
+								<input type="hidden" name="id" value="0" />
+								<input type="hidden" name="member_id" value="0" />
+								
+								<div class="form-group input-member">
+									<label class="col-lg-2 control-label">Member</label>
+									<div class="col-lg-10 cnt-typeahead"><input type="text" name="full_name" class="form-control member-typeahead" placeholder="Member" data-required="true" /></div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-2 control-label">Sub Category</label>
+									<div class="col-lg-10">
+										<select name="category_sub_id" class="form-control" data-required="true">
+											<?php echo ShowOption(array( 'Array' => $array_category_sub )); ?>
+										</select>
 									</div>
-									<div class="form-group">
-										<label class="col-lg-2 control-label">Sub Category</label>
-										<div class="col-lg-10">
-											<select name="category_sub_id" class="form-control" data-required="true">
-												<?php echo ShowOption(array( 'Array' => $array_category_sub )); ?>
-											</select>
-										</div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-2 control-label">Alias</label>
+									<div class="col-lg-10"><input type="text" name="alias" class="form-control" placeholder="Alias" data-required="true" /></div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-2 control-label">Address</label>
+									<div class="col-lg-10"><textarea name="address" class="form-control" placeholder="Address" data-required="true"></textarea></div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-2 control-label">Status</label>
+									<div class="col-lg-10"><select name="post_status" class="form-control" data-required="true">
+										<option value="">-</option>
+										<option value="draft">draft</option>
+										<option value="request approve">request approve</option>
+										<?php if (in_array($user['user_type_id'], array(USER_TYPE_ADMINISTRATOR, USER_TYPE_EDITOR))) { ?>
+										<option value="approve">approve</option>
+										<option value="reject">reject</option>
+										<?php } ?>
+									</select></div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-2 control-label">Country</label>
+									<div class="col-lg-10">
+										<select name="country_id" class="form-control" data-required="true">
+											<?php echo ShowOption(array( 'Array' => $array_country )); ?>
+										</select>
 									</div>
-									<div class="form-group">
-										<label class="col-lg-2 control-label">Alias</label>
-										<div class="col-lg-10"><input type="text" name="alias" class="form-control" placeholder="Alias" data-required="true" /></div>
-									</div>
-									<div class="form-group">
-										<label class="col-lg-2 control-label">Address</label>
-										<div class="col-lg-10"><textarea name="address" class="form-control" placeholder="Address" data-required="true"></textarea></div>
-									</div>
-									<div class="form-group">
-										<label class="col-lg-2 control-label">Status</label>
-										<div class="col-lg-10"><select name="post_status" class="form-control" data-required="true">
+								</div>
+								<div class="form-group">
+									<label class="col-lg-2 control-label">Region</label>
+									<div class="col-lg-10">
+										<select name="region_id" class="form-control" data-required="true">
 											<option value="">-</option>
-											<option value="draft">draft</option>
-											<option value="request approve">request approve</option>
-											<?php if (in_array($user['user_type_id'], array(USER_TYPE_ADMINISTRATOR, USER_TYPE_EDITOR))) { ?>
-											<option value="approve">approve</option>
-											<option value="reject">reject</option>
-											<?php } ?>
-										</select></div>
+										</select>
 									</div>
-									<div class="form-group">
-										<label class="col-lg-2 control-label">Country</label>
-										<div class="col-lg-10">
-											<select name="country_id" class="form-control" data-required="true">
-												<?php echo ShowOption(array( 'Array' => $array_country )); ?>
-											</select>
-										</div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-2 control-label">City</label>
+									<div class="col-lg-10">
+										<select name="city_id" class="form-control" data-required="true">
+											<option value="">-</option>
+										</select>
 									</div>
-									<div class="form-group">
-										<label class="col-lg-2 control-label">Region</label>
-										<div class="col-lg-10">
-											<select name="region_id" class="form-control" data-required="true">
-												<option value="">-</option>
-											</select>
-										</div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-2 control-label">Star</label>
+									<div class="col-lg-10">
+										<select name="star" class="form-control">
+											<?php echo ShowOption(array( 'Array' => $array_hotel_star )); ?>
+										</select>
 									</div>
-									<div class="form-group">
-										<label class="col-lg-2 control-label">City</label>
-										<div class="col-lg-10">
-											<select name="city_id" class="form-control" data-required="true">
-												<option value="">-</option>
-											</select>
-										</div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-2 control-label">Tag</label>
+									<div class="col-lg-10"><input type="text" name="tag_content" class="form-control" placeholder="Tag" /></div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-2 control-label">Thumbnail</label>
+									<div class="col-lg-7">
+										<input type="text" name="thumbnail" class="form-control" placeholder="Thumbnail" />
 									</div>
-									<div class="form-group">
-										<label class="col-lg-2 control-label">Star</label>
-										<div class="col-lg-10">
-											<select name="star" class="form-control">
-												<?php echo ShowOption(array( 'Array' => $array_hotel_star )); ?>
-											</select>
-										</div>
+									<div class="col-lg-3">
+										<button type="button" class="btn btn-default browse-thumbnail">Select Picture</button>
 									</div>
-									<div class="form-group">
-										<label class="col-lg-2 control-label">Tag</label>
-										<div class="col-lg-10"><input type="text" name="tag_content" class="form-control" placeholder="Tag" /></div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-2 control-label">How to book</label>
+									<div class="col-lg-10"><textarea name="booking" class="form-control" placeholder="How to book"></textarea></div>
+								</div>
+								<div class="form-group center post-detail">
+									<input type="button" class="btn btn-default show-gallery" value="Gallery" />
+									<input type="button" class="btn btn-default show-booking" value="Booking" />
+									<input type="button" class="btn btn-default show-amenity" value="Room Amenities" />
+								</div>
+								
+								<header class="panel-heading bg-light"><ul class="nav nav-tabs nav-justified">
+									<?php foreach ($array_language as $key => $row) { ?>
+									<?php $class_active = (empty($key)) ? 'active' : ''; ?>
+									<li class="<?php echo $class_active; ?>"><a href="#language-<?php echo $row['code']; ?>" data-toggle="tab"><?php echo $row['title']; ?></a></li>
+									<?php } ?>
+								</ul></header>
+								<div class="panel-body"><div class="tab-content">
+									<?php foreach ($array_language as $key => $row) { ?>
+									<?php $class_active = (empty($key)) ? 'active' : ''; ?>
+									<div class="tab-pane <?php echo $class_active; ?>" id="language-<?php echo $row['code']; ?>" data-code="<?php echo $row['code']; ?>"><?php echo $row['title']; ?></div>
+									<?php } ?>
+								</div></div>
+								
+								<hr />
+								<div class="form-group">
+									<div class="col-lg-offset-2 col-lg-10">
+										<button class="btn btn-sm btn-primary" type="button">Cancel</button>
+										<button class="btn btn-sm btn-info" type="submit">Submit</button>
 									</div>
-									<div class="form-group">
-										<label class="col-lg-2 control-label">Thumbnail</label>
-										<div class="col-lg-7">
-											<input type="text" name="thumbnail" class="form-control" placeholder="Thumbnail" />
-										</div>
-										<div class="col-lg-3">
-											<button type="button" class="btn btn-default browse-thumbnail">Select Picture</button>
-										</div>
-									</div>
-									<div class="form-group center post-detail">
-										<input type="button" class="btn btn-default show-gallery" value="Gallery" />
-										<input type="button" class="btn btn-default show-booking" value="Booking" />
-										<input type="button" class="btn btn-default show-amenity" value="Room Amenities" />
-									</div>
-									
-									<header class="panel-heading bg-light"><ul class="nav nav-tabs nav-justified">
-										<?php foreach ($array_language as $key => $row) { ?>
-										<?php $class_active = (empty($key)) ? 'active' : ''; ?>
-										<li class="<?php echo $class_active; ?>"><a href="#language-<?php echo $row['code']; ?>" data-toggle="tab"><?php echo $row['title']; ?></a></li>
-										<?php } ?>
-									</ul></header>
-									<div class="panel-body"><div class="tab-content">
-										<?php foreach ($array_language as $key => $row) { ?>
-										<?php $class_active = (empty($key)) ? 'active' : ''; ?>
-										<div class="tab-pane <?php echo $class_active; ?>" id="language-<?php echo $row['code']; ?>" data-code="<?php echo $row['code']; ?>"><?php echo $row['title']; ?></div>
-										<?php } ?>
-									</div></div>
-									
-									<hr />
-									<div class="form-group">
-										<div class="col-lg-offset-2 col-lg-10">
-											<button class="btn btn-sm btn-primary" type="button">Cancel</button>
-											<button class="btn btn-sm btn-info" type="submit">Submit</button>
-										</div>
-									</div>
-								</form>
-							</div>
-						</section>
+								</div>
+							</form>
+						</div>
 					</section>
 				</section>
-				
-				<a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
 			</section>
+			
+			<a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
 		</section>
-    </section>
+	</section></section>
 </section>
 
 <script>
@@ -563,8 +565,10 @@ $(document).ready(function() {
 				
 				Func.ajax({ url: web.base + 'panel/post/hotel/action', param: { action: 'get_by_id', tag_include: true, id: record.id }, callback: function(result) {
 					// post status
-					if (Func.InArray(result.post_status, ['approve', 'reject'])) {
-						result.post_status = 'draft';
+					if (page.data.user.user_type_id == page.data.USER_TYPE_MEMBER) {
+						if (Func.InArray(result.post_status, ['approve', 'reject'])) {
+							result.post_status = 'draft';
+						}
 					}
 					
 					Func.populate({ cnt: '#cnt-form-main', record: result });

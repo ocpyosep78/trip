@@ -144,7 +144,7 @@
 				<div class="hpadding20">
 					<?php foreach ($array_facility as $row) { ?>
 					<div class="checkbox">
-						<label><input type="checkbox" name="facility_id[]" value="<?php echo $row['facility_id']; ?>" /> <?php echo $row['facility_text']; ?></label>
+						<label><input type="checkbox" name="facility_id[]" value="<?php echo $row['facility_id']; ?>" /> <?php echo $row['facility_title_select']; ?></label>
 					</div>
 					<?php } ?>
 				</div>

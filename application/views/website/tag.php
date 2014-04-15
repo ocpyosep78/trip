@@ -17,6 +17,7 @@
 	if (count($tag) > 0) {
 		$param_post = array(
 			'tag_id' => $tag['id'],
+			'post_status' => 'approve',
 			'sort' => '[{"property":"title","direction":"ASC"}]',
 			'start' => ($page_active - 1) * $page_item,
 			'limit' => $page_item

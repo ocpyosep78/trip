@@ -3,6 +3,7 @@
 	$page_item = (isset($_POST['page_item'])) ? $_POST['page_item'] : 9;
 	$page_active = (isset($_POST['page_active'])) ? $_POST['page_active'] : 1;
 	$param_post = array(
+		'post_status' => 'approve',
 		'start' => ($page_active - 1) * $page_item,
 		'limit' => $page_item
 	);

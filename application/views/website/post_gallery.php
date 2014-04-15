@@ -94,7 +94,7 @@
 					<?php } else { ?>
 					<div id="caroufredsel_wrapper2">
 						<div id="carousel">
-							<img src="http://localhost/trip/trunk/static/theme/forest/images/logo.png" style="width: 100%; height: 80%;" alt=""/>
+							<img src="<?php echo base_url('static/img/no-image-available.gif'); ?>" style="width: 100%; height: 80%;" alt=""/>
 						</div>
 					</div>
 					<?php } ?>

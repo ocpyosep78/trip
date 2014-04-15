@@ -173,7 +173,7 @@ $(document).ready(function() {
 	
 	// grid
 	var param = {
-		id: 'datatable', aaSorting: [[ 3, 'DESC' ]],
+		id: 'datatable', aaSorting: [[ 2, 'DESC' ]],
 		source: window.location.href + '/grid',
 		column: [ { }, { }, { }, { }, { bSortable: false, sClass: 'center', sWidth: '15%' } ],
 		callback: function() {

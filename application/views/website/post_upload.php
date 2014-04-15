@@ -41,11 +41,11 @@
 					<input type="hidden" name="thumbnail" value="" />
 					
 					<div style="padding: 0 0 20px 0; text-align: center;">
-						<img src="<?php echo base_url('static/img/browse-photo.png'); ?>" style="width: 250px;" class="browse-thumbnail" />
+						<img src="<?php echo base_url('static/img/browse-photo.png'); ?>" style="width: 250px;" class="browse-thumbnail" title="Click to submit your photo" />
 					</div>
 					
 					<div class="left">Title</div>
-					<div class="right"><input type="text" name="title" class="form-control wh70percent" placeholder="Title" /></div>
+					<div class="right"><input type="text" name="title" class="form-control wh70percent" placeholder="Title" maxlength="50" /></div>
 					<div class="clearfix"></div>
 					<div class="left">Content</div>
 					<div class="right"><textarea name="content" class="form-control wh70percent" rows="3" placeholder="Content"></textarea></div>

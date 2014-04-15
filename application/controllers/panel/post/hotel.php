@@ -70,6 +70,12 @@ class hotel extends PANEL_Controller {
 			}
 			
 			$result = $this->post_model->update($_POST);
+			
+			// hotel detail
+			$param_detail['post_id'] = $result['id'];
+			$param_detail['booking'] = $_POST['booking'];
+			$this->hotel_detail_model->update_post($param_detail);
+			
 		} else if ($action == 'get_by_id') {
 			$result = $this->post_model->get_by_id(array( 'id' => $_POST['id'], 'tag_include' => @$_POST['tag_include'] ));
 		} else if ($action == 'delete') {
@@ -94,6 +100,7 @@ class hotel extends PANEL_Controller {
 		
 		// gallery
 		else if ($action == 'gallery_update') {
+			$_POST['post_date'] = $this->config->item('current_datetime');
 			$result = $this->post_gallery_model->update($_POST);
 		} else if ($action == 'gallery_get_by_id') {
 			$result = $this->post_gallery_model->get_by_id(array( 'id' => $_POST['id'] ));

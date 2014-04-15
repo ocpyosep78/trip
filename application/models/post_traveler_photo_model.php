@@ -26,6 +26,9 @@ class post_traveler_photo_model extends CI_Model {
             $result['message'] = 'Data successfully updated.';
         }
        
+		// update size
+		$this->resize_image($param);
+		
         return $result;
     }
 
@@ -189,5 +192,15 @@ class post_traveler_photo_model extends CI_Model {
 		}
 		
 		return $row;
+	}
+	
+	function resize_image($param) {
+		if (!empty($param['thumbnail'])) {
+			$image_path = $this->config->item('base_path') . '/static/upload/';
+			$image_source = $image_path . $param['thumbnail'];
+			$image_result = $image_source;
+			
+			ImageResize($image_source, $image_result, 750, 475, 1);
+		}
 	}
 }

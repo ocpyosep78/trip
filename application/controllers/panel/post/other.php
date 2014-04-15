@@ -71,6 +71,7 @@ class other extends PANEL_Controller {
 		
 		// gallery
 		else if ($action == 'gallery_update') {
+			$_POST['post_date'] = $this->config->item('current_datetime');
 			$result = $this->post_gallery_model->update($_POST);
 		} else if ($action == 'gallery_get_by_id') {
 			$result = $this->post_gallery_model->get_by_id(array( 'id' => $_POST['id'] ));
