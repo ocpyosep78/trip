@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2014 at 05:12 PM
+-- Generation Time: Apr 16, 2014 at 11:48 AM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -4979,7 +4979,7 @@ CREATE TABLE IF NOT EXISTS `ip_log` (
   `ip_address` varchar(50) NOT NULL,
   `request_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9708 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9709 ;
 
 --
 -- Dumping data for table `ip_log`
@@ -14698,7 +14698,8 @@ INSERT INTO `ip_log` (`id`, `ip_address`, `request_time`) VALUES
 (9704, '::1', '2014-04-15 16:55:21'),
 (9705, '::1', '2014-04-15 16:55:21'),
 (9706, '::1', '2014-04-15 16:55:22'),
-(9707, '::1', '2014-04-15 16:55:25');
+(9707, '::1', '2014-04-15 16:55:25'),
+(9708, '::1', '2014-04-16 08:05:54');
 
 -- --------------------------------------------------------
 
@@ -14797,6 +14798,7 @@ CREATE TABLE IF NOT EXISTS `member` (
   `verify_address` int(11) NOT NULL,
   `thumbnail` varchar(75) NOT NULL,
   `provider` varchar(50) NOT NULL,
+  `provider_id` varchar(50) NOT NULL,
   `is_active` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
@@ -14805,9 +14807,9 @@ CREATE TABLE IF NOT EXISTS `member` (
 -- Dumping data for table `member`
 --
 
-INSERT INTO `member` (`id`, `city_id`, `email`, `alias`, `first_name`, `last_name`, `passwd`, `passwd_reset_key`, `address`, `phone`, `bb_pin`, `postal_code`, `user_about`, `user_info`, `register_date`, `membership_date`, `verify_email`, `verify_email_key`, `verify_address`, `thumbnail`, `provider`, `is_active`) VALUES
-(2, 1529, 'satu@mail.com', 'satu', 'Herry', 'Satrio', 'fe30fa79056939db8cbe99c8d601de74', '', 'Sukun Malang', '034111', 'AXSW22', '65824', 'User About 343', 'User Info 454', '2014-01-15 00:00:00', '2015-04-09', 0, '', 1, '2014/04/09/20140409_142341_9125.jpg', 'facebook', 1),
-(3, 0, 'mail@mail.com', 'mailq', 'satu', 'dua', 'fe30fa79056939db8cbe99c8d601de74', '', 'address', 'phone', '', '', '', '', '2014-04-10 15:28:37', '0000-00-00', 1, '', 0, '', 'website trip', 1);
+INSERT INTO `member` (`id`, `city_id`, `email`, `alias`, `first_name`, `last_name`, `passwd`, `passwd_reset_key`, `address`, `phone`, `bb_pin`, `postal_code`, `user_about`, `user_info`, `register_date`, `membership_date`, `verify_email`, `verify_email_key`, `verify_address`, `thumbnail`, `provider`, `provider_id`, `is_active`) VALUES
+(2, 1529, 'satu@mail.com', 'satu', 'Herry', 'Satrio', 'fe30fa79056939db8cbe99c8d601de74', '', 'Sukun Malang', '034111', 'AXSW22', '65824', 'User About 343', 'User Info 454', '2014-01-15 00:00:00', '2015-04-09', 0, '', 1, '2014/04/09/20140409_142341_9125.jpg', 'facebook', '', 1),
+(3, 0, 'mail@mail.com', 'mailq', 'satu', 'dua', 'fe30fa79056939db8cbe99c8d601de74', '', 'address', 'phone', '', '', '', '', '2014-04-10 15:28:37', '0000-00-00', 1, '', 0, '', 'website trip', '', 1);
 
 -- --------------------------------------------------------
 
@@ -14973,7 +14975,7 @@ INSERT INTO `post` (`id`, `city_id`, `member_id`, `category_sub_id`, `alias`, `t
 (20, 1529, 2, 9, 'taman-rekreasi-selecta', '{"en":"Taman Rekreasi Selecta","ind":"Taman Rekreasi Selecta","mys":"Taman Rekreasi Selecta"}', 'Kota Batu Malang', '{"en":"Tempat wisata di Malang yang satu ini jangan sampai terlewatkan, disini terdapat banyak sekali bunga-bunga yang beraneka ragam dan macam-macam jenisnya yang berasal dari luar maupun dalam negeri.","ind":"Tempat wisata di Malang yang satu ini jangan sampai terlewatkan, disini terdapat banyak sekali bunga-bunga yang beraneka ragam dan macam-macam jenisnya yang berasal dari luar maupun dalam negeri.","mys":"Tempat wisata di Malang yang satu ini jangan sampai terlewatkan, disini terdapat banyak sekali bunga-bunga yang beraneka ragam dan macam-macam jenisnya yang berasal dari luar maupun dalam negeri."}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '2014/04/04/20140404_093344_8423.jpg', '{"en":"","ind":"","mys":""}', 0, '', 0, 0, 0, 0, 'approve', '0000-00-00 00:00:00'),
 (21, 1529, 2, 6, 'taman-rekreasi-sengkaling', '{"en":"Taman Rekreasi Sengkaling","ind":"Taman Rekreasi Sengkaling","mys":"Taman Rekreasi Sengkaling"}', 'Kota Malang\nJawa Timur\nIndonesia', '{"en":"Nah taman rekreasi sengakling ini berada tidak jauh dari Universitas Muhammadiyah Malang, pasti sudah banyak yang mengetahuinya, disini Anda bisa berlibur bersama keluarga yang menyenangkan.","ind":"Nah taman rekreasi sengakling ini berada tidak jauh dari Universitas Muhammadiyah Malang, pasti sudah banyak yang mengetahuinya, disini Anda bisa berlibur bersama keluarga yang menyenangkan.","mys":"Nah taman rekreasi sengakling ini berada tidak jauh dari Universitas Muhammadiyah Malang, pasti sudah banyak yang mengetahuinya, disini Anda bisa berlibur bersama keluarga yang menyenangkan."}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '2014/04/04/20140404_093516_4557.jpg', '{"en":"","ind":"","mys":""}', 0, '', 0, 0, 0, 0, 'approve', '0000-00-00 00:00:00'),
 (22, 1529, 2, 10, 'air-terjun-coban-rondo', '{"en":"Air Terjun Coban Rondo","ind":"Air Terjun Coban Rondo","mys":"Air Terjun Coban Rondo"}', 'Kota Batu\nMalang Indonesia', '{"en":"Suka dengan alam? ini adalah tempat liburan di malang yang tepat untuk Anda yang menyukai alam yang indah, udara yang segar dan hawa yang dingin akan menemani Anda ketika berlibur kesini ^_^.","ind":"Suka dengan alam? ini adalah tempat liburan di malang yang tepat untuk Anda yang menyukai alam yang indah, udara yang segar dan hawa yang dingin akan menemani Anda ketika berlibur kesini ^_^.","mys":"Suka dengan alam? ini adalah tempat liburan di malang yang tepat untuk Anda yang menyukai alam yang indah, udara yang segar dan hawa yang dingin akan menemani Anda ketika berlibur kesini ^_^."}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '2014/04/04/20140404_093638_8431.jpg', '{"en":"","ind":"","mys":""}', 0, '', 0, 0, 0, 0, 'approve', '0000-00-00 00:00:00'),
-(23, 1529, 3, 15, 'daun-pala-resto', '{"en":"Daun Pala Resto","ind":"Daun Pala Resto","mys":"Daun Pala Resto"}', 'Ruko Griya Santa Blok DR No.16 Jalan Soekarno Hatta\nMalang\nJawa Timur', '{"en":"Daun Pala merupakan salah satu resto yang menawarkan sajian menu tradisional cuisine di Malang. Beragam masakan tradisional seperti Rawon Iga, Sayur Asam, Sop Buntut, Cah Kangkung, dan lainnya bisa Ngalamers pesan di Daun Pala Resto ini. Menu andalan resto ini seperti Bandeng Tanpa Duri Bakar, Iga Bakar, dan Empal Cobek yang memiliki citarasa juara pun patut Ngalamers cicipi. Semua kelezatan citarasa tradisional tersebut bisa Ngalamers nikmati dengan harga yang relatif terjangkau. Ngalamers hanya perlu membayar sekitar Rp 10.000 hingga 25.000 per menunya.","ind":"Daun Pala merupakan salah satu resto yang menawarkan sajian menu tradisional cuisine di Malang. Beragam masakan tradisional seperti Rawon Iga, Sayur Asam, Sop Buntut, Cah Kangkung, dan lainnya bisa Ngalamers pesan di Daun Pala Resto ini. Menu andalan resto ini seperti Bandeng Tanpa Duri Bakar, Iga Bakar, dan Empal Cobek yang memiliki citarasa juara pun patut Ngalamers cicipi. Semua kelezatan citarasa tradisional tersebut bisa Ngalamers nikmati dengan harga yang relatif terjangkau. Ngalamers hanya perlu membayar sekitar Rp 10.000 hingga 25.000 per menunya.","mys":"Daun Pala merupakan salah satu resto yang menawarkan sajian menu tradisional cuisine di Malang. Beragam masakan tradisional seperti Rawon Iga, Sayur Asam, Sop Buntut, Cah Kangkung, dan lainnya bisa Ngalamers pesan di Daun Pala Resto ini. Menu andalan resto ini seperti Bandeng Tanpa Duri Bakar, Iga Bakar, dan Empal Cobek yang memiliki citarasa juara pun patut Ngalamers cicipi. Semua kelezatan citarasa tradisional tersebut bisa Ngalamers nikmati dengan harga yang relatif terjangkau. Ngalamers hanya perlu membayar sekitar Rp 10.000 hingga 25.000 per menunya."}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '2014/04/15/20140415_091604_1949.jpg', '{"en":"","ind":"","mys":""}', 0, '', 5, 1, 1, 0, 'approve', '2014-04-11 09:08:24');
+(23, 1529, 3, 15, 'daun-pala-resto', '{"en":"Daun Pala Resto","ind":"Daun Pala Resto","mys":"Daun Pala Resto"}', 'Ruko Griya Santa Blok DR No.16 Jalan Soekarno Hatta\nMalang\nJawa Timur', '{"en":"Daun Pala merupakan salah satu resto yang menawarkan sajian menu tradisional cuisine di Malang. Beragam masakan tradisional seperti Rawon Iga, Sayur Asam, Sop Buntut, Cah Kangkung, dan lainnya bisa Ngalamers pesan di Daun Pala Resto ini. Menu andalan resto ini seperti Bandeng Tanpa Duri Bakar, Iga Bakar, dan Empal Cobek yang memiliki citarasa juara pun patut Ngalamers cicipi. Semua kelezatan citarasa tradisional tersebut bisa Ngalamers nikmati dengan harga yang relatif terjangkau. Ngalamers hanya perlu membayar sekitar Rp 10.000 hingga 25.000 per menunya.","ind":"Daun Pala merupakan salah satu resto yang menawarkan sajian menu tradisional cuisine di Malang. Beragam masakan tradisional seperti Rawon Iga, Sayur Asam, Sop Buntut, Cah Kangkung, dan lainnya bisa Ngalamers pesan di Daun Pala Resto ini. Menu andalan resto ini seperti Bandeng Tanpa Duri Bakar, Iga Bakar, dan Empal Cobek yang memiliki citarasa juara pun patut Ngalamers cicipi. Semua kelezatan citarasa tradisional tersebut bisa Ngalamers nikmati dengan harga yang relatif terjangkau. Ngalamers hanya perlu membayar sekitar Rp 10.000 hingga 25.000 per menunya.","mys":"Daun Pala merupakan salah satu resto yang menawarkan sajian menu tradisional cuisine di Malang. Beragam masakan tradisional seperti Rawon Iga, Sayur Asam, Sop Buntut, Cah Kangkung, dan lainnya bisa Ngalamers pesan di Daun Pala Resto ini. Menu andalan resto ini seperti Bandeng Tanpa Duri Bakar, Iga Bakar, dan Empal Cobek yang memiliki citarasa juara pun patut Ngalamers cicipi. Semua kelezatan citarasa tradisional tersebut bisa Ngalamers nikmati dengan harga yang relatif terjangkau. Ngalamers hanya perlu membayar sekitar Rp 10.000 hingga 25.000 per menunya."}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '{"en":"","ind":"","mys":""}', '2014/04/04/20140415_091604_1949.jpg', '{"en":"","ind":"","mys":""}', 0, '', 5, 1, 1, 0, 'approve', '2014-04-11 09:08:24');
 
 -- --------------------------------------------------------
 

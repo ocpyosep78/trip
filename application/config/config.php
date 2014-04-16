@@ -11,11 +11,12 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
 } else if ($_SERVER['SERVER_NAME'] == 'www.suekarea.com') {
 	$config['base_url']			= 'http://www.suekarea.com/trip';
 	$config['base_path']		= realpath(dirname(__FILE__) . '/../..');
-/*
-} else if ($_SERVER['SERVER_NAME'] == 'www.kedaipedia.com') {
-	$config['base_url']			= 'http://www.kedaipedia.com';
+} else if ($_SERVER['SERVER_NAME'] == 'tripdomestik.com') {
+	$config['base_url']			= 'http://tripdomestik.com';
 	$config['base_path']		= realpath(dirname(__FILE__) . '/../..');
-/*	*/
+} else if ($_SERVER['SERVER_NAME'] == 'www.tripdomestik.com') {
+	$config['base_url']			= 'http://www.tripdomestik.com';
+	$config['base_path']		= realpath(dirname(__FILE__) . '/../..');
 } else {
 	echo 'Please set up config.';
 	exit;

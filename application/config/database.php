@@ -8,6 +8,11 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
 	$db['default']['username'] = 'root';
 	$db['default']['password'] = '';
 	$db['default']['database'] = 'trip_db';
+} else if ($_SERVER['SERVER_NAME'] == 'tripdomestik.com' || $_SERVER['SERVER_NAME'] == 'www.tripdomestik.com') {
+	$db['default']['hostname'] = 'localhost';
+	$db['default']['username'] = 'domestic_trip';
+	$db['default']['password'] = '%J;d_c9M(OR5';
+	$db['default']['database'] = 'domestic_trip';
 } else if ($_SERVER['SERVER_NAME'] == 'suekarea.com' || $_SERVER['SERVER_NAME'] == 'www.suekarea.com') {
 	$db['default']['hostname'] = 'localhost';
 	$db['default']['username'] = 'suekare1_trip';

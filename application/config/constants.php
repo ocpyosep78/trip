@@ -41,7 +41,7 @@ define('WEBSITE_COOKIE',						'.suekarea.com');
 /*	FACEBOOK INFO */
 define('FB_APP_ID',								'674480649266643');
 define('FB_APP_SECRET',							'596a165dad8c22cfa86706877ca41554');
-define('FB_LOGIN_SUCCESS',						'http://suekarea.com/trip/login/[user_type]/fb');
+define('FB_LOGIN_SUCCESS',						'http://tripdomestik.com/login/[user_type]/fb');
 
 define('CATEGORY_HOTEL',						1);
 define('CATEGORY_DESTINATION',					2);
