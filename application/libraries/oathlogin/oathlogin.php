@@ -27,6 +27,8 @@ class oathlogin {
 		// model name
 		if ($user_type == 'traveler') {
 			$model_name = 'traveler_model';
+		} else if ($user_type == 'member') {
+			$model_name = 'member_model';
 		}
 		
 		// user

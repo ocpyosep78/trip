@@ -20,7 +20,13 @@ class login extends TRIP_Controller {
     }
 	
 	function member() {
-		$this->load->view( 'website/login_member' );
+		if (!empty($this->uri->segments[3])) {
+			if ($this->uri->segments[3] == 'fb') {
+				$this->login_fb('member');
+			}
+		} else {
+			$this->load->view( 'website/login_member' );
+		}
 	}
 	
 	function traveler() {
@@ -52,18 +58,20 @@ class login extends TRIP_Controller {
 		$user = $_SESSION['user_facebook'];
 		
 		// user model
-		if (!empty($user['user_type'])) {
-			$model_name = $user['user_type'].'_model';
+		if (!empty($user_type)) {
+			$model_name = $user_type.'_model';
 		} else {
-			$model_name = 'traveler_model';
+			echo "empty user type.";
+			exit;
 		}
 		
 		// user detail success
 		if (count($user) > 0) {
 			$result = $this->oathlogin->user_signup($user, 'facebook', $user_type);
+			
 			if ($result['status']) {
 				// delete old session
-				unset($_SESSION['user_facebook']);
+				// unset($_SESSION['user_facebook']);
 				
 				// set session
 				$result = $this->$model_name->sign_in(array( 'email' => $result['user']['email'], 'login_facebook' => true ));

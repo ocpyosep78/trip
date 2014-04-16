@@ -5,6 +5,12 @@
 	include '../application/config/constants.php';
 	require 'facebook_lib/facebook.php';
 	
+	// user type
+	$user_type = (isset($_GET['user_type'])) ? $_GET['user_type'] : 'traveler';
+	
+	// link
+	$link_login_success = str_replace('[user_type]', $user_type, FB_LOGIN_SUCCESS);
+	
 	$facebook_scope = 'email,user_birthday'; // Don't modify this
 	$facebook_param = array( 'appId'  => FB_APP_ID, 'secret' => FB_APP_SECRET );
 	$facebook = new Facebook($facebook_param);
@@ -16,12 +22,8 @@
 		try {
 			$userData = $facebook->api('/me');
 			
-			// add user type
-			$user_type = (isset($_GET['user_type'])) ? $_GET['user_type'] : 'traveler';
-			$userData['user_type'] = $user_type;
-			
 			$_SESSION['user_facebook'] = $userData;
-			header('Location: '.FB_LOGIN_SUCCESS);
+			header('Location: '.$link_login_success);
 		} catch (FacebookApiException $e) {
 			error_log($e);
 			$user = null;
