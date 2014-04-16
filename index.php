@@ -1,5 +1,13 @@
 <?php
 
+// check apache connection
+$string = "ps aux | grep httpd | wc -l";
+$result = exec($string);
+if (!empty($result) && intval($result) > 1000) {
+	include 'over_connection.php';
+	exit;
+}
+
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT

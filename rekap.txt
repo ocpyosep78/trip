@@ -196,3 +196,15 @@ Upload Traveler
 - entry-an nya : user, title (limit 50 char) dan desc, tanggal upload
 - isinya hasil upload dari Traveler yang sudah di approve
 - nanti yang ditampilkan ada limit nya, misal per bulan atau bagaimana yang enak ( saat ini untuk 1 page berisi 5 gambar dengan 2 gambar sebelumnya dan 2 gambar setelahnya)
+
+Login Facebook
+- Support Login with FB
+
+----------------------------------------------------------------------------------------------------------------
+MY NOTE
+----------------------------------------------------------------------------------------------------------------
+- Form nya pakai Multi Tab (http://localhost/kedai/trunk/_design/admin-full-notebook/components.html)
+- User ada 4 jenis (Admin, Editor, Member, Traveler)
+- Jika user yang akses server lebih dari 1000 tampilkan halaman overlod / seperti kaskus over posting
+
+----------------------------------------------------------------------------------------------------------------
