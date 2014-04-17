@@ -781,7 +781,7 @@
 		function sent_mail($param) {
 			$headers  = 'MIME-Version: 1.0' . "\r\n";
 			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-			$headers .= 'From: Kedai Pedia <noreply@kedaipedia.com>' . "\r\n";
+			$headers .= 'From: Trip Domestik <noreply@tripdomestik.com>' . "\r\n";
 			
 			if (isset($param['header'])) {
 				$headers .= $param['header'];

@@ -77,7 +77,18 @@ class hotel extends PANEL_Controller {
 			$this->hotel_detail_model->update_post($param_detail);
 			
 		} else if ($action == 'get_by_id') {
+			// get record
 			$result = $this->post_model->get_by_id(array( 'id' => $_POST['id'], 'tag_include' => @$_POST['tag_include'] ));
+			
+			// get record detail
+			$record_detail = $this->hotel_detail_model->get_by_id(array( 'post_id' => $result['id'] ));
+			if (count($record_detail) > 0) {
+				unset($record_detail['id']);
+				unset($record_detail['post_id']);
+				
+				// merge it
+				$result = array_merge($result, $record_detail);
+			}
 		} else if ($action == 'delete') {
 			$result = $this->post_model->delete($_POST);
 		}

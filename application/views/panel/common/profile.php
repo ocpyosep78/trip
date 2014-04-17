@@ -7,9 +7,16 @@
 		<section class="scrollable">
 			<div class="wrapper">
 				<div class="clearfix m-b">
-					<a href="#" class="pull-left thumb m-r">
-						<img src="http://localhost/trip/trunk/static/img/avatar.jpg" class="img-circle" />
+					<?php if ($user['user_type_id'] == USER_TYPE_MEMBER) { ?>
+					<a href="<?php echo $user['link_member']; ?>" class="pull-left thumb m-r">
+						<img src="<?php echo $user['thumbnail_link']; ?>" class="img-circle" />
 					</a>
+					<?php } else if ($user['user_type_id'] == USER_TYPE_TRAVELER) { ?>
+					<a href="<?php echo $user['link_traveler']; ?>" class="pull-left thumb m-r">
+						<img src="<?php echo $user['thumbnail_link']; ?>" class="img-circle" />
+					</a>
+					<?php } ?>
+					
 					<div class="clear">
 						<div class="h3 m-t-xs m-b-xs"><?php echo $user['full_name']; ?></div>
 						<?php if (!empty($user['city_name'])) { ?>

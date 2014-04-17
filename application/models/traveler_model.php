@@ -166,6 +166,8 @@ class traveler_model extends CI_Model {
 		// traveler
 		$traveler = $this->get_by_id(array( 'email' => $param['email'], 'with_passwd' => true ));
 		
+		// set default variable
+		$is_login = false;
 		$result = array( 'status' => false, 'message' => '' );
 		if ($param['login_facebook']) {
 			$is_login = true;
@@ -194,6 +196,7 @@ class traveler_model extends CI_Model {
 			
 			// set result
 			$result['status'] = true;
+			$result['message'] = 'Login success';
 			$result['redirect_link'] = base_url('panel');
 		}
 		

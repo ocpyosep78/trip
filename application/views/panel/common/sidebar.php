@@ -393,7 +393,7 @@
 								</li>
 							</ul>
 						</li>
-						<li>
+						<li data-menu-parent="setting">
 							<a href="<?php echo base_url('panel/setting'); ?>">
 								<i class="fa fa-flask icon"><b class="bg-info"></b></i>
 								<span>Setting</span>

@@ -10,3 +10,17 @@ LINK TEMPORARY
 - http://localhost/trip/trunk/destination/gallery
 - http://localhost/trip/trunk/search
 - http://localhost/trip/trunk/about-us
+
+error :
+- konversi
+  - error (http://tripdomestik.com/hotel/yogyakarta/kota-yogyakarta/jambuluwuk-malioboro)
+  - keluar ##001## seharusnya di konversi
+
+----------------------------------------------------------------------------------------------------------------
+FINAL TEST
+----------------------------------------------------------------------------------------------------------------
+- Member => ok
+- Traveler => ?
+- Admin => ?
+- Editor => ?
+- Website => ?

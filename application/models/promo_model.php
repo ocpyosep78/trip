@@ -71,6 +71,7 @@ class promo_model extends CI_Model {
         $array = array();
 		
 		$param['field_replace']['post_title_text'] = 'post.title';
+		$param['field_replace']['close_date_swap'] = 'promo.close_date';
 		$param['field_replace']['publish_date_swap'] = 'promo.publish_date';
 		$param['field_replace']['promo_duration_title_text'] = 'promo_duration.title';
 		

@@ -64,7 +64,11 @@ $(document).ready(function() {
 			page.data = data;
 			
 			// populate data
-			Func.populate({ cnt: '#form-notify', record: page.data.user_setting });
+			if (page.data.user_setting.length == 0) {
+				$('#form-notify [type="checkbox"]').prop('checked', true);
+			} else {
+				Func.populate({ cnt: '#form-notify', record: page.data.user_setting });
+			}
 		}
 	}
 	page.init();

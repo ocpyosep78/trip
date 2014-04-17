@@ -57,7 +57,7 @@
 $(document).ready(function() {
 	// grid
 	var param = {
-		id: 'datatable',
+		id: 'datatable', aaSorting: [[ 1, 'DESC' ]],
 		source: web.base + 'panel/user/verify_address/grid',
 		column: [ { }, { }, { }, { }, { bSortable: false, sClass: 'center', sWidth: '10%' } ],
 		callback: function() {
