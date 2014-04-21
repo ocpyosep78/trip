@@ -20,7 +20,7 @@ error :
 FINAL TEST
 ----------------------------------------------------------------------------------------------------------------
 - Member => ok
-- Traveler => ?
-- Admin => ?
-- Editor => ?
+- Traveler => ok
+- Admin => ok
+- Editor => ok
 - Website => ?

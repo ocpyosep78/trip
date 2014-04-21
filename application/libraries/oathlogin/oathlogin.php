@@ -44,6 +44,7 @@ class oathlogin {
 				$param_update['email'] = $userData['email'];
 				$param_update['first_name'] = $userData['first_name'];
 				$param_update['last_name'] = $userData['last_name'];
+				$param_update['alias'] = get_name($param_update['first_name'].' '.$param_update['last_name']);
 				$param_update['register_date'] = $this->ci->config->item('current_datetime');
 				
 				// set provider

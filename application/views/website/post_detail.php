@@ -195,15 +195,15 @@
 						<?php if (empty($post['desc_01_select'])) { ?>
 						<p class="hpadding20">This content is not available in your language.</p>
 						<?php } else { ?>
-						<p class="hpadding20"><?php echo $post['desc_01_select']; ?></p>
+						<p class="hpadding20"><?php echo string_escape($post['desc_01_select']); ?></p>
 						<?php } ?>
 						
 						<?php if (!empty($post['desc_02_select'])) { ?>
-						<p class="hpadding20"><?php echo $post['desc_02_select']; ?></p>
+						<p class="hpadding20"><?php echo string_escape($post['desc_02_select']); ?></p>
 						<?php } ?>
 						
 						<?php if (!empty($post['field_01_select'])) { ?>
-						<p class="hpadding20"><?php echo $post['field_01_select']; ?></p>
+						<p class="hpadding20"><?php echo string_escape($post['field_01_select']); ?></p>
 						<?php } ?>
 						<div class="line4"></div>
 						
@@ -227,8 +227,8 @@
 						<?php } ?>
 					</div>
 					<div id="preferences" class="tab-pane fade">
-						<?php if (!empty($post['desc_02_select'])) { ?>
-						<p class="hpadding20"><?php echo $post['desc_02_select']; ?></p>
+						<?php if (!empty($post['desc_03_select'])) { ?>
+						<p class="hpadding20"><?php echo string_escape($post['desc_03_select']); ?></p>
 						<?php } ?>
 						<div class="line4"></div>
 						

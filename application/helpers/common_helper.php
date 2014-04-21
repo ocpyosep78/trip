@@ -703,6 +703,8 @@
     if (! function_exists('get_length_char')) {
         function get_length_char($String, $LengthMax, $Follower = '') {
 			$String = strip_tags($String);
+			$String = string_escape($String);
+			
             if (strlen($String) > $LengthMax) {
                 $String = substr($String, 0, $LengthMax);
                 $Stringpos = strrpos($String, ' ');
