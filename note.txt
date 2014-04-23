@@ -1,21 +1,108 @@
-----------------------------------------------------------------------------------------------------------------
-LINK TEMPORARY
-----------------------------------------------------------------------------------------------------------------
-- http://localhost/trip/trunk/
-- http://localhost/trip/trunk/hotel
-- http://localhost/trip/trunk/hotel/detail
-- http://localhost/trip/trunk/destination
-- http://localhost/trip/trunk/destination/detail
-- http://localhost/trip/trunk/destination/review
-- http://localhost/trip/trunk/destination/gallery
-- http://localhost/trip/trunk/search
-- http://localhost/trip/trunk/about-us
 
-----------------------------------------------------------------------------------------------------------------
-FINAL TEST
-----------------------------------------------------------------------------------------------------------------
-- Member => ok
-- Traveler => ok
-- Admin => ok
-- Editor => ok
-- Website => ok
+Show Recent Messages (F3)
+
+Ridwan Amir appears to be offline and will receive your messages after signing in. You can also send a message to Ridwan Amir's mobile phone. 
+ Send an SMS Message (Ctrl+T)
+
+herry: pagi mas
+Ridwan Amir: pagi juga mas.. 
+Ridwan Amir: gimana..
+herry: monggo mas brifing nya 
+Ridwan Amir: coba buka email saya ada kirim doc
+Ridwan Amir: gimana..
+herry: ok sudah saya buka mas
+Ridwan Amir: mo di jelaskan..
+herry: saya cek sebentar
+Ridwan Amir: ok mas..
+herry: yang ini :
+2. Tombol search di form autocomplete index itu nda berfungsi jika tidak selected auto completenya
+Ridwan Amir: iya
+herry: itu bagaimana mas ?
+Ridwan Amir: coba tulis a di autocomplete
+Ridwan Amir: trus tekan search...
+Ridwan Amir: itu jalan..
+Ridwan Amir: mestinya nda..
+Ridwan Amir: untuk form search kan udah ada di atas itu
+Ridwan Amir: ato bisa juga waktu dia tekan search.. munculkan warning please select your destination..
+Ridwan Amir: JIKA where do you go tidak selected..
+herry: oo i see 
+herry: ok mas 
+Ridwan Amir: nah itu kan autocompletenta kan semua no result ya..
+Ridwan Amir: itu karena di set nanti yang login saja bisa keluar autocopletenta...
+herry: iya
+Ridwan Amir: jika tidak login.. nda keliatan..
+Ridwan Amir: mestinya keliatan..
+Ridwan Amir: ok lanjut..
+Ridwan Amir: apanya lagi
+herry: sebentar
+Ridwan Amir: ok
+herry: 7. Warning : "Please select your booking option." jika statusnya No booking available , warningnya jadi sperti ini "maaf ! hotel ini tidak terdia booking online, please see How to booking tab", dan langsung di trigger ke Tab how booking
+herry: "No booking available" label nya diganti ini yaa mas "maaf ! hotel ini tidak terdia booking online, please see How to booking tab" ?
+Ridwan Amir: buka label yang itu..
+Ridwan Amir: tapi label notifikasi..
+Ridwan Amir: pojok kanan atas
+Ridwan Amir: kalo di tekan book now
+herry: oo i see
+Ridwan Amir: dan langsung di trigger keTAB how to booking...
+Ridwan Amir: trigger ngerti ya
+Ridwan Amir: mengarah..
+herry: seep ok mas
+Ridwan Amir: yang halaman redirect ngerti ya yang <nama opsi>
+herry: yups 
+Ridwan Amir: ok lanjut yang mana
+herry: yang halaman 2
+herry: Penambahan/edit fasility oleh member di moderasi lagi oleh admin
+Ridwan Amir: itu edit...
+herry: ini validasi enaknya ikut di post nya atau masing2 fasilitas nya (yang di pop up)
+Ridwan Amir: masing masing post..
+Ridwan Amir: mungkin hampir sama submit post lagi..
+herry: oh ok mas seep
+Ridwan Amir: jadi klo dia edit fasilitas hotelnya... sama dengan di submit aja..
+Ridwan Amir: masuk ke moderasi hotel...
+Ridwan Amir: gitu..
+herry: ok mas
+Ridwan Amir: lanjut..
+Ridwan Amir: yang listing ya..
+herry: ok
+Ridwan Amir: coba liat ini http://tripdomestik.com/hotel
+Ridwan Amir: bisa nda.. ikut berubah urlnya...
+herry: bisa mas klo yang di update Area nya
+herry: klo Price Range yang tidak bisa, karena dia javascript
+Ridwan Amir: misal saya pilih Guest House..
+Ridwan Amir: itu url ikut berubah..
+herry: http://tripdomestik.com/hotel/guest-house 
+herry: bisa mas begitu
+Ridwan Amir: yup..
+Ridwan Amir: cuma beberapa saja..
+Ridwan Amir: kalo fasiliti
+herry: sulit mas soalnya multiple
+Ridwan Amir: gimana...
+herry: bingung saya url nya 
+Ridwan Amir: iya.. pengaruh di speed juga...
+Ridwan Amir: kalo pake url juga pengaruh di load listnya juga..
+Ridwan Amir: jadi yang bisa cuma area saja ya..
+herry: area sama sub category bisa mas
+Ridwan Amir: oh boleh seep..
+Ridwan Amir: yang type itu ya..
+herry: iya
+Ridwan Amir: ok clear ya.. 
+herry: oiya yang ini mas
+herry: http://www.tripdomestik.com/destination/jawa-timur = Posisi region dan city tidak otomatis berada pada area sortir posisi jawa timur
+http://www.tripdomestik.com/destination/jawa-timur/kabupaten-malang = sama dengan di atas
+Ridwan Amir: ya itu..
+Ridwan Amir: gimana..
+herry: sebentar saya cek script nya
+Ridwan Amir: ok
+herry: ok mas bisa
+Ridwan Amir: ok seep,,, 
+herry: ok clear ya..  => seep mas 
+herry: 1 minggu lagi perkiraan update nya selesai mas
+Ridwan Amir: seep,,
+Ridwan Amir: aku tranfer 5 juta ya...
+Ridwan Amir: untuk meta nanti ya..
+herry: ok mas, makasih
+herry: seeep
+Ridwan Amir: seep. lanjut mas.. 
+Ridwan Amir is typing...
+Ridwan Amir: 
+herry: ok mas 
