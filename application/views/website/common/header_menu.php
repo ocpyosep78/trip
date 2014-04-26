@@ -1,7 +1,15 @@
 <?php
+	// page data
 	$is_login = $this->user_model->is_login();
 	$array_language = $this->language_model->get_array();
 	$language = $this->language_model->get_session();
+	
+	// array category
+	$param_category = array(
+		'in' => CATEGORY_HOTEL.','.CATEGORY_DESTINATION.','.CATEGORY_RESTAURANT,
+		'sort' => '[{"property":"order_no","direction":"ASC"}]'
+	);
+	$array_category = $this->category_model->get_array($param_category);
 ?>
 <div class="navbar-wrapper2 navbar-fixed-top">
 	<div class="container">
@@ -23,9 +31,10 @@
 						<li><a href="<?php echo base_url('panel'); ?>">Dashboard</a></li>
 						<?php } ?>
 						
-						<li><a href="<?php echo base_url('hotel'); ?>">Hotel</a></li>
-						<li><a href="<?php echo base_url('destination'); ?>">Destination</a></li>
-						<li><a href="<?php echo base_url('restaurant'); ?>">Restaurant</a></li>
+						<?php foreach ($array_category as $row) { ?>
+						<li><a href="<?php echo $row['link_category']; ?>"><?php echo $row['title']; ?></a></li>
+						<?php } ?>
+						
 						<li class="dropdown">
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#">Language<b class="lightcaret mt-2"></b></a>
 							<ul class="dropdown-menu">

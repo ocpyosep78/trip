@@ -115,10 +115,8 @@ class post_facility_model extends CI_Model {
 	function sync($row, $param = array()) {
 		$row = StripArray($row);
 		
-		if (isset($row['facility_title'])) {
-			$temp = json_to_array($row['facility_title']);
-			$row['facility_title_text'] = $temp[LANGUAGE_DEFAULT];
-		}
+		// language
+		$row = get_row_language($row, array( 'facility_title' ));
 		
 		if (count(@$param['column']) > 0) {
 			$row = dt_view_set($row, $param);

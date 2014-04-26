@@ -36,7 +36,7 @@ define('PROMO_REMINDER',						'+1 Month');
 /*	WEBSITE INFO */
 define('WEBSITE_TITLE',							'Website Trip');
 define('WEBSITE_ALIAS',							'website trip');
-define('WEBSITE_COOKIE',						'.suekarea.com');
+define('WEBSITE_COOKIE',						'.tripdomestik.com');
 
 /*	FACEBOOK INFO */
 define('FB_APP_ID',								'674480649266643');

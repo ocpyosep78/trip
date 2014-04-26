@@ -9,8 +9,11 @@ class typeahead extends CI_Controller {
 		unset($_GET['action']);
 		
 		// user
-		$user_session = $this->user_model->get_session();
-		$user = $this->user_model->get_by_id(array( 'user_type_id' => $user_session['user_type_id'], 'id' => $user_session['id'] ));
+		$is_login = $this->user_model->is_login();
+		if ($is_login) {
+			$user_session = $this->user_model->get_session();
+			$user = $this->user_model->get_by_id(array( 'user_type_id' => $user_session['user_type_id'], 'id' => $user_session['id'] ));
+		}
 		
 		if (empty($_GET['namelike'])) {
 			echo json_encode(array());
@@ -29,7 +32,7 @@ class typeahead extends CI_Controller {
 			}
 		} else if ($action == 'post') {
 			// add member id
-			if ($user['user_type_id'] == USER_TYPE_MEMBER) {
+			if ($is_login && $user['user_type_id'] == USER_TYPE_MEMBER) {
 				$_GET['member_id'] = $user['id'];
 			}
 			

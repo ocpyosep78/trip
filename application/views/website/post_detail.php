@@ -33,6 +33,9 @@
 	// promo
 	if ($post['having_promo']) {
 		$promo = $this->promo_model->get_by_id(array( 'post_id' => $post['id'], 'promo_status' => 'approve' ));
+		if (count($promo) == 0) {
+			$post['having_promo'] = 0;
+		}
 	}
 	
 	// hotel detail
@@ -109,7 +112,7 @@
 				<?php if ($post['category_id'] == CATEGORY_HOTEL) { ?>
 					<?php if (!empty($post['star'])) { ?>
 					<div class="hpadding20">
-						<h2 class="opensans slim green2">Bintang <?php echo $post['star']; ?></h2>
+						<h2 class="opensans slim green2">Bintang</h2>
 					</div>
 					<?php } ?>
 					
@@ -158,7 +161,7 @@
 					<?php } else { ?>
 					<ul class="checkbook">
 						<?php foreach ($array_booking as $row) { ?>
-						<label><input type="checkbox" name="booking[]" value="<?php echo $row['link']; ?>" /> <?php echo $row['title']; ?></label>
+						<label><input type="checkbox" name="booking[]" value="<?php echo $row['link_redirect']; ?>" /> <?php echo $row['title']; ?></label>
 						<?php } ?>
 					</ul>
 					<?php } ?>
@@ -180,7 +183,7 @@
 					<?php } ?>
 					
 					<!--   how to booking   -->
-					<?php if (count($post_detail) > 0) { ?>
+					<?php if (count($array_booking) == 0 && count($post_detail) > 0) { ?>
 					<li><a data-toggle="tab" href="#how-booking"><span class="rates"></span><span class="hidetext">How to Booking</span>&nbsp;</a></li>
 					<?php } ?>
 					
@@ -225,6 +228,13 @@
 							</div>
 						</div>
 						<?php } ?>
+						
+						<?php if (!empty($post['total_room'])) { ?>
+						<div class="line2"></div><br />
+						<div class="hpadding20" style="padding-bottom: 10px;">
+							<div>Total Room : <?php echo $post['total_room']; ?></div>
+						</div>
+						<?php } ?>
 					</div>
 					<div id="preferences" class="tab-pane fade">
 						<?php if (!empty($post['desc_03_select'])) { ?>
@@ -242,7 +252,7 @@
 								<div class="item">
 									<div class="padd">
 										<div class="ic-logo"><div class="cnt <?php echo $row['facility_css_icon']; ?>"></div></div>
-										<div class="ic-title"><?php echo $row['facility_title_text']; ?></div>
+										<div class="ic-title"><?php echo $row['facility_title_select']; ?></div>
 									</div>
 								</div>
 								<?php } ?>
@@ -328,7 +338,7 @@
 					<?php } ?>
 					
 					<!--   how to booking   -->
-					<?php if (count($post_detail) > 0) { ?>
+					<?php if (count($array_booking) == 0 && count($post_detail) > 0) { ?>
 					<div id="how-booking" class="tab-pane fade">
 						<div class="hpadding20">
 							<?php echo nl2br($post_detail['booking']); ?>
@@ -373,6 +383,12 @@
 							<div class="clearfix"></div>
 						</div>
 						<div class="line4"></div>
+						
+						<?php if (!empty($promo['link_info'])) { ?>
+						<div class="center" style="padding: 25px 0 10px 0;">
+							<a class="btn-search4 margtop20 cursor" style="text-decoration: none;" href="<?php echo $promo['link_info']; ?>">More Information</a>
+						</div>
+						<?php } ?>
 					</div>
 					<?php } ?>
 				</div>
@@ -380,6 +396,7 @@
 			<div class="col-md-4">
 				<?php $this->load->view( 'website/common/widget_02' ); ?>
 				<?php $this->load->view( 'website/common/random_post', array( 'class_style' => 'mt20 alsolikebox', 'city_id' => $post['city_id'] ) ); ?>
+				<?php $this->load->view( 'website/common/visit_post', array( 'class_style' => 'mt20 alsolikebox' ) ); ?>
 			</div>
 		</div>
 	</div>
@@ -389,7 +406,15 @@
 <script>
 $('.btn-booking').click(function() {
 	if ($('[name="booking[]"]:checked').length == 0) {
-		$.notify("Please select your booking option.", "error");
+		if ($('[href="#how-booking"]').length > 0) {
+			$('html, body').animate({scrollTop:700}, 'slow');
+			$('[href="#how-booking"]').click();
+			
+			$.notify("Sorry ! Booking online is unavaliable, please see 'How to Booking' tab.", "error");
+		} else {
+			$.notify("Please select your booking option.", "error");
+		}
+		
 		return false;
 	}
 	
@@ -400,3 +425,8 @@ $('.btn-booking').click(function() {
 </script>
 </body>
 </html>
+
+<?php
+	// set post session
+	$this->post_model->set_session($post);
+?>

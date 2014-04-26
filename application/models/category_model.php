@@ -4,7 +4,7 @@ class category_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'alias', 'title', 'content', 'link', 'thumbnail' );
+        $this->field = array( 'id', 'alias', 'title', 'content', 'link', 'thumbnail', 'order_no' );
     }
 
     function update($param) {
@@ -126,6 +126,11 @@ class category_model extends CI_Model {
 		// link
 		if (!empty($row['alias'])) {
 			$row['link_category'] = base_url($row['alias']);
+		}
+		
+		// overwrite link
+		if (!empty($row['link'])) {
+			$row['link_category'] = $row['link'];
 		}
 		
 		if (count(@$param['column']) > 0) {

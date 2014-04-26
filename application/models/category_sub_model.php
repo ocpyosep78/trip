@@ -33,7 +33,23 @@ class category_sub_model extends CI_Model {
         $array = array();
        
         if (isset($param['id'])) {
-            $select_query  = "SELECT * FROM ".CATEGORY_SUB." WHERE id = '".$param['id']."' LIMIT 1";
+            $select_query  = "
+				SELECT category_sub.*,
+					category.alias category_alias, category.title category_title, category.link category_link
+				FROM ".CATEGORY_SUB." category_sub
+				LEFT JOIN ".CATEGORY." category ON category.id = category_sub.category_id
+				WHERE category_sub.id = '".$param['id']."'
+				LIMIT 1
+			";
+        } else if (isset($param['alias'])) {
+            $select_query  = "
+				SELECT category_sub.*,
+					category.alias category_alias, category.title category_title, category.link category_link
+				FROM ".CATEGORY_SUB." category_sub
+				LEFT JOIN ".CATEGORY." category ON category.id = category_sub.category_id
+				WHERE category_sub.alias = '".$param['alias']."'
+				LIMIT 1
+			";
         } 
        
         $select_result = mysql_query($select_query) or die(mysql_error());
@@ -58,7 +74,7 @@ class category_sub_model extends CI_Model {
 		
 		$select_query = "
 			SELECT SQL_CALC_FOUND_ROWS category_sub.*,
-				category.title category_title
+				category.alias category_alias, category.title category_title, category.link category_link
 			FROM ".CATEGORY_SUB." category_sub
 			LEFT JOIN ".CATEGORY." category ON category.id = category_sub.category_id
 			WHERE 1 $string_category_id $string_filter
@@ -94,6 +110,22 @@ class category_sub_model extends CI_Model {
 	
 	function sync($row, $param = array()) {
 		$row = StripArray($row);
+		
+		// link
+		if (!empty($row['category_alias'])) {
+			$row['link_category'] = base_url($row['category_alias']);
+		}
+		if (!empty($row['category_alias']) && !empty($row['alias'])) {
+			$row['link_category_sub'] = base_url($row['category_alias'].'/'.$row['alias']);
+		}
+		
+		// overwrite link
+		if (!empty($row['category_link'])) {
+			$row['link_category'] = $row['category_link'];
+		}
+		if (!empty($row['link'])) {
+			$row['link_category_sub'] = $row['link'];
+		}
 		
 		if (count(@$param['column']) > 0) {
 			$row = dt_view_set($row, $param);

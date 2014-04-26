@@ -1,1 +1,3 @@
-ALTER TABLE  `member` ADD  `provider_id` VARCHAR( 50 ) NOT NULL AFTER  `provider`
+2014-04-24 :
+- ALTER TABLE `category` ADD `order_no` INT NOT NULL AFTER `thumbnail` ;
+- ALTER TABLE `post` ADD `total_room` INT NOT NULL AFTER `rate_per_night` ;

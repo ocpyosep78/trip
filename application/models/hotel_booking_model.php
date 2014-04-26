@@ -89,6 +89,7 @@ class hotel_booking_model extends CI_Model {
 	
 	function sync($row, $param = array()) {
 		$row = StripArray($row);
+		$row['link_redirect'] = base_url('redirect/hotel-booking/'.$row['id'].'-'.get_name($row['title']));
 		
 		if (count(@$param['column']) > 0) {
 			$row = dt_view_set($row, $param);

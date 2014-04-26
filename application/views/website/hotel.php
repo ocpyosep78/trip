@@ -5,15 +5,27 @@
 	$array_category_sub = $this->category_sub_model->get_array(array( 'category_id' => CATEGORY_HOTEL ));
 	$array_hotel_star = $this->hotel_star_model->get_array();
 	
-	// get selected region & city
-	$region = $city = array();
+	// get selected category sub, region & city
+	$category_sub = $region = $city = array();
+	$selected_category_sub = (empty($this->uri->segments[2])) ? '' : $this->uri->segments[2];
 	$selected_region = (empty($this->uri->segments[2])) ? '' : $this->uri->segments[2];
 	$selected_city = (empty($this->uri->segments[3])) ? '' : $this->uri->segments[3];
+	if (!empty($selected_category_sub)) {
+		$category_sub = $this->category_sub_model->get_by_id(array( 'alias' => $selected_category_sub ));
+	}
 	if (!empty($selected_region)) {
 		$region = $this->region_model->get_by_id(array( 'alias' => $selected_region ));
 	}
 	if (!empty($selected_city)) {
 		$city = $this->city_model->get_by_id(array( 'alias' => $selected_city, 'region_id' => $region['id'] ));
+	}
+	
+	// get array region & city
+	if (count($region) > 0) {
+		$array_region = $this->region_model->get_array(array( 'country_id' => $region['country_id'], 'limit' => 1000 ));
+	}
+	if (count($city) > 0) {
+		$array_city = $this->city_model->get_array(array( 'region_id' => $city['region_id'], 'limit' => 1000 ));
 	}
 	
 	// rate
@@ -34,6 +46,9 @@
 	$array_breadcrub = array(
 		array( 'link' => $category['link_category'], 'title' => 'Hotel' )
 	);
+	if (count($category_sub) > 0) {
+		$array_breadcrub[] = array( 'link' => $category_sub['link_category_sub'], 'title' => $category_sub['title'] );
+	}
 	if (count($region) > 0) {
 		$array_breadcrub[] = array( 'link' => $category['link_category'].'/'.$region['alias'], 'title' => $region['title'] );
 	}
@@ -77,8 +92,9 @@
 					<label><input type="radio" name="category_sub_id" value="0" checked /> All</label>
 				</div>
 				<?php foreach($array_category_sub as $row) { ?>
+				<?php $checked = (@$category_sub['id'] == $row['id']) ? 'checked' : ''; ?>
 				<div class="radio">
-					<label><input type="radio" name="category_sub_id" value="<?php echo $row['id']; ?>" /> <?php echo $row['title']; ?></label>
+					<label><input type="radio" name="category_sub_id" value="<?php echo $row['id']; ?>" <?php echo $checked; ?> /> <?php echo $row['title']; ?></label>
 				</div>
 				<?php } ?>
 			</div>
@@ -93,13 +109,13 @@
 			<div class="clearfix"></div><br />
 			<div class="hpadding20">
 				<select name="region_id" class="form-control mySelectBoxClass">
-					<option value="" selected>All Region</option>
+					<?php echo ShowOption(array( 'Array' => $array_region, 'LabelEmptySelect' => 'All Region', 'Selected' => @$region['id'] )); ?>
 				</select>
 			</div>
 			<div class="clearfix"></div><br />
 			<div class="hpadding20">
 				<select name="city_id" class="form-control mySelectBoxClass">
-					<option value="" selected>All City</option>
+					<?php echo ShowOption(array( 'Array' => $array_city, 'LabelEmptySelect' => 'All City', 'Selected' => @$city['id'] )); ?>
 				</select>
 			</div>
 			
@@ -205,14 +221,6 @@ jQuery(function($) {
 			var raw_page = $('#cnt-page').html();
 			eval('var data = ' + raw_page);
 			page.data = data;
-			
-			// set city & region
-			if (page.data.region.id != null) {
-				combo.region({ country_id: page.data.region.country_id, target: $('[name="region_id"]'), value: page.data.region.id });
-			}
-			if (page.data.city.id != null) {
-				combo.city({ region_id: page.data.city.region_id, target: $('[name="city_id"]'), value: page.data.city.id });
-			}
 			
 			page.load_post({});
 			page.is_refresh();

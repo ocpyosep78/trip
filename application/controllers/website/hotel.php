@@ -7,7 +7,7 @@ class hotel extends TRIP_Controller {
     
     function index() {
 		// check uri
-		preg_match('/action$/i', $_SERVER['REQUEST_URI'], $match);
+		preg_match('/(action|rss)$/i', $_SERVER['REQUEST_URI'], $match);
 		
 		// action
 		if (!empty($match[0]) && method_exists($this, $match[0])) {
@@ -112,5 +112,49 @@ class hotel extends TRIP_Controller {
 		}
 		
 		echo json_encode($result);
+	}
+	
+	function rss() {
+		// default data
+		$category = $category_sub = array();
+		
+		// set data
+		$category = $this->category_model->get_by_id(array( 'alias' => $this->uri->segments[1] ));
+		if (count($category) > 0) {
+			$category_sub = $this->category_sub_model->get_by_id(array( 'alias' => $this->uri->segments[2] ));
+		}
+		
+		// param post
+		$param_post['sort'] = '[{"property":"post_update","direction":"DESC"}]';
+		
+		// param additional
+		if (count($category) > 0) {
+			$param_post['category_id'] = $category['id'];
+		}
+		if (count($category_sub) > 0) {
+			$param_post['category_sub_id'] = $category_sub['id'];
+		}
+		
+		// array post
+		$array_post = $this->post_model->get_array($param_post);
+		
+		// rss link
+		$rss_param['link'] = $category['link_category'];
+		$rss_param['link'] = (count($category_sub) > 0) ? $category_sub['link_category_sub'] : $category['link_category'];
+		$rss_param['link'] = $rss_param['link'].'/rss';
+		
+		// rss title
+		$rss_param['title']  = 'Trip Domestik - '.$category['title'];
+		$rss_param['title'] .= (count($category_sub) > 0) ? ' - '.$category_sub['title'] : '';
+		
+		// rss description
+		$rss_param['description'] = $category['title'];
+		$rss_param['description'] .= (count($category_sub) > 0) ? ' - '.$category_sub['title'] : '';
+		
+		// rss item
+		$rss_param['array_item'] = $array_post;
+		
+		// render it
+		$this->load->view( 'website/rss', $rss_param );
 	}
 }

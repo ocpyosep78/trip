@@ -53,6 +53,7 @@
 			</div>
 			<div class="col-md-4">
 				<?php $this->load->view( 'website/common/random_post' ); ?>
+				<?php $this->load->view( 'website/common/visit_post', array( 'class_style' => 'mt20 alsolikebox' ) ); ?>
 			</div>
 		</div>
 	</div>

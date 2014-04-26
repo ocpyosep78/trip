@@ -2003,7 +2003,7 @@ ul.hpref-text {list-style:none; margin-top:-5px; padding-left:10px;}
 @media (min-width: 992px) {
 .testimonialbox{ margin-left:10px; margin-right:-15px; margin-top:0px;}
 .needassistancebox{ margin-left:10px; margin-right:-15px;}
-.alsolikebox{ margin-left:10px; margin-right:-15px;}
+.alsolikebox{ margin-left:10px; margin-right:-15px;margin-bottom:25px;}
 .loginbox{ margin-left:10px; margin-right:-15px;}
 .paymentbox{ margin-left:10px; margin-right:-15px;}
 }

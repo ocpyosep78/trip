@@ -29,27 +29,30 @@
 						</ul>
 						<div class="tab-content2" id="myTabContent">
 							<div id="hotel2" class="tab-pane fade active in" style="height: 500px;">
-								<div class="col-md-44 pt-6" style="z-index: 200; position: relative;">
+								<div class="col-md-44 pt-6 form-class" style="z-index: 200; position: relative;">
 									<span class="opensans size18">Where do you want to go?</span>
 									<div class="cnt-typeahead">
 										<input type="text" class="form-control hotel-typeahead" placeholder="City or Region" />
 									</div>
+									<label for="passwd" class="error hide">Silahkan mengisi field ini.</label>
 								</div>
 							</div>
 							<div id="vacations2" class="tab-pane fade" style="height: 500px;">
-								<div class="col-md-44 pt-6" style="z-index: 200; position: relative;">
+								<div class="col-md-44 pt-6 form-class" style="z-index: 200; position: relative;">
 									<span class="opensans size18">Where do you want to go?</span>
 									<div class="cnt-typeahead">
 										<input type="text" class="form-control destination-typeahead" placeholder="City or Region" />
 									</div>
+									<label for="passwd" class="error hide">Silahkan mengisi field ini.</label>
 								</div>
 							</div>
 							<div id="eat" class="tab-pane fade" style="height: 500px;">
-								<div class="col-md-44 pt-6" style="z-index: 200; position: relative;">
+								<div class="col-md-44 pt-6 form-class" style="z-index: 200; position: relative;">
 									<span class="opensans size18">Where do you want eat?</span>
 									<div class="cnt-typeahead">
 										<input type="text" class="form-control restaurant-typeahead" placeholder="City or Region" />
 									</div>
+									<label for="passwd" class="error hide">Silahkan mengisi field ini.</label>
 								</div>
 							</div>
 							<div id="flighthotel2" class="tab-pane fade">
@@ -58,7 +61,7 @@
 						</div>
 						<div class="searchbg2">
 							<!-- <div class="left ca01"><a href="#">Advanced +</a></div> -->
-							<form action="<?php echo base_url('search'); ?>">
+							<form action="<?php echo base_url('search'); ?>" id="form-search-index">
 								<button type="submit" class="btn-search right mr30">Search</button>
 							</form>
 						</div>
@@ -162,6 +165,15 @@
 	});
 	restaurant_ahead.on('typeahead:selected',function(evt, data) {
 		window.location = data.link;
+	});
+	
+	// form search
+	$('#form-search-index').submit(function(e) {
+		var label = $('#myTabContent div.active').find('label');
+		if (label.length > 0) {
+			e.preventDefault();
+			label.removeClass('hide');
+		}
 	});
 </script>
 </body>

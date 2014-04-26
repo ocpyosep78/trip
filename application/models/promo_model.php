@@ -4,7 +4,7 @@ class promo_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'post_id', 'promo_duration_id', 'title', 'content', 'keyword', 'publish_date', 'close_date', 'promo_status' );
+        $this->field = array( 'id', 'post_id', 'promo_duration_id', 'title', 'content', 'keyword', 'publish_date', 'close_date', 'promo_status', 'link_info' );
     }
 
     function update($param) {

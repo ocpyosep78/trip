@@ -30,11 +30,11 @@
 			</div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">Description 1</label>
-				<div class="col-lg-10"><textarea name="desc_01" class="form-control" placeholder="Description 1"></textarea></div>
+				<div class="col-lg-10"><div name="desc_01" class="input-tinymce"></div></div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">Description 2</label>
-				<div class="col-lg-10"><textarea name="desc_02" class="form-control" placeholder="Description 2"></textarea></div>
+				<div class="col-lg-10"><div name="desc_02" class="input-tinymce"></div></div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">Map</label>
@@ -163,13 +163,13 @@
 								<div class="form-group">
 									<label class="col-lg-2 control-label">Title</label>
 									<div class="col-lg-10">
-										<input type="text" class="form-control" name="title" placeholder="Title" />
+										<input type="text" class="form-control" name="title" data-required="true" placeholder="Title" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-lg-2 control-label">Image</label>
 									<div class="col-lg-7">
-										<input type="text" name="thumbnail" class="form-control" placeholder="Image" />
+										<input type="text" name="thumbnail" class="form-control" data-required="true" placeholder="Image" />
 									</div>
 									<div class="col-lg-3">
 										<button type="button" class="btn btn-default browse-image-gallery">Select Picture</button>
@@ -381,8 +381,18 @@
 									</div>
 								</div>
 								<div class="form-group">
+									<label class="col-lg-2 control-label">Rate per Night (USD)</label>
+									<div class="col-lg-10"><input type="text" name="rate_per_night" class="form-control" placeholder="Rate per Night (USD)" /></div>
+								</div>
+								<div class="form-group">
+									<label class="col-lg-2 control-label">Total Room</label>
+									<div class="col-lg-10"><input type="text" name="total_room" class="form-control" placeholder="Total Room" /></div>
+								</div>
+								<div class="form-group">
 									<label class="col-lg-2 control-label">How to book</label>
-									<div class="col-lg-10"><textarea name="booking" class="form-control" placeholder="How to book"></textarea></div>
+									<div class="col-sm-10">
+										<div id="form-content" class="form-control" style="overflow: scroll; height: 150px; max-height: 150px;"></div>
+									</div>
 								</div>
 								<div class="form-group center post-detail">
 									<input type="button" class="btn btn-default show-gallery" value="Gallery" />
@@ -431,6 +441,7 @@ $(document).ready(function() {
 			
 			// set form
 			Func.language();
+			set_wysiwyg({ id: 'form-content' });
 			
 			// set view
 			if (page.data.user.user_type_id == page.data.USER_TYPE_MEMBER) {
@@ -572,6 +583,7 @@ $(document).ready(function() {
 					}
 					
 					Func.populate({ cnt: '#cnt-form-main', record: result });
+					$('.panel-form #form-content').html(result.booking);
 					combo.region({ country_id: result.country_id, target: $('#cnt-form-main [name="region_id"]'), value: result.region_id });
 					combo.city({ region_id: result.region_id, target: $('#cnt-form-main [name="city_id"]'), value: result.city_id });
 					
@@ -626,6 +638,10 @@ $(document).ready(function() {
 					param: { action: 'facility_delete', id: record.id },
 					callback: function(result) {
 						facility_dt.reload();
+						
+						if (result.reload_post_dt) {
+							dt.reload();
+						}
 					}
 				});
 			});
@@ -784,9 +800,12 @@ $(document).ready(function() {
 			return false;
 		}
 		
+		// submit
+		var param_submit = Site.Form.GetValue('#cnt-form-main form');
+		param_submit.booking = $('#form-content').html();
 		Func.update({
 			link: web.base + 'panel/post/hotel/action',
-			param: Site.Form.GetValue('#cnt-form-main form'),
+			param: param_submit,
 			callback: function() {
 				dt.reload();
 				page.show_grid();
@@ -801,9 +820,13 @@ $(document).ready(function() {
 		Func.update({
 			link: web.base + 'panel/post/hotel/action',
 			param: Site.Form.GetValue('#modal-facility form'),
-			callback: function() {
+			callback: function(result) {
 				facility_dt.reload();
 				$('#modal-facility [name="facility_search"]').val('');
+				
+				if (result.reload_post_dt) {
+					dt.reload();
+				}
 			}
 		});
 	});

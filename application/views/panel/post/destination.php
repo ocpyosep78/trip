@@ -29,15 +29,15 @@
 			</div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">Description 1</label>
-				<div class="col-lg-10"><textarea name="desc_01" class="form-control" placeholder="Description 1"></textarea></div>
+				<div class="col-lg-10"><div name="desc_01" class="input-tinymce"></div></div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">Description 2</label>
-				<div class="col-lg-10"><textarea name="desc_02" class="form-control" placeholder="Description 2"></textarea></div>
+				<div class="col-lg-10"><div name="desc_02" class="input-tinymce"></div></div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">Description 3</label>
-				<div class="col-lg-10"><textarea name="desc_03" class="form-control" placeholder="Description 3"></textarea></div>
+				<div class="col-lg-10"><div name="desc_03" class="input-tinymce"></div></div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">Map</label>
@@ -110,13 +110,13 @@
 								<div class="form-group">
 									<label class="col-lg-2 control-label">Title</label>
 									<div class="col-lg-10">
-										<input type="text" class="form-control" name="title" placeholder="Title" />
+										<input type="text" class="form-control" name="title" data-required="true" placeholder="Title" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-lg-2 control-label">Image</label>
 									<div class="col-lg-7">
-										<input type="text" name="thumbnail" class="form-control" placeholder="Image" />
+										<input type="text" name="thumbnail" class="form-control" data-required="true" placeholder="Image" />
 									</div>
 									<div class="col-lg-3">
 										<button type="button" class="btn btn-default browse-image-gallery">Select Picture</button>
@@ -461,7 +461,7 @@ $(document).ready(function() {
 	// grid facility
 	var facility_param = {
 		id: 'table-facility',
-		source: web.base + 'panel/post/hotel/grid',
+		source: web.base + 'panel/post/destination/grid',
 		column: [ { }, { bSortable: false, sClass: 'center', sWidth: '10%' } ],
 		fnServerParams : function (aoData) {
 			aoData.push(
@@ -475,16 +475,65 @@ $(document).ready(function() {
 				eval('var record = ' + raw_record);
 				
 				Func.ajax({
-					url: web.base + 'panel/post/hotel/action',
+					url: web.base + 'panel/post/destination/action',
 					param: { action: 'facility_delete', id: record.id },
 					callback: function(result) {
 						facility_dt.reload();
+						
+						if (result.reload_post_dt) {
+							dt.reload();
+						}
 					}
 				});
 			});
 		}
 	}
 	var facility_dt = Func.init_datatable(facility_param);
+	
+	// grid gallery
+	var gallery_param = {
+		id: 'table-gallery',
+		source: web.base + 'panel/post/destination/grid',
+		column: [ { }, { bSortable: false, sClass: 'center', sWidth: '15%' } ],
+		fnServerParams : function (aoData) {
+			aoData.push(
+				{ name: "action", "value": 'post_gallery' },
+				{ name: "post_id", "value": $('#modal-gallery [name="post_id"]').val() }
+			)
+		},
+		callback: function() {
+			$('#table-gallery .btn-edit').click(function() {
+				var raw_record = $(this).siblings('.hide').text();
+				eval('var record = ' + raw_record);
+				
+				Func.ajax({ url: web.base + 'panel/post/destination/action', param: { action: 'gallery_get_by_id', id: record.id }, callback: function(result) {
+					Func.populate({ cnt: '#modal-gallery', record: result });
+					page.modal_gallery.show_form();
+				} });
+			});
+			
+			$('#table-gallery .btn-preview').click(function() {
+				var raw_record = $(this).siblings('.hide').text();
+				eval('var record = ' + raw_record);
+				
+				window.open(record.link_thumbnail);
+			});
+			
+			$('#table-gallery .btn-delete').click(function() {
+				var raw_record = $(this).siblings('.hide').text();
+				eval('var record = ' + raw_record);
+				
+				Func.ajax({
+					url: web.base + 'panel/post/destination/action',
+					param: { action: 'gallery_delete', id: record.id },
+					callback: function(result) {
+						gallery_dt.reload();
+					}
+				});
+			});
+		}
+	}
+	var gallery_dt = Func.init_datatable(gallery_param);
 	
 	// form
 	var form = $('#cnt-form-main form').parsley();
@@ -530,11 +579,15 @@ $(document).ready(function() {
 	$('#modal-facility form').submit(function(e) {
 		e.preventDefault();
 		Func.update({
-			link: web.base + 'panel/post/hotel/action',
+			link: web.base + 'panel/post/destination/action',
 			param: Site.Form.GetValue('#modal-facility form'),
-			callback: function() {
+			callback: function(result) {
 				facility_dt.reload();
 				$('#modal-facility [name="facility_search"]').val('');
+				
+				if (result.reload_post_dt) {
+					dt.reload();
+				}
 			}
 		});
 	});
@@ -568,7 +621,7 @@ $(document).ready(function() {
 		}
 		
 		Func.update({
-			link: web.base + 'panel/post/hotel/action',
+			link: web.base + 'panel/post/destination/action',
 			param: Site.Form.GetValue('#modal-gallery form'),
 			callback: function() {
 				gallery_dt.reload();

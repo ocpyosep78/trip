@@ -6,7 +6,7 @@ class post_model extends CI_Model {
 		
         $this->field = array(
 			'id', 'city_id', 'member_id', 'category_sub_id', 'alias', 'title', 'address', 'desc_01', 'desc_02', 'desc_03', 'field_01', 'map', 'star', 'post_status',
-			'thumbnail', 'having_promo', 'review_rate', 'review_count', 'rate_per_night', 'facility', 'post_update'
+			'thumbnail', 'having_promo', 'review_rate', 'review_count', 'rate_per_night', 'facility', 'post_update', 'total_room'
 		);
     }
 
@@ -87,7 +87,7 @@ class post_model extends CI_Model {
             $select_query  = "
 				SELECT post.*,
 					member.first_name, member.last_name,
-					category.id category_id, category.title category_title, category.alias category_alias,
+					category.id category_id, category.title category_title, category.alias category_alias, category.link category_link,
 					category_sub.title category_sub_title, category_sub.alias category_sub_alias,
 					city.title city_title, city.alias city_alias,
 					region.id region_id, region.title region_title, region.alias region_alias,
@@ -106,7 +106,7 @@ class post_model extends CI_Model {
             $select_query  = "
 				SELECT post.*,
 					member.first_name, member.last_name,
-					category.id category_id, category.title category_title, category.alias category_alias,
+					category.id category_id, category.title category_title, category.alias category_alias, category.link category_link,
 					category_sub.title category_sub_title, category_sub.alias category_sub_alias,
 					city.title city_title, city.alias city_alias,
 					region.id region_id, region.title region_title, region.alias region_alias,
@@ -165,7 +165,7 @@ class post_model extends CI_Model {
 		
 		$select_query = "
 			SELECT SQL_CALC_FOUND_ROWS post.*,
-				category.id category_id, category.title category_title, category.alias category_alias,
+				category.id category_id, category.title category_title, category.alias category_alias, category.link category_link,
 				category_sub.title category_sub_title, category_sub.alias category_sub_alias,
 				city.title city_title, city.alias city_alias,
 				region.id region_id, region.title region_title, region.alias region_alias,
@@ -254,6 +254,11 @@ class post_model extends CI_Model {
 			$row['link_city'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias']);
 		}
 		
+		// overwrite link
+		if (!empty($row['category_link'])) {
+			$row['link_category'] = $row['category_link'];
+		}
+		
 		// member fullname
 		if (isset($row['first_name']) && isset($row['last_name'])) {
 			$row['full_name'] = $row['first_name'].' '.$row['last_name'];
@@ -303,4 +308,37 @@ class post_model extends CI_Model {
 		
         return $array;
 	}
+	
+	/*   Region Session  */
+	
+	function set_session($post) {
+		$array_post = (isset($_SESSION['post_lastest_visit'])) ? $_SESSION['post_lastest_visit'] : array();
+		
+		// check duplicate
+		$is_duplicate = false;
+		foreach ($array_post as $record) {
+			if ($record['id'] == $post['id']) {
+				$is_duplicate = true;
+				break;
+			}
+		}
+		if (! $is_duplicate) {
+			$array_post[] = $post;
+		}
+		
+		// limit only 5 record
+		if (count($array_post) > 5) {
+			array_shift($array_post);
+		}
+		
+		// set session
+		$_SESSION['post_lastest_visit'] = $array_post;
+	}
+	
+	function get_session() {
+		$array_post = (isset($_SESSION['post_lastest_visit'])) ? $_SESSION['post_lastest_visit'] : array();
+		return $array_post;
+	}
+	
+	/*   End Region Session  */
 }

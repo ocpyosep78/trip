@@ -48,6 +48,9 @@ class destination extends PANEL_Controller {
 		$action = (isset($_POST['action'])) ? $_POST['action'] : '';
 		unset($_POST['action']);
 		
+		// user
+		$user_session = $this->user_model->get_session();
+		
 		$result = array();
 		if ($action == 'update') {
 			// add update time
@@ -63,10 +66,28 @@ class destination extends PANEL_Controller {
 		}
 		
 		// facility
-		else if ($action == 'facility_update') {
-			$result = $this->post_facility_model->update($_POST);
-		} else if ($action == 'facility_delete') {
-			$result = $this->post_facility_model->delete($_POST);
+		else if ($action == 'facility_update' || $action == 'facility_delete') {
+			if ($action == 'facility_update') {
+				$post_id = $_POST['post_id'];
+				$result = $this->post_facility_model->update($_POST);
+			} else if ($action == 'facility_delete') {
+				$record = $this->post_facility_model->get_by_id($_POST);
+				$post_id = $record['post_id'];
+				
+				$result = $this->post_facility_model->delete($_POST);
+			}
+			
+			// set post to request approve
+			if (! in_array($user_session['user_type_id'], array(USER_TYPE_ADMINISTRATOR, USER_TYPE_EDITOR))) {
+				$post = $this->post_model->get_by_id(array( 'id' => $post_id ));
+				
+				if ($post['post_status'] == 'approve') {
+					$post_update['id'] = $post_id;
+					$post_update['post_status'] = 'request approve';
+					$this->post_model->update($post_update);
+					$result['reload_post_dt'] = true;
+				}
+			}
 		}
 		
 		// gallery

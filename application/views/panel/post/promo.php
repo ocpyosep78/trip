@@ -194,6 +194,10 @@
 										<label class="col-lg-2 control-label">Keyword Tag</label>
 										<div class="col-lg-10"><input type="text" name="keyword" class="form-control" placeholder="Keyword Tag" /></div>
 									</div>
+									<div class="form-group">
+										<label class="col-lg-2 control-label">Link Promo</label>
+										<div class="col-lg-10"><input type="text" name="link_info" class="form-control" placeholder="Link Promo" /></div>
+									</div>
 									
 									<header class="panel-heading bg-light"><ul class="nav nav-tabs nav-justified">
 										<?php foreach ($array_language as $key => $row) { ?>
@@ -288,8 +292,10 @@ $(document).ready(function() {
 				
 				Func.ajax({ url: web.base + 'panel/post/promo/action', param: { action: 'get_by_id', id: record.id }, callback: function(result) {
 					// set it draft
-					if (Func.InArray(result.promo_status, ['approve', 'reject'])) {
-						result.promo_status = 'draft';
+					if (page.data.user.user_type_id == page.data.USER_TYPE_MEMBER) {
+						if (Func.InArray(result.promo_status, ['approve', 'reject'])) {
+							result.promo_status = 'draft';
+						}
 					}
 					
 					Func.populate({ cnt: '.panel-form', record: result });
