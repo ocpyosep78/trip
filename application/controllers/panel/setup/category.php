@@ -10,7 +10,7 @@ class category extends PANEL_Controller {
 	
 	function grid() {
 		$_POST['is_edit'] = 1;
-		$_POST['column'] = array( 'title', 'content', 'alias' );
+		$_POST['column'] = array( 'title', 'alias', 'content' );
 		
 		$array = $this->category_model->get_array($_POST);
 		$count = $this->category_model->get_count();

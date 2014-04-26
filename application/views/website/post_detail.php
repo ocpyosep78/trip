@@ -114,9 +114,9 @@
 					<div class="hpadding20">
 						<h2 class="opensans slim green2">Bintang</h2>
 					</div>
+					<div class="line3 margtop20"></div>
 					<?php } ?>
 					
-					<div class="line3 margtop20"></div>
 					<div class="col-md-6 bordertype3">
 						Rate per night<br />
 					</div>
