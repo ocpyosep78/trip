@@ -338,7 +338,7 @@
 						<?php if (empty($post['desc_01_select'])) { ?>
 						<p class="hpadding20">This content is not available in your language.</p>
 						<?php } else { ?>
-						<p class="hpadding20"><?php echo $post['desc_01_select']; ?></p>
+						<p class="hpadding20"><?php echo string_escape($post['desc_01_select']); ?></p>
 						<?php } ?>
 						<div class="line4"></div>
 						
@@ -347,7 +347,7 @@
 							Description <span class="collapsearrow"></span>
 						</button>
 						<div id="collapse1" class="collapse in">
-							<div class="hpadding20"><?php echo $post['desc_02_select']; ?></div>
+							<div class="hpadding20"><?php echo string_escape($post['desc_02_select']); ?></div>
 							<div class="clearfix"></div>
 						</div>
 						<div class="line4"></div>
