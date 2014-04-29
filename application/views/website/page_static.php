@@ -6,9 +6,19 @@
 	$array_breadcrub = array(
 		array( 'link' => '#', 'title' => $page_static['title'] )
 	);
+	
+	// meta
+	$array_seo = array(
+		'title' => WEBSITE_TITLE.' - '.$page_static['title'],
+		'array_meta' => array( ),
+		'array_link' => array( )
+	);
+	$array_seo['array_meta'][] = array( 'name' => 'Description', 'content' => get_length_char($page_static['content'], 150, '') );
+	$array_seo['array_link'][] = array( 'rel' => 'canonical', 'href' => $page_static['page_link'] );
+	$array_seo['array_link'][] = array( 'rel' => 'citation_authors', 'content' => WEBSITE_OWNER_POST );
 ?>
 
-<?php $this->load->view( 'website/common/meta' ); ?>
+<?php $this->load->view( 'website/common/meta', $array_seo ); ?>
 <body id="top" class="thebg" >
 	<?php $this->load->view( 'website/common/header_menu' ); ?>
 	<?php $this->load->view( 'website/common/breadcrub', array( 'array' => $array_breadcrub ) ); ?>

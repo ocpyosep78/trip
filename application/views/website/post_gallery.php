@@ -9,6 +9,9 @@
 	// post
 	$post = $this->post_model->get_by_id(array( 'city_alias' => $this->uri->segments[3], 'alias' => $this->uri->segments[4] ));
 	
+	// tag
+	$array_tag = $this->post_tag_model->get_array(array( 'post_id' => $post['id'] ));
+	
 	// current photo
 	$photo = $array_gallery = array();
 	if (empty($this->uri->segments[6])) {
@@ -56,6 +59,40 @@
 		array( 'link' => $post['link_post_gallery'], 'title' => 'Traveler Gallery' )
 	);
 	
+	// prepare meta
+	$keyword = $image_src = '';
+	if (empty($this->uri->segments[6])) {
+		$title = $post['title_select'].' - '.$post['city_title'];
+		foreach ($array_tag as $row) {
+			$keyword .= (empty($keyword)) ? $row['tag_title'] : ', '.$row['tag_title'];
+		}
+		$canonical = $post['link_post_gallery'];
+		$array_gallery_temp = $this->post_traveler_photo_model->get_array(array( 'post_id' => $post['id'], 'post_status' => 'approve', 'limit' => 10 ));
+		foreach ($array_gallery_temp as $row) {
+			$image_src .= (empty($keyword)) ? $row['thumbnail_link'] : ', '.$row['thumbnail_link'];
+		}
+	} else {
+		$title = $photo['title'].' - '.$post['title_select'].' - '.$post['city_title'];
+		$keyword = $post['title_select'].', '.$photo['title'];
+		$canonical = $photo['link_traveler_photo'];
+		$image_src = $photo['thumbnail_link'];
+		$citation_authors = $photo['traveler_full_name'];
+	}
+	
+	// meta
+	$array_seo = array(
+		'title' => $title,
+		'array_meta' => array( ),
+		'array_link' => array( )
+	);
+	$array_seo['array_meta'][] = array( 'name' => 'Description', 'content' => get_length_char($post['desc_01_select'], 150, '') );
+	$array_seo['array_meta'][] = array( 'name' => 'Keywords', 'content' => $keyword );
+	$array_seo['array_link'][] = array( 'rel' => 'canonical', 'href' => $canonical );
+	$array_seo['array_link'][] = array( 'rel' => 'image_src', 'href' => $image_src );
+	if (!empty($citation_authors)) {
+		$array_seo['array_link'][] = array( 'rel' => 'citation_authors', 'href' => $citation_authors );
+	}
+	
 	// page
 	$page['link_post'] = $post['link_post'];
 	if ($is_login) {
@@ -63,7 +100,7 @@
 	}
 ?>
 
-<?php $this->load->view( 'website/common/meta' ); ?>
+<?php $this->load->view( 'website/common/meta', $array_seo ); ?>
 <body id="top" class="thebg">
 	<?php $this->load->view( 'website/common/header_menu' ); ?>
 	<?php $this->load->view( 'website/common/breadcrub', array( 'array' => $array_breadcrub ) ); ?>

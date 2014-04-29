@@ -30,15 +30,15 @@
 			</div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">Description 1</label>
-				<div class="col-lg-10"><div name="desc_01" class="input-tinymce"></div></div>
+				<div class="col-lg-10"><textarea name="desc_01" class="input-tinymce" style="width: 100%"></textarea></div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">Description 2</label>
-				<div class="col-lg-10"><div name="desc_02" class="input-tinymce"></div></div>
+				<div class="col-lg-10"><textarea name="desc_02" class="input-tinymce" style="width: 100%"></textarea></div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">Map</label>
-				<div class="col-lg-10"><div name="map" class="input-tinymce"></div></div>
+				<div class="col-lg-10"><textarea name="map" class="input-tinymce" style="width: 100%"></textarea></div>
 			</div>
 		</div>
 	</div>
@@ -391,7 +391,7 @@
 								<div class="form-group">
 									<label class="col-lg-2 control-label">How to book</label>
 									<div class="col-sm-10">
-										<div id="form-content" class="form-control" style="overflow: scroll; height: 150px; max-height: 150px;"></div>
+										<textarea name="booking" class="render-tinymce" style="width: 100%"></textarea>
 									</div>
 								</div>
 								<div class="form-group center post-detail">
@@ -441,7 +441,6 @@ $(document).ready(function() {
 			
 			// set form
 			Func.language();
-			set_wysiwyg({ id: 'form-content' });
 			
 			// set view
 			if (page.data.user.user_type_id == page.data.USER_TYPE_MEMBER) {
@@ -583,7 +582,6 @@ $(document).ready(function() {
 					}
 					
 					Func.populate({ cnt: '#cnt-form-main', record: result });
-					$('.panel-form #form-content').html(result.booking);
 					combo.region({ country_id: result.country_id, target: $('#cnt-form-main [name="region_id"]'), value: result.region_id });
 					combo.city({ region_id: result.region_id, target: $('#cnt-form-main [name="city_id"]'), value: result.city_id });
 					
@@ -802,7 +800,6 @@ $(document).ready(function() {
 		
 		// submit
 		var param_submit = Site.Form.GetValue('#cnt-form-main form');
-		param_submit.booking = $('#form-content').html();
 		Func.update({
 			link: web.base + 'panel/post/hotel/action',
 			param: param_submit,

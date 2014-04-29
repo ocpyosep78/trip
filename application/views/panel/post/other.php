@@ -29,19 +29,19 @@
 			</div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">Description 1</label>
-				<div class="col-lg-10"><div name="desc_01" class="input-tinymce"></div></div>
+				<div class="col-lg-10"><textarea name="desc_01" class="input-tinymce" style="width: 100%"></textarea></div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">Description 2</label>
-				<div class="col-lg-10"><div name="desc_02" class="input-tinymce"></div></div>
+				<div class="col-lg-10"><textarea name="desc_02" class="input-tinymce" style="width: 100%"></textarea></div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">Description 3</label>
-				<div class="col-lg-10"><div name="desc_03" class="input-tinymce"></div></div>
+				<div class="col-lg-10"><textarea name="desc_03" class="input-tinymce" style="width: 100%"></textarea></div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">Map</label>
-				<div class="col-lg-10"><div name="map" class="input-tinymce"></div></div>
+				<div class="col-lg-10"><textarea name="map" class="input-tinymce" style="width: 100%"></textarea></div>
 			</div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">Field 1</label>

@@ -7,6 +7,7 @@
 	
 	// get selected category sub, region & city
 	$category_sub = $region = $city = array();
+	$array_region = $array_city = array();
 	$selected_category_sub = (empty($this->uri->segments[2])) ? '' : $this->uri->segments[2];
 	$selected_region = (empty($this->uri->segments[2])) ? '' : $this->uri->segments[2];
 	$selected_city = (empty($this->uri->segments[3])) ? '' : $this->uri->segments[3];
@@ -56,12 +57,68 @@
 		$array_breadcrub[] = array( 'link' => $category['link_category'].'/'.$region['alias'].'/'.$city['alias'], 'title' => $city['title'] );
 	}
 	
+	// array post
+	$param_post = array(
+		'post_status' => 'approve',
+		'category_id' => $category['id'],
+		'sort' => '[{"property":"having_promo","direction":"DESC"}]',
+		'limit' => 5
+	);
+	if (count($category_sub) > 0) {
+		$param_post['category_sub_id'] = $category_sub['id'];
+	}
+	if (count($region) > 0) {
+		$param_post['region_id'] = $region['id'];
+	}
+	if (count($city) > 0) {
+		$param_post['city_id'] = $city['id'];
+	}
+	$array_post = $this->post_model->get_array($param_post);
+	
+	// prepare meta
+	$keyword = $canonical = $image_post = '';
+	$array_image = array();
+	$title = WEBSITE_TITLE.' - '.$category['title'];
+	$description = get_length_char($category['content'], 150, '');
+	$canonical = $category['link_category'];
+	if (count($region) > 0) {
+		$title .= ' - '.$region['title'];
+		$canonical .= '/'.$region['alias'];
+		$description = $region['content'];
+	}
+	if (count($city) > 0) {
+		$title .= ' - '.$city['title'];
+		$canonical .= '/'.$city['alias'];
+		$description = $city['content'];
+	}
+	foreach($array_category_sub as $key => $row) {
+		$keyword .= (empty($keyword)) ? $row['title'] : ', '.$row['title'];
+	}
+	foreach($array_tag as $key => $row) {
+		$keyword .= (empty($keyword)) ? $row['tag_title'] : ', '.$row['tag_title'];
+	}
+	foreach($array_post as $key => $row) {
+		$image_post .= (empty($image_post)) ? $row['link_thumbnail_small'] : ', '.$row['link_thumbnail_small'];
+	}
+	
+	// meta
+	$array_seo = array(
+		'title' => $title,
+		'array_meta' => array( ),
+		'array_link' => array( )
+	);
+	$array_seo['array_meta'][] = array( 'name' => 'Description', 'content' => $description );
+	$array_seo['array_meta'][] = array( 'name' => 'Keywords', 'content' => $keyword );
+	$array_seo['array_link'][] = array( 'rel' => 'canonical', 'href' => $canonical );
+	$array_seo['array_link'][] = array( 'rel' => 'image_src', 'href' => $image_post );
+	$array_seo['array_link'][] = array( 'rel' => 'citation_authors', 'content' => WEBSITE_OWNER_POST );
+	
 	// page
 	$page['city'] = $city;
 	$page['region'] = $region;
 ?>
 
-<?php $this->load->view( 'website/common/meta' ); ?>
+<?php $this->load->view( 'website/common/meta', $array_seo ); ?>
 <body id="top" class="thebg">
 	<?php $this->load->view( 'website/common/header_menu' ); ?>
 	<?php $this->load->view( 'website/common/breadcrub', array( 'array' => $array_breadcrub ) ); ?>

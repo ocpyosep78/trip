@@ -91,6 +91,11 @@ class page_static_model extends CI_Model {
 	function sync($row, $param = array()) {
 		$row = StripArray($row);
 		
+		// link
+		if (!empty($row['alias'])) {
+			$row['page_link'] = base_url($row['alias']);
+		}
+		
 		if (count(@$param['column']) > 0) {
 			$row = dt_view_set($row, $param);
 		}

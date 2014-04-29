@@ -1,12 +1,46 @@
 <?php
 	$web['base'] = base_url();
+	
+	// title
+	$title = (isset($title)) ? $title : WEBSITE_TITLE;
+	
+	/*	// array meta
+		e.g. $array_meta = array(
+			array( 'name' => 'Title', 'content' => 'Isi Title' ),
+			array( 'name' => 'Description', 'content' => 'Isi Description' ),
+			array( 'name' => 'Keywords', 'content' => 'Isi Keywords' )
+		);
+	/*	*/
+	$array_meta = (isset($array_meta)) ? $array_meta : array();
+	
+	/*	// array link
+		e.g. $array_link = array(
+			array( 'rel' => 'canonical', 'href' => 'url item' ),
+			array( 'rel' => 'image_src', 'href' => 'image default' )
+		);
+	/*	*/
+	$array_link = (isset($array_link)) ? $array_link : array();
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Travel Agency - HTML5 Booking template</title>
+	<title><?php echo $title; ?></title>
+	
+	<!-- meta -->
+	<?php foreach ($array_meta as $row) { ?>
+	<meta name="<?php echo $row['name']; ?>" content="<?php echo $row['content']; ?>" />
+	<?php } ?>
+	
+	<!-- link -->
+	<?php foreach ($array_link as $row) { ?>
+	<?php if (isset($row['href'])) { ?>
+	<meta rel="<?php echo $row['rel']; ?>" href="<?php echo $row['href']; ?>" />
+	<?php } else if (isset($row['content'])) { ?>
+	<meta rel="<?php echo $row['rel']; ?>" content="<?php echo $row['content']; ?>" />
+	<?php } ?>
+	<?php } ?>
 	
     <!-- Bootstrap -->
     <link href="<?php echo base_url('static/theme/forest/css/bootstrap.css'); ?>" rel="stylesheet" media="screen">

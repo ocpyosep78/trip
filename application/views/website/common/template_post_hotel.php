@@ -68,6 +68,11 @@
 				
 				<br /><br /><br /><br />
 				<span class="size11 grey"><?php echo (empty($row['having_promo'])) ? '&nbsp;' : 'PROMO'; ?></span><br /><br />
+				
+				<?php if (!empty($row['rate_per_night'])) { ?>
+				<span class="size11 grey"><?php echo $row['rate_per_night']; ?></span><br /><br /><br />
+				<?php } ?>
+				
 				<a class="bookbtn mt1" href="<?php echo $row['link_post']; ?>">View</a>
 			</div>
 			<div class="labelleft">

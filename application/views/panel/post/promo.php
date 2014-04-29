@@ -309,15 +309,6 @@ $(document).ready(function() {
 				
 				Func.populate({ cnt: '#modal-validation', record: { id: record.id, promo_status: 'approve' } });
 				$('#modal-validation').modal();
-				/*
-				Func.update({
-					link: web.base + 'panel/post/promo/action',
-					param: { id: record.id, action: 'update_status', promo_status: 'approve' },
-					callback: function() {
-						dt.reload();
-					}
-				});
-				/*	*/
 			});
 			
 			$('#datatable .btn-reject').click(function() {
@@ -326,16 +317,6 @@ $(document).ready(function() {
 				
 				Func.populate({ cnt: '#modal-validation', record: { id: record.id, promo_status: 'reject' } });
 				$('#modal-validation').modal();
-				
-				/*
-				Func.update({
-					link: web.base + 'panel/post/promo/action',
-					param: { id: record.id, action: 'update_status', promo_status: 'reject' },
-					callback: function() {
-						dt.reload();
-					}
-				});
-				/*	*/
 			});
 		
 			$('#datatable .btn-delete').click(function() {
@@ -344,7 +325,11 @@ $(document).ready(function() {
 				
 				Func.confirm_delete({
 					data: { action: 'delete', id: record.id },
-					url: web.base + 'panel/post/promo/action', callback: function() { dt.reload(); }
+					url: web.base + 'panel/post/promo/action', callback: function() { dt.reload(); },
+					callback: function() {
+						dt.reload();
+						Func.ajax({ url: web.base + 'service/post_update?reminder=0', is_json: false });
+					}
 				});
 			});
 		}
@@ -374,6 +359,7 @@ $(document).ready(function() {
 					dt.reload();
 					page.show_grid();
 					$('.panel-form form')[0].reset();
+					Func.ajax({ url: web.base + 'service/post_update?reminder=0', is_json: false });
 				}
 			});
 		}
@@ -419,7 +405,7 @@ $(document).ready(function() {
 				$('#modal-validation').modal('hide');
 				
 				if (param.promo_status == 'approve') {
-					Func.ajax({ url: web.base + 'service/post_update', is_json: false });
+					Func.ajax({ url: web.base + 'service/post_update?reminder=0', is_json: false });
 				}
 			}
 		});

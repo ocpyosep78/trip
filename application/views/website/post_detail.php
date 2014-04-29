@@ -44,6 +44,9 @@
 		$post_detail = $this->hotel_detail_model->get_by_id(array( 'post_id' => $post['id'] ));
 	}
 	
+	// tag
+	$array_tag = $this->post_tag_model->get_array(array( 'post_id' => $post['id'] ));
+	
 	// breadcrub
 	$array_breadcrub = array(
 		array( 'link' => $post['link_category'], 'title' => $post['category_title'] ),
@@ -51,9 +54,37 @@
 		array( 'link' => $post['link_city'], 'title' => $post['city_title'] ),
 		array( 'link' => $post['link_post'], 'title' => $post['title_select'] )
 	);
+	
+	// prepare meta
+	$keyword = '';
+	if ($post['category_id'] == CATEGORY_HOTEL) {
+		foreach ($array_room_amenity as $row) {
+			$keyword .= (empty($keyword)) ? $row['title_select'] : ', '.$row['title_select'];
+		}
+		foreach ($array_facility as $row) {
+			$keyword .= (empty($keyword)) ? $row['facility_title_select'] : ', '.$row['facility_title_select'];
+		}
+	} else if ($post['category_id'] == CATEGORY_RESTAURANT) {
+		$keyword = $post['address'];
+	} else {
+		foreach ($array_tag as $row) {
+			$keyword .= (empty($keyword)) ? $row['tag_title'] : ', '.$row['tag_title'];
+		}
+	}
+	
+	// meta
+	$array_seo = array(
+		'title' => $post['title_select'].' - '.$post['city_title'],
+		'array_meta' => array( ),
+		'array_link' => array( )
+	);
+	$array_seo['array_meta'][] = array( 'name' => 'Description', 'content' => get_length_char($post['desc_01_select'], 150, '') );
+	$array_seo['array_meta'][] = array( 'name' => 'Keywords', 'content' => $keyword );
+	$array_seo['array_link'][] = array( 'rel' => 'canonical', 'href' => $post['link_post'] );
+	$array_seo['array_link'][] = array( 'rel' => 'image_src', 'href' => $post['link_thumbnail'] );
 ?>
 
-<?php $this->load->view( 'website/common/meta' ); ?>
+<?php $this->load->view( 'website/common/meta', $array_seo ); ?>
 <body id="top" class="thebg">
     <?php $this->load->view( 'website/common/header_menu' ); ?>
 	<?php $this->load->view( 'website/common/breadcrub', array( 'array' => $array_breadcrub ) ); ?>
@@ -106,6 +137,10 @@
 				<div class="padding20">
 					<h4 class="lh1"><?php echo $post['title_select']; ?></h4>
 					<?php echo nl2br($post['address']); ?>
+					
+					<?php if (!empty($post['star'])) { ?>
+					<div style="padding: 5px 0 0 0;"><img src="<?php echo base_url('static/theme/forest/images/filter-rating-'.$post['star'].'.png'); ?>"></div>
+					<?php } ?>
 				</div>
 			 	<div class="line3"></div>
 				

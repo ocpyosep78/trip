@@ -34,8 +34,9 @@ define('VERIFY_ADDRESS_MAX',					5);
 define('PROMO_REMINDER',						'+1 Month');
 
 /*	WEBSITE INFO */
-define('WEBSITE_TITLE',							'Website Trip');
-define('WEBSITE_ALIAS',							'website trip');
+define('WEBSITE_TITLE',							'Tripdomestik.com');
+define('WEBSITE_ALIAS',							'Tripdomestik.com');
+define('WEBSITE_OWNER_POST',					'Ridwan Amir');
 define('WEBSITE_COOKIE',						'.tripdomestik.com');
 
 /*	FACEBOOK INFO */

@@ -4,7 +4,7 @@ class city_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'region_id', 'alias', 'title' );
+        $this->field = array( 'id', 'region_id', 'alias', 'title', 'content' );
     }
 
     function update($param) {

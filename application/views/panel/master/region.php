@@ -32,6 +32,10 @@
 									<label>Alias</label>
 									<input type="text" class="form-control" name="alias" data-required="true" readonly="readonly" />
 								</div>
+								<div class="form-group">
+									<label>Description</label>
+									<textarea class="form-control" name="content"></textarea>
+								</div>
 							</div>
 						</section>
 					</div>

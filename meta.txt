@@ -1,0 +1,212 @@
+Perbaikan :
+
+cek => - di listing http://www.tripdomestik.com/hotel (HOTEL) tampilkan harga di atas tombol VIEW
+cek => - coba liat ini http://www.tripdomestik.com/destination/bali/kota-denpasar/746546543454354354 , TAB PROMO tidak muncul kan, (karena sudah saya delete promonya), trus coba liat disini http://www.tripdomestik.com/destination post tanjung benoa masih dalam status promo, itu di normalkan, mestinya tulisan promonya hilang
+cek => - lihat disini http://www.tripdomestik.com/hotel/bali/kota-denpasar/alila-ubud-hotel di bagian bawah adress, itu tampilkan bintang yang gambar biru
+
+
+HOTEL
+------------------------------
+cek => halaman - http://www.tripdomestik.com/hotel
+
+<title>Tripdomestik.com - Hotel</title>
+<meta name="Description" content="desc, max 150 karakter, allowed any karakter ambil dari dec category admin" />
+<meta name="Keywords" content="tampilkan semua sub kategory, exp : hotel, villa, tampilkan juga tag di category yang diisi admin"/> 
+<link rel="canonical" href="http://www.tripdomestik.com/hotel"/> 
+<link rel="image_src" href="araykan gambar utama yang listing sebanyak 5" />
+<meta name="citation_authors" content="Ridwan Amir">
+
+-------------------------------
+cek => halaman - http://www.tripdomestik.com/hotel/jawa-timur
+
+<title>Tripdomestik.com - Hotel - Jawa Timur</title>
+<meta name="Description" content="aku isi sendiri langsung di meta ini" />
+<meta name="Keywords" content="tampilkan semua sub kategory, exp : hotel, villa, tampilkan juga tag di category yang diisi admin"/> 
+<link rel="canonical" href="http://www.tripdomestik.com/hotel/jawa-timur"/> 
+<link rel="image_src" href="araykan gambar utama yang listing sebanyak 5" />
+<meta name="citation_authors" content="Ridwan Amir">
+
+note : isinya di master => region
+
+-------------------------------
+cek => halaman - url = http://www.tripdomestik.com/hotel/jawa-timur/kota-malang
+
+<title>Tripdomestik.com - Hotel - Jawa Timur - Malang</title>
+<meta name="Description" content="aku isi sendiri langsung di meta ini" />
+<meta name="Keywords" content="tampilkan semua sub kategory, exp : hotel, villa, tampilkan juga tag di category yang diisi admin"/> 
+<link rel="canonical" href="http://www.tripdomestik.com/hotel/jawa-timur"/> 
+<link rel="image_src" href="araykan gambar utama yang listing sebanyak 5" />
+<meta name="citation_authors" content="Ridwan Amir">
+
+note : isinya di master => city
+
+-------------------------------
+cek => halaman - http://www.tripdomestik.com/hotel/jawa-timur/kota-malang/35434543243432
+
+<title>The Singhasari Resort & resort - Kota Malang</title>
+<meta name="Description" content="desc, max 150 karakter, allowed any karakter " />
+<meta name="Keywords" content="tampilkan room amenitis dan hotel fasilitas the singhasari di kasih koma"/> 
+<link rel="canonical" href="http://www.tripdomestik.com/hotel/jawa-timur/kota-malang/35434543243432"/> 
+<link rel="image_src" href="url gambar utama" />
+
+----------------------------------------------------------------------------
+cek => halaman - http://www.tripdomestik.com/destination
+
+<title>Tripdomestik.com - Destination</title>
+<meta name="Description" content="desc, max 150 karakter, allowed any karakter ambil dari dec category admin" />
+<meta name="Keywords" content="tampilkan semua sub kategory, exp : City Excitement, Cultural Attractions, tampilkan juga tag di category yang diisi admin"/> 
+<link rel="canonical" href="http://www.tripdomestik.com/destination"/> 
+<link rel="image_src" href="araykan gambar utama yang listing sebanyak 5" />
+<meta name="citation_authors" content="Ridwan Amir">
+
+-------------------------------
+cek => halaman - url = http://www.tripdomestik.com/destination/jawa-timur
+
+<title>Tripdomestik.com - destination - Jawa Timur</title>
+<meta name="Description" content="aku isi sendiri langsung di meta ini" />
+<meta name="Keywords" content="tampilkan semua sub kategory, exp : City Excitement, Cultural Attractions, tampilkan juga tag di category yang diisi admin"/> 
+<link rel="canonical" href="http://www.tripdomestik.com/destination/jawa-timur"/> 
+<link rel="image_src" href="araykan gambar utama yang listing sebanyak 5" />
+<meta name="citation_authors" content="Ridwan Amir">
+
+-------------------------------
+cek => halaman - url = http://www.tripdomestik.com/destination/jawa-timur/kota-malang
+
+<title>Tripdomestik.com - destination - Jawa Timur - Malang</title>
+<meta name="Description" content="aku isi sendiri langsung di meta ini" />
+<meta name="Keywords" content="tampilkan semua sub kategory, exp : City Excitement, Cultural Attractions, tampilkan juga tag di category yang diisi admin"/> 
+<link rel="canonical" href="http://www.tripdomestik.com/destination/jawa-timur/kota-malang"/> 
+<link rel="image_src" href="araykan gambar utama yang listing sebanyak 5" />
+<meta name="citation_authors" content="Ridwan Amir">
+
+--------------------------------
+cek => halaman - http://www.tripdomestik.com/destination/jawa-timur/kabupaten-malang/my-nature
+
+<title>Air Terjun Coban Rais - Kota Malang</title>
+<meta name="Description" content="desc, max 150 karakter, allowed any karakter " />
+<meta name="Keywords" content="tampilkan TAG yang di isi waktu create"/> 
+<link rel="canonical" href="http://www.tripdomestik.com/destination/jawa-timur/kabupaten-malang/my-nature"/> 
+<link rel="image_src" href="url gambar utama" />
+
+--------------------------------
+cek => halaman - http://www.tripdomestik.com/destination/jawa-timur/kabupaten-malang/my-nature/gallery
+
+<title>Air Terjun Coban Rais - Kota Malang</title>
+<meta name="Description" content="desc, max 150 karakter, allowed any karakter " />
+<meta name="Keywords" content="tampilkan TAG yang di isi waktu create"/> 
+<link rel="canonical" href="http://www.tripdomestik.com/destination/jawa-timur/kabupaten-malang/my-nature"/> 
+<link rel="image_src" href="araykan url url image yang di galery sebanyak 10" />
+
+--------------------------------
+cek => halaman - http://www.tripdomestik.com/destination/jawa-timur/kabupaten-malang/my-nature/gallery/panorama
+
+<title>Panorama - Air Terjun Coban Rais - Kota Malang</title>
+<meta name="Description" content="desc, max 150 karakter, allowed any karakter " />
+<meta name="Keywords" content="Air Terjun Coban Rais, panorama"/> 
+<link rel="canonical" href="http://www.tripdomestik.com/destination/jawa-timur/kabupaten-malang/my-nature/gallery/panorama"/> 
+<link rel="image_src" href="url image panorama" />
+<meta name="citation_authors" content="Name 1 1 2">
+
+--------------------------------
+cek => halaman - http://www.tripdomestik.com/destination/jawa-timur/kabupaten-malang/my-nature/review
+
+<title>Review | Air Terjun Coban Rais - Kota Malang</title>
+<meta name="Description" content="desc, max 150 karakter, allowed any karakter " />
+<meta name="Keywords" content="Air Terjun Coban Rais"/> 
+<link rel="canonical" href="http://www.tripdomestik.com/destination/jawa-timur/kabupaten-malang/my-nature/review"/> 
+<link rel="image_src" href="gambar utama" />
+<meta name="citation_authors" content="Name 1 1 2">
+
+--------------------------------
+cek => halaman - http://www.tripdomestik.com/destination/jawa-timur/kabupaten-malang/my-nature/review/excelent-place
+
+<title>Review | Air Terjun Coban Rais - Excelent Place - Kota Malang</title>
+<meta name="Description" content="It is close to everything but if you go in the lower season the pool won't be ready even though the temperature was quiet high already., (max 150 karakter, allowed any karakter) " />
+<meta name="Keywords" content="Review, Air Terjun Coban Rais"/> 
+<link rel="canonical" href="http://www.tripdomestik.com/destination/jawa-timur/kabupaten-malang/my-nature/review/excelent-place"/> 
+<link rel="image_src" href="gambar utama" />
+<meta name="citation_authors" content="Name 1 1 2">
+
+----------------------------------------------------------------------------
+cek => halaman - http://www.tripdomestik.com/restaurant
+
+<title>Tripdomestik.com - Restaurant</title>
+<meta name="Description" content="desc, ambil dari desc category restaurant di admin, max 150 karakter, allowed any karakter ambil dari dec category admin" />
+<meta name="Keywords" content="tampilkan semua sub kategory, exp : Mancanegara, Traditional, tampilkan juga tag di category yang diisi admin"/> 
+<link rel="canonical" href="http://www.tripdomestik.com/restaurant"/> 
+<link rel="image_src" href="araykan gambar utama yang listing sebanyak 5" />
+<meta name="citation_authors" content="Ridwan Amir">
+
+-------------------------------
+cek => halaman - url = http://www.tripdomestik.com/restaurant/jawa-timur
+
+<title>Tripdomestik.com - restaurant - Jawa Timur</title>
+<meta name="Description" content="aku isi sendiri langsung di meta ini" />
+<meta name="Keywords" content="tampilkan semua sub kategory, exp : Mancanegara, Traditional, tampilkan juga tag di category yang diisi admin"/> 
+<link rel="canonical" href="http://www.tripdomestik.com/restaurant/jawa-timur"/> 
+<link rel="image_src" href="araykan gambar utama yang listing sebanyak 5" />
+<meta name="citation_authors" content="Ridwan Amir">
+
+-------------------------------
+cek => halaman - url = http://www.tripdomestik.com/restaurant/jawa-timur/kota-malang
+
+<title>Tripdomestik.com - restaurant - Jawa Timur - Malang</title>
+<meta name="Description" content="aku isi sendiri langsung di meta ini" />
+<meta name="Keywords" content="tampilkan semua sub kategory, exp : Mancanegara, Traditional, tampilkan juga tag di category yang diisi admin"/> 
+<link rel="canonical" href="http://www.tripdomestik.com/restaurant/jawa-timur/kota-malang"/> 
+<link rel="image_src" href="araykan gambar utama yang listing sebanyak 5" />
+<meta name="citation_authors" content="Ridwan Amir">
+
+--------------------------------
+cek => halaman - http://www.tripdomestik.com/restaurant/jawa-timur/kota-malang/daun-pala-resto
+
+<title>Daun Pala Resto - Kota Malang</title>
+<meta name="Description" content="desc, max 150 karakter, allowed any karakter " />
+<meta name="Keywords" content="ambil alamat saja"/> 
+<link rel="canonical" href="http://www.tripdomestik.com/restaurant/jawa-timur/kota-malang/daun-pala-resto"/> 
+<link rel="image_src" href="url gambar utama" />
+
+--------------------------------
+cek => halaman - http://www.tripdomestik.com/restaurant/jawa-timur/kota-malang/daun-pala-resto/gallery
+
+<title>Daun Pala Resto - Kota Malang</title>
+<meta name="Description" content="desc, max 150 karakter, allowed any karakter " />
+<meta name="Keywords" content="tampilkan TAG yang di isi waktu create"/> 
+<link rel="canonical" href="http://www.tripdomestik.com/restaurant/jawa-timur/kota-malang/daun-pala-resto/gallery"/> 
+<link rel="image_src" href="araykan url url image yang di galery sebanyak 10" />
+
+--------------------------------
+cek => halaman - http://www.tripdomestik.com/restaurant/jawa-timur/kota-malang/daun-pala-resto/gallery/menu-utama
+
+<title>Menu Utama - Daun Pala Resto - Kota Malang</title>
+<meta name="Description" content="desc, max 150 karakter, allowed any karakter " />
+<meta name="Keywords" content="Air Terjun Coban Rais, panorama"/> 
+<link rel="canonical" href="http://www.tripdomestik.com/restaurant/jawa-timur/kota-malang/daun-pala-resto/gallery/menu-utama"/> 
+<link rel="image_src" href="url image panorama" />
+<meta name="citation_authors" content="Name 1 1 2">
+
+--------------------------------
+cek => halaman - http://www.tripdomestik.com/restaurant/jawa-timur/kota-malang/daun-pala-resto/review
+
+<title>Review | Daun Pala Resto - Kota Malang</title>
+<meta name="Description" content="desc, max 150 karakter, allowed any karakter " />
+<meta name="Keywords" content="Daun Pala Resto"/> 
+<link rel="canonical" href="http://www.tripdomestik.com/restaurant/jawa-timur/kota-malang/daun-pala-resto/review"/> 
+<link rel="image_src" href="gambar utama" />
+<meta name="citation_authors" content="Name 1 1 2">
+
+--------------------------------
+halaman - http://www.tripdomestik.com/restaurant/jawa-timur/kota-malang/daun-pala-resto/review/luamayan-sih
+
+<title>Review | Air Terjun Coban Rais - luamayan sih - Kota Malang</title>
+<meta name="Description" content="harganya lumayan, tempatnya lumayan cuma nga ada es teh.., (max 150 karakter, allowed any karakter) " />
+<meta name="Keywords" content="Review, Air Terjun Coban Rais"/> 
+<link rel="canonical" href="http://www.tripdomestik.com/restaurant/jawa-timur/kota-malang/daun-pala-resto/review/luamayan-sih"/> 
+<link rel="image_src" href="gambar utama" />
+<meta name="citation_authors" content="Name 1 1 2">
+
+----------------------------------------------------------------------------
+OTHERS
+
+
+sama dengan tag restaurant

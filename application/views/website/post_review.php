@@ -58,9 +58,41 @@
 	if ($with_review_alias) {
 		$array_breadcrub[] = array( 'link' => $post_traveler_review['link_post_review_detail'], 'title' => $post_traveler_review['title'] );
 	}
+	
+	// prepare meta
+	$keyword = '';
+	if ($with_review_alias) {
+		$title = 'Review | '.$post['title_select'].' - '.$post_traveler_review['title'].' - '.$post['city_title'];
+		$description = $post_traveler_review['content'];
+		$keyword = 'Review, '.$post['title_select'];
+		$canonical = $post_traveler_review['link_post_review_detail'];
+		$image_src = $post['link_thumbnail'];
+		$citation_authors = $post['full_name'];
+	} else {
+		$title = 'Review | '.$post['title_select'].' - '.$post['city_title'];
+		$description = get_length_char($post['desc_01_select'], 150, '');
+		$keyword = $post['title_select'];
+		$canonical = $post['link_post_review'];
+		$image_src = $post['link_thumbnail'];
+		$citation_authors = $post['full_name'];
+	}
+	
+	// meta
+	$array_seo = array(
+		'title' => $title,
+		'array_meta' => array( ),
+		'array_link' => array( )
+	);
+	$array_seo['array_meta'][] = array( 'name' => 'Description', 'content' => $description );
+	$array_seo['array_meta'][] = array( 'name' => 'Keywords', 'content' => $keyword );
+	$array_seo['array_link'][] = array( 'rel' => 'canonical', 'href' => $canonical );
+	$array_seo['array_link'][] = array( 'rel' => 'image_src', 'href' => $image_src );
+	if (!empty($citation_authors)) {
+		$array_seo['array_link'][] = array( 'rel' => 'citation_authors', 'href' => $citation_authors );
+	}
 ?>
 
-<?php $this->load->view( 'website/common/meta' ); ?>
+<?php $this->load->view( 'website/common/meta', $array_seo ); ?>
 <body id="top" class="thebg">
 	<?php $this->load->view( 'website/common/header_menu' ); ?>
 	<?php $this->load->view( 'website/common/breadcrub', array( 'array' => $array_breadcrub ) ); ?>

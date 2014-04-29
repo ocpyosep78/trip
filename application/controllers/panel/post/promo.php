@@ -30,7 +30,7 @@ class promo extends PANEL_Controller {
 		$action = (isset($_POST['action'])) ? $_POST['action'] : '';
 		unset($_POST['action']);
 		
-		$result = array();
+		$result = array( 'promo_reload' => false );
 		if ($action == 'update') {
 			if ($_POST['promo_status'] == 'request approve') {
 				$post = $this->post_model->get_by_id(array( 'id' => $_POST['post_id'] ));
@@ -53,6 +53,7 @@ class promo extends PANEL_Controller {
 			}
 			
 			$result = $this->promo_model->update($_POST);
+			$result['promo_reload'] = true;
 		}
 		else if ($action == 'update_status') {
 			// record
@@ -73,6 +74,7 @@ class promo extends PANEL_Controller {
 			
 			// update
 			$result = $this->promo_model->update($param_update);
+			$result['promo_reload'] = true;
 			
 			// sent mail
 			$param_mail['to'] = $promo['member_email'];
@@ -85,6 +87,7 @@ class promo extends PANEL_Controller {
 		}
 		else if ($action == 'delete') {
 			$result = $this->promo_model->delete($_POST);
+			$result['promo_reload'] = true;
 		}
 		
 		echo json_encode($result);
