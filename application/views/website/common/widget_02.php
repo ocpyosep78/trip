@@ -3,7 +3,11 @@
 ?>
 
 <div class="pagecontainer2 testimonialbox">
-	<div class="cpadding0 mt-10">
-		<?php echo $widget['content']; ?>
-	</div>
+<br/>
+<?php echo $widget['content']; ?>
+
+<br/>
+<!--	<div class="cpadding0 mt-10">
+		
+	</div> -->
 </div>

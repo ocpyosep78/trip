@@ -78,16 +78,16 @@
 	// prepare meta
 	$keyword = $canonical = $image_post = '';
 	$array_image = array();
-	$title = WEBSITE_TITLE.' - '.$category['title'];
-	$description = get_length_char($category['content'], 150, '');
+	$title = $category['title'];
+	$description = get_length_char($category['content'], 100, '');
 	$canonical = $category['link_category'];
 	if (count($region) > 0) {
-		$title .= ' - '.$region['title'];
+		$title .= ' di '.$region['title'];
 		$canonical .= '/'.$region['alias'];
 		$description = $region['content'];
 	}
 	if (count($city) > 0) {
-		$title .= ' - '.$city['title'];
+		$title .= ' '.$city['title'];
 		$canonical .= '/'.$city['alias'];
 		$description = $city['content'];
 	}
@@ -223,6 +223,9 @@
 				</div>
 			</div>	
 			<div class="line2"></div>
+			
+			
+			
 			<div class="clearfix"></div>
 			
 			<div class="padding20title"><h3 class="opensans dark">Tags</h3></div>
@@ -236,6 +239,7 @@
 				<?php } ?>
 			</div>
 			<div class="clearfix"></div><br /><br /><br />
+			
 		</div>
 		
 		<div class="rightcontent col-md-9 offset-0">
@@ -255,7 +259,7 @@
 					<div class="left mt7"><b>Show:</b></div>
 					<div class="right wh70percent">
 						<select class="form-control mySelectBoxClass" name="page_item">
-							<option value="20">20</option>
+							<option value="15">15</option>
 							<option value="20">30</option>
 							<option value="40">40</option>
 							<option value="50">50</option>

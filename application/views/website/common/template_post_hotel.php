@@ -54,32 +54,47 @@
 	$page_count = ceil($this->post_model->get_count() / $page_item);
 ?>
 
+
+ 
+
+
 <div class="itemscontainer offset-1">
 	<?php foreach ($array_post as $key => $row) { ?>
 	<div class="col-md-4">
-		<div class="listitem">
-			<img src="<?php echo $row['link_thumbnail_small']; ?>" />
-		</div>
+	<div class="col-md-4-hover">
+	 
+		<div class="listitem"><?php echo (empty($row['having_promo'])) ? '' : '<div class="featured_tag"></div>'; ?>
+		 
+			<a href="<?php echo $row['link_post']; ?>" alt="<?php echo $row['title_select']; ?>" title="<?php echo $row['title_select']; ?>"><img src="<?php echo $row['link_thumbnail_small']; ?>" /></a>
+		</div> 
 		<div class="itemlabel2">
 			<div class="labelright">
+			    <!--
 				<?php if (!empty($row['link_star'])) { ?>
 					<img src="<?php echo $row['link_star']; ?>" width="60" />
-				<?php } ?>
+				<?php } ?> 
+				-->
 				
-				<br /><br /><br /><br />
-				<span class="size11 grey"><?php echo (empty($row['having_promo'])) ? '&nbsp;' : 'PROMO'; ?></span><br /><br />
+				 
+			<center>	<span class="size11 grey"></span> </center><br /><br /> 
 				
-				<?php if (!empty($row['rate_per_night'])) { ?>
-				<span class="size11 grey"><?php echo $row['rate_per_night']; ?></span><br /><br /><br />
-				<?php } ?>
+			
 				
-				<a class="bookbtn mt1" href="<?php echo $row['link_post']; ?>">View</a>
+				<a class="bookbtn mt1" alt="<?php echo $row['title_select']; ?>" title="<?php echo $row['title_select']; ?>" href="<?php echo $row['link_post']; ?>">View</a>
 			</div>
 			<div class="labelleft">
-				<div class="title"><b><?php echo $row['title_select']; ?></b></div>
-				<p class="grey"><?php echo get_length_char($row['desc_01_select'], 155, ' ...'); ?></p>
+				<div class="title"><a href="<?php echo $row['link_post']; ?>" alt="<?php echo $row['title_select']; ?>" title="<?php echo $row['title_select']; ?>"><b><?php echo $row['title_select']; ?></b></a></div>
+			 
+
+				<p class="lightgrey"><span class="green size14"><b><?php if (!empty($row['rate_per_night'])) { ?>
+				$<?php echo $row['rate_per_night']; ?> <span class="size11 grey"> Avg/night </span>
+				<?php } ?></b></span></p>
+				
+	            
+
+				<!--<?php echo get_length_char($row['desc_01_select'], 155, ' ...'); ?>--> 
 			</div>
-		</div>
+		</div></div> 
 	</div>
 	
 	<?php $line_write = true; ?>

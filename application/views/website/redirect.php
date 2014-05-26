@@ -11,7 +11,7 @@
 	
 	// breadcrub
 	$array_breadcrub = array(
-		array( 'link' => '#', 'title' => 'Redirect' )
+		array( 'link' => '#', 'title' => 'Tranfer' )
 	);
 ?>
 
@@ -29,21 +29,43 @@
 					<p class="aboutarrow"></p>
 				</div>
 				<div class="line3"></div>
-				
-				<div style="text-align: center; padding: 30px 0 30px 25px;" id="form-redirect">
+
+
+ 	
+		  <div class="row">
+			<div class="col-md-4">
+					<div style="background-color:#ddd;height:294px;margin-top:30px;margin-bottom:30px;">
+				<img width="320px" height="300px" alt="" src="http://tripdomestik.com/static/img/wonderful-indonesia-2.png">
+					
+				</div>
+			</div>
+	 
+			<div class="col-md-4">
+					<div style="text-align: center; padding: 30px 0 30px 25px;" id="form-redirect">
 					<input type="hidden" name="action" value="broken_link" />
 					<input type="hidden" name="delay" value="<?php echo $widget_delay['content']; ?>" />
 					<input type="hidden" name="redirect_type" value="<?php echo $redirect['redirect_type']; ?>" />
 					<input type="hidden" name="redirect_id" value="<?php echo $redirect['id']; ?>" />
 					
-					<div>Please wait we will send you to <?php echo $redirect['title']; ?> in <?php echo $widget_delay['content']; ?> secord, or click link below :</div>
+					<div style="margin-top:120px;">Please wait we will send you to <b><?php echo $redirect['title']; ?></b> in <?php echo $widget_delay['content']; ?> secord </div>
+ <div style="display:none;">
+or click link below :
 					<a class="link-out" href="<?php echo $redirect['link']; ?>"><?php echo $redirect['link']; ?></a>
-					
+					 </div>
+<!--
 					<div style="padding: 20px 0 0 0;">
 						<a style="padding: 6px 15px; background: #e27f7a; color: #FFFFFF;" class="broken-link">Report Broken Link</a>
-					</div>
+					</div>   -->
 				</div>
 			</div>
+			</div>
+			
+		 
+		  </div>
+		 
+
+			
+			
 		</div>
 	</div>
 	
@@ -51,7 +73,7 @@
 	<?php $this->load->view( 'website/common/library', array( 'js_add' => array( 'js-blog.js', 'lightbox.js' ) ) ); ?>
 
 <script type="text/javascript">
-	var delay = $('[name="delay"]').val() * 1000;
+	var delay = $('[name="delay"]').val() * 400;
 	setTimeout(function() {
 		window.location = $('.link-out').attr('href');
 	}, delay);

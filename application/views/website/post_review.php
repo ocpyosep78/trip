@@ -97,22 +97,22 @@
 	<?php $this->load->view( 'website/common/header_menu' ); ?>
 	<?php $this->load->view( 'website/common/breadcrub', array( 'array' => $array_breadcrub ) ); ?>
 	
-	<div class="container">
+	<div class="container">	<div class="hreview-aggregate">   <span class="votes">24</span> ratings.    			
 		<div class="container mt25 offset-0">
 			<div class="col-md-8 pagecontainer2 offset-0">
 				<br /><br />
 				
 				<h2 class="opensans slim green2">
-					<div style="margin-left:20px;">Review | <?php echo $post['title_select']; ?></div>
+					<div style="margin-left:20px;">															   <span class="item">      <span class="fn">Review | <?php echo $post['title_select']; ?></span>      <img src="logo.png" class="photo" />                       </span>										</div>
 				</h2><br />
-				<p class="hpadding20"><?php echo get_length_char($post['desc_01_select'], 600, ' ...'); ?></p>
+				<p class="hpadding20"><span class="description"><?php echo get_length_char($post['desc_01_select'], 600, ' ...'); ?></span></p>
 				
 				<form method="post" id="form-review">
 					<input type="hidden" name="page_active" value="1" />
 					
 					<div class="hpadding20">
 						<br /><br />
-						<span class="opensans dark size16 bold">Reviews</span>
+						<span class="opensans dark size16 bold">						<div style="color:#fff;"><span class="rating">4.5</span></div>  Reviews</span>
 						<?php if (! $with_review_alias) { ?>
 						<div style="width:40%; float:right; margin-top:-15px;">
 							<select class="form-control mySelectBoxClass margtop10" name="language_id">
@@ -237,7 +237,7 @@
 				<?php $this->load->view( 'website/common/visit_post', array( 'class_style' => 'mt20 alsolikebox' ) ); ?>
 			</div>
 		</div>
-	</div>
+	</div></div>
 	
 	<?php $this->load->view( 'website/common/footer' ); ?>
 	<?php $this->load->view( 'website/common/library', array( 'js_add' => array( 'js-details.js', 'counter.js' ) ) ); ?>

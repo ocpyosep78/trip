@@ -57,12 +57,13 @@
 <div class="itemscontainer offset-1">
 	<?php foreach ($array_post as $key => $row) { ?>
 	<div class="offset-2">
-		<div class="col-md-4 offset-0"><div class="listitem2">
-			<a href="<?php echo $row['link_post']; ?>">
+	<div class="offset-2-hover">
+		<div class="col-md-444 offset-0"><div class="listitem2">
+		<a href="<?php echo $row['link_post']; ?>" alt="<?php echo $row['title_select']; ?>" title="<?php echo $row['title_select']; ?>">
 				<img src="<?php echo $row['link_thumbnail_small']; ?>" />
 			</a>
 		</div></div>
-		<div class="col-md-8 offset-0"><div class="itemlabel3">
+		<div class="col-md-888 offset-0"><div class="itemlabel3">
 			<div class="labelright">
 				<br /><br /><br />
 				
@@ -77,13 +78,13 @@
 				<br /><br /><br />
 				
 				
-				<a class="bookbtn mt1" href="<?php echo $row['link_post']; ?>">View</a>
+				<a class="bookbtn mt1" href="<?php echo $row['link_post']; ?>" alt="<?php echo $row['title_select']; ?>" title="<?php echo $row['title_select']; ?>">View</a>
 			</div>
 			<div class="labelleft2">
-				<div class="title"><b><?php echo $row['title_select']; ?></b></div>
+				<div class="title"><a href="<?php echo $row['link_post']; ?>" alt="<?php echo $row['title_select']; ?>" title="<?php echo $row['title_select']; ?>"><b><?php echo $row['title_select']; ?></b></a></div>
 				<p class="grey"><?php echo get_length_char($row['desc_01_select'], 325, ' ...'); ?></p><br />
 			</div>
-		</div></div>
+		</div></div> </div> 
 	</div>
 	<div class="clearfix"></div>
 	<div class="offset-2"><hr class="featurette-divider3"></div>

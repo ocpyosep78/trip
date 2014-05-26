@@ -42,7 +42,7 @@
 						
 						<div class="m-b-md">
 							<h3 class="m-b-none">Dashboard</h3>
-							<small>Welcome back, <?php echo $user['full_name']; ?></small>
+							 <small>Welcome back, <?php echo $user['full_name']; ?></small>
 						</div>
 						
 						<?php if (in_array($user['user_type_id'], array(USER_TYPE_ADMINISTRATOR, USER_TYPE_EDITOR))) { ?>

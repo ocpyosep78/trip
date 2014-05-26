@@ -56,7 +56,7 @@
 		</li>
 		<li>
 			<div class="m-t m-l">
-				<a href="#" class="dropdown-toggle btn btn-xs btn-primary"><i class="fa fa-long-arrow-up"></i></a>
+				<a href="http://tripdomestik.com" target="_blank" class="dropdown-toggle btn btn-xs btn-primary"><i class="fa fa-long-arrow-up"></i></a>
 			</div>
 		</li>
 	</ul>
@@ -107,7 +107,7 @@
 			
 			<ul class="dropdown-menu animated fadeInRight">
 				<span class="arrow top"></span>
-				<li><a href="<?php echo base_url(); ?>">Home</a></li>
+				<!-- <li><a href="<?php echo base_url(); ?>">Home</a></li> -->
 				<?php if ($user['user_type_id'] == USER_TYPE_MEMBER) { ?>
 				<li><a href="<?php echo base_url('panel/profile/user'); ?>">Profile</a></li>
 				<li><a href="<?php echo base_url('panel/setting'); ?>">Settings</a></li>

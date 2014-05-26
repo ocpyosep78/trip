@@ -24,7 +24,9 @@ if ($is_website) {
 	// post
 	$route['hotel(/([a-z0-9\-]+))*'] = "website/hotel";
 	$route['(destination|restaurant)(/([a-z0-9\-]+))*'] = "website/destination";
-	
+        
+    
+	 
 	// other page
 	$route['login(/([a-z0-9\-]+))*'] = "website/login";
 	$route['tag(/([a-z0-9\-]+))*'] = "website/tag";

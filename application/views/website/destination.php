@@ -199,7 +199,7 @@
 				</div>
 				<div class="line2"></div>
 			</div>
-			
+			<br/><br/>
 			<button type="button" class="collapsebtn last" data-toggle="collapse" data-target="#collapse4">
 				Fasilities
 				<span class="collapsearrow"></span>
@@ -246,8 +246,8 @@
 					<div class="left mt7"><b>Show:</b></div>
 					<div class="right wh70percent">
 						<select class="form-control mySelectBoxClass" name="page_item">
+							<option value="10">10</option>
 							<option value="20">20</option>
-							<option value="20">30</option>
 							<option value="40">40</option>
 							<option value="50">50</option>
 						</select>

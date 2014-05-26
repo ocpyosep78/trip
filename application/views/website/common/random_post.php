@@ -23,7 +23,7 @@
 	<div class="cpadding1">
 		<span class="icon-location"></span>
 		<?php if (!empty($city['title'])) { ?>
-		<h3 class="opensans">Random Destination around <?php echo $city['title']; ?></h3>
+		<h3 class="opensans">Destination around <?php echo $city['title']; ?></h3>
 		<?php } else { ?>
 		<h3 class="opensans">Random Destination</h3>
 		<?php } ?>

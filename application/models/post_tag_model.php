@@ -128,9 +128,6 @@ class post_tag_model extends CI_Model {
 			$row['link_region'] = base_url($row['category_alias'].'/'.$row['region_alias']);
 			$row['link_city'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias']);
 		}
-		if (! empty($row['tag_alias'])) {
-			$row['link_tag'] = base_url('tag/'.$row['tag_alias']);
-		}
 		
 		// member fullname
 		if (isset($row['first_name']) && isset($row['last_name'])) {

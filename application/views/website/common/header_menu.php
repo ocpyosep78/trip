@@ -21,7 +21,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a href="<?php echo base_url(); ?>" class="navbar-brand"><img src="<?php echo base_url('static/theme/forest/images/logo.png'); ?>" alt="Travel Agency Logo" class="logo"/></a>
+					<a href="<?php echo base_url(); ?>" class="navbar-brand"><img src="<?php echo base_url('static/theme/forest/images/logo.png'); ?>" alt="Tripdomestik.com" class="logo"/></a>
 				</div>
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
