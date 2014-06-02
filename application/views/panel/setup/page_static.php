@@ -58,7 +58,7 @@
 									</div>
 									<div class="form-group">
 										<label class="col-lg-2 control-label">Alias</label>
-										<div class="col-lg-10"><input type="text" name="alias" class="form-control" placeholder="Alias" readonly="readonly" /></div>
+										<div class="col-lg-10"><input type="text" name="alias" class="form-control" placeholder="Alias" /></div>
 									</div>
 									<div class="form-group">
 										<label class="col-sm-2 control-label">Content</label>

@@ -1,16 +1,16 @@
 ERROR :
-check => 1.	di TAB PROMO http://www.tripdomestik.com/restaurant/jawa-timur/kota-malang/bakso-damas-malang isi content promo tidak muncul
+ok => 1.	di TAB PROMO http://www.tripdomestik.com/restaurant/jawa-timur/kota-malang/bakso-damas-malang isi content promo tidak muncul
 
-check => 2.	http://www.tripdomestik.com/destination/jawa-timur/kota-malang/jawa-timur-park-1/gallery/tes arahkan ke page not found saja
+ok => 2.	http://www.tripdomestik.com/destination/jawa-timur/kota-malang/jawa-timur-park-1/gallery/tes arahkan ke page not found saja
 
-check => 3.	http://www.tripdomestik.com/rss belum di set
+ok => 3.	http://www.tripdomestik.com/rss belum di set
 
 not ok => 4.	coba login dengan facebook, user baru (belum ada di databse) belum pernah daftar, dia error dulu, setelah itu klo login lagi pake fb baru bisa..
 - saya coba jalan mas, apa ada print screen mas untuk membantu perbaiki error nya
 
-check => 5.	http://tripdomestik.com/restaurant/jawa-timur/kota-malang = tampilkan TAG bedasarkan city, jadi tinggal tambah field tag di edit city di admin, trus tampilkan di bawah Tag di end user, nanti akan muncul berdasarkan city yang tampil
+ok => 5.	http://tripdomestik.com/restaurant/jawa-timur/kota-malang = tampilkan TAG bedasarkan city, jadi tinggal tambah field tag di edit city di admin, trus tampilkan di bawah Tag di end user, nanti akan muncul berdasarkan city yang tampil
 
-check => 6.	http://tripdomestik.com/restaurant/jawa-timur/kota-malang/toko-oen = tampilkan Fasility di bawah description
+ok => 6.	http://tripdomestik.com/restaurant/jawa-timur/kota-malang/toko-oen = tampilkan Fasility di bawah description
 
 check => 7.	Page Static di pasang redirect sperti dunidb dan text area diganti yang tinymce
 

@@ -1,5 +1,5 @@
 <?php
-	$alias = $this->uri->segments[1];
+	$alias = $this->uri->uri_string;
 	$page_static = $this->page_static_model->get_by_id(array( 'alias' => $alias ));
 	
 	// breadcrub

@@ -36,7 +36,7 @@ if ($is_website) {
 	$route['register(/([a-z0-9\-]+))*'] = "website/register";
 	$route['(t|traveler)(/([a-z0-9\-]+))*'] = "website/traveler";
 	$route['redirect(/([a-z0-9\-]+))*'] = "website/redirect";
-	$route['([a-z0-9\-]+)'] = "website/selector";
+	$route['([a-z0-9\-\/]+)'] = "website/selector";
 } else if ($is_panel) {
 	$route['panel'] = "panel/home";
 } else if ($is_service) {
