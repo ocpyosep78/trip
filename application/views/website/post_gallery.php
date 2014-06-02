@@ -169,7 +169,9 @@
 					<?php if (count($photo) > 0) { ?>
 					<a class="cursor add2fav margtop5 report-image">Report this image</a>
 					<?php } ?>
+					<?php if (!empty($photo['link_timeline'])) { ?>
 					<a href="<?php echo $photo['link_timeline']; ?>" class="booknow margtop20 btnmarg">Traveler Timeline</a>
+					<?php } ?>
 					<a href="<?php echo $post['link_post_upload']; ?>" class="booknow margtop20 btnmarg">Upload Your Photo</a>
 				</div>
 			</div>

@@ -12,33 +12,46 @@ ok => 5.	http://tripdomestik.com/restaurant/jawa-timur/kota-malang = tampilkan T
 
 ok => 6.	http://tripdomestik.com/restaurant/jawa-timur/kota-malang/toko-oen = tampilkan Fasility di bawah description
 
-check => 7.	Page Static di pasang redirect sperti dunidb dan text area diganti yang tinymce
+ok => 7.	Page Static di pasang redirect sperti dunidb dan text area diganti yang tinymce
+demo => http://tripdomestik.com/about/us/more
 
-check => 8.	URL traveler : tripdomestik.com/t/ALIAS
+ok => 8.	URL traveler : tripdomestik.com/t/ALIAS
+demo => http://tripdomestik.com/t/rid1amir
 
 ------------------------------------------------------------------------------------------------
 
 Pendekin url :
-check => DESTINATION : http://www.tripdomestik.com/destination/raja-ampat-papua 
-check => RESTAURANT : http://www.tripdomestik.com/restaurant/toko-oen
-check => HOTEL : http://www.tripdomestik.com/hotel/harris-hotel-convention
+ok => DESTINATION : http://www.tripdomestik.com/destination/raja-ampat-papua 
+ok => RESTAURANT : http://www.tripdomestik.com/restaurant/toko-oen
+ok => HOTEL : http://www.tripdomestik.com/hotel/harris-hotel-convention
 
 ------------------------------------------------------------------------------------------------
 
-check => Rubah combo CITY menjadi sperti di bawah ini dan di kasih link, tampilkan sebanyak max 15 kota saja, dan kota yang posisi (0) tidak usah di tampilkan
+ok => Rubah combo CITY menjadi sperti di bawah ini dan di kasih link, tampilkan sebanyak max 15 kota saja, dan kota yang posisi (0) tidak usah di tampilkan
 
 ------------------------------------------------------------------------------------------------
 
 Penambahan Field :
 Restaurant :
-check => - Open Hour : (text biasa), Price : (text biasa), Phone (text biasa) tampilkan di end user
+ok => - Open Hour : (text biasa), Price : (text biasa), Phone (text biasa) tampilkan di end user
+demo => http://www.tripdomestik.com/restaurant/454362432432434324
 
 Sub Category :
-check => - untuk TAG, tambahkan juga tag di sub-kategory
+ok => - untuk TAG, tambahkan juga tag di sub-kategory
+- http://www.tripdomestik.com/restaurant
+- http://www.tripdomestik.com/restaurant/indonesian
 
 ------------------------------------------------------------------------------------------------
 
 Timeline
-Note bisa nda url sperti ini : http://tripdomestik.com/t/alias/restaurant/423434323423/gallery/mantap-tempatnya-bro (trigger) <- cuma untuk keperluan di timeline
+ok => Note bisa nda url sperti ini : http://tripdomestik.com/t/alias/restaurant/423434323423/gallery/mantap-tempatnya-bro (trigger) <- cuma untuk keperluan di timeline
 mungkin itu dibuatkan detail page timeline saja.. untuk halamanya sperti ini http://tripdomestik.com/timeline-detail.htm , lebih mudah dalam memberikan meta tag nantinya..
 kalo trigger, trigger ke status ke halaman 10 timeline berat mungkin..
+demo =>
+- Malioboro Pusat Perbelanjaan di Yogyakarta
+Page Gallery : http://www.tripdomestik.com/destination/354534534534634/gallery
+Page Timeline : http://www.tripdomestik.com/t/linda-law/destination/354534534534634/gallery/malioboro-street
+
+- Pesona Keindahan Candi Prambanan
+Page Gallery : http://www.tripdomestik.com/destination/42332897489234343243/gallery
+Page Timeline : http://www.tripdomestik.com/t/ridwan-amir/destination/42332897489234343243/gallery/gue-nih-bro

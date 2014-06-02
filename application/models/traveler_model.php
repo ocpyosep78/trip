@@ -145,7 +145,7 @@ class traveler_model extends CI_Model {
 			}
 		}
 		if (isset($row['alias'])) {
-			$row['link_traveler'] = base_url('traveler/'.$row['alias']);
+			$row['link_traveler'] = base_url('t/'.$row['alias']);
 		}
 		
 		if (isset($row['first_name']) && isset($row['last_name'])) {
