@@ -27,7 +27,7 @@ class category_sub extends PANEL_Controller {
 		if ($action == 'update') {
 			$result = $this->category_sub_model->update($_POST);
 		} else if ($action == 'get_by_id') {
-			$result = $this->category_sub_model->get_by_id(array( 'id' => $_POST['id'] ));
+			$result = $this->category_sub_model->get_by_id(array( 'id' => $_POST['id'], 'tag_include' => @$_POST['tag_include'] ));
 		} else if ($action == 'delete') {
 			$result = $this->category_sub_model->delete($_POST);
 		}

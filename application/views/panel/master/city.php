@@ -42,6 +42,10 @@
 									<label>Description</label>
 									<textarea class="form-control" name="content"></textarea>
 								</div>
+								<div class="form-group">
+									<label>Tag</label>
+									<input type="text" name="tag_content" class="form-control" placeholder="Tag" />
+								</div>
 							</div>
 						</section>
 					</div>
@@ -120,7 +124,7 @@ $(document).ready(function() {
 				var raw_record = $(this).siblings('.hide').text();
 				eval('var record = ' + raw_record);
 				
-				Func.ajax({ url: web.base + 'panel/master/city/action', param: { action: 'get_by_id', id: record.id }, callback: function(result) {
+				Func.ajax({ url: web.base + 'panel/master/city/action', param: { action: 'get_by_id', tag_include: true, id: record.id }, callback: function(result) {
 					Func.populate({ cnt: '#modal-city', record: result });
 					combo.region({ country_id: result.country_id, target: $('#modal-city [name="region_id"]'), value: result.region_id });
 					$('#modal-city').modal();

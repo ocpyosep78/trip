@@ -8,14 +8,14 @@
 	
 	// review alias
 	$with_review_alias = false;
-	if (!empty($this->uri->segments[6])) {
+	if (!empty($this->uri->segments[4])) {
 		$with_review_alias = true;
 	}
 	
 	// post
-	$post = $this->post_model->get_by_id(array( 'city_alias' => $this->uri->segments[3], 'alias' => $this->uri->segments[4] ));
+	$post = $this->post_model->get_by_id(array( 'alias' => $this->uri->segments[2] ));
 	if ($with_review_alias) {
-		$param_traveler = array( 'post_id' => $post['id'], 'alias' => $this->uri->segments[6] );
+		$param_traveler = array( 'post_id' => $post['id'], 'alias' => $this->uri->segments[4] );
 		$post_traveler_review = $this->post_traveler_review_model->get_by_id($param_traveler);
 	}
 	
@@ -38,7 +38,7 @@
 		$param_review['language_id'] = $_POST['language_id'];
 	}
 	if ($with_review_alias) {
-		$param_review['alias'] = $this->uri->segments[6];
+		$param_review['alias'] = $this->uri->segments[4];
 	}
 	
 	// array review

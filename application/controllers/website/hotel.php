@@ -16,35 +16,38 @@ class hotel extends TRIP_Controller {
 		}
 		
 		// review
-		else if (!empty($this->uri->segments[5]) && $this->uri->segments[5] == 'review') {
-			$method_name = $this->uri->segments[2];
+		else if (!empty($this->uri->segments[3]) && $this->uri->segments[3] == 'review') {
 			$this->review();
 		}
 		
 		// gallery
-		else if (!empty($this->uri->segments[5]) && $this->uri->segments[5] == 'gallery') {
-			$method_name = $this->uri->segments[2];
+		else if (!empty($this->uri->segments[3]) && $this->uri->segments[3] == 'gallery') {
 			$this->gallery();
 		}
 		
 		// upload
-		else if (!empty($this->uri->segments[5]) && $this->uri->segments[5] == 'upload') {
-			$method_name = $this->uri->segments[2];
+		else if (!empty($this->uri->segments[3]) && $this->uri->segments[3] == 'upload') {
 			$this->upload();
 		}
 		
 		// index
 		else if (!empty($this->uri->segments[2])) {
+			$region = $this->region_model->get_by_id(array( 'alias' => $this->uri->segments[2] ));
+			$category_sub = $this->category_sub_model->get_by_id(array( 'alias' => $this->uri->segments[2] ));
+			
 			if (method_exists($this, $this->uri->segments[2])) {
 				$method_name = $this->uri->segments[2];
 				$this->$method_name();
+			} else if (count($region) > 0 || count($category_sub) > 0) {
+				$this->load->view( 'website/hotel' );
 			} else if ($this->uri->segments[2] == 'review') {
 				$this->load->view( 'website/destination_review' );
 			} else if ($this->uri->segments[2] == 'gallery') {
 				$this->load->view( 'website/destination_gallery' );
-			} else if (count($this->uri->segments) >= 4) {
+			} else if (count($this->uri->segments) >= 2) {
 				$this->load->view( 'website/post_detail' );
 			} else {
+				echo time(); exit;
 				$this->load->view( 'website/hotel' );
 			}
 		} else {
@@ -59,6 +62,13 @@ class hotel extends TRIP_Controller {
 		$result = '';
 		if ($action == 'get_post_view') {
 			$result = $this->load->view( 'website/common/template_post_hotel', array(), true );
+			
+			$result_check = trim(strip_tags($result));
+			if (empty($result_check)) {
+				$result = '<div style="padding: 0 20px;">Sorry, there is no post that match with your criteria.</div>';
+			}
+		} else if ($action == 'list_city') {
+			$result = $this->load->view( 'website/common/template_list_city', array(), true );
 		}
 		
 		echo $result;

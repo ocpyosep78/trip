@@ -1,41 +1,40 @@
 ERROR :
-1.	di TAB PROMO http://www.tripdomestik.com/restaurant/jawa-timur/kota-malang/bakso-damas-malang isi content promo tidak muncul
-- content promo tidak muncul
+check => 1.	di TAB PROMO http://www.tripdomestik.com/restaurant/jawa-timur/kota-malang/bakso-damas-malang isi content promo tidak muncul
 
-2.	http://www.tripdomestik.com/destination/jawa-timur/kota-malang/jawa-timur-park-1/gallery/tes arahkan ke page not found saja
+check => 2.	http://www.tripdomestik.com/destination/jawa-timur/kota-malang/jawa-timur-park-1/gallery/tes arahkan ke page not found saja
 
-3.	http://www.tripdomestik.com/rss belum di set
+check => 3.	http://www.tripdomestik.com/rss belum di set
 
-4.	coba login dengan facebook, user baru (belum ada di databse) belum pernah daftar, dia error dulu, setelah itu klo login lagi pake fb baru bisa..
+not ok => 4.	coba login dengan facebook, user baru (belum ada di databse) belum pernah daftar, dia error dulu, setelah itu klo login lagi pake fb baru bisa..
 - saya coba jalan mas, apa ada print screen mas untuk membantu perbaiki error nya
 
-5.	http://tripdomestik.com/restaurant/jawa-timur/kota-malang = tampilkan TAG bedasarkan city, jadi tinggal tambah field tag di edit city di admin, trus tampilkan di bawah Tag di end user, nanti akan muncul berdasarkan city yang tampil
+check => 5.	http://tripdomestik.com/restaurant/jawa-timur/kota-malang = tampilkan TAG bedasarkan city, jadi tinggal tambah field tag di edit city di admin, trus tampilkan di bawah Tag di end user, nanti akan muncul berdasarkan city yang tampil
 
-6.	http://tripdomestik.com/restaurant/jawa-timur/kota-malang/toko-oen = tampilkan Fasility di bawah description
+check => 6.	http://tripdomestik.com/restaurant/jawa-timur/kota-malang/toko-oen = tampilkan Fasility di bawah description
 
-7.	Page Static di pasang redirect sperti dunidb dan text area diganti yang tinymce
+check => 7.	Page Static di pasang redirect sperti dunidb dan text area diganti yang tinymce
 
-8.	URL traveler : tripdomestik.com/t/ALIAS
+check => 8.	URL traveler : tripdomestik.com/t/ALIAS
 
 ------------------------------------------------------------------------------------------------
 
 Pendekin url :
-DESTINATION : http://www.tripdomestik.com/destination/raja-ampat-papua 
-RESTAURANT : http://www.tripdomestik.com/restaurant/toko-oen
-HOTEL : http://www.tripdomestik.com/hotel/harris-hotel-convention
+check => DESTINATION : http://www.tripdomestik.com/destination/raja-ampat-papua 
+check => RESTAURANT : http://www.tripdomestik.com/restaurant/toko-oen
+check => HOTEL : http://www.tripdomestik.com/hotel/harris-hotel-convention
 
 ------------------------------------------------------------------------------------------------
 
-Rubah combo CITY menjadi sperti di bawah ini dan di kasih link, tampilkan sebanyak max 15 kota saja, dan kota yang posisi (0) tidak usah di tampilkan
+check => Rubah combo CITY menjadi sperti di bawah ini dan di kasih link, tampilkan sebanyak max 15 kota saja, dan kota yang posisi (0) tidak usah di tampilkan
 
 ------------------------------------------------------------------------------------------------
 
 Penambahan Field :
 Restaurant :
-- Open Hour : (text biasa), Price : (text biasa), Phone (text biasa) tampilkan di end user
+check => - Open Hour : (text biasa), Price : (text biasa), Phone (text biasa) tampilkan di end user
 
 Sub Category :
-- untuk TAG, tambahkan juga tag di sub-kategory
+check => - untuk TAG, tambahkan juga tag di sub-kategory
 
 ------------------------------------------------------------------------------------------------
 

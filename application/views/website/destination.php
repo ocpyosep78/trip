@@ -44,7 +44,13 @@
 	$array_facility = $this->category_facility_model->get_array($param_facility);
 	
 	// category tag
-	$array_tag = $this->category_tag_model->get_array(array( 'category_id' => $category['id'] ));
+	if (count($category_sub) > 0) {
+		$array_tag = $this->category_sub_tag_model->get_array(array( 'category_sub_id' => $category_sub['id'] ));
+	} else if (count($city) > 0) {
+		$array_tag = $this->city_tag_model->get_array(array( 'city_id' => $city['id'] ));
+	} else {
+		$array_tag = $this->category_tag_model->get_array(array( 'category_id' => $category['id'] ));
+	}
 	
 	// breadcrub
 	$array_breadcrub = array(
@@ -134,6 +140,9 @@
 			<input type="hidden" name="category_id" value="<?php echo $category['id']; ?>" />
 			<input type="hidden" name="page_active" value="1" />
 			<input type="hidden" name="reload" value="0" />
+			<?php if (count($city) > 0) { ?>
+			<input type="hidden" name="city_id" value="<?php echo $city['id']; ?>" />
+			<?php } ?>
 			
 			<div class="filtertip">
 				<div class="padding20">
@@ -171,11 +180,7 @@
 				</select>
 			</div>
 			<div class="clearfix"></div><br />
-			<div class="hpadding20">
-				<select name="city_id" class="form-control mySelectBoxClass">
-					<?php echo ShowOption(array( 'Array' => $array_city, 'LabelEmptySelect' => 'All City', 'Selected' => @$city['id'] )); ?>
-				</select>
-			</div>
+			<div class="hpadding20 cnt-list-city">&nbsp;</div>
 			
 			<div class="hide">
 				<button type="button" class="collapsebtn" data-toggle="collapse" data-target="#collapse2">
@@ -270,16 +275,9 @@ jQuery(function($) {
 			eval('var data = ' + raw_page);
 			page.data = data;
 			
-			// set city & region
-			if (page.data.region.id != null) {
-				combo.region({ country_id: page.data.region.country_id, target: $('[name="region_id"]'), value: page.data.region.id });
-			}
-			if (page.data.city.id != null) {
-				combo.city({ region_id: page.data.city.region_id, target: $('[name="city_id"]'), value: page.data.city.id });
-			}
-			
 			page.load_post({});
 			page.is_refresh();
+			page.set_city();
 		},
 		load_post: function(p) {
 			Func.ajax({
@@ -294,6 +292,24 @@ jQuery(function($) {
 						$('#post-list [name="page_active"]').val($(this).data('page_active'));
 						page.load_post();
 					});
+				}
+			});
+		},
+		set_city: function() {
+			// param
+			var param = Site.Form.GetValue('post-list');
+			param.action = 'list_city';
+			
+			// check country & region
+			if (param.country_id == '' || param.region_id == '') {
+				return;
+			}
+			
+			// load city
+			Func.ajax({
+				is_json: 0, url: web.base + 'hotel/view', param: param,
+				callback: function(content) {
+					$('.cnt-list-city').html(content);
 				}
 			});
 		},
@@ -319,20 +335,19 @@ jQuery(function($) {
 		page.load_post();
 	});
 	$('[name="country_id"]').change(function() {
+		$('[name="city_id"]').remove();
+		
 		combo.region({ country_id: $(this).val(), target: $('[name="region_id"]'), label_empty_select: 'All Region', callback: function() {
 			$('[name="region_id"]').change();
-			$('[name="city_id"]').html('<option value="">All City</option>');
-			$('[name="city_id"]').change();
-			
-			$('[name="page_active"]').val(1);
-			page.load_post();
 		} });
 	});
 	$('[name="region_id"]').change(function() {
-		combo.city({ region_id: $(this).val(), target: $('[name="city_id"]'), label_empty_select: 'All City', callback: function() {
-			$('[name="page_active"]').val(1);
-			page.load_post();
-		} });
+		page.set_city();
+		$('[name="city_id"]').remove();
+		
+		// load post
+		$('[name="page_active"]').val(1);
+		page.load_post();
 	});
 	$('[name="city_id"]').change(function() {
 		$('[name="page_active"]').val(1);

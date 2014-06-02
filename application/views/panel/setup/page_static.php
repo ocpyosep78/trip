@@ -62,9 +62,7 @@
 									</div>
 									<div class="form-group">
 										<label class="col-sm-2 control-label">Content</label>
-										<div class="col-sm-10">
-											<div id="form-content" class="form-control" style="overflow: scroll; height: 150px; max-height: 150px;"></div>
-										</div>
+										<div class="col-sm-10"><textarea name="content" class="render-tinymce" style="width: 100%"></textarea></div>
 									</div>
 									
 									<hr />
@@ -90,7 +88,8 @@
 $(document).ready(function() {
 	var page = {
 		init: function() {
-			set_wysiwyg({ id: 'form-content' });
+			// set form
+			Func.language();
 		},
 		show_grid: function() {
 			$('.panel-form').hide();
@@ -115,7 +114,6 @@ $(document).ready(function() {
 				
 				Func.ajax({ url: web.base + 'panel/setup/page_static/action', param: { action: 'get_by_id', id: record.id }, callback: function(result) {
 					Func.populate({ cnt: '.panel-form', record: result });
-					$('#form-content').html(result.content);
 					page.show_form();
 				} });
 			});
@@ -149,7 +147,6 @@ $(document).ready(function() {
 		}
 		
 		var param = Site.Form.GetValue('.panel-form form');
-		param.content = $('#form-content').html();
 		Func.update({
 			link: web.base + 'panel/setup/page_static/action',
 			param: param,
@@ -167,7 +164,6 @@ $(document).ready(function() {
 		$('.panel-form form')[0].reset();
 		$('.panel-form form').parsley().reset();
 		$('.panel-form [name="id"]').val(0);
-		$('.panel-form #form-content').html('');
 	});
 });
 </script>

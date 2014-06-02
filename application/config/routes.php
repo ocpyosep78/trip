@@ -21,19 +21,20 @@ if (count($array_arg) >= 1) {
 }
 
 if ($is_website) {
+	// rss
+	$route['rss'] = "website/rss";
+	
 	// post
 	$route['hotel(/([a-z0-9\-]+))*'] = "website/hotel";
 	$route['(destination|restaurant)(/([a-z0-9\-]+))*'] = "website/destination";
-        
     
-	 
 	// other page
 	$route['login(/([a-z0-9\-]+))*'] = "website/login";
 	$route['tag(/([a-z0-9\-]+))*'] = "website/tag";
 	$route['search(/([a-z0-9\-]+))*'] = "website/search";
 	$route['payment(/([a-z0-9\-]+))*'] = "website/payment";
 	$route['register(/([a-z0-9\-]+))*'] = "website/register";
-	$route['traveler(/([a-z0-9\-]+))*'] = "website/traveler";
+	$route['(t|traveler)(/([a-z0-9\-]+))*'] = "website/traveler";
 	$route['redirect(/([a-z0-9\-]+))*'] = "website/redirect";
 	$route['([a-z0-9\-]+)'] = "website/selector";
 } else if ($is_panel) {

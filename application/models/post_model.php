@@ -6,7 +6,7 @@ class post_model extends CI_Model {
 		
         $this->field = array(
 			'id', 'city_id', 'member_id', 'category_sub_id', 'alias', 'title', 'address', 'desc_01', 'desc_02', 'desc_03', 'field_01', 'map', 'star', 'post_status',
-			'thumbnail', 'having_promo', 'review_rate', 'review_count', 'rate_per_night', 'facility', 'post_update', 'total_room'
+			'thumbnail', 'having_promo', 'review_rate', 'review_count', 'rate_per_night', 'facility', 'post_update', 'total_room', 'open_hour', 'phone', 'price'
 		);
     }
 
@@ -121,6 +121,25 @@ class post_model extends CI_Model {
 				WHERE
 					post.alias = '".$param['alias']."'
 					AND city.alias = '".$param['city_alias']."'
+				LIMIT 1
+			";
+        } else if (isset($param['alias'])) {
+            $select_query  = "
+				SELECT post.*,
+					member.first_name, member.last_name,
+					category.id category_id, category.title category_title, category.alias category_alias, category.link category_link,
+					category_sub.title category_sub_title, category_sub.alias category_sub_alias,
+					city.title city_title, city.alias city_alias,
+					region.id region_id, region.title region_title, region.alias region_alias,
+					country.id country_id
+				FROM ".POST." post
+				LEFT JOIN ".CATEGORY_SUB." category_sub ON category_sub.id = post.category_sub_id
+				LEFT JOIN ".CATEGORY." category ON category.id = category_sub.category_id
+				LEFT JOIN ".CITY." city ON city.id = post.city_id
+				LEFT JOIN ".REGION." region ON region.id = city.region_id
+				LEFT JOIN ".COUNTRY." country ON country.id = region.country_id
+				LEFT JOIN ".MEMBER." member ON member.id = post.member_id
+				WHERE post.alias = '".$param['alias']."'
 				LIMIT 1
 			";
 		}
@@ -245,12 +264,23 @@ class post_model extends CI_Model {
 			$row['link_review_rate'] = base_url('static/theme/forest/images/user-rating-'.$row['review_rate'].'.png');
 		}
 		if (!empty($row['category_alias']) && !empty($row['region_alias']) && !empty($row['city_alias']) && !empty($row['alias'])) {
-			$row['link_post'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['alias']);
-			$row['link_post_review'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['alias'].'/review');
-			$row['link_post_upload'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['alias'].'/upload');
-			$row['link_post_gallery'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['alias'].'/gallery');
+			// old
+			// $row['link_post'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['alias']);
+			// $row['link_post_review'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['alias'].'/review');
+			// $row['link_post_upload'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['alias'].'/upload');
+			// $row['link_post_gallery'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['alias'].'/gallery');
+			
+			// new
+			$row['link_post'] = base_url($row['category_alias'].'/'.$row['alias']);
+			$row['link_post_review'] = base_url($row['category_alias'].'/'.$row['alias'].'/review');
+			$row['link_post_upload'] = base_url($row['category_alias'].'/'.$row['alias'].'/upload');
+			$row['link_post_gallery'] = base_url($row['category_alias'].'/'.$row['alias'].'/gallery');
+			
+			// other
 			$row['link_category'] = base_url($row['category_alias']);
 			$row['link_region'] = base_url($row['category_alias'].'/'.$row['region_alias']);
+		}
+		if (!empty($row['category_alias']) && !empty($row['region_alias']) && !empty($row['city_alias'])) {
 			$row['link_city'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias']);
 		}
 		
@@ -304,6 +334,41 @@ class post_model extends CI_Model {
 		
 		if (count($array) == 0) {
 			$array['rate_per_night'] = 0;
+		}
+		
+        return $array;
+	}
+	
+	function get_city_count($param = array()) {
+        $array = array();
+		
+		$string_category = (isset($param['category_id'])) ? "AND category_sub.category_id = '".$param['category_id']."'" : '';
+		$string_region = (isset($param['region_id'])) ? "AND region.id = '".$param['region_id']."'" : '';
+		$string_city = (isset($param['city_id'])) ? "AND city.id = '".$param['city_id']."'" : '';
+		$string_post_status = (isset($param['post_status'])) ? "AND post.post_status = '".$param['post_status']."'" : '';
+		
+		$select_query = "
+			SELECT *
+			FROM (
+				SELECT COUNT(*) total,
+					category.alias category_alias,
+					region.alias region_alias,
+					city.id city_id, city.title city_title, city.alias city_alias
+				FROM ".POST." post
+				LEFT JOIN ".CATEGORY_SUB." category_sub ON category_sub.id = post.category_sub_id
+				LEFT JOIN ".CATEGORY." category ON category.id = category_sub.category_id
+				LEFT JOIN ".CITY." city ON city.id = post.city_id
+				LEFT JOIN ".REGION." region ON region.id = city.region_id
+				WHERE 1
+					$string_category $string_region $string_city $string_post_status
+				GROUP BY city.alias
+				LIMIT 100
+			) table_temp
+			ORDER BY city_title ASC
+		";
+        $select_result = mysql_query($select_query) or die(mysql_error());
+		while ( $row = mysql_fetch_assoc( $select_result ) ) {
+			$array[] = $this->sync($row, $param);
 		}
 		
         return $array;

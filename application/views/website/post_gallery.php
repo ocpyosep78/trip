@@ -7,17 +7,25 @@
 	}
 	
 	// post
-	$post = $this->post_model->get_by_id(array( 'city_alias' => $this->uri->segments[3], 'alias' => $this->uri->segments[4] ));
+	$post = $this->post_model->get_by_id(array( 'alias' => $this->uri->segments[2] ));
 	
 	// tag
 	$array_tag = $this->post_tag_model->get_array(array( 'post_id' => $post['id'] ));
 	
 	// current photo
 	$photo = $array_gallery = array();
-	if (empty($this->uri->segments[6])) {
+	if (empty($this->uri->segments[4])) {
 		$photo = $this->post_traveler_photo_model->get_by_id(array( 'latest_photo' => true, 'post_id' => $post['id'] ));
 	} else {
-		$photo = $this->post_traveler_photo_model->get_by_id(array( 'alias' => $this->uri->segments[6], 'post_id' => $post['id'] ));
+		// get photo by alias
+		$photo = $this->post_traveler_photo_model->get_by_id(array( 'alias' => $this->uri->segments[4], 'post_id' => $post['id'] ));
+		
+		// alias not found
+		if (count($photo) == 0) {
+			header("HTTP/1.1 301 Moved Permanently");
+			header('Location: '.base_url());
+			exit;
+		}
 	}
 	
 	if (count($photo) > 0) {
@@ -61,7 +69,7 @@
 	
 	// prepare meta
 	$keyword = $image_src = '';
-	if (empty($this->uri->segments[6])) {
+	if (empty($this->uri->segments[4])) {
 		$title = $post['title_select'].' - '.$post['city_title'];
 		foreach ($array_tag as $row) {
 			$keyword .= (empty($keyword)) ? $row['tag_title'] : ', '.$row['tag_title'];
@@ -161,6 +169,7 @@
 					<?php if (count($photo) > 0) { ?>
 					<a class="cursor add2fav margtop5 report-image">Report this image</a>
 					<?php } ?>
+					<a href="<?php echo $photo['link_timeline']; ?>" class="booknow margtop20 btnmarg">Traveler Timeline</a>
 					<a href="<?php echo $post['link_post_upload']; ?>" class="booknow margtop20 btnmarg">Upload Your Photo</a>
 				</div>
 			</div>

@@ -50,7 +50,7 @@ class post_traveler_photo_model extends CI_Model {
 					post.title post_title, post.alias post_alias,
 					city.alias city_alias, region.alias region_alias,
 					category.alias category_alias, category_sub.alias category_sub_alias,
-					traveler.first_name traveler_first_name, traveler.last_name traveler_last_name
+					traveler.first_name traveler_first_name, traveler.last_name traveler_last_name, traveler.alias traveler_alias
 				FROM ".POST_TRAVELER_PHOTO." post_traveler_photo
 				LEFT JOIN ".POST." post ON post.id = post_traveler_photo.post_id
 				LEFT JOIN ".CITY." city ON city.id = post.city_id
@@ -71,7 +71,7 @@ class post_traveler_photo_model extends CI_Model {
 					post.title post_title, post.alias post_alias,
 					city.alias city_alias, region.alias region_alias,
 					category.alias category_alias, category_sub.alias category_sub_alias,
-					traveler.first_name traveler_first_name, traveler.last_name traveler_last_name
+					traveler.first_name traveler_first_name, traveler.last_name traveler_last_name, traveler.alias traveler_alias
 				FROM ".POST_TRAVELER_PHOTO." post_traveler_photo
 				LEFT JOIN ".POST." post ON post.id = post_traveler_photo.post_id
 				LEFT JOIN ".CITY." city ON city.id = post.city_id
@@ -170,7 +170,11 @@ class post_traveler_photo_model extends CI_Model {
 			$row['thumbnail_link'] = base_url('static/upload/'.$row['thumbnail']);
 		}
 		if (isset($row['category_alias']) && isset($row['region_alias']) && isset($row['city_alias']) && isset($row['post_alias']) && isset($row['alias'])) {
-			$row['link_traveler_photo'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['post_alias'].'/gallery/'.$row['alias'].'/');
+			$row['link_traveler_photo'] = base_url($row['category_alias'].'/'.$row['post_alias'].'/gallery/'.$row['alias'].'/');
+			
+			if (isset($row['traveler_alias'])) {
+				$row['link_timeline'] = base_url('t/'.$row['traveler_alias'].'/'.$row['category_alias'].'/'.$row['post_alias'].'/gallery/'.$row['alias'].'/');
+			}
 		}
 		
 		// language

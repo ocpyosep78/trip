@@ -270,6 +270,18 @@
 										<div class="col-lg-10"><input type="text" name="tag_content" class="form-control" placeholder="Tag" /></div>
 									</div>
 									<div class="form-group">
+										<label class="col-lg-2 control-label">Open Hour</label>
+										<div class="col-lg-10"><input type="text" name="open_hour" class="form-control" placeholder="Open Hour" /></div>
+									</div>
+									<div class="form-group">
+										<label class="col-lg-2 control-label">Price</label>
+										<div class="col-lg-10"><input type="text" name="price" class="form-control" placeholder="Price" /></div>
+									</div>
+									<div class="form-group">
+										<label class="col-lg-2 control-label">Phone</label>
+										<div class="col-lg-10"><input type="text" name="phone" class="form-control" placeholder="Phone" /></div>
+									</div>
+									<div class="form-group">
 										<label class="col-lg-2 control-label">Thumbnail</label>
 										<div class="col-lg-7">
 											<input type="text" name="thumbnail" class="form-control" placeholder="Thumbnail" />

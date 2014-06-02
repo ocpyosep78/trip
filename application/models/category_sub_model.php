@@ -26,12 +26,38 @@ class category_sub_model extends CI_Model {
             $result['message'] = 'Data successfully updated.';
         }
        
+		// update category detail
+		$param['id'] = $result['id'];
+		$this->update_tag($param);
+		
         return $result;
     }
 
+	function update_tag($param = array()) {
+		if (isset($param['tag_content'])) {
+			$this->category_sub_tag_model->delete(array( 'category_sub_id' => $param['id'] ));
+			$array_tag = explode(',', $param['tag_content']);
+			foreach ($array_tag as $tag_queue) {
+				$tag_name = trim($tag_queue);
+				if (empty($tag_name)) {
+					continue;
+				}
+				
+				$tag_alias = $this->tag_model->get_name($tag_name);
+				$tag = $this->tag_model->get_by_id(array( 'alias' => $tag_alias, 'title' => $tag_name, 'force_insert' => true ));
+				
+				// insert
+				$param_tag['tag_id'] = $tag['id'];
+				$param_tag['category_sub_id'] = $param['id'];
+				$this->category_sub_tag_model->update($param_tag);
+			}
+		}
+	}
+
     function get_by_id($param) {
         $array = array();
-       
+		$param['tag_include'] = (isset($param['tag_include'])) ? $param['tag_include'] : false;
+		
         if (isset($param['id'])) {
             $select_query  = "
 				SELECT category_sub.*,
@@ -57,6 +83,11 @@ class category_sub_model extends CI_Model {
             $array = $this->sync($row);
         }
        
+		if ($param['tag_include']) {
+			$array['array_tag'] = $this->category_sub_tag_model->get_array(array( 'category_sub_id' => $array['id'] ));
+			$array['tag_content'] = $this->tag_model->get_string($array['array_tag']);
+		}
+		
         return $array;
     }
 	

@@ -186,7 +186,7 @@ class post_traveler_review_model extends CI_Model {
 				base_url('static/theme/forest/images/delete_old.png');
 		}
 		if (!empty($row['category_alias']) && !empty($row['region_alias']) && !empty($row['city_alias']) && !empty($row['post_alias'])) {
-			$row['link_post_review_detail'] = base_url($row['category_alias'].'/'.$row['region_alias'].'/'.$row['city_alias'].'/'.$row['post_alias'].'/review/'.$row['alias']);
+			$row['link_post_review_detail'] = base_url($row['category_alias'].'/'.$row['post_alias'].'/review/'.$row['alias']);
 		}
 		
 		if (count(@$param['column']) > 0) {

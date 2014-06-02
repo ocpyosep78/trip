@@ -1,6 +1,6 @@
 <?php
 	// post
-	$post = $this->post_model->get_by_id(array( 'city_alias' => $this->uri->segments[3], 'alias' => $this->uri->segments[4] ));
+	$post = $this->post_model->get_by_id(array( 'alias' => $this->uri->segments[2] ));
 	
 	// redirect
 	if (count($post) == 0 || $post['post_status'] != 'approve') {
@@ -137,8 +137,6 @@
 				<div class="padding20">
 					<h3 class="lh2"><?php echo $post['title_select']; ?></h3>
 					<?php echo nl2br($post['address']); ?>
-					
-				
 				</div>
 			 	<div class="line3"></div>
 				
@@ -243,32 +241,27 @@
 						<p class="hpadding20"><?php echo string_escape($post['field_01_select']); ?></p>
 						<?php } ?>
 						
-						
-						
 						<?php if (count($array_facility) > 0) { ?>
 					 	<button type="button" class="collapsebtn2" data-toggle="collapse" data-target="#collapse6">
 							Hotel Fasilities  
 						</button>
-					
 						<div class="line4"></div>
-						 
-							<div class="column3 list-icon">
-								<?php foreach ($array_facility as $row) { ?>
-								<div class="item">
-									<div class="padd">
-										<div class="ic-logo"><div class="cnt <?php echo $row['facility_css_icon']; ?>"></div></div>
-										<div class="ic-title"><?php echo $row['facility_title_select']; ?></div>
-									</div>
+						<div class="column3 list-icon">
+							<?php foreach ($array_facility as $row) { ?>
+							<div class="item">
+								<div class="padd">
+									<div class="ic-logo"><div class="cnt <?php echo $row['facility_css_icon']; ?>"></div></div>
+									<div class="ic-title"><?php echo $row['facility_title_select']; ?></div>
 								</div>
-								<?php } ?>
-								<div class="clear"></div>
 							</div>
-						 
+							<?php } ?>
+							<div class="clear"></div>
+						</div>
 						<?php } ?>
 						<br />
 					
 						<?php if (count($array_room_amenity) > 0) { ?>
-	<div class="line2"></div><br />
+						<div class="line2"></div><br />
 						<div id="collapse6" class="collapse in">
 							<div class="column3">
 								<?php foreach ($array_room_amenity as $row) { ?>
@@ -284,39 +277,24 @@
 						</div>
 						<?php } ?>
 						
-					
-	<?php if (!empty($post['total_room'])) { ?>
+						<?php if (!empty($post['total_room'])) { ?>
 						<div class="line2"></div><br />
 						<div class="hpadding20" style="padding-bottom: 10px;">
 							<div>Total Room : <?php echo $post['total_room']; ?></div>
 						</div>
-						<?php } ?>						
- 
- <br />
- 
-	                <div class="hpadding20">
-						<!--   <a href="#" class="add2fav margtop5">Add to favourite</a>   -->
-						<a class="booknow margtop20 btnmarg cursor btn-booking">Cek Price</a>
-					</div>
-					
-					
+						<?php } ?>
+						<br />
+						
+						<div class="hpadding20">
+							<!--   <a href="#" class="add2fav margtop5">Add to favourite</a>   -->
+							<a class="booknow margtop20 btnmarg cursor btn-booking">Cek Price</a>
+						</div>
 					</div>
 					 
 						<?php if (!empty($post['desc_03_select'])) { ?>
 						<p class="hpadding20"><?php echo string_escape($post['desc_03_select']); ?></p>
 						<?php } ?>
-						 
-						
-						
-					 
-
-			 
- 
 					<?php } else { ?>
-					
-				
-					
-					 
 					<div id="summary" class="tab-pane fade active in">
 						<?php if (empty($post['desc_01_select'])) { ?>
 						<p class="hpadding20">This content is not available in your language.</p>
@@ -334,6 +312,45 @@
 							<div class="clearfix"></div>
 						</div>
 						<div class="line4"></div>
+						<?php } ?>
+						
+						<?php if (count($array_facility) > 0) { ?>
+					 	<button type="button" class="collapsebtn2" data-toggle="collapse" data-target="#collapse6">
+							Fasilities  
+						</button>
+						<div class="line4"></div>
+						<div class="column3 list-icon">
+							<?php foreach ($array_facility as $row) { ?>
+							<div class="item">
+								<div class="padd">
+									<div class="ic-logo"><div class="cnt <?php echo $row['facility_css_icon']; ?>"></div></div>
+									<div class="ic-title"><?php echo $row['facility_title_select']; ?></div>
+								</div>
+							</div>
+							<?php } ?>
+							<div class="clear"></div>
+						</div>
+						<?php } ?>
+						<br />
+						
+						<?php if (!empty($post['open_hour']) || !empty($post['price']) || !empty($post['phone'])) { ?>
+							<?php if (!empty($post['open_hour'])) { ?>
+							<div class="hpadding20" style="padding-bottom: 10px;">
+								<div>Open Hour : <?php echo $post['open_hour']; ?></div>
+							</div>
+							<?php } ?>
+							
+							<?php if (!empty($post['price'])) { ?>
+							<div class="hpadding20" style="padding-bottom: 10px;">
+								<div>Price : <?php echo $post['price']; ?></div>
+							</div>
+							<?php } ?>
+							
+							<?php if (!empty($post['phone'])) { ?>
+							<div class="hpadding20" style="padding-bottom: 10px;">
+								<div>Phone : <?php echo $post['phone']; ?></div>
+							</div>
+							<?php } ?>
 						<?php } ?>
 					</div>
 					<div id="reviews" class="tab-pane fade">
@@ -383,7 +400,7 @@
 							Content <span class="collapsearrow"></span>
 						</button>
 						<div id="collapse60" class="collapse in">
-							<div class="hpadding20"><?php echo $promo['content_select']; ?></div>
+							<div class="hpadding20"><?php echo string_escape($promo['content_select']); ?></div>
 							<div class="clearfix"></div>
 						</div>
 						<div class="line4"></div>

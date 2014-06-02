@@ -94,7 +94,7 @@
 			</div>
 			<div class="form-group">
 				<label class="col-lg-2 control-label">Content</label>
-				<div class="col-lg-10"><div name="content" class="input-tinymce"></div></div>
+				<div class="col-lg-10"><textarea name="content" class="input-tinymce" style="width: 100%"></textarea></div>
 			</div>
 		</div>
 	</div>

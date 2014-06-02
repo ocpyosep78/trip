@@ -7,7 +7,7 @@
 	}
 	
 	// post
-	$post = $this->post_model->get_by_id(array( 'city_alias' => $this->uri->segments[3], 'alias' => $this->uri->segments[4] ));
+	$post = $this->post_model->get_by_id(array( 'alias' => $this->uri->segments[2] ));
 	
 	// breadcrub
 	$array_breadcrub = array(
