@@ -18,7 +18,7 @@
 	}
 	
 	// traveler
-	$traveler = $this->traveler_model->get_by_id(array( 'id' => $timeline['traveler_id'] ));
+	$traveler = $this->traveler_model->get_by_id(array( 'alias' => $this->uri->segments[2] ));
 	
 	// array seo
 	$array_seo = array(
@@ -40,7 +40,7 @@
 	<div id="content" class="row"><!-- BEGIN #content -->
 		<div style="position: relative; overflow: hidden; height: 576px;" id="isotope" class="isotope animated fadeIn">
 			
-			<?php if ($timeline['type'] == 'photo') { ?>
+			<?php if ($timeline['type'] == 'gallery') { ?>
 			<article style="position: absolute; left: 0px; top: 0px;" class="post-66 post type-post status-publish format-gallery hentry category-photography item six columns isotope-item item-right item-left">
 				<span class="indicator-top"></span>
 				<div class="post-content"><!-- BEGIN .post-content -->

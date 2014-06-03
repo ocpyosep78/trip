@@ -207,4 +207,17 @@ class post_traveler_photo_model extends CI_Model {
 			ImageResize($image_source, $image_result, 750, 475, 1);
 		}
 	}
+	
+	function get_timeline($param = array()) {
+		$result = array(
+			'type' => 'gallery',
+			'title' => $param['title'],
+			'traveler_id' => $param['traveler_id'],
+			'content' => $param['content'],
+			'thumbnail_link' => $param['thumbnail_link'],
+			'link_source' => $param['link_traveler_photo']
+		);
+		
+		return $result;
+	}
 }

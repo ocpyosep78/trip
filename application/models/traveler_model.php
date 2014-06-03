@@ -202,4 +202,58 @@ class traveler_model extends CI_Model {
 		
 		return $result;
 	}
+	
+	function get_array_timeline($param = array()) {
+        $array = array();
+		
+		$string_namelike = (!empty($param['namelike'])) ? "AND Traveler.name LIKE '%".$param['namelike']."%'" : '';
+		$string_filter = GetStringFilter($param, @$param['column']);
+		$string_sorting = GetStringSorting($param, @$param['column'], 'name ASC');
+		$string_limit = GetStringLimit($param);
+		
+		$select_query = "
+			(	SELECT
+					'gallery' type, post_traveler_photo.title, post_traveler_photo.alias, post_traveler_photo.traveler_id, post_traveler_photo.content,
+					post_traveler_photo.thumbnail, post_traveler_photo.post_date, post.alias post_alias, category.alias category_alias
+				FROM ".POST_TRAVELER_PHOTO." post_traveler_photo
+				LEFT JOIN ".POST." post ON post.id = post_traveler_photo.post_id
+				LEFT JOIN ".CATEGORY_SUB." category_sub ON category_sub.id = post.category_sub_id
+				LEFT JOIN ".CATEGORY." category ON category.id = category_sub.category_id
+				WHERE post_traveler_photo.traveler_id = '".$param['traveler_id']."'
+			)
+			UNION
+			(
+				SELECT
+					'review' type, post_traveler_review.title, post_traveler_review.alias, post_traveler_review.traveler_id, post_traveler_review.content,
+					'' thumbnail, post_traveler_review.post_date, post.alias post_alias, category.alias category_alias
+				FROM ".POST_TRAVELER_REVIEW." post_traveler_review
+				LEFT JOIN ".POST." post ON post.id = post_traveler_review.post_id
+				LEFT JOIN ".CATEGORY_SUB." category_sub ON category_sub.id = post.category_sub_id
+				LEFT JOIN ".CATEGORY." category ON category.id = category_sub.category_id
+				WHERE post_traveler_review.traveler_id = '".$param['traveler_id']."'
+			)
+			ORDER BY post_date DESC
+			LIMIT 25
+		";
+        $select_result = mysql_query($select_query) or die(mysql_error());
+		while ( $row = mysql_fetch_assoc( $select_result ) ) {
+			$array[] = $this->sync_timeline($row, $param);
+		}
+		
+        return $array;
+	}
+	
+	function sync_timeline($row = array()) {
+		$row = StripArray($row, array( ));
+		
+		// link
+		if (!empty($row['thumbnail'])) {
+			$row['thumbnail_link'] = base_url('static/upload/'.$row['thumbnail']);
+		}
+		if (!empty($row['category_alias']) && !empty($row['post_alias'])) {
+			$row['link_source'] = base_url($row['category_alias'].'/'.$row['post_alias'].'/'.$row['type'].'/'.$row['alias']);
+		}
+		
+		return $row;
+	}
 }

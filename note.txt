@@ -1,57 +1,32 @@
-ERROR :
-ok => 1.	di TAB PROMO http://www.tripdomestik.com/restaurant/jawa-timur/kota-malang/bakso-damas-malang isi content promo tidak muncul
+check => http://www.tripdomestik.com/t/linda-law/destination/354534534534634/gallery/malioboro-street
 
-ok => 2.	http://www.tripdomestik.com/destination/jawa-timur/kota-malang/jawa-timur-park-1/gallery/tes arahkan ke page not found saja
+Metanya jadi :
+- title : Linda Law - Malioboro street
+- Desc  : i like it
 
-ok => 3.	http://www.tripdomestik.com/rss belum di set
+--------------------------------------------------------------------------------
 
-not ok => 4.	coba login dengan facebook, user baru (belum ada di databse) belum pernah daftar, dia error dulu, setelah itu klo login lagi pake fb baru bisa..
-- saya coba jalan mas, apa ada print screen mas untuk membantu perbaiki error nya
+check => Single time line yang ini :
+yang ini Sudah : http://www.tripdomestik.com/t/linda-law/destination/354534534534634/gallery/malioboro-street
+yang ini Belum : http://www.tripdomestik.com/t/linda-law/restaurant/423434323423/review/coba-review-untuk-timeline
+( tanpa gambar, cuma title [coba review untuk timeline] dan isi review )
 
-ok => 5.	http://tripdomestik.com/restaurant/jawa-timur/kota-malang = tampilkan TAG bedasarkan city, jadi tinggal tambah field tag di edit city di admin, trus tampilkan di bawah Tag di end user, nanti akan muncul berdasarkan city yang tampil
+check => liat http://www.tripdomestik.com/t/rid1amir
+JIKA rid1amir upload GAMBAR di galery, maka tampilkan juga di http://www.tripdomestik.com/t/rid1amir
+JIKA rid1amir Review tampilkan juga reviewnya rid1amir di http://www.tripdomestik.com/t/rid1amir
+JADI cuma memangil tabel REVIEW dan tabel GALERY traveler untuk di tampilkan di http://www.tripdomestik.com/t/rid1amir sebagai timeline
 
-ok => 6.	http://tripdomestik.com/restaurant/jawa-timur/kota-malang/toko-oen = tampilkan Fasility di bawah description
 
-ok => 7.	Page Static di pasang redirect sperti dunidb dan text area diganti yang tinymce
-demo => http://tripdomestik.com/about/us/more
+---------------------------
 
-ok => 8.	URL traveler : tripdomestik.com/t/ALIAS
-demo => http://tripdomestik.com/t/rid1amir
 
-------------------------------------------------------------------------------------------------
+perbaikan situs http://malaysianfair.com/
 
-Pendekin url :
-ok => DESTINATION : http://www.tripdomestik.com/destination/raja-ampat-papua 
-ok => RESTAURANT : http://www.tripdomestik.com/restaurant/toko-oen
-ok => HOTEL : http://www.tripdomestik.com/hotel/harris-hotel-convention
 
-------------------------------------------------------------------------------------------------
+dan ini tolong buatkan halaman home, boleh di redirect ato gimana..
 
-ok => Rubah combo CITY menjadi sperti di bawah ini dan di kasih link, tampilkan sebanyak max 15 kota saja, dan kota yang posisi (0) tidak usah di tampilkan
+waktu saya masuk ke halaman http://malaysianfair.com/ langsung masuk ke halaman home,
+biar nanti halaman home ini beda dengan halaman index.php (listing)
 
-------------------------------------------------------------------------------------------------
-
-Penambahan Field :
-Restaurant :
-ok => - Open Hour : (text biasa), Price : (text biasa), Phone (text biasa) tampilkan di end user
-demo => http://www.tripdomestik.com/restaurant/454362432432434324
-
-Sub Category :
-ok => - untuk TAG, tambahkan juga tag di sub-kategory
-- http://www.tripdomestik.com/restaurant
-- http://www.tripdomestik.com/restaurant/indonesian
-
-------------------------------------------------------------------------------------------------
-
-Timeline
-ok => Note bisa nda url sperti ini : http://tripdomestik.com/t/alias/restaurant/423434323423/gallery/mantap-tempatnya-bro (trigger) <- cuma untuk keperluan di timeline
-mungkin itu dibuatkan detail page timeline saja.. untuk halamanya sperti ini http://tripdomestik.com/timeline-detail.htm , lebih mudah dalam memberikan meta tag nantinya..
-kalo trigger, trigger ke status ke halaman 10 timeline berat mungkin..
-demo =>
-- Malioboro Pusat Perbelanjaan di Yogyakarta
-Page Gallery : http://www.tripdomestik.com/destination/354534534534634/gallery
-Page Timeline : http://www.tripdomestik.com/t/linda-law/destination/354534534534634/gallery/malioboro-street
-
-- Pesona Keindahan Candi Prambanan
-Page Gallery : http://www.tripdomestik.com/destination/42332897489234343243/gallery
-Page Timeline : http://www.tripdomestik.com/t/ridwan-amir/destination/42332897489234343243/gallery/gue-nih-bro
+ATAU bisa juga di halaman index ini cuma tambahkan 1 <div> </div> di atas recent post,
+yang JIKA pada halaman http://www.malaysianfair.com/page-2 dst <div> tersebut tidak muncul

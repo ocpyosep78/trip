@@ -206,4 +206,16 @@ class post_traveler_review_model extends CI_Model {
 		
 		return $row;
 	}
+	
+	function get_timeline($param = array()) {
+		$result = array(
+			'type' => 'review',
+			'title' => $param['title'],
+			'traveler_id' => $param['traveler_id'],
+			'content' => $param['content'],
+			'link_source' => $param['link_post_review_detail']
+		);
+		
+		return $result;
+	}
 }
