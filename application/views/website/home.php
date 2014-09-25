@@ -80,7 +80,7 @@
 <meta property="article:modified_time" content="2013-09-16T19:08:47+01:00" />
 <meta property="article:section" content="Article Section" />
 <meta property="article:tag" content="tripdomestik, hotel murah" />
-
+<link rel="author" href="https://plus.google.com/u/0/b/102033708952551219666/102033708952551219666/posts"/>
 
 
 	<!-- link -->
@@ -207,14 +207,21 @@
 
 </head>
 <body id="top">
+<div class="breadcrumbs">
+<div xmlns:v="http://rdf.data-vocabulary.org/#"><span typeof="v:Breadcrumb">
+<a href="http://www.tripdomestik.com/" property="v:title" rel="v:url">Home</a></span> </div></div>
 	<?php $this->load->view( 'website/common/header_menu' ); ?>
 	<div class="hide">
 		<div class="cnt-page"><?php echo json_encode($page); ?></div>
 	</div>
 	
+	 
+	
 	<div class="fullscreen-container mtslide sliderbg fixed">
 		<div style="float:none;padding:20px;"></div>
 	</div>
+	
+	
 	
 	<div class="wrap cstyle03">
 		<div class="container mt-130 z-index100">		
@@ -376,5 +383,13 @@
 		}
 	});
 </script>
+<a target="_blank" href="http://www.blogtopsites.com/"><img style="border:none;" src="http://www.blogtopsites.com/v_182449.gif" alt="blog directory" /></a><br /><a target="_blank" href="http://www.blogtopsites.com" style="font-size:10px;">blog directory</a>
+<!-- Begin BlogToplist tracker code -->
+<a href="http://www.blogtoplist.com/travel/" title="Travel">
+<img src="http://www.blogtoplist.com/tracker.php?u=232030" alt="Travel" border="0" /></a>
+<!-- End BlogToplist tracker code -->
+<br><a href="http://www.billigthotell.org/">Billigthotell.org</a>
+
+
 </body>
 </html>

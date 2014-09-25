@@ -65,7 +65,28 @@
 
 	<?php } ?>
 
-	
+<LINK REV="made" href="mailto:tripdomestik.com@gmail.com">
+<meta content='INDEX, FOLLOW' name='ROBOTS'/>
+<META NAME="author" CONTENT="Trip Domestik">
+<META NAME="ROBOTS" CONTENT="ALL">
+<meta content='text/html; charset=utf-8' http-equiv='Content-Type'/>
+<meta content='1 days' name='revisit-after'/>
+<meta content='in' name='geo.country'/>
+<meta content='global' name='Distribution'/>
+<meta content='both' http-equiv='Content-Language'/>
+<meta content='global' name='geo.country'/>
+<meta content='follow, all' name='Googlebot-Image'/>
+<meta content='global' name='geo.placename'/>
+<meta content='global' name='geo.country'/>
+<meta CONTENT='NOYDIR' name='ROBOTS'/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<meta content='true' name='MSSmartTagsPreventParsing'/>
+<link rel="alternate" type="application/rss+xml" title=" Tempat wisata di indonesia | tripdomestik RSS Feed" href="http://www.tripdomestik.com/rss" />
+ 
+<link rel="pingback" href="http://tripdomestik.com/xmlrpc.php">
+ 
+<link rel="author" href="https://plus.google.com/u/0/b/102033708952551219666/102033708952551219666/posts"/>
+
 
 	<!-- link -->
 

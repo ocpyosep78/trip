@@ -97,7 +97,8 @@
 	<?php $this->load->view( 'website/common/header_menu' ); ?>
 	<?php $this->load->view( 'website/common/breadcrub', array( 'array' => $array_breadcrub ) ); ?>
 	
-	<div class="container">	<div class="hreview-aggregate">   <span class="votes">24</span> ratings.    			
+	<div class="container">	<div class="hreview-aggregate">   <span class="votes">24</span> ratings.   
+ 
 		<div class="container mt25 offset-0">
 			<div class="col-md-8 pagecontainer2 offset-0">
 				<br /><br />

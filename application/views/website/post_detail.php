@@ -88,7 +88,7 @@
 <body id="top" class="thebg">
     <?php $this->load->view( 'website/common/header_menu' ); ?>
 	<?php $this->load->view( 'website/common/breadcrub', array( 'array' => $array_breadcrub ) ); ?>
-	
+	  <div itemscope itemtype="http://data-vocabulary.org/Review">
 	<div class="container">
 		<div class="container pagecontainer offset-0">
 			<?php if (count($array_gallery) == 0) { ?>
@@ -135,9 +135,14 @@
 			
 			<div class="col-md-4 detailsright offset-0">
 				<div class="padding20">
-					<h3 class="lh2"><?php echo $post['title_select']; ?></h3>
+				<span itemprop="itemreviewed">
+					<h3 class="lh2"><?php echo $post['title_select']; ?></h3></span>
 					<?php echo nl2br($post['address']); ?>
 				</div>
+				
+				
+  
+				
 			 	<div class="line3"></div>
 				
 				<?php if ($post['category_id'] == CATEGORY_HOTEL) { ?>
@@ -165,7 +170,8 @@
 				<?php } else { ?>
 					<?php if (!empty($post['field_01_select'])) { ?>
 					<div class="hpadding20">
-						<h2 class="opensans slim green2"><?php echo $post['field_01_select']; ?>!</h2>
+					 <span itemprop="summary">	<h2 class="opensans slim green2"><?php echo $post['field_01_select']; ?>!</h2>
+					  </span>
 					</div>
 					<div class="line3 margtop20"></div>
 					<?php } ?>
@@ -178,7 +184,7 @@
 						<?php echo $post['review_count']; ?> reviews
 					</div>
 					<div class="col-md-6 bordertype3">
-						<a href="<?php echo $post['link_post_review']; ?>" class="grey">+Add review</a>
+						<a href="<?php echo $post['link_post_review']; ?>" title="+Add review" alt="+Add review" class="grey">+Add review</a>
 					</div>
 					<div class="clearfix"></div><br />
 					
@@ -230,7 +236,10 @@
 						<?php if (empty($post['desc_01_select'])) { ?>
 						<p class="hpadding20">This content is not available in your language.</p>
 						<?php } else { ?>
-						<p class="hpadding20"><?php echo string_escape($post['desc_01_select']); ?></p>
+						<span itemprop="description">
+						<p class="hpadding20"><?php echo string_escape($post['desc_01_select']); ?>
+						</p></span>
+						
 						<?php } ?>
 						
 						<?php if (!empty($post['desc_02_select'])) { ?>
@@ -284,6 +293,10 @@
 						</div>
 						<?php } ?>
 						<br />
+							 <div style="float:none;color:#fff;">   
+							 Reviewed by <span itemprop="reviewer">Traveler</span> 
+							 on Rating: <span itemprop="rating">4.5</span> 
+							 </div>
 						
 						<div class="hpadding20">
 							<!--   <a href="#" class="add2fav margtop5">Add to favourite</a>   -->
@@ -299,7 +312,15 @@
 						<?php if (empty($post['desc_01_select'])) { ?>
 						<p class="hpadding20">This content is not available in your language.</p>
 						<?php } else { ?>
-						<p class="hpadding20"><?php echo string_escape($post['desc_01_select']); ?></p>
+						<span itemprop="description">
+						<p class="hpadding20"><?php echo string_escape($post['desc_01_select']); ?>
+						</p></span>
+						<div style="float:none;color:#fff;">   
+							 Reviewed by <span itemprop="reviewer">Traveler</span> 
+							 on Rating: <span itemprop="rating">4.5</span> 
+							 </div>
+							 
+						 
 						<?php } ?>
 						<div class="line4"></div>
 						
@@ -333,6 +354,12 @@
 						<?php } ?>
 						<br />
 						
+							 <div style="float:none;color:#fff;">   
+							 Reviewed by <span itemprop="reviewer">Traveler</span> 
+							 on Rating: <span itemprop="rating">4.5</span> 
+							 </div>
+						
+						
 						<?php if (!empty($post['open_hour']) || !empty($post['price']) || !empty($post['phone'])) { ?>
 							<?php if (!empty($post['open_hour'])) { ?>
 							<div class="hpadding20" style="padding-bottom: 10px;">
@@ -353,6 +380,7 @@
 							<?php } ?>
 						<?php } ?>
 					</div>
+					
 					<div id="reviews" class="tab-pane fade">
 						<div class="hpadding20"><br />
 							<span class="opensans dark size16 bold">Reviews</span>
@@ -394,6 +422,7 @@
 							<div>Start Date : <?php echo GetFormatDate($promo['publish_date']); ?></div>
 							<div>End Date : <?php echo GetFormatDate($promo['close_date']); ?></div>
 						</div>
+					
 						<div class="line2"></div><br />
 						
 						<button type="button" class="collapsebtn2" data-toggle="collapse" data-target="#collapse60">
@@ -434,6 +463,7 @@
 				<?php $this->load->view( 'website/common/visit_post', array( 'class_style' => 'mt20 alsolikebox' ) ); ?>
 			</div>
 		</div>
+	</div>
 	</div>
 	
 	<?php $this->load->view( 'website/common/footer' ); ?>

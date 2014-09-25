@@ -1,6 +1,7 @@
 <?php
 	// traveler
 	$traveler = $this->traveler_model->get_by_id(array( 'alias' => $this->uri->segments[2] ));
+	  
 	
 	// array timeline
 	$array_timeline = $this->traveler_model->get_array_timeline(array( 'traveler_id' => $traveler['id'] ));
@@ -49,11 +50,11 @@
 				<div class="entry-meta"><!-- BEGIN .entry-meta -->
 					<span class="indicator"></span>
 					<span class="posted meta-item">
-						<a href="#" title="" rel="bookmark"><span class="posted-icon meta-icon"></span><span class="entry-date">20/5/2014</span></a>
+						<a href="#" title="" rel="bookmark"><span class="entry-date">20/5/2014</span></a>
 					</span>
-					<span style="display: inline; opacity: 0.849456;" class="read-more meta-item">
+					<span class="read-more meta-item">
 						<div style="float:left;color:#b30;">Share : &nbsp;&nbsp;</div>
-						<a href="http://www.facebook.com/sharer.php?u=tripdomestik.com" target="_blank">Facebook</a>
+						<a href="http://www.facebook.com/sharer.php?u=<?php echo $traveler['link_traveler']; ?>" target="_blank">Facebook</a>
 					</span>
 				</div><!-- END .entry-meta -->
 			</article>
@@ -76,11 +77,11 @@
 				<div class="entry-meta"><!-- BEGIN .entry-meta -->
 					<span class="indicator"></span>
 					<span class="posted meta-item">
-						<a href="#" title="" rel="bookmark"><span class="posted-icon meta-icon"></span><span class="entry-date">20/5/2014</span></a>
+						<a href="#" title="" rel="bookmark"><span class="entry-date">20/5/2014</span></a>
 					</span>
-					<span style="display: inline; opacity: 0.849456;" class="read-more meta-item">
+					<span class="read-more meta-item">
 						<div style="float:left;color:#b30;">Share : &nbsp;&nbsp;</div>
-						<a href="http://www.facebook.com/sharer.php?u=tripdomestik.com" target="_blank">Facebook</a>
+						<a href="http://www.facebook.com/sharer.php?u=<?php echo $traveler['link_traveler']; ?>" target="_blank">Facebook</a>
 					</span>
 				</div><!-- END .entry-meta -->
 			</article>

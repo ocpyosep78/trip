@@ -11,7 +11,8 @@
 				<a href="<?php echo base_url(); ?>">Home</a></li>
 			</ul>
 		</div>		</div><!-- END #navigation -->
-		<a style="display: none;" class="navigation-trigger" href="#"></a>
+	
+<!--	<a style="display: none;" class="navigation-trigger" href="#"></a> -->
 		
 		<table style="z-index: 1002;" id="logo-wrap">
 			<tbody><tr>
@@ -39,12 +40,12 @@
 <section id="subheader-wrap" class="wrap animated fadeInDown">
 <!-- BEGIN #subheader-wrap -->
 <div id="subheader" class="row tagline"><!-- BEGIN #subheader -->
-<span>Timeline | About </span></div><!-- END #subheader -->
+<span><?php echo $traveler['full_name']; ?></span></div><!-- END #subheader -->
 </section><!-- END #subheader-wrap -->
-
-<section id="subheader-widgets-wrap" class="wrap"><!-- BEGIN #subheader-widgets-wrap -->
+<!--
+<section id="subheader-widgets-wrap" class="wrap"> 
 	
-	<div id="subheader-widgets" class="row"><!-- BEGIN #subheader-widgets -->
+	<div id="subheader-widgets" class="row"> 
 
 		<div class="six columns"><aside id="text-7" class="widget widget_text"><h3 class="widget-title">About Me</h3>			<div class="textwidget"><p>Sed
  ut perspiciatis unde omnis iste natus error sit voluptatem accusantium 
@@ -60,5 +61,5 @@ explicabo.</p>
 		<ul id="twitter_update_list_0"><li>Loading Tweets...</li></ul>
 		
  	</aside></div>
-	</div><!-- END #subheader-widgets -->
-</section><!-- END #subheader-widgets-wrap -->
+	</div> 
+</section>  -->

@@ -204,7 +204,8 @@
 				</div>
 				<div class="line2"></div>
 			</div>
-			<br/><br/>
+			  <div class="clearfix"></div><br />
+			<div class="line2"></div>
 			<button type="button" class="collapsebtn last" data-toggle="collapse" data-target="#collapse4">
 				Fasilities
 				<span class="collapsearrow"></span>

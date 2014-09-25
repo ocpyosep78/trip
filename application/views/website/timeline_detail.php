@@ -68,7 +68,7 @@
 					</span>
 					<span style="display: inline; opacity: 0.849456;" class="read-more meta-item">
 						<div style="float:left;color:#b30;">Share : &nbsp;&nbsp;</div>
-						<a href="http://www.facebook.com/sharer.php?u=tripdomestik.com" target="_blank">Facebook</a>
+						<a href="http://www.facebook.com/sharer.php?u=<?php echo $photo['link_timeline']; ?>" target="_blank">Facebook</a>
 					</span>
 				</div><!-- END .entry-meta -->
 			</article>

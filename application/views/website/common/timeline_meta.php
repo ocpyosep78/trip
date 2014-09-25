@@ -65,8 +65,7 @@
 	<style type="text/css">
 
 body {
-background-color: #ece9d5;
-background-image: url(http://www.tienvooracht.nl/themes/sann/wp-content/themes/sannv2/images/bg.jpg);
+background-color: #E9EAED;
 background-position: top left;
 background-repeat: repeat;
 background-attachement: fixed;

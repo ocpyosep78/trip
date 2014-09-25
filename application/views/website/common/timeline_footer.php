@@ -1,6 +1,6 @@
 <footer id="footer-wrap" class="wrap"><!-- BEGIN #footer-wrap -->
 	<div id="footer" class="row"><!-- BEGIN #footer -->
-		© 2014 <a href="#" class="home-url">Tripdomestik.com</a> 
+		© 2014 <a href="http://www.tripdomestik.com" alt="Indonesia traveler Quide" title="Tempat wisata di indonesia" class="home-url">Tripdomestik.com</a> 
 	</div><!-- END #footer -->
 </footer><!-- END #footer-wrap -->
 

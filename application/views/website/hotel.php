@@ -181,6 +181,8 @@
 			<div class="clearfix"></div><br />
 			<div class="hpadding20 cnt-list-city">&nbsp;</div>
 			
+			 <div class="clearfix"></div><br />
+			<div class="line2"></div>
 			<div class="padding20title"><h3 class="opensans dark">Star</h3></div>
 			<div class="line2"></div><br />
 			<div class="hpadding20"> 
