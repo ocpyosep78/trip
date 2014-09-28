@@ -1294,7 +1294,9 @@ embed { width: 100%; border: 0 !important; padding: 0 !important; margin: 0 !imp
 	Subheader Widgets » Trigger
 ------------------------------------------------------------------------------------------ */
 
-.subheader-widgets-trigger { position: absolute; width: 40px; height: 40px; background-color: #ccc; background-image: url(images/icons/icon-open.png); background-repeat: no-repeat; background-position: center center; text-indent: -9999px; top: 0; left: auto; right: 20px; z-index: 999; }
+.subheader-widgets-trigger { position: absolute; width: 40px; height: 40px; background-color: #ccc;
+	/*	background-image: url(images/icons/icon-open.png); */
+	background-repeat: no-repeat; background-position: center center; text-indent: -9999px; top: 0; left: auto; right: 20px; z-index: 999; }
 .subheader-widgets-trigger {
 
 	-moz-box-shadow: 0 1px 1px 0 rgba(0,0,0, 0.1);
@@ -1398,8 +1400,12 @@ embed { width: 100%; border: 0 !important; padding: 0 !important; margin: 0 !imp
 .post .indicator { position: absolute; width: 9px; height: 28px; background-repeat: no-repeat; background-position: center center; margin-top: -14px; top: 50%; }
 
 /* - Left & Right - */
-.post.item-left .indicator { background-image: url(images/indicator-right.png); right: -9px; }
-.post.item-right .indicator { background-image: url(images/indicator-left.png); left: -9px; }
+.post.item-left .indicator {
+	/*	background-image: url(images/indicator-right.png); */
+	right: -9px; }
+.post.item-right .indicator { 
+	/*	background-image: url(images/indicator-left.png); */
+	left: -9px; }
 
 /* - Top - */
 .post .indicator-top { display: none; position: absolute; width: 28px; height: 8px; background-image: url(images/indicator-top.png); background-repeat: no-repeat; background-position: center center; margin-left: -14px; top: -8px; left: 50%; }
@@ -1854,7 +1860,9 @@ embed { width: 100%; border: 0 !important; padding: 0 !important; margin: 0 !imp
 	Load more items
 ------------------------------------------------------------------------------------------ */
 
-#load-posts a.load-more { display: block; position: relative; width: 50px; height: 50px; background-color: #ee482e; background-image: url(images/icons/icon-load-more.png); background-repeat: no-repeat; background-position: center center; text-indent: -9999px; margin: 0 auto; }
+#load-posts a.load-more { display: block; position: relative; width: 50px; height: 50px; background-color: #ee482e; 
+	/*	background-image: url(images/icons/icon-load-more.png); */
+	background-repeat: no-repeat; background-position: center center; text-indent: -9999px; margin: 0 auto; }
 #load-posts a.load-more {
 
 	-webkit-border-radius: 100%;
@@ -1965,7 +1973,9 @@ embed { width: 100%; border: 0 !important; padding: 0 !important; margin: 0 !imp
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
 .tva-social-icons {}
-.tva-social-icons li a { display: block; float: left; width: 40px; height: 40px; background: url(images/icons/social-sprite.png); background-repeat: no-repeat; text-indent: -9999px; }
+.tva-social-icons li a { display: block; float: left; width: 40px; height: 40px;
+	/*	background: url(images/icons/social-sprite.png);	*/
+	background-repeat: no-repeat; text-indent: -9999px; }
 .tva-social-icons li a {
 
 	-webkit-border-radius: 2px;
@@ -2059,7 +2069,9 @@ ul.tva-social-icons a.tumblr { background-color: #385975; background-position: -
 
 #header ul.tva-social-icons li {}
 #header ul.tva-social-icons li { float: left; }
-#header ul.tva-social-icons li a { display: block; float: left; width: 40px; height: 40px; background: url(images/icons/social-sprite.png); background-repeat: no-repeat; text-indent: -9999px; border: 2px solid #fff; margin: 0 0 6px 6px; }
+#header ul.tva-social-icons li a { display: block; float: left; width: 40px; height: 40px;
+	/*	background: url(images/icons/social-sprite.png); */
+	background-repeat: no-repeat; text-indent: -9999px; border: 2px solid #fff; margin: 0 0 6px 6px; }
 #header ul.tva-social-icons li a {
 
 	opacity: 0.75;

@@ -1,5 +1,8 @@
 <?php
-	$traveler = $this->traveler_model->get_by_id(array( 'alias' => $this->uri->segments[2] ));
+	$traveler = array( 'link_traveler' => '#', 'full_name' => '&nbsp;', 'thumbnail_link' => base_url('static/img/avatar.jpg') );
+	if (!empty($this->uri->segments[2])) {
+		$traveler = $this->traveler_model->get_by_id(array( 'alias' => $this->uri->segments[2] ));
+	}
 ?>
 
 <div id="loading"></div>

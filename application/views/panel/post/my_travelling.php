@@ -1,6 +1,23 @@
+<?php
+	// user
+	$user_session = $this->user_model->get_session();
+	$user = $this->user_model->get_by_id(array( 'user_type_id' => $user_session['user_type_id'], 'id' => $user_session['id'] ));
+	
+	// page data
+	$page['USER_TYPE_ADMINISTRATOR'] = USER_TYPE_ADMINISTRATOR;
+	$page['USER_TYPE_EDITOR'] = USER_TYPE_EDITOR;
+	$page['USER_TYPE_MEMBER'] = USER_TYPE_MEMBER;
+	$page['user'] = $user_session;
+?>
+
 <?php $this->load->view( 'panel/common/meta' ); ?>
 <body>
 <section class="vbox">
+	<div class="hide">
+		<div id="cnt-page"><?php echo json_encode($page); ?></div>
+		<iframe name="iframe_thumbnail" src="<?php echo base_url('panel/upload?callback_name=set_thumbnail'); ?>"></iframe>
+	</div>
+	
 	<?php $this->load->view( 'panel/common/header' ); ?>
 	
     <section>
@@ -11,7 +28,7 @@
 				<section class="vbox">
 					<section class="scrollable padder">
 						<div class="m-b-md">
-							<h3 class="m-b-none">Page Static</h3>
+							<h3 class="m-b-none">My Traveling</h3>
 						</div>
 						
 						<section class="panel panel-default panel-table">
@@ -35,8 +52,8 @@
 								<table class="table table-striped m-b-none" data-ride="datatable" id="datatable">
 								<thead>
 									<tr>
-										<th width="40%">Title</th>
-										<th width="40%">Update Time</th>
+										<th width="60%">Title</th>
+										<th width="20%">Create Date</th>
 										<th width="20%">&nbsp;</th>
 									</tr>
 								</thead>
@@ -46,7 +63,7 @@
 						</section>
 						
 						<section class="panel panel-default panel-form hide">
-							<header class="panel-heading font-bold">Form Page Static</header>
+							<header class="panel-heading font-bold">Form My Traveling</header>
 							<div class="panel-body">
 								<form class="bs-example form-horizontal">
 									<input type="hidden" name="action" value="update" />
@@ -58,15 +75,24 @@
 									</div>
 									<div class="form-group">
 										<label class="col-lg-2 control-label">Alias</label>
-										<div class="col-lg-10"><input type="text" name="alias" class="form-control" placeholder="Alias" /></div>
+										<div class="col-lg-10"><input type="text" class="form-control" name="alias" data-required="true" readonly="readonly" /></div>
 									</div>
 									<div class="form-group">
-										<label class="col-sm-2 control-label">Content</label>
-										<div class="col-sm-10"><textarea name="content" class="render-tinymce" style="width: 100%"></textarea></div>
+										<label class="col-lg-2 control-label">Content</label>
+										<div class="col-lg-10"><textarea name="desc" class="render-tinymce" style="width: 100%"></textarea></div>
 									</div>
 									<div class="form-group">
-										<label class="col-lg-2 control-label">Redirect URL</label>
-										<div class="col-lg-10"><input type="text" name="redirect" class="form-control" placeholder="Redirect URL" /></div>
+										<label class="col-lg-2 control-label">Tag</label>
+										<div class="col-lg-10 cnt-typeahead"><input type="text" name="tag" class="form-control" placeholder="Tag" /></div>
+									</div>
+									<div class="form-group">
+										<label class="col-lg-2 control-label">Image</label>
+										<div class="col-lg-7">
+											<input type="text" name="thumbnail" class="form-control" placeholder="Image" />
+										</div>
+										<div class="col-lg-3">
+											<button type="button" class="btn btn-default browse-thumbnail">Select Picture</button>
+										</div>
 									</div>
 									
 									<hr />
@@ -92,7 +118,10 @@
 $(document).ready(function() {
 	var page = {
 		init: function() {
-			// set form
+			var raw_page = $('#cnt-page').html();
+			eval('var data = ' + raw_page);
+			page.data = data;
+			
 			Func.language();
 		},
 		show_grid: function() {
@@ -106,20 +135,24 @@ $(document).ready(function() {
 	}
 	page.init();
 	
+	// upload
+	$('.browse-thumbnail').click(function() { window.iframe_thumbnail.browse() });
+	set_thumbnail = function(p) {
+		$('.panel-form form [name="thumbnail"]').val(p.file_name);
+	}
+	
 	// grid
 	var param = {
-		id: 'datatable',
-		source: web.base + 'panel/setup/page_static/grid',
-		column: [ { }, { }, { bSortable: false, sClass: 'center', sWidth: '10%' } ],
+		id: 'datatable', aaSorting: [[ 1, 'DESC' ]],
+		source: web.base + 'panel/my_travelling/grid',
+		column: [ { }, { }, { bSortable: false, sClass: 'center', sWidth: '15%' } ],
 		callback: function() {
 			$('#datatable .btn-edit').click(function() {
 				var raw_record = $(this).siblings('.hide').text();
 				eval('var record = ' + raw_record);
 				
-				Func.ajax({ url: web.base + 'panel/setup/page_static/action', param: { action: 'get_by_id', id: record.id }, callback: function(result) {
-					Func.populate({ cnt: '.panel-form', record: result });
-					page.show_form();
-				} });
+				Func.populate({ cnt: '.panel-form', record: record });
+				page.show_form();
 			});
 			
 			$('#datatable .btn-delete').click(function() {
@@ -128,7 +161,10 @@ $(document).ready(function() {
 				
 				Func.confirm_delete({
 					data: { action: 'delete', id: record.id },
-					url: web.base + 'panel/setup/page_static/action', callback: function() { dt.reload(); }
+					url: web.base + 'panel/my_travelling/action', callback: function() { dt.reload(); },
+					callback: function() {
+						dt.reload();
+					}
 				});
 			});
 		}
@@ -140,9 +176,9 @@ $(document).ready(function() {
 	$('.panel-form .btn-primary').click(function() {
 		page.show_grid();
 	});
-	$('.panel-form [name="title"]').keyup(function() {
+	$('.panel-form form [name="title"]').keyup(function() {
 		var value = Func.GetName($(this).val());
-		$('.panel-form [name="alias"]').val(value);
+		$('.panel-form form [name="alias"]').val(value);
 	});
 	$('.panel-form form').submit(function(e) {
 		e.preventDefault();
@@ -150,10 +186,9 @@ $(document).ready(function() {
 			return false;
 		}
 		
-		var param = Site.Form.GetValue('.panel-form form');
 		Func.update({
-			link: web.base + 'panel/setup/page_static/action',
-			param: param,
+			link: web.base + 'panel/my_travelling/action',
+			param: Site.Form.GetValue('.panel-form form'),
 			callback: function() {
 				dt.reload();
 				page.show_grid();
@@ -167,6 +202,7 @@ $(document).ready(function() {
 		page.show_form();
 		$('.panel-form form')[0].reset();
 		$('.panel-form form').parsley().reset();
+		$('.panel-form form .input-tinymce').html('');
 		$('.panel-form [name="id"]').val(0);
 	});
 });

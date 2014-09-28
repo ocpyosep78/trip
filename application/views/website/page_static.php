@@ -2,6 +2,12 @@
 	$alias = $this->uri->uri_string;
 	$page_static = $this->page_static_model->get_by_id(array( 'alias' => $alias ));
 	
+	// redirect
+	if (!empty($page_static['redirect'])) {
+		header("Location: ".$page_static['redirect']);
+		exit;
+	}
+	
 	// breadcrub
 	$array_breadcrub = array(
 		array( 'link' => '#', 'title' => $page_static['title'] )

@@ -13,8 +13,6 @@
 //
 //----------------------------------------------------------------------------------------------------------------------------
 
-jQuery.noConflict();
-
 
 //----------------------------------------------------------------------------------------------------------------------------
 //
@@ -22,15 +20,11 @@ jQuery.noConflict();
 //
 //----------------------------------------------------------------------------------------------------------------------------
 
-jQuery( function($) {
-	jQuery(document).ready( function() {
 
 //----------------------------------------------------------------------------------------------------------------------------
 //	Header
 //----------------------------------------------------------------------------------------------------------------------------
-
 	function tva_header() {
-
 		var $header		= $( '#header-wrap' );
 		var $navigation	= $( '#mobile-navigation-wrap' );
 
@@ -51,17 +45,12 @@ jQuery( function($) {
 		});
 
 	}
-
 	tva_header();
-
-
 
 //--------------------------------------------------------------
 //	Navigation dropdown with Superfish
 //--------------------------------------------------------------
-
 	function tva_superfish() {
-
 		var $menu = $( '#navigation ul.sf-menu' )
 
 		$menu.superfish({
@@ -73,18 +62,13 @@ jQuery( function($) {
 		});
 
 	}
-
 	tva_superfish();
-
-
 
 //--------------------------------------------------------------
 //	Mobile navigation
 //--------------------------------------------------------------	
-
 	// Trigger
 	function tva_mobilenav_trigger() {
-
 		var $trigger = $( 'a.navigation-trigger' );
 		
 		if( $(window).width() < 1023 ) {
@@ -98,12 +82,10 @@ jQuery( function($) {
 		}
 
 	}
-
 	tva_mobilenav_trigger();
 
 	// Menu
 	function tva_mobilenav_menu() {
-
 		var $menu = $( '#mobile-navigation-wrap' );
 		
 		if( $(window).width() < 1023 ) {
@@ -117,12 +99,10 @@ jQuery( function($) {
 		}
 
 	}
-
 	tva_mobilenav_menu();
 
 	// Event
 	function tva_mobilenav() {
-	
 		var $trigger = $( 'a.navigation-trigger' );
 		var $menu	 = $( '#mobile-navigation-wrap' );
 
@@ -135,17 +115,12 @@ jQuery( function($) {
 		});
 
 	}
-
 	tva_mobilenav();
 	
-
-
 //----------------------------------------------------------------------------------------------------------------------------
 //	Biography
 //----------------------------------------------------------------------------------------------------------------------------
-
 	function tva_bio() {
-
 		var $bio	= $( '#biography' );
 		var $logo 	= $( '#logo-wrap' );
 		var $avatar = $( '#logo img' );
@@ -169,17 +144,12 @@ jQuery( function($) {
 		}
 
 	}
-
 	tva_bio();
-
-
 
 //--------------------------------------------------------------
 //	Subheader Widgets
 //--------------------------------------------------------------	
-
 	function tva_subheaderWidgets() {
-
 		var $trigger 			= $( '.subheader-widgets-trigger' );
 		var $subheader_widgets 	= $( '#subheader-widgets' );
 
@@ -202,34 +172,25 @@ jQuery( function($) {
 		});
 
 	}
-
 	tva_subheaderWidgets();
-
-
 
 //--------------------------------------------------------------
 //	Styles drop-down
 //--------------------------------------------------------------	
-
 	//-------------------------------
 	// Alert
 	//-------------------------------
-	
 	$( '.alert .closealert' ).click( function(e) {
-
 		$(this).parent('.alert').fadeTo(400, 0).slideUp();
 
 		e.preventDefault();
 
 	});
 
-
 	//-------------------------------
 	// Toggle
 	//-------------------------------
-	
 	$( '.tva-toggle-trigger' ).click( function(e) {
-
 		// Add 'active' class for active toggle
 		if( $(this).hasClass( 'active' )) {
 			$(this).removeClass( 'active' );
@@ -241,44 +202,25 @@ jQuery( function($) {
 		$(this).parent().nextAll( '.tva-toggle-content' ).first().slideToggle( 'slow' );
 
 		e.preventDefault();
-
 	});
-
-
 
 //--------------------------------------------------------------
 //	Validate forms
 //--------------------------------------------------------------	
-
 	if( $().validate ) {
 		$( '#contactform' ).validate();
 		$( '#commentform' ).validate();
 	}
 
-
-
 //----------------------------------------------------------------------------------------------------------------------------
 //	Resize
 //----------------------------------------------------------------------------------------------------------------------------
-
     $(window).resize(function() {
-
 	    tva_mobilenav_trigger();
-
 	    if( $(window).width() > 1023 ) {
-		tva_mobilenav_menu();
+			tva_mobilenav_menu();
 		}
-
     });
-
-
-
-//----------------------------------------------------------------------------------------------------------------------------
-//	That's all folks! (We can stop rollin now)
-//----------------------------------------------------------------------------------------------------------------------------
-	});
-});
-
 
 
 //----------------------------------------------------------------------------------------------------------------------------
@@ -287,8 +229,6 @@ jQuery( function($) {
 //
 //----------------------------------------------------------------------------------------------------------------------------
 
-jQuery( function($) {
-	jQuery(window).load( function() {
 
 //----------------------------------------------------------------------------------------------------------------------------
 //	Read more
@@ -558,19 +498,7 @@ jQuery( function($) {
 		$( function() {
 
 			var $container = $( '#content .isotope' );
-
-			$container.isotope({
-				itemSelector: '.post',
-				transformsEnabled: false,
-				animationEngine: 'jquery',
-				animationOptions: {
-					duration: 300,
-					easing: 'swing',
-					queue: false
-				}
-			}, function() {
-				tva_indicator();
-			});
+			$( '#content .isotope' ).isotope({ itemSelector: '.post', transformsEnabled: false, animationEngine: 'jquery', animationOptions: { duration: 300, easing: 'swing', queue: false } }, function() { tva_indicator(); });
 
 		});
 	
@@ -751,9 +679,6 @@ tva_scrolltop();
     });
 
 
-
 //----------------------------------------------------------------------------------------------------------------------------
 //	That's all folks! (We can stop rollin now)
 //----------------------------------------------------------------------------------------------------------------------------
-	});
-});

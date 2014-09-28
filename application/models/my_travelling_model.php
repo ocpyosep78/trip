@@ -1,63 +1,73 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class page_static_model extends CI_Model {
+class my_travelling_model extends CI_Model {
     function __construct() {
         parent::__construct();
 		
-        $this->field = array( 'id', 'title', 'alias', 'content', 'post_time', 'redirect' );
+        $this->field = array( 'id', 'traveler_id', 'title', 'alias', 'desc', 'tag', 'thumbnail', 'create_date' );
     }
 
     function update($param) {
         $result = array();
        
         if (empty($param['id'])) {
-            $insert_query  = GenerateInsertQuery($this->field, $param, PAGE_STATIC);
+            $insert_query  = GenerateInsertQuery($this->field, $param, MY_TRAVELLING);
             $insert_result = mysql_query($insert_query) or die(mysql_error());
            
             $result['id'] = mysql_insert_id();
             $result['status'] = '1';
             $result['message'] = 'Data successfully saved.';
         } else {
-            $update_query  = GenerateUpdateQuery($this->field, $param, PAGE_STATIC);
+            $update_query  = GenerateUpdateQuery($this->field, $param, MY_TRAVELLING);
             $update_result = mysql_query($update_query) or die(mysql_error());
            
             $result['id'] = $param['id'];
             $result['status'] = '1';
             $result['message'] = 'Data successfully updated.';
         }
-       
+		
         return $result;
     }
-
+	
     function get_by_id($param) {
         $array = array();
-       
+		
         if (isset($param['id'])) {
-            $select_query  = "SELECT * FROM ".PAGE_STATIC." WHERE id = '".$param['id']."' LIMIT 1";
-        } else if (isset($param['alias'])) {
-            $select_query  = "SELECT * FROM ".PAGE_STATIC." WHERE alias = '".$param['alias']."' LIMIT 1";
+            $select_query  = "SELECT * FROM ".MY_TRAVELLING." WHERE id = '".$param['id']."' LIMIT 1";
+        } else if (isset($param['traveler_alias']) && isset($param['alias'])) {
+            $select_query  = "
+				SELECT my_travelling.*, traveler.alias traveler_alias
+				FROM ".MY_TRAVELLING." my_travelling
+				LEFT JOIN ".TRAVELER." traveler ON traveler.id = my_travelling.traveler_id
+				WHERE
+					my_travelling.alias = '".$param['alias']."'
+					AND traveler.alias = '".$param['traveler_alias']."'
+				LIMIT 1
+			";
         } 
-       
+		
         $select_result = mysql_query($select_query) or die(mysql_error());
         if (false !== $row = mysql_fetch_assoc($select_result)) {
             $array = $this->sync($row);
         }
-       
+		
         return $array;
     }
 	
     function get_array($param = array()) {
         $array = array();
 		
-		$string_namelike = (!empty($param['namelike'])) ? "AND category.title LIKE '%".$param['namelike']."%'" : '';
+		$param['field_replace']['create_date_swap'] = 'my_travelling.create_date';
+		
 		$string_filter = GetStringFilter($param, @$param['column']);
-		$string_sorting = GetStringSorting($param, @$param['column'], 'category.title ASC');
+		$string_sorting = GetStringSorting($param, @$param['column'], 'title ASC');
 		$string_limit = GetStringLimit($param);
 		
 		$select_query = "
-			SELECT SQL_CALC_FOUND_ROWS page_static.*
-			FROM ".PAGE_STATIC." page_static
-			WHERE 1 $string_namelike $string_filter
+			SELECT SQL_CALC_FOUND_ROWS my_travelling.*, traveler.alias traveler_alias
+			FROM ".MY_TRAVELLING." my_travelling
+			LEFT JOIN ".TRAVELER." traveler ON traveler.id = my_travelling.traveler_id
+			WHERE 1 $string_filter
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
@@ -70,16 +80,16 @@ class page_static_model extends CI_Model {
     }
 
     function get_count($param = array()) {
-		$select_query = "SELECT FOUND_ROWS() TotalRecord";
+		$select_query = "SELECT FOUND_ROWS() total";
 		$select_result = mysql_query($select_query) or die(mysql_error());
 		$row = mysql_fetch_assoc($select_result);
-		$TotalRecord = $row['TotalRecord'];
+		$total = $row['total'];
 		
-		return $TotalRecord;
+		return $total;
     }
 	
     function delete($param) {
-		$delete_query  = "DELETE FROM ".PAGE_STATIC." WHERE id = '".$param['id']."' LIMIT 1";
+		$delete_query  = "DELETE FROM ".MY_TRAVELLING." WHERE id = '".$param['id']."' LIMIT 1";
 		$delete_result = mysql_query($delete_query) or die(mysql_error());
 		
 		$result['status'] = '1';
@@ -89,11 +99,28 @@ class page_static_model extends CI_Model {
     }
 	
 	function sync($row, $param = array()) {
-		$row = StripArray($row);
+		$row = StripArray($row, array( 'create_date' ));
+		
+		// default
+		if (isset($row['desc'])) {
+			$row['content'] = $row['desc'];
+		}
+		if (isset($row['create_date'])) {
+			$row['post_date'] = $row['create_date'];
+		}
+		if (!empty($row['thumbnail'])) {
+			$row['thumbnail_link'] = base_url('static/upload/'.$row['thumbnail']);
+		}
+		
+		// date
+		if (isset($row['create_date'])) {
+			$row['create_date_swap'] = GetFormatDate($row['create_date']);
+		}
 		
 		// link
-		if (!empty($row['alias'])) {
-			$row['page_link'] = base_url($row['alias']);
+		$row['link_source'] = '#';
+		if (!empty($row['traveler_alias']) && !empty($row['alias'])) {
+			$row['link_source'] = base_url('t/'.$row['traveler_alias'].'/'.'my-traveling/'.$row['alias']);
 		}
 		
 		if (count(@$param['column']) > 0) {

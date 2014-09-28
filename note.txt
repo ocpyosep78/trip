@@ -1,32 +1,70 @@
-check => http://www.tripdomestik.com/t/linda-law/destination/354534534534634/gallery/malioboro-street
+Di halaman ini : http://www.tripdomestik.com/t/mehdina-ray
+1.	Di link SHARE Facebook = itu linknya sperti ini http://www.tripdomestik.com/t/mehdina-ray/restaurant/423434323423/review/i-am-from-india-i-like-this-place
+- done
 
-Metanya jadi :
-- title : Linda Law - Malioboro street
-- Desc  : i like it
+2.	di kasih paging, ato kalo nda versi load 10 more juga boleh untuk load asal tidak berat loadnya.
+- done, nanti klo jumlah itemnya melebihi 10 akan keluar tombol 'more' yang bisa diklik untuk load item selanjutnya
 
---------------------------------------------------------------------------------
+3.	http://www.tripdomestik.com/t/mehdina-ray, yang di jadikan url name itu adalah usernamenya…
+contoh https://www.facebook.com/mehdinaray, jadi yang di ambil mehdinaray bukan mehdina-ray
+soalnya ada kemungkinan akan bentrok jika yang di jadikan url /t/mehdina-ray adalah nama lengkap.
+Karena nama lengkap ada yang sama. Karena yang register via website, itu ada alias, jadi tidak bentrok.
+- done
 
-check => Single time line yang ini :
-yang ini Sudah : http://www.tripdomestik.com/t/linda-law/destination/354534534534634/gallery/malioboro-street
-yang ini Belum : http://www.tripdomestik.com/t/linda-law/restaurant/423434323423/review/coba-review-untuk-timeline
-( tanpa gambar, cuma title [coba review untuk timeline] dan isi review )
+------------------------------------------------------------------------------------------------------------------------------------------------
 
-check => liat http://www.tripdomestik.com/t/rid1amir
-JIKA rid1amir upload GAMBAR di galery, maka tampilkan juga di http://www.tripdomestik.com/t/rid1amir
-JIKA rid1amir Review tampilkan juga reviewnya rid1amir di http://www.tripdomestik.com/t/rid1amir
-JADI cuma memangil tabel REVIEW dan tabel GALERY traveler untuk di tampilkan di http://www.tripdomestik.com/t/rid1amir sebagai timeline
+Di halaman ini http://tripdomestik.com/panel/setup/page_static
+
+1.	tambahkan field url redirect, misal judul saya isi dengan BATU, jika field url saya isi dengan http://tripdomestik.com/search/batu,
+maka jika saya buka http://tripdomestik.com/batu maka otomatis akan ter redirect ke halaman http://tripdomestik.com/search/batu,
+jika urlnya di kosongin maka yang terbuka halaman page static yang berisi content detail.
+- done
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Create Post My Traveling, Oleh member TRAVELER
+
+1.	Create Post my traveling (field : Title, text area, tag, Image Upload) = ini untuk para traveler kalo mau menulis cerita traveling mereka.
+- done
+
+2.	setelah dia submit, langsung update di halaman timeline dia. http://www.tripdomestik.com/t/mehdina-ray, tampilkan gambar, title dan short desc.
+- done
+
+3.	untuk halaman detail dari post my traveling gunakan halaman template ini,
+http://www.tripdomestik.com/t/mehdina-ray/restaurant/423434323423/review/i-am-from-india-i-like-this-place
+- done
+
+4.	dan buatkan 1 listing untuk menampikan semua post my traveling : urlnya http://www.tripdomestik.com/traveling, tampilkan JUDUL, Thumnail, Short desc,
+jika dari halaman listing ini di klik linknya, maka arahkan ke halaman detail http://www.tripdomestik.com/t/mehdina-ray/restaurant/423434323423/review/i-am-from-india-i-like-this-place
+- done
+
+5.
+Meta tag di halaman http://www.tripdomestik.com/t/mehdina-ray 
+<meta name="description" content="tampilkan short field about traveler">
+- done
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Mudahcarikerja.com (script tripdomestik.com) Login : /cpanel = domestic
+1.	Buatkan ../common/recent_post1.php recent post berdasarkan category Kerjaya 
+2.	Buatkan ../common/recent_post2.php recent post berdasarkan category Restaurant
+3.	di page template_post_public, jadikan listing yang uproved yang DESC
+
+JawatanDB.com (script duniadb) Login : /cpanel = disnaker
+1.	di halaman ini http://www.jawatandb.com/read/jawatan-kosong-terkini-di-pos-malaysia-berhad-2014 tambahkan di belakang url, sperti ini : !42348 jadi sperti ini http://www.jawatandb.com/read/jawatan-kosong-terkini-di-pos-malaysia-berhad-2014!42348 
+a.	contoh di tokobagus http://www.olx.co.id/iklan/sepatu-casual-black-master-code-bm-c140-elliashop-67870173.html#pn_2fe2ae5606fbbd0cd82aa930a3c1ff11 
+b.	jadi setiap kita buka halaman http://www.jawatandb.com/read/jawatan-kosong-terkini-di-pos-malaysia-berhad-2014, akan otomatis ada tambahan di belakang url dan di random angkanya. Agar url tersebut uniq..
+2.	yang dikasih uniq angka dibelakang url adalah halaman profile.php dan single.php
+3.	tampilkan profile detail sperti nama depan nama belakang, about, country, website, dll, di page single.php nanti saya yang rapikan
 
 
----------------------------
 
 
-perbaikan situs http://malaysianfair.com/
 
-
-dan ini tolong buatkan halaman home, boleh di redirect ato gimana..
-
-waktu saya masuk ke halaman http://malaysianfair.com/ langsung masuk ke halaman home,
-biar nanti halaman home ini beda dengan halaman index.php (listing)
-
-ATAU bisa juga di halaman index ini cuma tambahkan 1 <div> </div> di atas recent post,
-yang JIKA pada halaman http://www.malaysianfair.com/page-2 dst <div> tersebut tidak muncul
+update :
+- config/autoload.php
+- config/constants.php
+- controllers/panel/my_travelling.php
+- models/my_travelling_model.php
+- views/panel/common/sidebar.php
+- views/panel/post/my_travelling.php

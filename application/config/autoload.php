@@ -12,5 +12,5 @@ $autoload['model'] = array(
 	'room_amenity_model', 'traveler_model', 'auto_complete_model', 'category_facility_model', 'category_model', 'hotel_star_model',
 	'category_sub_model', 'hotel_booking_model', 'hotel_detail_model', 'widget_model', 'page_static_model', 'category_tag_model', 'post_tag_model',
 	'tag_model', 'payment_model', 'verify_address_model', 'membership_model', 'user_membership_model', 'user_setting_model', 'post_traveler_report_model',
-	'newsletter_model', 'city_tag_model', 'category_sub_tag_model'
+	'newsletter_model', 'city_tag_model', 'category_sub_tag_model', 'my_travelling_model'
 );

@@ -232,15 +232,31 @@ class traveler_model extends CI_Model {
 				LEFT JOIN ".CATEGORY." category ON category.id = category_sub.category_id
 				WHERE post_traveler_review.traveler_id = '".$param['traveler_id']."'
 			)
+			UNION
+			(
+				SELECT
+					'my_traveling' type, my_travelling.title, my_travelling.alias, my_travelling.traveler_id, my_travelling.desc content,
+					my_travelling.thumbnail, my_travelling.create_date post_date, traveler.alias post_alias, '' category_alias
+				FROM ".MY_TRAVELLING." my_travelling
+				LEFT JOIN ".TRAVELER." traveler ON traveler.id = my_travelling.traveler_id
+				WHERE my_travelling.traveler_id = '".$param['traveler_id']."'
+			)
 			ORDER BY post_date DESC
-			LIMIT 25
+			LIMIT $string_limit
 		";
+		
         $select_result = mysql_query($select_query) or die(mysql_error());
 		while ( $row = mysql_fetch_assoc( $select_result ) ) {
 			$array[] = $this->sync_timeline($row, $param);
 		}
 		
         return $array;
+	}
+	
+	function get_array_timeline_count($param = array()) {
+		$param['limit'] = 500;
+		$array_timeline = $this->get_array_timeline($param);
+		return count($array_timeline);
 	}
 	
 	function sync_timeline($row = array()) {
@@ -250,7 +266,9 @@ class traveler_model extends CI_Model {
 		if (!empty($row['thumbnail'])) {
 			$row['thumbnail_link'] = base_url('static/upload/'.$row['thumbnail']);
 		}
-		if (!empty($row['category_alias']) && !empty($row['post_alias'])) {
+		if ($row['type'] == 'my_traveling') {
+			$row['link_source'] = base_url('t/'.$row['post_alias'].'/my-traveling/'.$row['alias']);
+		} else if (!empty($row['category_alias']) && !empty($row['post_alias'])) {
 			$row['link_source'] = base_url($row['category_alias'].'/'.$row['post_alias'].'/'.$row['type'].'/'.$row['alias']);
 		}
 		

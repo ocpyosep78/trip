@@ -34,6 +34,7 @@ if ($is_website) {
 	$route['search(/([a-z0-9\-]+))*'] = "website/search";
 	$route['payment(/([a-z0-9\-]+))*'] = "website/payment";
 	$route['register(/([a-z0-9\-]+))*'] = "website/register";
+	$route['traveling(/([a-z0-9\-]+))*'] = "website/traveling";
 	$route['(t|traveler)(/([a-z0-9\-]+))*'] = "website/traveler";
 	$route['redirect(/([a-z0-9\-]+))*'] = "website/redirect";
 	$route['([a-z0-9\-\/]+)'] = "website/selector";

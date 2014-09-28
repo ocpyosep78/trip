@@ -420,6 +420,12 @@
 								<span>My Gallery</span>
 							</a>
 						</li>
+						<li data-menu-parent="gallery">
+							<a href="<?php echo base_url('panel/my_travelling'); ?>">
+								<i class="fa fa-file-text icon"><b class="bg-primary"></b></i>
+								<span>My Travelling</span>
+							</a>
+						</li>
 						<li data-menu-parent="profile">
 							<a>
 								<i class="fa fa-file-text icon"><b class="bg-primary"></b></i>

@@ -42,7 +42,11 @@ define('WEBSITE_COOKIE',						'.tripdomestik.com');
 /*	FACEBOOK INFO */
 define('FB_APP_ID',								'114232302873');
 define('FB_APP_SECRET',							'f608c9f4483fd728139f0904bd934f8d');
-define('FB_LOGIN_SUCCESS',						'http://www.tripdomestik.com/login/[user_type]/fb');
+if ($_SERVER['SERVER_NAME'] == 'tripdomestik.com') {
+	define('FB_LOGIN_SUCCESS',						'http://tripdomestik.com/login/[user_type]/fb');
+} else if ($_SERVER['SERVER_NAME'] == 'www.tripdomestik.com') {
+	define('FB_LOGIN_SUCCESS',						'http://www.tripdomestik.com/login/[user_type]/fb');
+}
 
 define('CATEGORY_HOTEL',						1);
 define('CATEGORY_DESTINATION',					2);
@@ -75,6 +79,7 @@ define('LANGUAGE',								'language');
 define('MASS_EMAIL',							'mass_email');
 define('MEMBER',								'member');
 define('MEMBERSHIP',							'membership');
+define('MY_TRAVELLING',							'my_travelling');
 define('NEWSLETTER',							'newsletter');
 define('PAGE_STATIC',							'page_static');
 define('PAYMENT',								'payment');

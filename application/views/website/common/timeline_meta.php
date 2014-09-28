@@ -50,13 +50,13 @@
 	<?php } ?>
 	<?php } ?>
 	
-	<link rel="stylesheet" type="text/css" media="all" href="http://tripdomestik.com/static/theme/timeline/style.css">
-	<link href="http://tripdomestik.com/static/theme/timeline/animate.css" media="all" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" type="text/css" href="http://tripdomestik.com/static/theme/timeline/injected_002.css">
-	<link rel="stylesheet" id="options_typography_Roboto-css" href="http://tripdomestik.com/static/theme/timeline/css_002.css" type="text/css" media="all">
-	<link rel="stylesheet" id="options_typography_Roboto+Condensed-css" href="http://tripdomestik.com/static/theme/timeline/css.css" type="text/css" media="all">
-	<link rel="stylesheet" id="prettyPhoto-css" href="http://tripdomestik.com/static/theme/timeline/prettyPhoto.css" type="text/css" media="all">
-	<link rel="stylesheet" type="text/css" href="timeline2_files/injected.css">
+	<link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url('static/theme/timeline/style.css'); ?>">
+	<link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url('static/theme/timeline/animate.css'); ?>">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url('static/theme/timeline/injected_002.css'); ?>">
+	<link rel="stylesheet" type="text/css" media="all" id="options_typography_Roboto-css" href="<?php echo base_url('static/theme/timeline/css_002.css'); ?>">
+	<link rel="stylesheet" type="text/css" media="all" id="options_typography_Roboto+Condensed-css" href="<?php echo base_url('static/theme/timeline/css.css'); ?>">
+	<link rel="stylesheet" type="text/css" media="all" id="prettyPhoto-css" href="<?php echo base_url('static/theme/timeline/prettyPhoto.css'); ?>">
+	<!-- <link rel="stylesheet" type="text/css" href="timeline2_files/injected.css"> -->
 	
 	<style>
 		.fluid-width-video-wrapper { width: 100%; position: relative; padding: 0; }
@@ -167,13 +167,15 @@ background-color: #ee482e;
 	</style>
 	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
 	
-	<script src="http://tripdomestik.com/static/theme/timeline/tienvooracht.txt" async=""></script>
-	<script type="text/javascript" src="http://tripdomestik.com/static/theme/timeline/jquery_002.js"></script>
-	<script type="text/javascript" src="http://tripdomestik.com/static/theme/timeline/jquery-migrate.js"></script>
-	<script type="text/javascript" src="http://tripdomestik.com/static/theme/timeline/jquery_004.js"></script>
-	<script type="text/javascript" src="http://tripdomestik.com/static/theme/timeline/jquery_006.js"></script>
-	<script type="text/javascript" src="http://tripdomestik.com/static/theme/timeline/jquery_003.js"></script>
-	<script type="text/javascript" src="http://tripdomestik.com/static/theme/timeline/jquery.js"></script> 
+	<script>var web = <?php echo json_encode($web); ?></script>
+	<!-- <script src="http://tripdomestik.com/static/theme/timeline/tienvooracht.txt" async=""></script> -->
+	<script type="text/javascript" src="<?php echo base_url('static/theme/timeline/jquery_002.js'); ?>"></script> 
+	<script type="text/javascript" src="<?php echo base_url('static/theme/timeline/jquery-migrate.js'); ?>"></script> 
+	<script type="text/javascript" src="<?php echo base_url('static/theme/timeline/jquery_004.js'); ?>"></script> 
+	<script type="text/javascript" src="<?php echo base_url('static/theme/timeline/jquery_006.js'); ?>"></script> 
+	<script type="text/javascript" src="<?php echo base_url('static/theme/timeline/jquery_003.js'); ?>"></script> 
+	<script type="text/javascript" src="<?php echo base_url('static/theme/timeline/jquery.js'); ?>"></script> 
+	<script src="<?php echo base_url('static/js/common.js'); ?>"></script>
 	
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
