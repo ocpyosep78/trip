@@ -9,7 +9,7 @@ Di halaman ini : http://www.tripdomestik.com/t/mehdina-ray
 contoh https://www.facebook.com/mehdinaray, jadi yang di ambil mehdinaray bukan mehdina-ray
 soalnya ada kemungkinan akan bentrok jika yang di jadikan url /t/mehdina-ray adalah nama lengkap.
 Karena nama lengkap ada yang sama. Karena yang register via website, itu ada alias, jadi tidak bentrok.
-- done
+- done, untuk user yang akan register akan memakai konsep ini
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -47,24 +47,23 @@ Meta tag di halaman http://www.tripdomestik.com/t/mehdina-ray
 
 Mudahcarikerja.com (script tripdomestik.com) Login : /cpanel = domestic
 1.	Buatkan ../common/recent_post1.php recent post berdasarkan category Kerjaya 
+- done, contoh pemakaian di /public_html/mudahcarikerja.com/application/views/website/tag.php
+
 2.	Buatkan ../common/recent_post2.php recent post berdasarkan category Restaurant
+- done, contoh pemakaian di /public_html/mudahcarikerja.com/application/views/website/tag.php
+
 3.	di page template_post_public, jadikan listing yang uproved yang DESC
+- done
+
+------------------------------------------------------------------------------------------------------------------------------------------------
 
 JawatanDB.com (script duniadb) Login : /cpanel = disnaker
-1.	di halaman ini http://www.jawatandb.com/read/jawatan-kosong-terkini-di-pos-malaysia-berhad-2014 tambahkan di belakang url, sperti ini : !42348 jadi sperti ini http://www.jawatandb.com/read/jawatan-kosong-terkini-di-pos-malaysia-berhad-2014!42348 
-a.	contoh di tokobagus http://www.olx.co.id/iklan/sepatu-casual-black-master-code-bm-c140-elliashop-67870173.html#pn_2fe2ae5606fbbd0cd82aa930a3c1ff11 
-b.	jadi setiap kita buka halaman http://www.jawatandb.com/read/jawatan-kosong-terkini-di-pos-malaysia-berhad-2014, akan otomatis ada tambahan di belakang url dan di random angkanya. Agar url tersebut uniq..
+1.	di halaman ini http://www.jawatandb.com/read/jawatan-kosong-terkini-di-pos-malaysia-berhad-2014 tambahkan di belakang url,
+sperti ini : !42348 jadi sperti ini http://www.jawatandb.com/read/jawatan-kosong-terkini-di-pos-malaysia-berhad-2014!42348 
+	a.	contoh di tokobagus http://www.olx.co.id/iklan/sepatu-casual-black-master-code-bm-c140-elliashop-67870173.html#pn_2fe2ae5606fbbd0cd82aa930a3c1ff11 
+	b.	jadi setiap kita buka halaman http://www.jawatandb.com/read/jawatan-kosong-terkini-di-pos-malaysia-berhad-2014,
+		akan otomatis ada tambahan di belakang url dan di random angkanya. Agar url tersebut uniq..
+	
 2.	yang dikasih uniq angka dibelakang url adalah halaman profile.php dan single.php
+
 3.	tampilkan profile detail sperti nama depan nama belakang, about, country, website, dll, di page single.php nanti saya yang rapikan
-
-
-
-
-
-update :
-- config/autoload.php
-- config/constants.php
-- controllers/panel/my_travelling.php
-- models/my_travelling_model.php
-- views/panel/common/sidebar.php
-- views/panel/post/my_travelling.php

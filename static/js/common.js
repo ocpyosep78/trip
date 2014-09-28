@@ -551,6 +551,10 @@ var Func = {
 			},
 			auto_height: function() {
 				var count_article = $('#isotope article').length;
+				if (count_article < 2) {
+					return;
+				}
+				
 				var height_1 = $('#isotope article').eq(count_article - 1).height() + $('#isotope article').eq(count_article - 1).position().top;
 				var height_2 = $('#isotope article').eq(count_article - 2).height() + $('#isotope article').eq(count_article - 2).position().top;
 				var height = (height_1 > height_2) ? height_1 : height_2;

@@ -59,6 +59,7 @@ class my_travelling_model extends CI_Model {
 		
 		$param['field_replace']['create_date_swap'] = 'my_travelling.create_date';
 		
+		$string_traveler = (isset($param['traveler_id'])) ? "AND my_travelling.traveler_id = '".$param['traveler_id']."'" : '';
 		$string_filter = GetStringFilter($param, @$param['column']);
 		$string_sorting = GetStringSorting($param, @$param['column'], 'title ASC');
 		$string_limit = GetStringLimit($param);
@@ -67,10 +68,11 @@ class my_travelling_model extends CI_Model {
 			SELECT SQL_CALC_FOUND_ROWS my_travelling.*, traveler.alias traveler_alias
 			FROM ".MY_TRAVELLING." my_travelling
 			LEFT JOIN ".TRAVELER." traveler ON traveler.id = my_travelling.traveler_id
-			WHERE 1 $string_filter
+			WHERE 1 $string_filter $string_traveler
 			ORDER BY $string_sorting
 			LIMIT $string_limit
 		";
+		
         $select_result = mysql_query($select_query) or die(mysql_error());
 		while ( $row = mysql_fetch_assoc( $select_result ) ) {
 			$array[] = $this->sync($row, $param);
