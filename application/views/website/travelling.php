@@ -1,12 +1,12 @@
 <?php
 	// array timeline
 	$timeline_per_page = 10;
-	$array_traveling = $this->my_travelling_model->get_array(array( 'limit' => $timeline_per_page ));
+	$array_traveling = $this->my_travelling_model->get_array(array( 'limit' => $timeline_per_page, 'sort' => '[{"property":"create_date","direction":"DESC"}]' ));
 	$count_traveling = $this->my_travelling_model->get_count(array( ));
 	
 	// array seo
 	$array_seo = array(
-		'title' => 'All traveler',
+		'title' => 'Jejak para traveler di Indonesia',
 		'array_meta' => array(
 			array( 'name' => 'Title', 'content' => 'All traveler' ),
 			array( 'name' => 'Description', 'content' => 'All traveler' )

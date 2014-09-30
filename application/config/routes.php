@@ -25,19 +25,19 @@ if ($is_website) {
 	$route['rss'] = "website/rss";
 	
 	// post
-	$route['hotel(/([a-z0-9\-]+))*'] = "website/hotel";
-	$route['(destination|restaurant)(/([a-z0-9\-]+))*'] = "website/destination";
+	$route['hotel(/([a-zA-Z0-9\-]+))*'] = "website/hotel";
+	$route['(destination|restaurant)(/([a-zA-Z0-9\-]+))*'] = "website/destination";
     
 	// other page
-	$route['login(/([a-z0-9\-]+))*'] = "website/login";
-	$route['tag(/([a-z0-9\-]+))*'] = "website/tag";
-	$route['search(/([a-z0-9\-]+))*'] = "website/search";
-	$route['payment(/([a-z0-9\-]+))*'] = "website/payment";
-	$route['register(/([a-z0-9\-]+))*'] = "website/register";
-	$route['traveling(/([a-z0-9\-]+))*'] = "website/traveling";
-	$route['(t|traveler)(/([a-z0-9\-\.]+))*'] = "website/traveler";
-	$route['redirect(/([a-z0-9\-]+))*'] = "website/redirect";
-	$route['([a-z0-9\-\/]+)'] = "website/selector";
+	$route['login(/([a-zA-Z0-9\-]+))*'] = "website/login";
+	$route['tag(/([a-zA-Z0-9\-]+))*'] = "website/tag";
+	$route['search(/([a-zA-Z0-9\-]+))*'] = "website/search";
+	$route['payment(/([a-zA-Z0-9\-]+))*'] = "website/payment";
+	$route['register(/([a-zA-Z0-9\-]+))*'] = "website/register";
+	$route['traveling(/([a-zA-Z0-9\-]+))*'] = "website/traveling";
+	$route['(t|traveler)(/([a-zA-Z0-9\-\.]+))*'] = "website/traveler";
+	$route['redirect(/([a-zA-Z0-9\-]+))*'] = "website/redirect";
+	$route['([a-zA-Z0-9\-\/]+)'] = "website/selector";
 } else if ($is_panel) {
 	$route['panel'] = "panel/home";
 } else if ($is_service) {

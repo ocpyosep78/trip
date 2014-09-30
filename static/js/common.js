@@ -508,25 +508,34 @@ var Func = {
 				}, 250);
 			},
 			render_grid: function() {
-				var item_count = $('#isotope article').length;
-				
-				if (item_count == 1) {
-					var next_top = '0px';
-					var next_left = '504px';
-				} else {
-					var item_1 = $('#isotope article').eq(item_count - 1);
-					var item_2 = $('#isotope article').eq(item_count - 2);
-					var item_1_height = item_1.position().top + item_1.height();
-					var item_2_height = item_2.position().top + item_2.height();
-					
-					// select item
-					var item = (item_1_height < item_2_height) ? item_1 : item_2;
-					var next_top = item.height() + item.position().top + 20 + 'px';
-					var next_left = item.css('left');
-				}
-				
 				// get item
 				while ($('.isotope-new article').length > 0) {
+					// define position
+					var item_count = $('#isotope article').length;
+					if (item_count == 1) {
+						var next_top = '0px';
+						var next_left = '504px';
+					} else {
+						var item_1 = $('#isotope article').eq(item_count - 1);
+						var counter = 2;
+						while (typeof(item_2) == 'undefined' && counter <= 10) {
+							var temp = $('#isotope article').eq(item_count - counter);
+							if (item_1.css('left') == temp.css('left')) {
+								counter++;
+							} else {
+								item_2 = temp;
+							}
+						}
+						var item_1_height = item_1.position().top + item_1.height();
+						var item_2_height = item_2.position().top + item_2.height();
+						
+						// select item
+						var item = (item_1_height < item_2_height) ? item_1 : item_2;
+						var next_top = item.height() + item.position().top + 20 + 'px';
+						var next_left = item.css('left');
+					}
+					
+					// select element
 					var dom_el = $('.isotope-new article').eq(0);
 					
 					// set top

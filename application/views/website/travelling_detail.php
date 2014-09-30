@@ -25,7 +25,7 @@
 	<a href="#" class="subheader-widgets-trigger animated fadeInDown"></a>
 	<div id="content" class="row"><!-- BEGIN #content -->
 		<div style="position: relative; overflow: hidden; height: 576px;" id="isotope" class="isotope animated fadeIn">
-			<?php $this->load->view( 'website/timeline_list', array( 'array_timeline' => array( $my_traveling ) ) ); ?>
+			<?php $this->load->view( 'website/timeline_list', array( 'array_timeline' => array( $my_traveling ), 'is_detail' => true ) ); ?>
 		</div>
 		<div class="isotope-new"></div>
 		<div id="load-posts"><!-- BEGIN #load-posts -->

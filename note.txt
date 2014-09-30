@@ -63,7 +63,11 @@ sperti ini : !42348 jadi sperti ini http://www.jawatandb.com/read/jawatan-kosong
 	a.	contoh di tokobagus http://www.olx.co.id/iklan/sepatu-casual-black-master-code-bm-c140-elliashop-67870173.html#pn_2fe2ae5606fbbd0cd82aa930a3c1ff11 
 	b.	jadi setiap kita buka halaman http://www.jawatandb.com/read/jawatan-kosong-terkini-di-pos-malaysia-berhad-2014,
 		akan otomatis ada tambahan di belakang url dan di random angkanya. Agar url tersebut uniq..
-	
+- done
+
 2.	yang dikasih uniq angka dibelakang url adalah halaman profile.php dan single.php
+- done
 
 3.	tampilkan profile detail sperti nama depan nama belakang, about, country, website, dll, di page single.php nanti saya yang rapikan
+- done
+

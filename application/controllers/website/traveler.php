@@ -15,6 +15,10 @@ class traveler extends TRIP_Controller {
 		
 		// page data
 		$traveler = $this->traveler_model->get_by_id(array( 'alias' => $this->uri->segments[2] ));
+		if (count($traveler) == 0) {
+			header("Location: ".base_url());
+			exit;
+		}
 		
 		if (!empty($this->uri->segments[3])) {
 			if ($this->uri->segments[3] == 'my-traveling') {

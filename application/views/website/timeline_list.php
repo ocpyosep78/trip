@@ -1,4 +1,13 @@
+<?php
+	$is_detail = (isset($is_detail)) ? $is_detail : false;
+?>
+
 <?php foreach ($array_timeline as $key => $row) { ?>
+<?php $array_tag = array(); ?>
+<?php if (isset($row['tag'])) { ?>
+<?php $array_tag = explode(',', trim($row['tag'])); ?>
+<?php } ?>
+
 <article style="position: absolute; left: 0px; top: 0px;" class="post-66 post type-post status-publish format-gallery hentry category-photography item six columns isotope-item item-right item-left">
 	<span class="indicator-top"></span>
 	<div class="post-content">
@@ -17,8 +26,22 @@
 			</h2>
 		</header>
 		<div class="entry-content">
+			<?php if ($is_detail) { ?>
+			<p><?php echo $row['content']; ?></p>
+				<?php if (!empty($row['tag'])) { ?>
+					<ul>
+					<?php foreach ($array_tag as $tag) { ?>
+						<?php $tag = trim($tag); ?>
+						<?php $link_tag = base_url('tag/'.get_name($tag)); ?>
+						
+						<li><a href="<?php echo $link_tag; ?>"><?php echo $tag; ?></a></li>
+					<?php } ?>
+					</ul>
+				<?php } ?>
+			<?php } else { ?>
 			<p><?php echo get_length_char($row['content'], 150, ' ...'); ?></p>
 			<p><a href="#" class="more-link">Continue reading <span class="meta-nav">»</span></a></p>
+			<?php } ?>
 		</div>
 	</div>
 	<div class="entry-meta">
